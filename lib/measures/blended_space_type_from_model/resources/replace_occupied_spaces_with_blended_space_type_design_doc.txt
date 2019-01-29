@@ -1,0 +1,72 @@
+NREL Measure Design Document Text File
+
+Note: you can include ruby snippets for arguments and messaged, but it isn't necessary. If you are comfortable with it, it makes writing the measure quicker if the code is already structured here.
+
+Measure Class:
+BlendedSpaceTypeFromModel
+
+Measure Name:
+Replace Occupied Spaces with Blended Space Type
+
+Tag:
+Whole Building.Space Types
+
+Measure Type:
+ModelMeasure
+
+OpenStudio Version:
+1.12.0
+
+Description:
+This measure will remove all space type assignemnts and hard assigned internal loads from spaces that are included in the building floor area. Spaces such as plenums and attics will be left alone. A blended space type will be created from the original internal loads and assigned at the building level. Thermostats, Service Water Heating, and HVAC systems will not be altered. Any constructions associated with space types will be hard assigned prior to the space type assignemnt being removed.
+
+Model Description:
+The goal of this measure is to create a single space type that represents the loads and schedules of a collection of space types in a model. When possible the measure will create mulitple load instances of a specific type in the resulting blended space type. This allows the original schedules to be used, and can allow for down stream EE measures on specific internal loads. Design Ventilation Outdoor Air objects will have to be merged into a single object. Will try to maintain the load design type (power, per area, per person) when possible. Need to account for zone multipliers when createding blended internal loads. Also address what happens to daylighting control objets. Original space types will be left in the model, some may still be assigned to spaces not included in the building area.
+
+Arguments:
+    If things are done well, this shouldn't have any user arguments. We can add some if we see a neat to add some configuration options.
+
+Error Message:
+- The model has spaces, but can't calculate building floor area
+- Space is in thermal zone where some spaces are included in building area but others are not
+
+Warning Message:
+- Space isn't assigned to thermal zone, continue but assume it would have zone multiplier of one.
+
+Info Message:
+- Report out the effective space type ratio identified for the blended space types
+- Report how many of each load type are in the resulting blend and the LPD/EPD
+
+Not Applicable Message:
+- The model doesn't have any spaces
+
+Initial Condition:
+    # reporting initial condition of model
+    space_types_used = "TBD"
+    runner.registerInitialCondition("The initial building used #{space_types_used.size} space types.")
+
+Final Condition:
+    # reporting final condition of model
+    space_types_used = "TBD"
+    runner.registerFinalCondition("The final building uses #{space_types_used.size} spaces types.")
+
+Code Outline:
+    # todo - Report initial condition
+    # todo - calculate the space type ratio for space type loads
+    # todo - calculate the space ratio for hard assigned internal loads
+    # todo - create stub blended space type
+    # todo - populate blended space type
+    # todo - remove all hard assigned internal loads
+    # todo - hard assign any constructions assigned by space types, except for space not included in the building area
+    # todo - remove all space type assignments, except for spaces not included in building area.
+    # todo - assign blended space type to building
+    # todo - Report final condition
+
+Tests:
+- Run on a prototype building
+- Run on a model with clean space types and no hard assigned loads
+- Run on model with attic and plenum
+- Run on modle with zone multipliers
+- Run on model with a variety of loads types and load instance multipliers
+- Run on model with daylighting controls
+

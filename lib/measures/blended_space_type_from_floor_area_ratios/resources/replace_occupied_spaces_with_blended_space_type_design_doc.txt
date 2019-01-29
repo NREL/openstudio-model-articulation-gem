@@ -1,0 +1,63 @@
+NREL Measure Design Document Text File
+
+Note: you can include ruby snippets for arguments and messaged, but it isn't necessary. If you are comfortable with it, it makes writing the measure quicker if the code is already structured here.
+
+Measure Class:
+BlendedSpaceTypeFromModel
+
+Measure Name:
+Blended Space Type from Floor Area Ratios
+
+Tag:
+Whole Building.Space Types
+
+Measure Type:
+ModelMeasure
+
+OpenStudio Version:
+1.12.0
+
+Description:
+This measure will take a string argument describing the space type ratios, for space types already in the model. There is also an argument to set the new blended space type as the default space type for the building. The space types refererenced by this argument should already exist in the model.
+
+Model Description:
+To determine default ratio look at the building type, and try to infer template (from building name) and set default ratios saved in the resources folder.
+
+Arguments:
+- Space Type Ratio String
+- Set Default Space Type using Blended Space Type
+
+Error Message:
+- Can't map hash/string to recongnized standard space types
+- Space type from hash/string not found in model
+
+Warning Message:
+- Space isn't assigned to thermal zone, continue but assume it would have zone multiplier of one.
+
+Info Message:
+- Setting default space type for building to #{blended_space_type.name.get}
+
+Not Applicable Message:
+    NA
+
+Initial Condition:
+    # reporting initial condition of model
+    space_types_used = "TBD"
+    runner.registerInitialCondition("The initial building used #{space_types_used.size} space types.")
+
+Final Condition:
+    # reporting final condition of model
+    space_types_used = "TBD"
+    runner.registerFinalCondition("The final building uses #{space_types_used.size} spaces types.")
+
+Code Outline:
+
+
+Tests:
+- Run on a prototype building
+- Run on a model with clean space types and no hard assigned loads
+- Run on model with attic and plenum
+- Run on modle with zone multipliers
+- Run on model with a variety of loads types and load instance multipliers
+- Run on model with daylighting controls
+

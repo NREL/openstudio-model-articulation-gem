@@ -1,0 +1,101 @@
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>clone_building_from_external_model</name>
+  <uid>09711168-01a7-4abc-b710-b49d59d927d8</uid>
+  <version_id>378d0853-8137-4eca-8fce-fb3c5c01a297</version_id>
+  <version_modified>20170601T153944Z</version_modified>
+  <xml_checksum>AFECFDDF</xml_checksum>
+  <class_name>CloneBuildingFromExternalModel</class_name>
+  <display_name>Clone Building From External Model</display_name>
+  <description>This measures clones the building in from an external model in place of the existing building in a model. In addition to changing the feilds in the building object itself, it will bring in meters, building story objects, shading surface groups, thermal zones, and spaces. This includes their children. Currently this doesn't included HVAC systems, site lighitng.</description>
+  <modeler_description>The intent of this measure is to provide a measure is to provide a way in a single analysis to use a collection of custom seed models. Your real seed model woudl be an empty model, maybe containing custom weather data and simulation settings, then you would have a variety of models with pre-generated builiding envelopes to choose from. They custom seeds coudl jsut have surraes, or could contain constructions, schedules, and loads.</modeler_description>
+  <arguments>
+    <argument>
+      <name>external_model_name</name>
+      <display_name>External OSM File Name</display_name>
+      <description>Name of the model to clone building from. This is the filename with the extension (e.g. MyModel.osm). Optionally this can inclucde the full file path, but for most use cases should just be file name.</description>
+      <type>String</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+    </argument>
+  </arguments>
+  <outputs/>
+  <provenances/>
+  <tags>
+    <tag>Envelope.Form</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Apply Measure Now</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>OpenStudio Application</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Parametric Analysis Tool</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Analysis Spreadsheet</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Use Case</name>
+      <value>Model Articulation</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Use Case</name>
+      <value>New Construction EE</value>
+      <datatype>string</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <filename>example_model.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>C4F35230</checksum>
+    </file>
+    <file>
+      <filename>AedgK12HvacDualDuctDoas_ASHRAE 169-2006-5B.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>84A5375F</checksum>
+    </file>
+    <file>
+      <filename>clone_building_from_external_model_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>569464FC</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>F0943DE0</checksum>
+    </file>
+    <file>
+      <filename>test.osw</filename>
+      <filetype>osw</filetype>
+      <usage_type>test</usage_type>
+      <checksum>F5FABCCF</checksum>
+    </file>
+  </files>
+</measure>

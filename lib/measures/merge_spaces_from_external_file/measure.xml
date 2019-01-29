@@ -1,0 +1,231 @@
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>merge_spaces_from_external_file</name>
+  <uid>e439a1a9-d075-4a25-9f83-2dca79d2826e</uid>
+  <version_id>23647fb5-f4c4-4286-bc5c-8b6ba16c5c4f</version_id>
+  <version_modified>20180501T192447Z</version_modified>
+  <xml_checksum>D8922A73</xml_checksum>
+  <class_name>MergeSpacesFromExternalFile</class_name>
+  <display_name>Merge Spaces from External File</display_name>
+  <description>The measure lets you merge the contents from spaces in an external file into spaces in your current model. Spaces are identifed by the space name being the same in the two models. If a space is in the current model but not the external model they will be deleted. If a space is in both models the selecd elments willl be udpated based on the external model. If a space is not in the current model but is in the external model it will be cloned into the current model.</description>
+  <modeler_description>A string argument is used to identify the external model that is being merged into the current model. user agrument determine which kind of objets are brought over from the external model. Some characteristics that can be merged are surfaces, shading surface groups, interior partition groups, daylight controls, and internal loads. Additionally thermal zone, space space type, building story, construction set, and schedule set assignments names will can taken from the space, but objets they represent won't be cloned if objects by that name already exist in the current model.</modeler_description>
+  <arguments>
+    <argument>
+      <name>external_model_name</name>
+      <display_name>External OSM File Name</display_name>
+      <description>Name of the model to merge into current model. This is the filename with the extension (e.g. MyModel.osm). Optionally this can inclucde the full file path, but for most use cases should just be file name.</description>
+      <type>String</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+    </argument>
+    <argument>
+      <name>merge_geometry</name>
+      <display_name>Merge Geometry from External Model</display_name>
+      <description>Replace geometry in current model with geometry from external model.</description>
+      <type>Boolean</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>true</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>merge_loads</name>
+      <display_name>Merge Internal Loads from External Model</display_name>
+      <description>Replace internal loads directly assigned so spaces in current model with internal loads directly assigned to spaces frp, external model. If a schedule is hard assigned to a load instance, it will be brought over as well.</description>
+      <type>Boolean</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>true</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>merge_attribute_names</name>
+      <display_name>Merge Space Attribute names from External Model</display_name>
+      <description>Replace space attribute names in current model with space attribute names from external models. When external model has unkown attribute name that object will be cloned into the current model.</description>
+      <type>Boolean</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>true</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>add_spaces</name>
+      <display_name>Add Spaces to Current Model</display_name>
+      <description>Add spaces to current model that exist in external model but do not exist in current model.</description>
+      <type>Boolean</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>true</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>remove_spaces</name>
+      <display_name>Remove Spaces from Current Model</display_name>
+      <description>Remove spaces from current model that do not exist in externa model.</description>
+      <type>Boolean</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>true</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>merge_schedules</name>
+      <display_name>Merge Schedules from External Model</display_name>
+      <description>This isn't limited to spaces, this will replace any scheules in the current model with schedules of the same name in the external model. It will not replace schedule named 'a' from an internal load in th emodel with a schedule named 'b' from an internal load by that same name in the external model, to perform that task currently, you must merge loads.</description>
+      <type>Boolean</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>true</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>compact_to_ruleset</name>
+      <display_name>Convert Merged Schedule Compact objects to Schedule Ruleset.</display_name>
+      <description>Will convert any imported schedules to Schedule Ruleset instead of Schedule Compact and will connect them to objects that had previously refered to the Schedule Compact object.</description>
+      <type>Boolean</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>true</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
+    </argument>
+  </arguments>
+  <outputs/>
+  <provenances/>
+  <tags>
+    <tag>Whole Building.Space Types</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Apply Measure Now</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>OpenStudio Application</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Parametric Analysis Tool</value>
+      <datatype>string</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <filename>test.osw</filename>
+      <filetype>osw</filetype>
+      <usage_type>test</usage_type>
+      <checksum>F5FABCCF</checksum>
+    </file>
+    <file>
+      <filename>current_model_test.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>2F818B1A</checksum>
+    </file>
+    <file>
+      <filename>external_model_test.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>637A1436</checksum>
+    </file>
+    <file>
+      <filename>merge_spaces_from_external_file_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>279B6861</checksum>
+    </file>
+    <file>
+      <filename>ScheduleTranslator.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>9EDB75CD</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.4</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>8CDC1F9D</checksum>
+    </file>
+    <file>
+      <filename>os_lib_helper_methods.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>9CFC43FB</checksum>
+    </file>
+  </files>
+</measure>

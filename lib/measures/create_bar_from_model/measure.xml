@@ -1,0 +1,170 @@
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>create_bar_from_model</name>
+  <uid>87fb0783-7a38-4900-8969-40e744c67814</uid>
+  <version_id>05689a06-e697-4bc0-91ee-a878660bac72</version_id>
+  <version_modified>20180730T221524Z</version_modified>
+  <xml_checksum>2AF3A68E</xml_checksum>
+  <class_name>CreateBarFromModel</class_name>
+  <display_name>Create Bar From Model</display_name>
+  <description>Create a core and perimeter bar envelope based on analysis of initial model geometry.</description>
+  <modeler_description>Gather orientation and story specific construction, fenestration (including overhang) specific information</modeler_description>
+  <arguments>
+    <argument>
+      <name>bar_calc_method</name>
+      <display_name>Calculation Method to determine Bar Length and Width.</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>Bar - Reduced Bounding Box</default_value>
+      <choices>
+        <choice>
+          <value>Bar - Reduced Bounding Box</value>
+          <display_name>Bar - Reduced Bounding Box</display_name>
+        </choice>
+        <choice>
+          <value>Bar - Reduced Width</value>
+          <display_name>Bar - Reduced Width</display_name>
+        </choice>
+        <choice>
+          <value>Bar - Stretched</value>
+          <display_name>Bar - Stretched</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>bar_division_method</name>
+      <display_name>Division Method for Bar Spaces.</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>Single Space Type - Core and Perimeter</default_value>
+      <choices>
+        <choice>
+          <value>Single Space Type - Core and Perimeter</value>
+          <display_name>Single Space Type - Core and Perimeter</display_name>
+        </choice>
+        <choice>
+          <value>Multiple Space Types - Simple Sliced</value>
+          <display_name>Multiple Space Types - Simple Sliced</display_name>
+        </choice>
+        <choice>
+          <value>Multiple Space Types - Individual Stories Sliced</value>
+          <display_name>Multiple Space Types - Individual Stories Sliced</display_name>
+        </choice>
+      </choices>
+    </argument>
+  </arguments>
+  <outputs/>
+  <provenances/>
+  <tags>
+    <tag>Envelope.Form</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Apply Measure Now</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>OpenStudio Application</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Parametric Analysis Tool</value>
+      <datatype>string</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <filename>example_model.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>D12103AC</checksum>
+    </file>
+    <file>
+      <filename>example_model_multipliers.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>F9CBB367</checksum>
+    </file>
+    <file>
+      <filename>med_office.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>BEC42CA9</checksum>
+    </file>
+    <file>
+      <filename>secondary_school.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>CA1C6DEB</checksum>
+    </file>
+    <file>
+      <filename>sliver_end.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>CD0671DC</checksum>
+    </file>
+    <file>
+      <filename>sliver_start.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>9D5BDAC4</checksum>
+    </file>
+    <file>
+      <filename>sliver_multiplier.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>FF077DA0</checksum>
+    </file>
+    <file>
+      <filename>create_bar_from_model_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>B3119455</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>4AA39AF9</checksum>
+    </file>
+    <file>
+      <filename>os_lib_geometry.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>3D17299B</checksum>
+    </file>
+    <file>
+      <filename>os_lib_helper_methods.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>9CFC43FB</checksum>
+    </file>
+    <file>
+      <filename>os_lib_model_simplification.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>EAEEA8B6</checksum>
+    </file>
+    <file>
+      <filename>os_lib_model_generation.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>67AC7BF3</checksum>
+    </file>
+  </files>
+</measure>

@@ -449,7 +449,11 @@ class CreateBarFromBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
         space_type = hash[:space_type]
         ratio_of_bldg_total = hash[:ratio] * building_type_hash[:ratio_adjustment_multiplier] * building_type_hash[:frac_bldg_area]
         final_floor_area = ratio_of_bldg_total * total_bldg_floor_area_si # I think I can just pass ratio but passing in area is cleaner
-        space_types_hash[space_type] = { floor_area: final_floor_area }
+        # only add wwr if 0 used for wwr arg and if space type has wwr as key
+        space_types_hash[space_type] = { floor_area: final_floor_area, space_type: space_type }
+        if args['wwr'] == 0 && hash.has_key?(:wwr)
+          space_types_hash[space_type][:wwr] = hash[:wwr]
+        end
       end
     end
 

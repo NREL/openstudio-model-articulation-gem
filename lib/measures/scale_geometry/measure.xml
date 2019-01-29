@@ -1,0 +1,103 @@
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>scale_geometry</name>
+  <uid>f9cc2ffc-2838-4a18-8330-97e7cc94cdf8</uid>
+  <version_id>240fc1b8-eb0e-41ca-96c0-454d76c76d2d</version_id>
+  <version_modified>20170316T164925Z</version_modified>
+  <xml_checksum>7AD75066</xml_checksum>
+  <class_name>ScaleGeometry</class_name>
+  <display_name>scale_geometry</display_name>
+  <description>Scales geometry in the model by fixed multiplier in the x, y, z directions.  Does not guarantee that the resulting model will be correct (e.g. not self-intersecting).  </description>
+  <modeler_description>Scales all PlanarSurfaceGroup origins and then all PlanarSurface vertices in the model. Also applies to DaylightingControls, GlareSensors, and IlluminanceMaps.</modeler_description>
+  <arguments>
+    <argument>
+      <name>x_scale</name>
+      <display_name>X Scale</display_name>
+      <description>Multiplier to apply to X direction.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>1</default_value>
+    </argument>
+    <argument>
+      <name>y_scale</name>
+      <display_name>Y Scale</display_name>
+      <description>Multiplier to apply to Y direction.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>1</default_value>
+    </argument>
+    <argument>
+      <name>z_scale</name>
+      <display_name>Z Scale</display_name>
+      <description>Multiplier to apply to Z direction.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>1</default_value>
+    </argument>
+  </arguments>
+  <outputs/>
+  <provenances/>
+  <tags>
+    <tag>Envelope.Form</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Apply Measure Now</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>OpenStudio Application</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Parametric Analysis Tool</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Use Case</name>
+      <value>Calibration</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Use Case</name>
+      <value>Sensitivity Analysis</value>
+      <datatype>string</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <filename>example_model.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>C4F35230</checksum>
+    </file>
+    <file>
+      <filename>scale_geometry_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>ACB2B0A1</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>DEF46E57</checksum>
+    </file>
+  </files>
+</measure>

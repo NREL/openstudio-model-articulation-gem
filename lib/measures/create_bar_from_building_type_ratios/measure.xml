@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>create_bar_from_building_type_ratios</name>
   <uid>6e3a14f8-c3c7-4e03-bc51-bef8a52e1a05</uid>
-  <version_id>c70ff335-2217-4d1b-bd69-320187992ed7</version_id>
-  <version_modified>20180702T223605Z</version_modified>
+  <version_id>d3adcd7e-700c-4f89-a393-e10d5a225d98</version_id>
+  <version_modified>20180730T221523Z</version_modified>
   <xml_checksum>2AF3A68E</xml_checksum>
   <class_name>CreateBarFromBuildingTypeRatios</class_name>
   <display_name>Create Bar From Building Type Ratios</display_name>
@@ -712,19 +712,19 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>F2EED23D</checksum>
+      <checksum>699895CA</checksum>
     </file>
     <file>
       <filename>os_lib_model_generation.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>9CC16F63</checksum>
+      <checksum>67AC7BF3</checksum>
     </file>
     <file>
       <filename>create_bar_from_building_type_ratios_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>A6A8530B</checksum>
+      <checksum>97ADF47B</checksum>
     </file>
   </files>
 </measure>

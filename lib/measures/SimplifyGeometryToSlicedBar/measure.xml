@@ -1,0 +1,98 @@
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>simplify_geometry_to_sliced_bar</name>
+  <uid>eb218516-5fa5-47fe-948d-274777c7d592</uid>
+  <version_id>67a6d67b-0d4c-4c8a-b8a1-a6d49beab4f6</version_id>
+  <version_modified>20181011T215147Z</version_modified>
+  <xml_checksum>45097B60</xml_checksum>
+  <class_name>SimplifyGeometryToSlicedBar</class_name>
+  <display_name>SimplifyGeometryToSlicedBar</display_name>
+  <description>This is an experimental measure looking at ways to simply the geometry, or to create geometry when you only no percentage of space types number of floors and total area. This technique will match the building floor area but will sacrifice the exterior exposure. So it will produce better results on more boxy buildings than a building with many wings. I may try to come up with solution that also tries to maintain exterior exposure in another version.</description>
+  <modeler_description>I'm going to extract space type area breakdown and number of floors from the source model. I'll also keep track of exterior exposure. I won't directly use exterior exposure but can report the change in this as a kind of confidence metric. I'll then create a bar building using the bounding box aspect ratio, but shrunk to fit the building area. I will slice the building across the shorter axis by space type. The two most prevalent space types will go on the outside of the building. Instead of core and perimeter zoning the building will have a variation with square corners. I will create one zone per space, and will use a zone multiplier for any building more than 3 stories tall.&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;
+&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;
+In a future version I may try to identify similar spaces types and blend them together before slicing, although I expect that will be a separate measure, so it is more modular.</modeler_description>
+  <arguments>
+    <argument>
+      <name>logic</name>
+      <display_name>Maintain Total Floor Area and the following characteristic.</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>Maintain Bounding Box Aspect Ratio</default_value>
+      <choices>
+        <choice>
+          <value>Maintain Bounding Box Aspect Ratio</value>
+          <display_name>Maintain Bounding Box Aspect Ratio</display_name>
+        </choice>
+        <choice>
+          <value>Maintain Total Exterior Wall Area</value>
+          <display_name>Maintain Total Exterior Wall Area</display_name>
+        </choice>
+        <choice>
+          <value>Maintain Facade Specific Exterior Wall Area</value>
+          <display_name>Maintain Facade Specific Exterior Wall Area</display_name>
+        </choice>
+      </choices>
+    </argument>
+  </arguments>
+  <outputs/>
+  <provenances/>
+  <tags>
+    <tag>Envelope.Form</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Uses SketchUp API</name>
+      <value>false</value>
+      <datatype>boolean</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <filename>UShapedHotelExample.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>7E96D119</checksum>
+    </file>
+    <file>
+      <filename>SimplifyGeometryToSlicedBar_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>88875456</checksum>
+    </file>
+    <file>
+      <filename>OsLib_Cofee.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>56155EF0</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>7C9B6B8A</checksum>
+    </file>
+    <file>
+      <filename>os_lib_geometry.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>3D17299B</checksum>
+    </file>
+    <file>
+      <filename>os_lib_helper_methods.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>9CFC43FB</checksum>
+    </file>
+  </files>
+</measure>

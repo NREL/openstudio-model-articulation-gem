@@ -1,0 +1,96 @@
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>make_shading_surfaces_based_on_zone_multipliers</name>
+  <uid>57d7314d-2ff0-4c13-bf07-b63380bfdea6</uid>
+  <version_id>27c62b94-9410-4f26-bb14-37738b251d86</version_id>
+  <version_modified>20180501T192447Z</version_modified>
+  <xml_checksum>2AF3A68E</xml_checksum>
+  <class_name>MakeShadingSurfacesBasedOnZoneMultipliers</class_name>
+  <display_name>Make Shading Surfaces Based on Zone Multipliers</display_name>
+  <description>Initially this will jsut focus on Z shifting of geometry, but in future could work on x,z or y,z multiplier grids like what is use don the large hotel</description>
+  <modeler_description>Not sure how I will handle arguments. Maybe lump together all spaces on same sotry that have the same multilier value. This will have variable number of arguments basd on the model pased in. Alternative is to either only allo w one group to be chosen at at time, or allow a comlex string that describes everything. Also need to see how to define shirting. There is an offset but it may be above and below and may not be equal. In Some cases a mid floor is halfway betwen floors which makes just copying the base surfaces as shading multiple times probemeatic, since there is overlap. It coudl be nice to stretch one surface over many stories. If I check for vertial adn orthogonal surface that may work fine. </modeler_description>
+  <arguments>
+    <argument>
+      <name>z_offset_dist</name>
+      <display_name>Z offset distance for selcected zones.</display_name>
+      <type>Double</type>
+      <units>ft</units>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>10</default_value>
+    </argument>
+    <argument>
+      <name>z_num_pos</name>
+      <display_name>Number of copies in the positive direction.</display_name>
+      <description>Should be integer no more than the multiplier - 1</description>
+      <type>Integer</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>1</default_value>
+    </argument>
+  </arguments>
+  <outputs/>
+  <provenances/>
+  <tags>
+    <tag>Envelope.Form</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Apply Measure Now</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>OpenStudio Application</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Parametric Analysis Tool</value>
+      <datatype>string</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <filename>1003_LargeOffice_5b_Pre 1980.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>7908DE91</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>8B1C423B</checksum>
+    </file>
+    <file>
+      <filename>make_shading_surfaces_based_on_zone_multipliers_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>868A79B7</checksum>
+    </file>
+    <file>
+      <filename>1003_LargeHotel_5b_2010.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>79D66118</checksum>
+    </file>
+    <file>
+      <filename>os_lib_helper_methods.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>9CFC43FB</checksum>
+    </file>
+  </files>
+</measure>

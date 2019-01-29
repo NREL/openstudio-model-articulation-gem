@@ -1,0 +1,164 @@
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>blended_space_type_from_floor_area_ratios</name>
+  <uid>48ff1765-871b-4c9c-9996-a22757c534ad</uid>
+  <version_id>3f1eda3e-282c-4dc3-b2ea-0e11b21d3527</version_id>
+  <version_modified>20180730T221521Z</version_modified>
+  <xml_checksum>05C5DFDC</xml_checksum>
+  <class_name>BlendedSpaceTypeFromFloorAreaRatios</class_name>
+  <display_name>Blended Space Type from Floor Area Ratios</display_name>
+  <description>This measure will take a string argument describing the space type ratios, for space types already in the model. There is also an argument to set the new blended space type as the default space type for the building. The space types refererenced by this argument should already exist in the model.</description>
+  <modeler_description>To determine default ratio look at the building type, and try to infer template (from building name) and set default ratios saved in the resources folder.</modeler_description>
+  <arguments>
+    <argument>
+      <name>space_type_ratio_string</name>
+      <display_name>Space Type Ratio String.</display_name>
+      <description>'Space Type A' => ratio,'Space Type B,ratio', etc.</description>
+      <type>String</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>Attempt to automatically generate space type ratio string failed, enter manually.</default_value>
+    </argument>
+    <argument>
+      <name>set_default_space_type</name>
+      <display_name>Set Default Space Type using Blended Space Type.</display_name>
+      <type>Boolean</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>true</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
+    </argument>
+  </arguments>
+  <outputs/>
+  <provenances/>
+  <tags>
+    <tag>Whole Building.Space Types</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Apply Measure Now</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>OpenStudio Application</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Parametric Analysis Tool</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Analysis Spreadsheet</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Use Case</name>
+      <value>Model Articulation</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Apply Measure Now</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>OpenStudio Application</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Parametric Analysis Tool</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Analysis Spreadsheet</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Use Case</name>
+      <value>Model Articulation</value>
+      <datatype>string</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <filename>example_model.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>C4F35230</checksum>
+    </file>
+    <file>
+      <filename>1002_SmallOffice_2010_2a.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>9919F79E</checksum>
+    </file>
+    <file>
+      <filename>1002_RetailStandalone2013.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>EF019CDF</checksum>
+    </file>
+    <file>
+      <filename>measure_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>E03237F5</checksum>
+    </file>
+    <file>
+      <filename>replace_occupied_spaces_with_blended_space_type_design_doc.txt</filename>
+      <filetype>txt</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>A9E3FEA1</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>4C5ADD73</checksum>
+    </file>
+    <file>
+      <filename>os_lib_helper_methods.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>9CFC43FB</checksum>
+    </file>
+    <file>
+      <filename>os_lib_model_simplification.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>EAEEA8B6</checksum>
+    </file>
+    <file>
+      <filename>os_lib_model_generation.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>67AC7BF3</checksum>
+    </file>
+  </files>
+</measure>

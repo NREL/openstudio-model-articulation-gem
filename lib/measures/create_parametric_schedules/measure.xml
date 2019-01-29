@@ -1,0 +1,337 @@
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>create_parametric_schedules</name>
+  <uid>befa8099-c6a7-4045-8792-53fc7124b862</uid>
+  <version_id>fd2ebb6a-16b9-489d-85f3-8e44295c2adf</version_id>
+  <version_modified>20180501T192445Z</version_modified>
+  <xml_checksum>03F02484</xml_checksum>
+  <class_name>CreateParametricSchedules</class_name>
+  <display_name>Create Parametric Schedules</display_name>
+  <description>Create parametric schedules for internal loads and HVAC availability. Replace existing schedules in model with newly generated schedules. New schedules along with hours of operation schedule will go in a building level schedule set.</description>
+  <modeler_description>This measure doesn't alter existing schedules. It only creates new schedules to replace them. Do this by creating a building level schedule set and removing all schedules from instances. HVAC schedules and thermostats will have to be applied differently.</modeler_description>
+  <arguments>
+    <argument>
+      <name>hoo_start_wkdy</name>
+      <display_name>Hours of Operation Start - Weekday</display_name>
+      <description>Energy 24 hour values with fractional values converted to minutes. e.g. 17.25 = 5:15pm.</description>
+      <type>Double</type>
+      <units>Hours</units>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>9</default_value>
+    </argument>
+    <argument>
+      <name>hoo_end_wkdy</name>
+      <display_name>Hours of Operation End - Weekday</display_name>
+      <description>If Hours of Operation End matches Hours of Operation Start it will be assumed to be 0 hours vs. 24.0</description>
+      <type>Double</type>
+      <units>Hours</units>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>17</default_value>
+    </argument>
+    <argument>
+      <name>hoo_start_sat</name>
+      <display_name>Hours of Operation Start - Saturday</display_name>
+      <description>Energy 24 hour values with fractional values converted to minutes. e.g. 17.25 = 5:15pm.</description>
+      <type>Double</type>
+      <units>Hours</units>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>9</default_value>
+    </argument>
+    <argument>
+      <name>hoo_end_sat</name>
+      <display_name>Hours of Operation End - Saturday</display_name>
+      <type>Double</type>
+      <units>Hours</units>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>12</default_value>
+    </argument>
+    <argument>
+      <name>hoo_start_sun</name>
+      <display_name>Hours of Operation Start - Sunday</display_name>
+      <description>Energy 24 hour values with fractional values converted to minutes. e.g. 17.25 = 5:15pm.</description>
+      <type>Double</type>
+      <units>Hours</units>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>7</default_value>
+    </argument>
+    <argument>
+      <name>hoo_end_sun</name>
+      <display_name>Hours of Operation End - Sunday</display_name>
+      <description>Energy 24 hour values with fractional values converted to minutes. e.g. 17.25 = 5:15pm.</description>
+      <type>Double</type>
+      <units>Hours</units>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>18</default_value>
+    </argument>
+    <argument>
+      <name>hoo_per_week</name>
+      <display_name>Hours of Operation Per Week</display_name>
+      <description>If this is a non zero value it will override all of the other hours of operations inputs, however the base hours and profile shapes for weekday will be starting point to define center of day to expand/contract from.</description>
+      <type>Double</type>
+      <units>Hours</units>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>valid_building_names</name>
+      <display_name>Comma Separated List of Valid Building Names To Alter.</display_name>
+      <description>This measure will only alter building names which exactly match one of the commera separted building names. Currently this check is not case sensitive. Leading or spaces from the comma separted values will be removed for comparision. An empty string will apply this to buildings of any name</description>
+      <type>String</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value></default_value>
+    </argument>
+    <argument>
+      <name>standards_building_type</name>
+      <display_name>Only alter Space Types with this Standards Building Type</display_name>
+      <description>Pick valid Standards Building Type name. An empty string won't filter out any space types by Standards Building Type value.</description>
+      <type>String</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value></default_value>
+    </argument>
+    <argument>
+      <name>standards_space_type</name>
+      <display_name>Only alter Space Types with this Standards Space Type</display_name>
+      <description>Pick valid Standards Space Type name. An empty string won't filter out any space types by Standards Space Type value.</description>
+      <type>String</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value></default_value>
+    </argument>
+    <argument>
+      <name>lighting_profiles</name>
+      <display_name>Lighting Profiles</display_name>
+      <type>String</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>:default => [[start-2,0.1],[start-1,0.3],[start,0.75],[end,0.75],[end+2,0.3],[end+vac*0.5,0.1]], :saturday => [[start-1,0.1],[start,0.3],[end,0.3],[end+1,0.1]], :sunday => [[start,0.1],[end,0.1]]</default_value>
+    </argument>
+    <argument>
+      <name>electric_equipment_profiles</name>
+      <display_name>Electric Equipment Profiles</display_name>
+      <type>String</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>:default => [[start-1,0.3],[start,0.85],[start+0.5*occ-0.5,0.85],[start+0.5*occ-0.5,0.75],[start+0.5*occ+0.5,0.75],[start+0.5*occ+0.5,0.85],[end,0.85],[end+1,0.45],[end+2,0.3]], :saturday => [[start-2,0.2],[start,0.35],[end,0.35],[end+6,0.2]], :sunday => [[start,0.2],[end,0.2]]</default_value>
+    </argument>
+    <argument>
+      <name>electric_equipment_value</name>
+      <display_name>Target Electric Power Density.</display_name>
+      <type>Double</type>
+      <units>W/ft^2</units>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>electric_equipment_action</name>
+      <display_name>Select desired electric equipment action</display_name>
+      <description>Schedules and or load values from earlier arguments may be ignored depending on what is selected for this action.</description>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>Replace schedules for existing load instances</default_value>
+      <choices>
+        <choice>
+          <value>Do Nothing</value>
+          <display_name>Do Nothing</display_name>
+        </choice>
+        <choice>
+          <value>Replace schedules for existing load instances</value>
+          <display_name>Replace schedules for existing load instances</display_name>
+        </choice>
+        <choice>
+          <value>Replace load definitions for existing load instances</value>
+          <display_name>Replace load definitions for existing load instances</display_name>
+        </choice>
+        <choice>
+          <value>Replace schedules and load definitions for existing load instances</value>
+          <display_name>Replace schedules and load definitions for existing load instances</display_name>
+        </choice>
+        <choice>
+          <value>Add new load instance and apply selected schedule and load density</value>
+          <display_name>Add new load instance and apply selected schedule and load density</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>gas_equipment_profiles</name>
+      <display_name>Gas Equipment Profiles</display_name>
+      <type>String</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>:default => [[start-1,0.3],[start,0.85],[start+0.5*occ-0.5,0.85],[start+0.5*occ-0.5,0.75],[start+0.5*occ+0.5,0.75],[start+0.5*occ+0.5,0.85],[end,0.85],[end+1,0.45],[end+2,0.3]], :saturday => [[start-2,0.2],[start,0.35],[end,0.35],[end+6,0.2]], :sunday => [[start,0.2],[end,0.2]]</default_value>
+    </argument>
+    <argument>
+      <name>occupancy_profiles</name>
+      <display_name>Occupancy Profiles</display_name>
+      <type>String</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>:default => [[start-3,0],[start-1,0.2],[start,0.95],[start+0.5*occ-0.5,0.95],[start+0.5*occ-0.5,0.5],[start+0.5*occ+0.5,0.5],[start+0.5*occ+0.5,0.95],[end,0.95],[end+1,0.3],[end+vac*0.4,0]], :saturday => [[start-3,0],[start,0.3],[end,0.3],[end+1,0.1],[end+vac*0.3,0]], :sunday => [[start,0],[start,0.05],[end,0.05],[end,0]]</default_value>
+    </argument>
+    <argument>
+      <name>infiltration_profiles</name>
+      <display_name>Infiltration Profiles</display_name>
+      <type>String</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>:default => [[start,1],[start,0.25],[end+vac*0.35,0.25],[end+vac*0.35,1]], :saturday => [[start,1],[start,0.25],[end+vac*0.25,0.25],[end+vac*0.25,1]], :sunday => [[start,1],[start,0.25],[end+vac*0.25,0.25],[end+vac*0.25,1]]</default_value>
+    </argument>
+    <argument>
+      <name>thermostat_setback_profiles</name>
+      <display_name>Thermostat Setback Profiles</display_name>
+      <type>String</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>:default => [[start-2,floor],[start-2,ceiling],[end+vac*0.35,ceiling],[end+vac*0.35,floor]], :saturday => [[start-2,floor],[start-2,ceiling],[end+vac*0.25,ceiling],[end+vac*0.25,floor]], :sunday => [[start-2,floor],[start-2,ceiling],[end+vac*0.25,ceiling],[end+vac*0.25,floor]]</default_value>
+    </argument>
+    <argument>
+      <name>htg_setpoint</name>
+      <display_name>Heating Setpoint During Occupied Hours</display_name>
+      <type>Double</type>
+      <units>F</units>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>67</default_value>
+    </argument>
+    <argument>
+      <name>clg_setpoint</name>
+      <display_name>Cooling Setpoint During Occupied Hours</display_name>
+      <type>Double</type>
+      <units>F</units>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>75</default_value>
+    </argument>
+    <argument>
+      <name>setback_delta</name>
+      <display_name>Thermostat Setback Delta During Unoccupied Hours</display_name>
+      <type>Double</type>
+      <units>F</units>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>4</default_value>
+    </argument>
+    <argument>
+      <name>hvac_availability_profiles</name>
+      <display_name>HVAC availability Profiles</display_name>
+      <type>String</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>:default => [[start,0],[start,1],[end+vac*0.35,1],[end+vac*0.35,0]], :saturday => [[start,0],[start,1],[end+vac*0.25,1],[end+vac*0.25,0]], :sunday => [[start,0],[start,1],[end+vac*0.25,1],[end+vac*0.25,0]]</default_value>
+    </argument>
+    <argument>
+      <name>swh_profiles</name>
+      <display_name>Service Water Heating Profiles</display_name>
+      <type>String</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>:default => [[start-2,0],[start-2,0.07],[start+0.5*occ,0.57],[vac-2,0.33],[vac,0.44],[end+vac*0.35,0.05],[end+vac*0.35,0]], :saturday => [[start-2,0],[start-2,0.07],[start+0.5*occ,0.23],[end+vac*0.25,0.05],[end+vac*0.25,0]], :sunday => [[start-2,0],[start-2,0.04],[start+0.5*occ,0.09],[end+vac*0.25,0.04],[end+vac*0.25,0]]</default_value>
+    </argument>
+    <argument>
+      <name>alter_swh_wo_space</name>
+      <display_name>Apply to un-assigned Service Water Equipment Instances.</display_name>
+      <description>When applying profiles to sub-set of space types in the building, setting to true will apply these profiles to water use equipment instances that are not assigned to a space.</description>
+      <type>Boolean</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>true</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>ramp_frequency</name>
+      <display_name>Ramp Frequency</display_name>
+      <type>Double</type>
+      <units>Hours</units>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0.5</default_value>
+    </argument>
+    <argument>
+      <name>error_on_out_of_order</name>
+      <display_name>Error on Out of Order Processed Profiles.</display_name>
+      <description>When set to false, out of order profile times trigger a warning, but the measure will attempt to reconsile the conflict by moving the problematic times.</description>
+      <type>Boolean</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>false</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
+    </argument>
+  </arguments>
+  <outputs/>
+  <provenances/>
+  <tags>
+    <tag>Whole Building.Whole Building Schedules</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <filename>example_model.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>8A9CF7E6</checksum>
+    </file>
+    <file>
+      <filename>create_parametric_schedules_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>4A9C2685</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.1.0</identifier>
+        <min_compatible>2.1.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>3E860033</checksum>
+    </file>
+    <file>
+      <filename>os_lib_schedules.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>5F1CEF3A</checksum>
+    </file>
+    <file>
+      <filename>os_lib_helper_methods.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>9CFC43FB</checksum>
+    </file>
+  </files>
+</measure>
