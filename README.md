@@ -26,7 +26,7 @@ To be filled out later.
 
 - [ ] Move articulation measures from openstudio-measures
 - [ ] Move articulation measure lib files to openstudio-extension lib
-- [ ] Update measures to correct naming conventions
+- [ ] Update measures to correct naming conventions 
 
 # Releasing
 
