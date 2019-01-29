@@ -22,6 +22,12 @@ Or install it yourself as:
 
 To be filled out later. 
 
+## TODO
+
+- [ ] Move articulation measures from openstudio-measures
+- [ ] Move articulation measure lib files to lib
+- [ ] Update measures to correct naming conventions
+
 # Releasing
 
 * Update change log
