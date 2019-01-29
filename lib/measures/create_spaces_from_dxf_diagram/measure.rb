@@ -2,7 +2,7 @@
 # http://nrel.github.io/OpenStudio-user-documentation/measures/measure_writing_guide/
 
 require_relative 'resources/dxf2ruby.rb'
-require_relative 'resources/os_lib_geometry.rb'
+require 'measure_resources/os_lib_geometry.rb'
 
 # start the measure
 class CreateSpacesFromDXFDiagram < OpenStudio::Ruleset::ModelUserScript

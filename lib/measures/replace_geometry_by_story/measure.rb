@@ -4,8 +4,8 @@
 # start the measure
 class ReplaceGeometryByStory < OpenStudio::Ruleset::ModelUserScript
 
-  # require all .rb files in resources folder
-  Dir[File.dirname(__FILE__) + '/resources/*.rb'].each {|file| require file }
+  # require measure_resources
+  require 'measure_resources/os_lib_geometry'
 
   # resource file modules
   include OsLib_Geometry

@@ -8,9 +8,9 @@
 # http://openstudio.nrel.gov/sites/openstudio.nrel.gov/files/nv_data/cpp_documentation_it/model/html/namespaces.html
 
 #load OpenStudio measure libraries
-require "#{File.dirname(__FILE__)}/resources/os_lib_geometry"
-require "#{File.dirname(__FILE__)}/resources/os_lib_helper_methods"
-require "#{File.dirname(__FILE__)}/resources/OsLib_Cofee"
+require 'measure_resources/os_lib_geometry'
+require 'measure_resources/os_lib_helper_methods'
+require 'measure_resources/os_lib_cofee'
 
 #start the measure
 class BarAspectRatioSlicedBySpaceType < OpenStudio::Ruleset::ModelUserScript

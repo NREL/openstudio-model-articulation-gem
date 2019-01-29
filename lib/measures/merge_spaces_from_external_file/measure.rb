@@ -1,12 +1,15 @@
 # see the URL below for information on how to write OpenStudio measures
 # http://nrel.github.io/OpenStudio-user-documentation/reference/measure_writing_guide/
 
-# require all .rb files in resources folder
-Dir[File.dirname(__FILE__) + '/resources/*.rb'].each {|file| require file }
 
 # start the measure
 class MergeSpacesFromExternalFile < OpenStudio::Ruleset::ModelUserScript
 
+  # require measure_resources
+  require 'measure_resources/os_lib_helper_methods'
+  
+  require_relative 'resources/ScheduleTranslator'
+  
   # human readable name
   def name
     return "Merge Spaces from External File"

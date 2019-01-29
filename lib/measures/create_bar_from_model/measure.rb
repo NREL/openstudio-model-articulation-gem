@@ -4,8 +4,11 @@
 # start the measure
 class CreateBarFromModel < OpenStudio::Ruleset::ModelUserScript
 
-  # require all .rb files in resources folder
-  Dir[File.dirname(__FILE__) + '/resources/*.rb'].each {|file| require file }
+  # require measure_resources
+  require 'measure_resources/os_lib_helper_methods'
+  require 'measure_resources/os_lib_geometry'
+  require 'measure_resources/os_lib_model_generation'
+  require 'measure_resources/os_lib_model_simplification'
 
   # resource file modules
   include OsLib_HelperMethods

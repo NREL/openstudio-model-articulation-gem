@@ -1,7 +1,7 @@
 # see the URL below for information on how to write OpenStudio measures
 # http://nrel.github.io/OpenStudio-user-documentation/reference/measure_writing_guide/
 
-require "#{File.dirname(__FILE__)}/resources/os_lib_helper_methods"
+require 'measure_resources/os_lib_helper_methods'
 
 # start the measure
 class MakeShadingSurfacesBasedOnZoneMultipliers < OpenStudio::Ruleset::ModelUserScript
