@@ -25,7 +25,7 @@ To be filled out later.
 ## TODO
 
 - [ ] Move articulation measures from openstudio-measures
-- [ ] Move articulation measure lib files to lib
+- [ ] Move articulation measure lib files to openstudio-extension lib
 - [ ] Update measures to correct naming conventions
 
 # Releasing

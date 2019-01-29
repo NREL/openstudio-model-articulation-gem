@@ -11,6 +11,7 @@
 /tmp/
 /test/
 /lib/measures/test_results
+/lib/measures/*/tests/output
 
 .rubocop*s3*
 
