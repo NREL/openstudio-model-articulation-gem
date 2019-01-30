@@ -34,15 +34,22 @@ module OpenStudio
     class ModelArticulation < OpenStudio::Extension::Extension
       # include OpenStudio::Extension
 
-      def list_measures
-        super()
-
-        # do our own stuff
+      # Return the absolute path of the measures or nil if there is none, can be used when configuring OSWs
+      def measures_dir
+        return File.absolute_path(File.join(File.dirname(__FILE__), '../measures/'))
       end
 
-      def do_something
-        puts "what am I trying to do here?"
+      # Relevant files such as weather data, design days, etc.
+      # return the absolute path of the files or nil if there is none, can be used when configuring OSWs
+      def files_dir
+        return File.absolute_path(File.join(File.dirname(__FILE__), '../files/'))
       end
+
+      # return the absolute path of root of this gem
+      def root_dir
+        return File.absolute_path(File.join(File.dirname(__FILE__), '../../'))
+      end
+      
     end
   end
 end
