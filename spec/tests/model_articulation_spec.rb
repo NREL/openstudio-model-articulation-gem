@@ -40,6 +40,6 @@ RSpec.describe OpenStudio::ModelArticulation do
 
   it 'has a measures directory' do
     instance = OpenStudio::ModelArticulation::ModelArticulation.new
-    expect(instance.measures_dir).to eq 'unknown directory'
+    expect(File.exists?(File.join(instance.measures_dir, 'BarAspectRatioStudy/'))).to be true
   end
 end
