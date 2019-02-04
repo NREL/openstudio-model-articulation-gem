@@ -1,15 +1,22 @@
 # see the URL below for information on how to write OpenStudio measures
 # http://nrel.github.io/OpenStudio-user-documentation/reference/measure_writing_guide/
 
-# start the measure
-class BlendedSpaceTypeFromFloorAreaRatios < OpenStudio::Ruleset::ModelUserScript
+require 'openstudio-standards'
 
-  require 'openstudio-standards'
-
-  # require measure_resources
+begin
+  #load OpenStudio measure libraries from common location
   require 'measure_resources/os_lib_helper_methods'
   require 'measure_resources/os_lib_model_generation'
   require 'measure_resources/os_lib_model_simplification'
+rescue LoadError
+  # common location unavailable, load from local resources
+  require_relative 'resources/os_lib_helper_methods'
+  require_relative 'resources/os_lib_model_generation'
+  require_relative 'resources/os_lib_model_simplification'
+end
+
+# start the measure
+class BlendedSpaceTypeFromFloorAreaRatios < OpenStudio::Ruleset::ModelUserScript
 
   # contains code to blend space types
   include OsLib_HelperMethods
@@ -20,14 +27,17 @@ class BlendedSpaceTypeFromFloorAreaRatios < OpenStudio::Ruleset::ModelUserScript
   def name
     return "Blended Space Type from Floor Area Ratios"
   end
+  
   # human readable description
   def description
     return "This measure will take a string argument describing the space type ratios, for space types already in the model. There is also an argument to set the new blended space type as the default space type for the building. The space types refererenced by this argument should already exist in the model."
   end
+  
   # human readable description of modeling approach
   def modeler_description
     return "To determine default ratio look at the building type, and try to infer template (from building name) and set default ratios saved in the resources folder."
   end
+  
   # define the arguments that the user will input
   def arguments(model)
     args = OpenStudio::Ruleset::OSArgumentVector.new

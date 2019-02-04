@@ -1,14 +1,22 @@
 # see the URL below for information on how to write OpenStudio measures
 # http://nrel.github.io/OpenStudio-user-documentation/reference/measure_writing_guide/
 
-# start the measure
-class CreateBarFromModel < OpenStudio::Ruleset::ModelUserScript
-
-  # require measure_resources
+begin
+  #load OpenStudio measure libraries from common location
   require 'measure_resources/os_lib_helper_methods'
   require 'measure_resources/os_lib_geometry'
   require 'measure_resources/os_lib_model_generation'
   require 'measure_resources/os_lib_model_simplification'
+rescue LoadError
+  # common location unavailable, load from local resources
+  require_relative 'resources/os_lib_helper_methods'
+  require_relative 'resources/os_lib_geometry'
+  require_relative 'resources/os_lib_model_generation'
+  require_relative 'resources/os_lib_model_simplification'
+end
+
+# start the measure
+class CreateBarFromModel < OpenStudio::Ruleset::ModelUserScript
 
   # resource file modules
   include OsLib_HelperMethods

@@ -1,11 +1,16 @@
 # see the URL below for information on how to write OpenStudio measures
 # http://nrel.github.io/OpenStudio-user-documentation/reference/measure_writing_guide/
 
+begin
+  #load OpenStudio measure libraries from common location
+  require 'measure_resources/os_lib_geometry'
+rescue LoadError
+  # common location unavailable, load from local resources
+  require_relative 'resources/os_lib_geometry'
+end
+
 # start the measure
 class ReplaceGeometryByStory < OpenStudio::Ruleset::ModelUserScript
-
-  # require measure_resources
-  require 'measure_resources/os_lib_geometry'
 
   # resource file modules
   include OsLib_Geometry
