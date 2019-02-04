@@ -41,7 +41,8 @@ RSpec::Core::RakeTask.new(:spec)
 
 # Load in the rake tasks from the base extension gem
 require "openstudio/extension/rake_task"
-os_extension = OpenStudio::Extension::RakeTask.new
-os_extension.set_measures_dir(File.join(File.expand_path(File.dirname(__FILE__)), 'lib/measures'))
+require "openstudio/model-articulation"
+rake_task = OpenStudio::Extension::RakeTask.new
+rake_task.set_extension_class(OpenStudio::ModelArticulation::ModelArticulation)
 
 task :default => :spec

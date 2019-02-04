@@ -13,7 +13,7 @@ begin
   require 'measure_resources/os_lib_helper_methods'
   require 'measure_resources/os_lib_cofee'
 rescue LoadError
-  # common location unavailable, load from resources
+  # common location unavailable, load from local resources
   require_relative 'resources/os_lib_geometry'
   require_relative 'resources/os_lib_helper_methods'
   require_relative 'resources/os_lib_cofee'
