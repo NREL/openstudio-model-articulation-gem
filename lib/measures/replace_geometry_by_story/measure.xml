@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>replace_geometry_by_story</name>
   <uid>03b18912-0ceb-47e9-8f8b-417a3008e189</uid>
-  <version_id>e67ab4ec-32f3-4bf2-b3d6-bc661f2f8664</version_id>
-  <version_modified>20180501T192448Z</version_modified>
+  <version_id>d47220f2-d84a-413c-aebd-7e104f0f0349</version_id>
+  <version_modified>20190204T235132Z</version_modified>
   <xml_checksum>2AF3A68E</xml_checksum>
   <class_name>ReplaceGeometryByStory</class_name>
   <display_name>Replace Geometry By Story</display_name>
@@ -39,10 +39,16 @@
   </attributes>
   <files>
     <file>
+      <filename>os_lib_geometry.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>3D17299B</checksum>
+    </file>
+    <file>
       <filename>replace_geometry_by_story_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>55268E65</checksum>
+      <checksum>290E2D38</checksum>
     </file>
     <file>
       <version>
@@ -53,13 +59,25 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>D7EA8786</checksum>
+      <checksum>631E9E34</checksum>
     </file>
     <file>
-      <filename>os_lib_geometry.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>3D17299B</checksum>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>9640B6CB</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>97ED578F</checksum>
     </file>
   </files>
 </measure>
