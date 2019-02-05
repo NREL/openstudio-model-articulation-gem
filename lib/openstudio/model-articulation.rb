@@ -33,7 +33,12 @@ module OpenStudio
   module ModelArticulation
     class ModelArticulation < OpenStudio::Extension::Extension
       # include OpenStudio::Extension
-
+      
+      # Return the version of the OpenStudio Extension Gem
+      def version
+        OpenStudio::ModelArticulation::VERSION
+      end
+      
       # Return the absolute path of the measures or nil if there is none, can be used when configuring OSWs
       def measures_dir
         return File.absolute_path(File.join(File.dirname(__FILE__), '../measures/'))
