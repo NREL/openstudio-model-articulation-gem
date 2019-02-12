@@ -29,12 +29,12 @@
 require_relative '../spec_helper'
 
 RSpec.describe OpenStudio::ModelArticulation do
-  it "has a version number" do
+  it 'has a version number' do
     expect(OpenStudio::ModelArticulation::VERSION).not_to be nil
   end
 
   it 'has a measures directory' do
     instance = OpenStudio::ModelArticulation::ModelArticulation.new
-    expect(File.exists?(File.join(instance.measures_dir, 'BarAspectRatioStudy/'))).to be true
+    expect(File.exist?(File.join(instance.measures_dir, 'BarAspectRatioStudy/'))).to be true
   end
 end
