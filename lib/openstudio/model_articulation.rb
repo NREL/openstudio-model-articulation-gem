@@ -26,33 +26,17 @@
 #  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ########################################################################################################################
 
-require "openstudio/model-articulation/version"
+require "openstudio/model_articulation/version"
 require "openstudio/extension"
 
 module OpenStudio
   module ModelArticulation
     class ModelArticulation < OpenStudio::Extension::Extension
-      # include OpenStudio::Extension
-      
-      # Return the version of the OpenStudio Extension Gem
-      def version
-        OpenStudio::ModelArticulation::VERSION
-      end
-      
-      # Return the absolute path of the measures or nil if there is none, can be used when configuring OSWs
-      def measures_dir
-        return File.absolute_path(File.join(File.dirname(__FILE__), '../measures/'))
-      end
-
-      # Relevant files such as weather data, design days, etc.
-      # return the absolute path of the files or nil if there is none, can be used when configuring OSWs
-      def files_dir
-        return File.absolute_path(File.join(File.dirname(__FILE__), '../files/'))
-      end
-
-      # return the absolute path of root of this gem
-      def root_dir
-        return File.absolute_path(File.join(File.dirname(__FILE__), '../../'))
+ 
+      # Override the base class
+      def initialize
+        super
+        @root_dir = File.absolute_path(File.join(File.dirname(__FILE__), '..', '..'))
       end
       
     end

@@ -33,12 +33,6 @@ RSpec.describe OpenStudio::ModelArticulation do
     expect(OpenStudio::ModelArticulation::VERSION).not_to be nil
   end
 
-  it 'has a base version number' do
-    instance = OpenStudio::ModelArticulation::ModelArticulation.new
-    expect(instance.version).not_to be nil
-    expect(instance.version).to eq(OpenStudio::ModelArticulation::VERSION)
-  end
-
   it 'has a measures directory' do
     instance = OpenStudio::ModelArticulation::ModelArticulation.new
     expect(File.exists?(File.join(instance.measures_dir, 'BarAspectRatioStudy/'))).to be true
