@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>create_and_assign_thermal_zones_for_unassigned_spaces</name>
   <uid>ddaa752e-5d40-49b2-88de-62e71697e614</uid>
-  <version_id>419599a0-8688-43cf-a1a6-2496067d82f9</version_id>
-  <version_modified>20190204T235130Z</version_modified>
+  <version_id>31bbc64c-d7b4-4a1c-b08a-693d193c9a00</version_id>
+  <version_modified>20190212T182915Z</version_modified>
   <xml_checksum>2AF3A68E</xml_checksum>
   <class_name>CreateAndAssignThermalZonesForUnassignedSpaces</class_name>
   <display_name>Create and Assign Thermal Zones for Unassigned Spaces</display_name>
@@ -45,23 +45,6 @@
       <checksum>53D14E69</checksum>
     </file>
     <file>
-      <filename>create_and_assign_thermal_zones_for_unassigned_spaces_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>8F005875</checksum>
-    </file>
-    <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.3.0</identifier>
-        <min_compatible>2.3.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>5D00A525</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
@@ -78,6 +61,23 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>DFA4ED1B</checksum>
+    </file>
+    <file>
+      <filename>create_and_assign_thermal_zones_for_unassigned_spaces_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>62D91648</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.3.0</identifier>
+        <min_compatible>2.3.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>1C76BA01</checksum>
     </file>
   </files>
 </measure>

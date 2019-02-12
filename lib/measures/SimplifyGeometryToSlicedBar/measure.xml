@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>simplify_geometry_to_sliced_bar</name>
   <uid>eb218516-5fa5-47fe-948d-274777c7d592</uid>
-  <version_id>450907e9-fc06-45a9-8b14-567239480040</version_id>
-  <version_modified>20190204T235132Z</version_modified>
+  <version_id>2c30c6e5-5a1d-485c-a6ed-0b7888ab38bf</version_id>
+  <version_modified>20190212T182917Z</version_modified>
   <xml_checksum>45097B60</xml_checksum>
   <class_name>SimplifyGeometryToSlicedBar</class_name>
   <display_name>SimplifyGeometryToSlicedBar</display_name>
@@ -60,41 +60,6 @@ In a future version I may try to identify similar spaces types and blend them to
       <checksum>7E96D119</checksum>
     </file>
     <file>
-      <filename>os_lib_geometry.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>3D17299B</checksum>
-    </file>
-    <file>
-      <filename>os_lib_helper_methods.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>9CFC43FB</checksum>
-    </file>
-    <file>
-      <filename>SimplifyGeometryToSlicedBar_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>7CF83F7A</checksum>
-    </file>
-    <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>C9A95793</checksum>
-    </file>
-    <file>
-      <filename>os_lib_cofee.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>61EA3C6B</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
@@ -111,6 +76,41 @@ In a future version I may try to identify similar spaces types and blend them to
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>DE7E458B</checksum>
+    </file>
+    <file>
+      <filename>os_lib_geometry.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>D6D0E98F</checksum>
+    </file>
+    <file>
+      <filename>os_lib_helper_methods.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>22515A49</checksum>
+    </file>
+    <file>
+      <filename>SimplifyGeometryToSlicedBar_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>0C143730</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>62398AF3</checksum>
+    </file>
+    <file>
+      <filename>os_lib_cofee.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>36B3A42E</checksum>
     </file>
   </files>
 </measure>

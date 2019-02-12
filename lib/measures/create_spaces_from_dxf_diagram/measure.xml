@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>create_spaces_from_dxf_diagram</name>
   <uid>a07d794b-6ea6-420e-9dfd-d2cdcd7dd8b1</uid>
-  <version_id>01fe346b-f228-45ce-8bab-281a3a4355c0</version_id>
-  <version_modified>20190205T001545Z</version_modified>
+  <version_id>e755fe06-c89d-497f-82a2-166b5b3b8b62</version_id>
+  <version_modified>20190212T182916Z</version_modified>
   <xml_checksum>B12FB270</xml_checksum>
   <class_name>CreateSpacesFromDXFDiagram</class_name>
   <display_name>Create Spaces From DXF Diagram</display_name>
@@ -140,29 +140,6 @@
       <checksum>A280A908</checksum>
     </file>
     <file>
-      <filename>os_lib_geometry.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>3D17299B</checksum>
-    </file>
-    <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>203154A3</checksum>
-    </file>
-    <file>
-      <filename>create_spaces_from_dxf_diagram_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>9712A6C2</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
@@ -185,6 +162,29 @@
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
       <checksum>5BE20DE8</checksum>
+    </file>
+    <file>
+      <filename>os_lib_geometry.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>D6D0E98F</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>B7310AE8</checksum>
+    </file>
+    <file>
+      <filename>create_spaces_from_dxf_diagram_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>F0D61530</checksum>
     </file>
   </files>
 </measure>

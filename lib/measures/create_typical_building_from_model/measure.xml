@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>create_typical_building_from_model</name>
   <uid>339a2e3a-273c-4494-bb50-bfe586a0647c</uid>
-  <version_id>8d8de67e-f841-4f6d-a9dc-874325bada9d</version_id>
-  <version_modified>20190204T235131Z</version_modified>
+  <version_id>27fa6641-9719-43f3-aa23-a10aa51c46d8</version_id>
+  <version_modified>20190212T182916Z</version_modified>
   <xml_checksum>EE13F09F</xml_checksum>
   <class_name>CreateTypicalBuildingFromModel</class_name>
   <display_name>Create Typical Building from Model</display_name>
@@ -674,57 +674,16 @@
       <checksum>5415617A</checksum>
     </file>
     <file>
-      <filename>os_lib_helper_methods.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>9CFC43FB</checksum>
-    </file>
-    <file>
-      <filename>os_lib_model_generation.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>67AC7BF3</checksum>
-    </file>
-    <file>
       <filename>USA_TX_Houston-Bush.Intercontinental.AP.722430_TMY3.epw</filename>
       <filetype>epw</filetype>
       <usage_type>test</usage_type>
       <checksum>EE565FCC</checksum>
     </file>
     <file>
-      <filename>test_hvac.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>D492C5D8</checksum>
-    </file>
-    <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>29D6574F</checksum>
-    </file>
-    <file>
-      <filename>Model.hvac.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>8162DDB4</checksum>
-    </file>
-    <file>
       <filename>GenericGbxml.osm</filename>
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
       <checksum>E27658D5</checksum>
-    </file>
-    <file>
-      <filename>create_typical_building_from_model_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>F343DAF8</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
@@ -743,6 +702,47 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>09D324A2</checksum>
+    </file>
+    <file>
+      <filename>os_lib_helper_methods.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>22515A49</checksum>
+    </file>
+    <file>
+      <filename>os_lib_model_generation.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>C37C7D0E</checksum>
+    </file>
+    <file>
+      <filename>test_hvac.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>B1143A73</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>117F4043</checksum>
+    </file>
+    <file>
+      <filename>Model.hvac.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>0ADF940A</checksum>
+    </file>
+    <file>
+      <filename>create_typical_building_from_model_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>64BEFE42</checksum>
     </file>
   </files>
 </measure>

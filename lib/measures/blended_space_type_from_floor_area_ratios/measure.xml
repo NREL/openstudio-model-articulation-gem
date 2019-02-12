@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>blended_space_type_from_floor_area_ratios</name>
   <uid>48ff1765-871b-4c9c-9996-a22757c534ad</uid>
-  <version_id>ca1037f0-8fc5-4f9b-b297-c2f086174cdb</version_id>
-  <version_modified>20190204T235130Z</version_modified>
+  <version_id>d136efb4-698b-4017-9abf-1a93c393b773</version_id>
+  <version_modified>20190212T182912Z</version_modified>
   <xml_checksum>05C5DFDC</xml_checksum>
   <class_name>BlendedSpaceTypeFromFloorAreaRatios</class_name>
   <display_name>Blended Space Type from Floor Area Ratios</display_name>
@@ -126,41 +126,6 @@
       <checksum>A9E3FEA1</checksum>
     </file>
     <file>
-      <filename>os_lib_helper_methods.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>9CFC43FB</checksum>
-    </file>
-    <file>
-      <filename>os_lib_model_simplification.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>EAEEA8B6</checksum>
-    </file>
-    <file>
-      <filename>os_lib_model_generation.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>67AC7BF3</checksum>
-    </file>
-    <file>
-      <filename>measure_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>F51D03AD</checksum>
-    </file>
-    <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>140714DC</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
@@ -177,6 +142,41 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>CF3B0BF8</checksum>
+    </file>
+    <file>
+      <filename>os_lib_helper_methods.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>22515A49</checksum>
+    </file>
+    <file>
+      <filename>os_lib_model_simplification.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>3E3D40E3</checksum>
+    </file>
+    <file>
+      <filename>os_lib_model_generation.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>C37C7D0E</checksum>
+    </file>
+    <file>
+      <filename>measure_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>B29385E4</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>5566E843</checksum>
     </file>
   </files>
 </measure>

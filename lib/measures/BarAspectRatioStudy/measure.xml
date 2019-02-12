@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>bar_aspect_ratio_study</name>
   <uid>3dcac94d-8a2e-43b6-8698-a3a4e8f3903f</uid>
-  <version_id>c2ea7852-0ed4-442a-802a-d1061e8ff483</version_id>
-  <version_modified>20181101T151202Z</version_modified>
+  <version_id>39dbdac6-906d-4ff6-b533-a4549a086787</version_id>
+  <version_modified>20190212T182912Z</version_modified>
   <xml_checksum>49BEF039</xml_checksum>
   <class_name>BarAspectRatioStudy</class_name>
   <display_name>Bar Aspect Ratio Study</display_name>
@@ -110,23 +110,6 @@
   </attributes>
   <files>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>7F877748</checksum>
-    </file>
-    <file>
-      <filename>BarAspectRatioStudy_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>9F73A809</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
@@ -143,6 +126,23 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>352CF028</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>63306FB6</checksum>
+    </file>
+    <file>
+      <filename>BarAspectRatioStudy_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>1DBDDD7C</checksum>
     </file>
   </files>
 </measure>

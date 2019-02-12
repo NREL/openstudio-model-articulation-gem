@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>scale_geometry</name>
   <uid>f9cc2ffc-2838-4a18-8330-97e7cc94cdf8</uid>
-  <version_id>631b55db-a641-4d58-a10a-dc3b8ad7e04e</version_id>
-  <version_modified>20190204T235132Z</version_modified>
+  <version_id>4e6db9ca-9407-4292-9276-2f1f404e88f3</version_id>
+  <version_modified>20190212T182916Z</version_modified>
   <xml_checksum>7AD75066</xml_checksum>
   <class_name>ScaleGeometry</class_name>
   <display_name>scale_geometry</display_name>
@@ -83,23 +83,6 @@
       <checksum>C4F35230</checksum>
     </file>
     <file>
-      <filename>scale_geometry_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>B927D9DF</checksum>
-    </file>
-    <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>02D0C447</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
@@ -116,6 +99,23 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>243DC6A8</checksum>
+    </file>
+    <file>
+      <filename>scale_geometry_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>FB984365</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>521C1F29</checksum>
     </file>
   </files>
 </measure>
