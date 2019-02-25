@@ -8,10 +8,14 @@
 /doc/
 /pkg/
 /spec/reports/
+/spec/test/
 /tmp/
 /test/
+/lib/measures/test
 /lib/measures/test_results
+/lib/measures/*/test_results
 /lib/measures/*/tests/output
+/lib/measures/*/.rubocop.yml
 
 .rubocop*s3*
 
