@@ -27,5 +27,16 @@
 ########################################################################################################################
 
 require 'openstudio/model_articulation/version'
-require 'openstudio/model_articulation/extension'
+require 'openstudio/extension'
 
+module OpenStudio
+  module ModelArticulation
+    class Extension < OpenStudio::Extension::Extension
+      # Override the base class
+      def initialize
+        super
+        @root_dir = File.absolute_path(File.join(File.dirname(__FILE__), '..', '..', '..'))
+      end
+    end
+  end
+end

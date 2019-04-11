@@ -32,7 +32,7 @@ require 'openstudio/common_measures'
 
 def run_osw(test_name, in_osw_filename)
 
-  instance = OpenStudio::ModelArticulation::ModelArticulation.new
+  instance = OpenStudio::ModelArticulation::Extension.new
   runner = OpenStudio::Extension::Runner.new(instance.root_dir)
 
   in_osw_path = File.join(File.dirname(__FILE__), "../files/#{in_osw_filename}")
@@ -68,7 +68,7 @@ RSpec.describe OpenStudio::ModelArticulation do
   end
 
   it 'has a measures directory' do
-    instance = OpenStudio::ModelArticulation::ModelArticulation.new
+    instance = OpenStudio::ModelArticulation::Extension.new
     expect(File.exist?(File.join(instance.measures_dir, 'BarAspectRatioStudy/'))).to be true
   end
   

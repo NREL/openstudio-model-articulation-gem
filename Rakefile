@@ -45,6 +45,6 @@ RuboCop::RakeTask.new
 require 'openstudio/extension/rake_task'
 require 'openstudio/model_articulation'
 rake_task = OpenStudio::Extension::RakeTask.new
-rake_task.set_extension_class(OpenStudio::ModelArticulation::ModelArticulation)
+rake_task.set_extension_class(OpenStudio::ModelArticulation::Extension)
 
 task default: :spec
