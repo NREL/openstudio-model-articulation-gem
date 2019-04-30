@@ -90,6 +90,23 @@ class ReplaceGeometryByStory < OpenStudio::Ruleset::ModelUserScript
       next if not story.spaces.first.spaceType.is_initialized
       story_hash[story] = {}
       story_hash[story][:space_type] = story.spaces.first.spaceType.get
+
+      # set nominalZCoordinate, as it is used later on
+      minz_spaces = []
+      sorted_spaces = {}
+      story.spaces.each do |space|
+        # loop through space surfaces to find min z value
+        z_points = []
+        space.surfaces.each do |surface|
+          surface.vertices.each do |vertex|
+            z_points << vertex.z
+          end
+        end
+        minz_spaces << z_points.min + space.zOrigin
+      end
+      if minz_spaces.size > 0
+        story.setNominalZCoordinate(minz_spaces.min)
+      end
     end
     orig_floor_area = model.getBuilding.floorArea
 

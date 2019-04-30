@@ -37,7 +37,7 @@ require 'openstudio'
 
 require 'openstudio/ruleset/ShowRunnerOutput'
 
-require_relative '../measure.rb'
+require "#{File.dirname(__FILE__)}/../measure.rb"
 
 require 'minitest/autorun'
 
