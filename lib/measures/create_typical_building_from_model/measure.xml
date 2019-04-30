@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>create_typical_building_from_model</name>
   <uid>339a2e3a-273c-4494-bb50-bfe586a0647c</uid>
-  <version_id>27fa6641-9719-43f3-aa23-a10aa51c46d8</version_id>
-  <version_modified>20190212T182916Z</version_modified>
+  <version_id>b001fcac-a911-4495-856d-030cdd12a564</version_id>
+  <version_modified>20190430T155229Z</version_modified>
   <xml_checksum>EE13F09F</xml_checksum>
   <class_name>CreateTypicalBuildingFromModel</class_name>
   <display_name>Create Typical Building from Model</display_name>
@@ -722,17 +722,6 @@
       <checksum>B1143A73</checksum>
     </file>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>117F4043</checksum>
-    </file>
-    <file>
       <filename>Model.hvac.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
@@ -743,6 +732,17 @@
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
       <checksum>64BEFE42</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>9194BE2C</checksum>
     </file>
   </files>
 </measure>
