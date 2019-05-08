@@ -621,19 +621,21 @@ class CreateTypicalBuildingFromModel < OpenStudio::Measure::ModelMeasure
 
       model.getSpaceTypes.each do |space_type|
         # create thermostat schedules
-        # apply internal load schedules
+        # skip un-recognized space types
+        next if standard.space_type_get_standards_data(space_type).size == 0
         # the last bool test it to make thermostat schedules. They are added to the model but not assigned
         standard.space_type_apply_internal_load_schedules(space_type, false, false, false, false, false, false, true)
 
         # identify thermal thermostat and apply to zones (apply_internal_load_schedules names )
         model.getThermostatSetpointDualSetpoints.each do |thermostat|
-          next if !thermostat.name.to_s.include?(space_type.name.to_s)
+          next if thermostat.name.to_s != ("#{space_type.name.to_s} Thermostat")
+          next if !thermostat.coolingSetpointTemperatureSchedule.is_initialized
+          next if !thermostat.heatingSetpointTemperatureSchedule.is_initialized
           runner.registerInfo("Assigning #{thermostat.name} to thermal zones with #{space_type.name} assigned.")
           space_type.spaces.each do |space|
             next if !space.thermalZone.is_initialized
             space.thermalZone.get.setThermostatSetpointDualSetpoint(thermostat)
           end
-          next
         end
       end
     end

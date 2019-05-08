@@ -62,17 +62,14 @@ class BlendedSpaceTypeFromFloorAreaRatios < OpenStudio::Ruleset::ModelUserScript
   def name
     return "Blended Space Type from Floor Area Ratios"
   end
-  
   # human readable description
   def description
     return "This measure will take a string argument describing the space type ratios, for space types already in the model. There is also an argument to set the new blended space type as the default space type for the building. The space types refererenced by this argument should already exist in the model."
   end
-  
   # human readable description of modeling approach
   def modeler_description
     return "To determine default ratio look at the building type, and try to infer template (from building name) and set default ratios saved in the resources folder."
   end
-  
   # define the arguments that the user will input
   def arguments(model)
     args = OpenStudio::Ruleset::OSArgumentVector.new
