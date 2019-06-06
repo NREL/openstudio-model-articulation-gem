@@ -1,0 +1,67 @@
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>tenant_star_internal_loads</name>
+  <uid>8c10b18d-c66d-43dc-9ef5-b82dfed0edde</uid>
+  <version_id>6c19271d-8f07-4983-a219-810c8fa75da5</version_id>
+  <version_modified>20180717T215712Z</version_modified>
+  <xml_checksum>2C38F48B</xml_checksum>
+  <class_name>TenantStarInternalLoads</class_name>
+  <display_name>Tenant Star Internal Loads</display_name>
+  <description>Overrides existing model values for lightings, equipment, people, and infiltration.</description>
+  <modeler_description>Lighting should be stacked value unless we add uncertainty. Equipment and people will vary based on information provided by tenant, and infiltration will be used for uncertainty. Schedules will be addressed in a separate measure that creates parametric schedules based on hours of operation.</modeler_description>
+  <arguments>
+    <argument>
+      <name>epd</name>
+      <display_name>Electric Equipment Power Density</display_name>
+      <description>Electric Power Density including servers.</description>
+      <type>Double</type>
+      <units>W/ft^2</units>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0.55</default_value>
+    </argument>
+  </arguments>
+  <outputs/>
+  <provenances/>
+  <tags>
+    <tag>Whole Building.Space Types</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <filename>example_model.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>53D14E69</checksum>
+    </file>
+    <file>
+      <filename>tenant_star_internal_loads_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>877E59E4</checksum>
+    </file>
+    <file>
+      <filename>os_lib_helper_methods.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>9CFC43FB</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.1.0</identifier>
+        <min_compatible>2.1.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>F92433BA</checksum>
+    </file>
+  </files>
+</measure>
