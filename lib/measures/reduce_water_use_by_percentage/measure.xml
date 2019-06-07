@@ -1,0 +1,62 @@
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>reduce_water_use_by_percentage</name>
+  <uid>3be83df0-8db1-47a8-8b26-aa12f9f17116</uid>
+  <version_id>725f3c65-c760-44ad-bccd-919e682bf38a</version_id>
+  <version_modified>20180717T215712Z</version_modified>
+  <xml_checksum>759A1208</xml_checksum>
+  <class_name>ReduceWaterUseByPercentage</class_name>
+  <display_name>reduce_water_use_by_percentage</display_name>
+  <description></description>
+  <modeler_description></modeler_description>
+  <arguments>
+    <argument>
+      <name>water_use_reduction_percent</name>
+      <display_name>Water Use Reduction Percentage (%)</display_name>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>20</default_value>
+    </argument>
+  </arguments>
+  <outputs/>
+  <provenances/>
+  <tags>
+    <tag>Service Water Heating.Water Use</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Apply Measure Now</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>OpenStudio Application</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Parametric Analysis Tool</value>
+      <datatype>string</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.1.0</identifier>
+        <min_compatible>2.1.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>1642ADCF</checksum>
+    </file>
+  </files>
+</measure>

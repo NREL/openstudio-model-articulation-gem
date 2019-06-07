@@ -1,0 +1,184 @@
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>add_apszhp_to_each_zone</name>
+  <uid>2d81d612-3235-429f-ba0a-46b8bf3b4e92</uid>
+  <version_id>10d37243-c94f-4542-934f-3953c44f75f3</version_id>
+  <version_modified>20180223T005547Z</version_modified>
+  <xml_checksum>87BA8B1E</xml_checksum>
+  <class_name>AddAPSZHPToEachZone</class_name>
+  <display_name>Add a PSZ-HP to each zone</display_name>
+  <description>This will add a Rooftop Packaged Single Zone Heat Pump (RTU with DX cooling and DX heating coils) to each zone of the model.</description>
+  <modeler_description>Add a System 4 - PSZ-HP - unit for each zone. This is a single zone system.
+Parameters:
+- Double: COP cooling and COP heating (Double)
+- Boolean: supplementary electric heating coil (Boolean)
+- Pressure rise (Optional Double)
+- Deletion of existing HVAC equipment (Boolean)
+- DCV enabled or not (Boolean)
+- Fan type: Variable Volume Fan (VFD) or not (Constant Volume) (Choice)
+- Filter for the zone name (String): only zones that contains the string you input in filter will receive this system.</modeler_description>
+  <arguments>
+    <argument>
+      <name>delete_existing</name>
+      <display_name>Delete any existing HVAC equipment?</display_name>
+      <type>Boolean</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>cop_cooling</name>
+      <display_name>COP Cooling (SI)</display_name>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>3.1</default_value>
+    </argument>
+    <argument>
+      <name>cop_heating</name>
+      <display_name>COP Heating (SI)</display_name>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>3.1</default_value>
+    </argument>
+    <argument>
+      <name>has_electric_coil</name>
+      <display_name>Include supplementary electric heating coils?</display_name>
+      <type>Boolean</type>
+      <required>false</required>
+      <model_dependent>false</model_dependent>
+      <default_value>true</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>has_dcv</name>
+      <display_name>Enable Demand Controlled Ventilation?</display_name>
+      <type>Boolean</type>
+      <required>false</required>
+      <model_dependent>false</model_dependent>
+      <default_value>false</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>fan_type</name>
+      <display_name>Select fan type:</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <choices>
+        <choice>
+          <value>Constant Volume (default)</value>
+          <display_name>Constant Volume (default)</display_name>
+        </choice>
+        <choice>
+          <value>Variable Volume (VFD)</value>
+          <display_name>Variable Volume (VFD)</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>fan_pressure_rise</name>
+      <display_name>Fan Pressure Rise (Pa)</display_name>
+      <description>Leave blank for default value</description>
+      <type>Double</type>
+      <required>false</required>
+      <model_dependent>false</model_dependent>
+    </argument>
+    <argument>
+      <name>filter_type</name>
+      <display_name>How do you want to choose the affected zones?</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <choices>
+        <choice>
+          <value>By Space Type</value>
+          <display_name>By Space Type</display_name>
+        </choice>
+        <choice>
+          <value>By Space Type's 'Standards Space Type'</value>
+          <display_name>By Space Type's 'Standards Space Type'</display_name>
+        </choice>
+        <choice>
+          <value>By Zone Filter</value>
+          <display_name>By Zone Filter</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>space_type</name>
+      <display_name>a. Which Space Type?</display_name>
+      <type>Choice</type>
+      <required>false</required>
+      <model_dependent>false</model_dependent>
+    </argument>
+    <argument>
+      <name>standards_space_type</name>
+      <display_name>b. Which Standards Space Type</display_name>
+      <type>Choice</type>
+      <required>false</required>
+      <model_dependent>false</model_dependent>
+    </argument>
+    <argument>
+      <name>zone_filter</name>
+      <display_name>c. Only Apply to Zones that contain the following string</display_name>
+      <description>Case insensitive. For example, type 'retail' to apply to zones that have the word 'retail' or 'REtaiL' in their name. Leave blank to apply to all zones</description>
+      <type>String</type>
+      <required>false</required>
+      <model_dependent>false</model_dependent>
+    </argument>
+  </arguments>
+  <outputs/>
+  <provenances/>
+  <tags>
+    <tag>HVAC.Whole System</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Uses SketchUp API</name>
+      <value>false</value>
+      <datatype>boolean</datatype>
+    </attribute>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type></usage_type>
+      <checksum>E46EE4C8</checksum>
+    </file>
+  </files>
+</measure>

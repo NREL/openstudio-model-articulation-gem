@@ -1,0 +1,298 @@
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>vr_fwith_doas</name>
+  <uid>61816fc9-82f0-4787-a1bf-0ffb0ce66037</uid>
+  <version_id>0463a4b1-34a2-4ba2-8339-a119b7900e4e</version_id>
+  <version_modified>20180717T215712Z</version_modified>
+  <xml_checksum>87BA8B1E</xml_checksum>
+  <class_name>VRFwithDOAS</class_name>
+  <display_name>VRFwithDOAS</display_name>
+  <description>Measure replaces existing HVAC system (if any) with a Variable Refrigerant Flow (VRF) system with DOAS HVAC system (one DOAS per floor).  The VRF with DOAS system (centralized DOAS, with zone level conditioning) is applied to all space types except storage spaces like stairwells, mechanical/electrical rooms etc.</description>
+  <modeler_description>Airloops are dedicated to ventilation (DOAS) and have constant or variable speed fan operation, gas furnace heating,single speed DX cooling and optional energy recovery and/or direct evaporative cooling.  Conditioning is provided at the zone level with VRF system with cycling fans. Only air cooled VRF system is modeled. </modeler_description>
+  <arguments>
+    <argument>
+      <name>ceilingReturnPlenumSpaceType</name>
+      <display_name>This space type should be part of a ceiling return air plenum.</display_name>
+      <type>Choice</type>
+      <required>false</required>
+      <model_dependent>false</model_dependent>
+    </argument>
+    <argument>
+      <name>vrfCondenserType</name>
+      <display_name>VRF Condenser Type</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>AirCooled</default_value>
+      <choices>
+        <choice>
+          <value>AirCooled</value>
+          <display_name>AirCooled</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>vrfCoolCOP</name>
+      <display_name>VRF Rated Cooling COP (Not Including Supply Fan)</display_name>
+      <type>Double</type>
+      <required>false</required>
+      <model_dependent>false</model_dependent>
+      <default_value>4</default_value>
+    </argument>
+    <argument>
+      <name>vrfHeatCOP</name>
+      <display_name>VRF Rated Heating COP (Not Including Supply Fan)</display_name>
+      <type>Double</type>
+      <required>false</required>
+      <model_dependent>false</model_dependent>
+      <default_value>4</default_value>
+    </argument>
+    <argument>
+      <name>vrfMinOATHPHeat</name>
+      <display_name>Minimum Outdoor Temperature in Heat Pump Heating Mode (F)</display_name>
+      <type>Double</type>
+      <required>false</required>
+      <model_dependent>false</model_dependent>
+      <default_value>-4</default_value>
+    </argument>
+    <argument>
+      <name>vrfDefrost</name>
+      <display_name>Defrost Strategy</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>Resistive</default_value>
+      <choices>
+        <choice>
+          <value>Resistive</value>
+          <display_name>Resistive</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>vrfHPHeatRecovery</name>
+      <display_name>Heat Pump Waste Heat Recovery</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>Yes</default_value>
+      <choices>
+        <choice>
+          <value>Yes</value>
+          <display_name>Yes</display_name>
+        </choice>
+        <choice>
+          <value>No</value>
+          <display_name>No</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>vrfEquivPipingLength</name>
+      <display_name>Equivalent Piping Length Used for Piping Correction Factor (ft)</display_name>
+      <type>Double</type>
+      <required>false</required>
+      <model_dependent>false</model_dependent>
+      <default_value>100</default_value>
+    </argument>
+    <argument>
+      <name>vrfPipingHeight</name>
+      <display_name>Vertical Height used for Piping Correction Factor (ft)</display_name>
+      <type>Double</type>
+      <required>false</required>
+      <model_dependent>false</model_dependent>
+      <default_value>35</default_value>
+    </argument>
+    <argument>
+      <name>doasFanType</name>
+      <display_name>DOAS Fan Flow Control - Variable means DCV controls</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>Variable</default_value>
+      <choices>
+        <choice>
+          <value>Constant</value>
+          <display_name>Constant</display_name>
+        </choice>
+        <choice>
+          <value>Variable</value>
+          <display_name>Variable</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>doasERV</name>
+      <display_name>DOAS Energy Recovery?</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>none</default_value>
+      <choices>
+        <choice>
+          <value>plate w/o economizer lockout</value>
+          <display_name>plate w/o economizer lockout</display_name>
+        </choice>
+        <choice>
+          <value>plate w/ economizer lockout</value>
+          <display_name>plate w/ economizer lockout</display_name>
+        </choice>
+        <choice>
+          <value>rotary wheel w/o economizer lockout</value>
+          <display_name>rotary wheel w/o economizer lockout</display_name>
+        </choice>
+        <choice>
+          <value>rotary wheel w/ economizer lockout</value>
+          <display_name>rotary wheel w/ economizer lockout</display_name>
+        </choice>
+        <choice>
+          <value>none</value>
+          <display_name>none</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>doasEvap</name>
+      <display_name>DOAS Direct Evaporative Cooling ?</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>none</default_value>
+      <choices>
+        <choice>
+          <value>Direct Evaporative Cooler</value>
+          <display_name>Direct Evaporative Cooler</display_name>
+        </choice>
+        <choice>
+          <value>none</value>
+          <display_name>none</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>doasDXEER</name>
+      <display_name>DOAS DX Cooling EER</display_name>
+      <type>Double</type>
+      <required>false</required>
+      <model_dependent>false</model_dependent>
+      <default_value>10</default_value>
+    </argument>
+    <argument>
+      <name>costTotalHVACSystem</name>
+      <display_name>Total Cost for HVAC System ($).</display_name>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>remake_schedules</name>
+      <display_name>Apply recommended availability and ventilation schedules for air handlers?</display_name>
+      <type>Boolean</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>true</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
+    </argument>
+  </arguments>
+  <outputs/>
+  <provenances/>
+  <tags>
+    <tag>HVAC.Whole System</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Uses SketchUp API</name>
+      <value>false</value>
+      <datatype>boolean</datatype>
+    </attribute>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <filename>AedgOfficeHvacWshpDoas_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>6E9C8413</checksum>
+    </file>
+    <file>
+      <filename>AEDG_HVAC_GenericTestModel_0225_a.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>ED45BF2B</checksum>
+    </file>
+    <file>
+      <filename>measure-backup-1.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>7DA88440</checksum>
+    </file>
+    <file>
+      <filename>measure-backup.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>5EC116F9</checksum>
+    </file>
+    <file>
+      <filename>OsLib_AedgMeasures.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>400D07BE</checksum>
+    </file>
+    <file>
+      <filename>OsLib_Constructions.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>1DBDBCB3</checksum>
+    </file>
+    <file>
+      <filename>OsLib_Geometry.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>730B5D71</checksum>
+    </file>
+    <file>
+      <filename>OsLib_HelperMethods.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>15A9730B</checksum>
+    </file>
+    <file>
+      <filename>OsLib_LightingAndEquipment.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>E76DE29C</checksum>
+    </file>
+    <file>
+      <filename>OsLib_Schedules.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>C53CDDCD</checksum>
+    </file>
+    <file>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type></usage_type>
+      <checksum>E173D503</checksum>
+    </file>
+    <file>
+      <filename>OsLib_HVAC.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>CD9C05F6</checksum>
+    </file>
+  </files>
+</measure>
