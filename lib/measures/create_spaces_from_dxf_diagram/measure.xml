@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>create_spaces_from_dxf_diagram</name>
   <uid>a07d794b-6ea6-420e-9dfd-d2cdcd7dd8b1</uid>
-  <version_id>e755fe06-c89d-497f-82a2-166b5b3b8b62</version_id>
-  <version_modified>20190212T182916Z</version_modified>
+  <version_id>cba13f07-b4b4-4e6d-b5f8-198e3fd84254</version_id>
+  <version_modified>20190627T000550Z</version_modified>
   <xml_checksum>B12FB270</xml_checksum>
   <class_name>CreateSpacesFromDXFDiagram</class_name>
   <display_name>Create Spaces From DXF Diagram</display_name>
@@ -158,16 +158,16 @@
       <checksum>5D1BA01A</checksum>
     </file>
     <file>
-      <filename>dxf2ruby.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>5BE20DE8</checksum>
-    </file>
-    <file>
       <filename>os_lib_geometry.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
       <checksum>D6D0E98F</checksum>
+    </file>
+    <file>
+      <filename>dxf2ruby.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>5AA26DDE</checksum>
     </file>
     <file>
       <version>
@@ -178,13 +178,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>B7310AE8</checksum>
+      <checksum>61AD79FF</checksum>
     </file>
     <file>
       <filename>create_spaces_from_dxf_diagram_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>F0D61530</checksum>
+      <checksum>09EE018D</checksum>
     </file>
   </files>
 </measure>

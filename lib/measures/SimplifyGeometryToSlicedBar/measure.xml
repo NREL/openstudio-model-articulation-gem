@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>simplify_geometry_to_sliced_bar</name>
   <uid>eb218516-5fa5-47fe-948d-274777c7d592</uid>
-  <version_id>47a9f285-3d90-4737-9de4-132ab7526f1e</version_id>
-  <version_modified>20190430T155229Z</version_modified>
+  <version_id>6cd58aa9-e42e-40ea-baa9-5a7c6729a7aa</version_id>
+  <version_modified>20190627T000551Z</version_modified>
   <xml_checksum>45097B60</xml_checksum>
   <class_name>SimplifyGeometryToSlicedBar</class_name>
   <display_name>SimplifyGeometryToSlicedBar</display_name>
@@ -98,19 +98,19 @@ In a future version I may try to identify similar spaces types and blend them to
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>62398AF3</checksum>
+      <checksum>36073870</checksum>
     </file>
     <file>
       <filename>os_lib_cofee.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>36B3A42E</checksum>
+      <checksum>F702B09E</checksum>
     </file>
     <file>
       <filename>SimplifyGeometryToSlicedBar_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>F9608AD8</checksum>
+      <checksum>AB5F44CE</checksum>
     </file>
   </files>
 </measure>

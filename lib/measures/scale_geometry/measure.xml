@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>scale_geometry</name>
   <uid>f9cc2ffc-2838-4a18-8330-97e7cc94cdf8</uid>
-  <version_id>4e6db9ca-9407-4292-9276-2f1f404e88f3</version_id>
-  <version_modified>20190212T182916Z</version_modified>
+  <version_id>7ea87b81-597e-49cc-a80a-c8209200391b</version_id>
+  <version_modified>20190627T000550Z</version_modified>
   <xml_checksum>7AD75066</xml_checksum>
   <class_name>ScaleGeometry</class_name>
   <display_name>scale_geometry</display_name>
@@ -104,7 +104,7 @@
       <filename>scale_geometry_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>FB984365</checksum>
+      <checksum>BDC34558</checksum>
     </file>
     <file>
       <version>
@@ -115,7 +115,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>521C1F29</checksum>
+      <checksum>2E8248B1</checksum>
     </file>
   </files>
 </measure>

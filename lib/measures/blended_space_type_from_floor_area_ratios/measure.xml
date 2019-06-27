@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>blended_space_type_from_floor_area_ratios</name>
   <uid>48ff1765-871b-4c9c-9996-a22757c534ad</uid>
-  <version_id>4609c86b-bf49-4941-848d-7880abef4f1e</version_id>
-  <version_modified>20190430T155226Z</version_modified>
+  <version_id>50eba857-3b29-48dd-8891-48268b17578b</version_id>
+  <version_modified>20190627T000545Z</version_modified>
   <xml_checksum>05C5DFDC</xml_checksum>
   <class_name>BlendedSpaceTypeFromFloorAreaRatios</class_name>
   <display_name>Blended Space Type from Floor Area Ratios</display_name>
@@ -159,13 +159,13 @@
       <filename>os_lib_model_generation.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>C37C7D0E</checksum>
+      <checksum>EDE22C1A</checksum>
     </file>
     <file>
       <filename>measure_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>B29385E4</checksum>
+      <checksum>B7AB5DB2</checksum>
     </file>
     <file>
       <version>
@@ -176,7 +176,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>4614C81C</checksum>
+      <checksum>D0374AE3</checksum>
     </file>
   </files>
 </measure>

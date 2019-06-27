@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>bar_aspect_ratio_sliced_by_space_type</name>
   <uid>3e988765-9673-46f8-9b65-99d5b86c2b22</uid>
-  <version_id>2da3ff3b-fa65-4cc6-bf7c-4b8d539ca2e9</version_id>
-  <version_modified>20190212T182912Z</version_modified>
+  <version_id>e7236491-7e38-4e60-8eda-f6beba799ace</version_id>
+  <version_modified>20190627T000545Z</version_modified>
   <xml_checksum>49BEF039</xml_checksum>
   <class_name>BarAspectRatioSlicedBySpaceType</class_name>
   <display_name>BarAspectRatioSlicedBySpaceType</display_name>
@@ -124,7 +124,7 @@
       <filename>BarAspectRatioSlicedBySpaceType_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>1A520DD7</checksum>
+      <checksum>98EB4B4F</checksum>
     </file>
     <file>
       <version>
@@ -135,13 +135,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>03D44B0C</checksum>
+      <checksum>ECDBBE16</checksum>
     </file>
     <file>
       <filename>os_lib_cofee.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>36B3A42E</checksum>
+      <checksum>F702B09E</checksum>
     </file>
   </files>
 </measure>
