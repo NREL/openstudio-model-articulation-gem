@@ -46,7 +46,7 @@ class BlendedSpaceTypeFromModelTest < MiniTest::Test
     measure = BlendedSpaceTypeFromModel.new
 
     # create an instance of a runner
-    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new).new
+    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new)
 
     if model_name.nil?
       # make an empty model

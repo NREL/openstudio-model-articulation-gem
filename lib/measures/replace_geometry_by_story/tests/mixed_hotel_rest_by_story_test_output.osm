@@ -1,7 +1,7 @@
 
 OS:Version,
   {2d92e0ca-ff19-4dc1-a821-0e2dbcd01b37}, !- Handle
-  2.7.2;                                  !- Version Identifier
+  2.7.1;                                  !- Version Identifier
 
 OS:Rendering:Color,
   {fb750593-2948-41c8-af9f-b38138b5858d}, !- Handle

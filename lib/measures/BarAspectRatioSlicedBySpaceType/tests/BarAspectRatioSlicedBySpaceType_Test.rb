@@ -47,7 +47,7 @@ class BarAspectRatioSlicedBySpaceType_Test < MiniTest::Test
     measure = BarAspectRatioSlicedBySpaceType.new
 
     # create an instance of a runner
-    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new).new
+    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new)
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new

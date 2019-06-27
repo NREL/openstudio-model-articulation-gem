@@ -45,7 +45,7 @@ class CreateBarFromModel_Test < MiniTest::Test
     measure = CreateBarFromModel.new
 
     # create an instance of a runner
-    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new).new
+    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new)
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
@@ -96,7 +96,7 @@ class CreateBarFromModel_Test < MiniTest::Test
     measure = CreateBarFromModel.new
 
     # create an instance of a runner
-    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new).new
+    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new)
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
@@ -147,7 +147,7 @@ class CreateBarFromModel_Test < MiniTest::Test
     measure = CreateBarFromModel.new
 
     # create an instance of a runner
-    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new).new
+    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new)
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
@@ -198,7 +198,7 @@ class CreateBarFromModel_Test < MiniTest::Test
     measure = CreateBarFromModel.new
 
     # create an instance of a runner
-    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new).new
+    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new)
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
@@ -249,7 +249,7 @@ class CreateBarFromModel_Test < MiniTest::Test
     measure = CreateBarFromModel.new
 
     # create an instance of a runner
-    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new).new
+    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new)
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
@@ -301,7 +301,7 @@ class CreateBarFromModel_Test < MiniTest::Test
     measure = CreateBarFromModel.new
 
     # create an instance of a runner
-    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new).new
+    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new)
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
@@ -356,7 +356,7 @@ class CreateBarFromModel_Test < MiniTest::Test
     measure = CreateBarFromModel.new
 
     # create an instance of a runner
-    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new).new
+    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new)
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
@@ -411,7 +411,7 @@ class CreateBarFromModel_Test < MiniTest::Test
     measure = CreateBarFromModel.new
 
     # create an instance of a runner
-    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new).new
+    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new)
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
@@ -466,7 +466,7 @@ class CreateBarFromModel_Test < MiniTest::Test
     measure = CreateBarFromModel.new
 
     # create an instance of a runner
-    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new).new
+    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new)
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new

@@ -149,7 +149,7 @@ class AddHVACSystemTest < MiniTest::Test
         measure = CreateTypicalBuildingFromModel.new
 
         # create an instance of a runner
-        runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new).new
+        runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new)
 
         # get arguments
         arguments = measure.arguments(model)
