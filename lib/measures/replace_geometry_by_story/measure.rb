@@ -45,7 +45,7 @@ rescue LoadError
 end
 
 # start the measure
-class ReplaceGeometryByStory < OpenStudio::Ruleset::ModelUserScript
+class ReplaceGeometryByStory < OpenStudio::Measure::ModelMeasure
   # resource file modules
   include OsLib_Geometry
 
@@ -66,7 +66,7 @@ class ReplaceGeometryByStory < OpenStudio::Ruleset::ModelUserScript
 
   # define the arguments that the user will input
   def arguments(model)
-    args = OpenStudio::Ruleset::OSArgumentVector.new
+    args = OpenStudio::Measure::OSArgumentVector.new
 
     return args
   end

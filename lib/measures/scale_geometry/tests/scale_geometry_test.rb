@@ -39,7 +39,7 @@ require 'minitest/autorun'
 require_relative '../measure.rb'
 require 'fileutils'
 
-class ScaleGeometryTest < MiniTest::Unit::TestCase
+class ScaleGeometryTest < MiniTest::Test
   # def setup
   # end
 
@@ -66,7 +66,7 @@ class ScaleGeometryTest < MiniTest::Unit::TestCase
     measure = ScaleGeometry.new
 
     # create an instance of a runner
-    runner = OpenStudio::Ruleset::OSRunner.new
+    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new).new
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
@@ -136,7 +136,7 @@ class ScaleGeometryTest < MiniTest::Unit::TestCase
     measure = ScaleGeometry.new
 
     # create an instance of a runner
-    runner = OpenStudio::Ruleset::OSRunner.new
+    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new).new
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
@@ -206,7 +206,7 @@ class ScaleGeometryTest < MiniTest::Unit::TestCase
     measure = ScaleGeometry.new
 
     # create an instance of a runner
-    runner = OpenStudio::Ruleset::OSRunner.new
+    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new).new
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new

@@ -37,7 +37,7 @@
 # http://nrel.github.io/OpenStudio-user-documentation/reference/measure_writing_guide/
 
 # start the measure
-class CreateAndAssignThermalZonesForUnassignedSpaces < OpenStudio::Ruleset::ModelUserScript
+class CreateAndAssignThermalZonesForUnassignedSpaces < OpenStudio::Measure::ModelMeasure
   # human readable name
   def name
     return 'Create and Assign Thermal Zones for Unassigned Spaces'
@@ -55,7 +55,7 @@ class CreateAndAssignThermalZonesForUnassignedSpaces < OpenStudio::Ruleset::Mode
 
   # define the arguments that the user will input
   def arguments(model)
-    args = OpenStudio::Ruleset::OSArgumentVector.new
+    args = OpenStudio::Measure::OSArgumentVector.new
 
     return args
   end

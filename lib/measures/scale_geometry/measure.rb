@@ -37,7 +37,7 @@
 # http://nrel.github.io/OpenStudio-user-documentation/reference/measure_writing_guide/
 
 # start the measure
-class ScaleGeometry < OpenStudio::Ruleset::ModelUserScript
+class ScaleGeometry < OpenStudio::Measure::ModelMeasure
   # human readable name
   def name
     return 'scale_geometry'
@@ -55,24 +55,24 @@ class ScaleGeometry < OpenStudio::Ruleset::ModelUserScript
 
   # define the arguments that the user will input
   def arguments(model)
-    args = OpenStudio::Ruleset::OSArgumentVector.new
+    args = OpenStudio::Measure::OSArgumentVector.new
 
     # x scale
-    x_scale = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('x_scale', true)
+    x_scale = OpenStudio::Measure::OSArgument.makeDoubleArgument('x_scale', true)
     x_scale.setDisplayName('X Scale')
     x_scale.setDescription('Multiplier to apply to X direction.')
     x_scale.setDefaultValue(1.0)
     args << x_scale
 
     # y scale
-    y_scale = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('y_scale', true)
+    y_scale = OpenStudio::Measure::OSArgument.makeDoubleArgument('y_scale', true)
     y_scale.setDisplayName('Y Scale')
     y_scale.setDescription('Multiplier to apply to Y direction.')
     y_scale.setDefaultValue(1.0)
     args << y_scale
 
     # z scale
-    z_scale = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('z_scale', true)
+    z_scale = OpenStudio::Measure::OSArgument.makeDoubleArgument('z_scale', true)
     z_scale.setDisplayName('Z Scale')
     z_scale.setDescription('Multiplier to apply to Z direction.')
     z_scale.setDefaultValue(1.0)

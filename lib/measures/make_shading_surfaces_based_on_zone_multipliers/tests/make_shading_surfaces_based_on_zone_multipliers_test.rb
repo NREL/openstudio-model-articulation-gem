@@ -39,7 +39,7 @@ require 'minitest/autorun'
 require_relative '../measure.rb'
 require 'fileutils'
 
-class MakeShadingSurfacesBasedOnZoneMultipliersTest < MiniTest::Unit::TestCase
+class MakeShadingSurfacesBasedOnZoneMultipliersTest < MiniTest::Test
   # def setup
   # end
 
@@ -51,7 +51,7 @@ class MakeShadingSurfacesBasedOnZoneMultipliersTest < MiniTest::Unit::TestCase
     measure = MakeShadingSurfacesBasedOnZoneMultipliers.new
 
     # create an instance of a runner
-    runner = OpenStudio::Ruleset::OSRunner.new
+    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new).new
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new

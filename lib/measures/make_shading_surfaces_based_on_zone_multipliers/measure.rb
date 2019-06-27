@@ -45,7 +45,7 @@ rescue LoadError
 end
 
 # start the measure
-class MakeShadingSurfacesBasedOnZoneMultipliers < OpenStudio::Ruleset::ModelUserScript
+class MakeShadingSurfacesBasedOnZoneMultipliers < OpenStudio::Measure::ModelMeasure
   # human readable name
   def name
     return 'Make Shading Surfaces Based on Zone Multipliers'
@@ -63,21 +63,21 @@ class MakeShadingSurfacesBasedOnZoneMultipliers < OpenStudio::Ruleset::ModelUser
 
   # define the arguments that the user will input
   def arguments(model)
-    args = OpenStudio::Ruleset::OSArgumentVector.new
+    args = OpenStudio::Measure::OSArgumentVector.new
 
     # TODO: - make arguments for each group of common non 1 multipliers on the same story
 
     # TODO: - optionally could also list individual zones with non 1 multiliers as well
 
     # TODO: - argument for z offset distance per zone
-    z_offset_dist = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('z_offset_dist', true)
+    z_offset_dist = OpenStudio::Measure::OSArgument.makeDoubleArgument('z_offset_dist', true)
     z_offset_dist.setDisplayName('Z offset distance for selcected zones.')
     z_offset_dist.setDefaultValue(10.0)
     z_offset_dist.setUnits('ft')
     args << z_offset_dist
 
     # TODO: - argument for z start offset starting position (0 is equal above and below)
-    z_num_pos = OpenStudio::Ruleset::OSArgument.makeIntegerArgument('z_num_pos', true)
+    z_num_pos = OpenStudio::Measure::OSArgument.makeIntegerArgument('z_num_pos', true)
     z_num_pos.setDisplayName('Number of copies in the positive direction.')
     z_num_pos.setDescription('Should be integer no more than the multiplier - 1')
     z_num_pos.setDefaultValue(1) # TODO: - replace with half of multiplier rounded up

@@ -41,13 +41,13 @@ require "#{File.dirname(__FILE__)}/../measure.rb"
 
 require 'minitest/autorun'
 
-class BarAspectRatioSlicedBySpaceType_Test < MiniTest::Unit::TestCase
+class BarAspectRatioSlicedBySpaceType_Test < MiniTest::Test
   def test_BarAspectRatioSlicedBySpaceType
     # create an instance of the measure
     measure = BarAspectRatioSlicedBySpaceType.new
 
     # create an instance of a runner
-    runner = OpenStudio::Ruleset::OSRunner.new
+    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new).new
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
@@ -66,7 +66,7 @@ class BarAspectRatioSlicedBySpaceType_Test < MiniTest::Unit::TestCase
     assert_equal('spaceTypeHashString', arguments[4].name)
 
     # set argument values to good values and run the measure on model with spaces
-    argument_map = OpenStudio::Ruleset::OSArgumentMap.new
+    argument_map = OpenStudio::Measure::OSArgumentMap.new
 
     total_bldg_area_ip = arguments[0].clone
     assert(total_bldg_area_ip.setValue(50000.0))

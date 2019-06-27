@@ -47,7 +47,7 @@ end
 require_relative 'resources/ScheduleTranslator'
 
 # start the measure
-class MergeSpacesFromExternalFile < OpenStudio::Ruleset::ModelUserScript
+class MergeSpacesFromExternalFile < OpenStudio::Measure::ModelMeasure
   # human readable name
   def name
     return 'Merge Spaces from External File'
@@ -65,44 +65,44 @@ class MergeSpacesFromExternalFile < OpenStudio::Ruleset::ModelUserScript
 
   # define the arguments that the user will input
   def arguments(model)
-    args = OpenStudio::Ruleset::OSArgumentVector.new
+    args = OpenStudio::Measure::OSArgumentVector.new
 
     # make an argument for external_model_name
-    external_model_name = OpenStudio::Ruleset::OSArgument.makeStringArgument('external_model_name', true)
+    external_model_name = OpenStudio::Measure::OSArgument.makeStringArgument('external_model_name', true)
     external_model_name.setDisplayName('External OSM File Name')
     external_model_name.setDescription('Name of the model to merge into current model. This is the filename with the extension (e.g. MyModel.osm). Optionally this can inclucde the full file path, but for most use cases should just be file name.')
     args << external_model_name
 
     # merge geometry
-    merge_geometry = OpenStudio::Ruleset::OSArgument.makeBoolArgument('merge_geometry', true)
+    merge_geometry = OpenStudio::Measure::OSArgument.makeBoolArgument('merge_geometry', true)
     merge_geometry.setDisplayName('Merge Geometry from External Model')
     merge_geometry.setDescription('Replace geometry in current model with geometry from external model.')
     merge_geometry.setDefaultValue(true)
     args << merge_geometry
 
     # merge internal loads
-    merge_loads = OpenStudio::Ruleset::OSArgument.makeBoolArgument('merge_loads', true)
+    merge_loads = OpenStudio::Measure::OSArgument.makeBoolArgument('merge_loads', true)
     merge_loads.setDisplayName('Merge Internal Loads from External Model')
     merge_loads.setDescription('Replace internal loads directly assigned so spaces in current model with internal loads directly assigned to spaces frp, external model. If a schedule is hard assigned to a load instance, it will be brought over as well.')
     merge_loads.setDefaultValue(true)
     args << merge_loads
 
     # merge space attributes
-    merge_attribute_names = OpenStudio::Ruleset::OSArgument.makeBoolArgument('merge_attribute_names', true)
+    merge_attribute_names = OpenStudio::Measure::OSArgument.makeBoolArgument('merge_attribute_names', true)
     merge_attribute_names.setDisplayName('Merge Space Attribute names from External Model')
     merge_attribute_names.setDescription('Replace space attribute names in current model with space attribute names from external models. When external model has unkown attribute name that object will be cloned into the current model.')
     merge_attribute_names.setDefaultValue(true)
     args << merge_attribute_names
 
     # add_spaces
-    add_spaces = OpenStudio::Ruleset::OSArgument.makeBoolArgument('add_spaces', true)
+    add_spaces = OpenStudio::Measure::OSArgument.makeBoolArgument('add_spaces', true)
     add_spaces.setDisplayName('Add Spaces to Current Model')
     add_spaces.setDescription('Add spaces to current model that exist in external model but do not exist in current model.')
     add_spaces.setDefaultValue(true)
     args << add_spaces
 
     # remove_spaces
-    remove_spaces = OpenStudio::Ruleset::OSArgument.makeBoolArgument('remove_spaces', true)
+    remove_spaces = OpenStudio::Measure::OSArgument.makeBoolArgument('remove_spaces', true)
     remove_spaces.setDisplayName('Remove Spaces from Current Model')
     remove_spaces.setDescription('Remove spaces from current model that do not exist in externa model.')
     remove_spaces.setDefaultValue(true)
@@ -110,14 +110,14 @@ class MergeSpacesFromExternalFile < OpenStudio::Ruleset::ModelUserScript
 
     # merge schedules
     # doesn't bring in schedules from external model that are not used in current model, this measures isn't mean to load in resources that are not used
-    merge_schedules = OpenStudio::Ruleset::OSArgument.makeBoolArgument('merge_schedules', true)
+    merge_schedules = OpenStudio::Measure::OSArgument.makeBoolArgument('merge_schedules', true)
     merge_schedules.setDisplayName('Merge Schedules from External Model')
     merge_schedules.setDescription("This isn't limited to spaces, this will replace any scheules in the current model with schedules of the same name in the external model. It will not replace schedule named 'a' from an internal load in th emodel with a schedule named 'b' from an internal load by that same name in the external model, to perform that task currently, you must merge loads.")
     merge_schedules.setDefaultValue(true)
     args << merge_schedules
 
     # convert compact to ruleset
-    compact_to_ruleset = OpenStudio::Ruleset::OSArgument.makeBoolArgument('compact_to_ruleset', true)
+    compact_to_ruleset = OpenStudio::Measure::OSArgument.makeBoolArgument('compact_to_ruleset', true)
     compact_to_ruleset.setDisplayName('Convert Merged Schedule Compact objects to Schedule Ruleset.')
     compact_to_ruleset.setDescription('Will convert any imported schedules to Schedule Ruleset instead of Schedule Compact and will connect them to objects that had previously refered to the Schedule Compact object.')
     compact_to_ruleset.setDefaultValue(true)

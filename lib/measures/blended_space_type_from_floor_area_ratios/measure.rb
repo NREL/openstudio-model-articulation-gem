@@ -51,7 +51,7 @@ rescue LoadError
 end
 
 # start the measure
-class BlendedSpaceTypeFromFloorAreaRatios < OpenStudio::Ruleset::ModelUserScript
+class BlendedSpaceTypeFromFloorAreaRatios < OpenStudio::Measure::ModelMeasure
   # contains code to blend space types
   include OsLib_HelperMethods
   include OsLib_ModelGeneration
@@ -74,7 +74,7 @@ class BlendedSpaceTypeFromFloorAreaRatios < OpenStudio::Ruleset::ModelUserScript
 
   # define the arguments that the user will input
   def arguments(model)
-    args = OpenStudio::Ruleset::OSArgumentVector.new
+    args = OpenStudio::Measure::OSArgumentVector.new
 
     # get building type, floor area, and name
     if model.getBuilding.standardsBuildingType.is_initialized
@@ -160,14 +160,14 @@ class BlendedSpaceTypeFromFloorAreaRatios < OpenStudio::Ruleset::ModelUserScript
     end
 
     # create space type ratio string input with default value based on building type and infered template
-    space_type_ratio_string = OpenStudio::Ruleset::OSArgument.makeStringArgument('space_type_ratio_string', true)
+    space_type_ratio_string = OpenStudio::Measure::OSArgument.makeStringArgument('space_type_ratio_string', true)
     space_type_ratio_string.setDisplayName('Space Type Ratio String.')
     space_type_ratio_string.setDescription("\'Space Type A\' => ratio,\'Space Type B,ratio\', etc.")
     space_type_ratio_string.setDefaultValue(default_string)
     args << space_type_ratio_string
 
     # bool argument to set building default space type
-    set_default_space_type = OpenStudio::Ruleset::OSArgument.makeBoolArgument('set_default_space_type', true)
+    set_default_space_type = OpenStudio::Measure::OSArgument.makeBoolArgument('set_default_space_type', true)
     set_default_space_type.setDisplayName('Set Default Space Type using Blended Space Type.')
     set_default_space_type.setDefaultValue(true)
     args << set_default_space_type

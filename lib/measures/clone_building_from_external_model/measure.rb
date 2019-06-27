@@ -37,7 +37,7 @@
 # http://nrel.github.io/OpenStudio-user-documentation/measures/measure_writing_guide/
 
 # start the measure
-class CloneBuildingFromExternalModel < OpenStudio::Ruleset::ModelUserScript
+class CloneBuildingFromExternalModel < OpenStudio::Measure::ModelMeasure
   # human readable name
   def name
     return 'Clone Building From External Model'
@@ -55,10 +55,10 @@ class CloneBuildingFromExternalModel < OpenStudio::Ruleset::ModelUserScript
 
   # define the arguments that the user will input
   def arguments(model)
-    args = OpenStudio::Ruleset::OSArgumentVector.new
+    args = OpenStudio::Measure::OSArgumentVector.new
 
     # make an argument for external model
-    external_model_name = OpenStudio::Ruleset::OSArgument.makeStringArgument('external_model_name', true)
+    external_model_name = OpenStudio::Measure::OSArgument.makeStringArgument('external_model_name', true)
     external_model_name.setDisplayName('External OSM File Name')
     external_model_name.setDescription('Name of the model to clone building from. This is the filename with the extension (e.g. MyModel.osm). Optionally this can inclucde the full file path, but for most use cases should just be file name.')
     args << external_model_name

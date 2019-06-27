@@ -39,13 +39,13 @@ require 'minitest/autorun'
 require_relative '../measure.rb'
 require 'fileutils'
 
-class CreateAndAssignThermalZonesForUnassignedSpaces_Test < MiniTest::Unit::TestCase
+class CreateAndAssignThermalZonesForUnassignedSpaces_Test < MiniTest::Test
   def test_good_argument_values
     # create an instance of the measure
     measure = CreateAndAssignThermalZonesForUnassignedSpaces.new
 
     # create an instance of a runner
-    runner = OpenStudio::Ruleset::OSRunner.new
+    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new).new
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new

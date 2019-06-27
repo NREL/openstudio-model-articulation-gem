@@ -55,7 +55,7 @@ rescue LoadError
 end
 
 # start the measure
-class SimplifyGeometryToSlicedBar < OpenStudio::Ruleset::ModelUserScript
+class SimplifyGeometryToSlicedBar < OpenStudio::Measure::ModelMeasure
   # define the name that a user will see, this method may be deprecated as
   # the display name in PAT comes from the name field in measure.xml
   def name
@@ -64,14 +64,14 @@ class SimplifyGeometryToSlicedBar < OpenStudio::Ruleset::ModelUserScript
 
   # define the arguments that the user will input
   def arguments(model)
-    args = OpenStudio::Ruleset::OSArgumentVector.new
+    args = OpenStudio::Measure::OSArgumentVector.new
 
     # make choice argument for geometry size logic
     choices = OpenStudio::StringVector.new
     choices << 'Maintain Bounding Box Aspect Ratio'
     choices << 'Maintain Total Exterior Wall Area'
     choices << 'Maintain Facade Specific Exterior Wall Area' #  using 2 bar solution with adiabatic ends
-    logic = OpenStudio::Ruleset::OSArgument.makeChoiceArgument('logic', choices, true)
+    logic = OpenStudio::Measure::OSArgument.makeChoiceArgument('logic', choices, true)
     logic.setDisplayName('Maintain Total Floor Area and the following characteristic.')
     logic.setDefaultValue('Maintain Bounding Box Aspect Ratio')
     args << logic

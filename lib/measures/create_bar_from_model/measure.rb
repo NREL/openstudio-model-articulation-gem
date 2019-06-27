@@ -51,7 +51,7 @@ rescue LoadError
 end
 
 # start the measure
-class CreateBarFromModel < OpenStudio::Ruleset::ModelUserScript
+class CreateBarFromModel < OpenStudio::Measure::ModelMeasure
   # resource file modules
   include OsLib_HelperMethods
   include OsLib_Geometry
@@ -75,14 +75,14 @@ class CreateBarFromModel < OpenStudio::Ruleset::ModelUserScript
 
   # define the arguments that the user will input
   def arguments(model)
-    args = OpenStudio::Ruleset::OSArgumentVector.new
+    args = OpenStudio::Measure::OSArgumentVector.new
 
     # make an argument for bar calculation method
     choices = OpenStudio::StringVector.new
     choices << 'Bar - Reduced Bounding Box' # maintains aspect ratio of bounding box and floor area
     choices << 'Bar - Reduced Width' # hybrid of the reduced bounding box and the stretched bars
     choices << 'Bar - Stretched' # maintains total exterior wall area and floor area
-    bar_calc_method = OpenStudio::Ruleset::OSArgument.makeChoiceArgument('bar_calc_method', choices, true)
+    bar_calc_method = OpenStudio::Measure::OSArgument.makeChoiceArgument('bar_calc_method', choices, true)
     bar_calc_method.setDisplayName('Calculation Method to determine Bar Length and Width.')
     bar_calc_method.setDefaultValue('Bar - Reduced Bounding Box')
     args << bar_calc_method
@@ -92,7 +92,7 @@ class CreateBarFromModel < OpenStudio::Ruleset::ModelUserScript
     choices << 'Single Space Type - Core and Perimeter'
     choices << 'Multiple Space Types - Simple Sliced'
     choices << 'Multiple Space Types - Individual Stories Sliced'
-    bar_division_method = OpenStudio::Ruleset::OSArgument.makeChoiceArgument('bar_division_method', choices, true)
+    bar_division_method = OpenStudio::Measure::OSArgument.makeChoiceArgument('bar_division_method', choices, true)
     bar_division_method.setDisplayName('Division Method for Bar Spaces.')
     bar_division_method.setDefaultValue('Single Space Type - Core and Perimeter')
     args << bar_division_method

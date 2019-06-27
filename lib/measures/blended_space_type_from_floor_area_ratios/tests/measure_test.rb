@@ -39,7 +39,7 @@ require 'minitest/autorun'
 require_relative '../measure.rb'
 require 'fileutils'
 
-class BlendedSpaceTypeFromFloorAreaRatiosTest < MiniTest::Unit::TestCase
+class BlendedSpaceTypeFromFloorAreaRatiosTest < MiniTest::Test
   # def setup
   # end
 
@@ -54,7 +54,7 @@ class BlendedSpaceTypeFromFloorAreaRatiosTest < MiniTest::Unit::TestCase
     measure = BlendedSpaceTypeFromFloorAreaRatios.new
 
     # create an instance of a runner
-    runner = OpenStudio::Ruleset::OSRunner.new
+    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new).new
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
@@ -107,7 +107,7 @@ class BlendedSpaceTypeFromFloorAreaRatiosTest < MiniTest::Unit::TestCase
     measure = BlendedSpaceTypeFromFloorAreaRatios.new
 
     # create an instance of a runner
-    runner = OpenStudio::Ruleset::OSRunner.new
+    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new).new
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
@@ -160,7 +160,7 @@ class BlendedSpaceTypeFromFloorAreaRatiosTest < MiniTest::Unit::TestCase
     measure = BlendedSpaceTypeFromFloorAreaRatios.new
 
     # create an instance of a runner
-    runner = OpenStudio::Ruleset::OSRunner.new
+    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new).new
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new

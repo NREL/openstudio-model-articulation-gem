@@ -55,7 +55,7 @@ rescue LoadError
 end
 
 # start the measure
-class BarAspectRatioSlicedBySpaceType < OpenStudio::Ruleset::ModelUserScript
+class BarAspectRatioSlicedBySpaceType < OpenStudio::Measure::ModelMeasure
   # define the name that a user will see, this method may be deprecated as
   # the display name in PAT comes from the name field in measure.xml
   def name
@@ -64,34 +64,34 @@ class BarAspectRatioSlicedBySpaceType < OpenStudio::Ruleset::ModelUserScript
 
   # define the arguments that the user will input
   def arguments(model)
-    args = OpenStudio::Ruleset::OSArgumentVector.new
+    args = OpenStudio::Measure::OSArgumentVector.new
 
     # make an argument for total floor area
-    total_bldg_area_ip = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('total_bldg_area_ip', true)
+    total_bldg_area_ip = OpenStudio::Measure::OSArgument.makeDoubleArgument('total_bldg_area_ip', true)
     total_bldg_area_ip.setDisplayName('Total Building Floor Area (ft^2).')
     total_bldg_area_ip.setDefaultValue(10000.0)
     args << total_bldg_area_ip
 
     # make an argument for aspect ratio
-    ns_to_ew_ratio = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('ns_to_ew_ratio', true)
+    ns_to_ew_ratio = OpenStudio::Measure::OSArgument.makeDoubleArgument('ns_to_ew_ratio', true)
     ns_to_ew_ratio.setDisplayName('Ratio of North/South Facade Length Relative to East/West Facade Length.')
     ns_to_ew_ratio.setDefaultValue(2.0)
     args << ns_to_ew_ratio
 
     # make an argument for number of floors
-    num_floors = OpenStudio::Ruleset::OSArgument.makeIntegerArgument('num_floors', true)
+    num_floors = OpenStudio::Measure::OSArgument.makeIntegerArgument('num_floors', true)
     num_floors.setDisplayName('Number of Floors.')
     num_floors.setDefaultValue(2)
     args << num_floors
 
     # make an argument for floor height
-    floor_to_floor_height_ip = OpenStudio::Ruleset::OSArgument.makeDoubleArgument('floor_to_floor_height_ip', true)
+    floor_to_floor_height_ip = OpenStudio::Measure::OSArgument.makeDoubleArgument('floor_to_floor_height_ip', true)
     floor_to_floor_height_ip.setDisplayName('Floor to Floor Height (ft).')
     floor_to_floor_height_ip.setDefaultValue(10.0)
     args << floor_to_floor_height_ip
 
     # make an argument for the meter name
-    spaceTypeHashString = OpenStudio::Ruleset::OSArgument.makeStringArgument('spaceTypeHashString', true)
+    spaceTypeHashString = OpenStudio::Measure::OSArgument.makeStringArgument('spaceTypeHashString', true)
     spaceTypeHashString.setDisplayName('Hash of Space Types with Name as Key and Fraction as value.')
     args << spaceTypeHashString
 

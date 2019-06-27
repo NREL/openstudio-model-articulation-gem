@@ -45,7 +45,7 @@ rescue LoadError
 end
 
 # start the measure
-class BlendedSpaceTypeFromModel < OpenStudio::Ruleset::ModelUserScript
+class BlendedSpaceTypeFromModel < OpenStudio::Measure::ModelMeasure
   # contains code to blend space types
   include OsLib_ModelSimplification
 
@@ -66,14 +66,14 @@ class BlendedSpaceTypeFromModel < OpenStudio::Ruleset::ModelUserScript
 
   # define the arguments that the user will input
   def arguments(model)
-    args = OpenStudio::Ruleset::OSArgumentVector.new
+    args = OpenStudio::Measure::OSArgumentVector.new
 
     # make choice argument for blend_method
     choices = OpenStudio::StringVector.new
     choices << 'Building Type'
     choices << 'Building Story'
     choices << 'Building'
-    blend_method = OpenStudio::Ruleset::OSArgument.makeChoiceArgument('blend_method', choices, true)
+    blend_method = OpenStudio::Measure::OSArgument.makeChoiceArgument('blend_method', choices, true)
     blend_method.setDisplayName('Blend Space Types that are part of the same')
     blend_method.setDefaultValue('Building')
     args << blend_method

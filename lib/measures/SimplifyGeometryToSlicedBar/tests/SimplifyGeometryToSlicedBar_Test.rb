@@ -41,13 +41,13 @@ require "#{File.dirname(__FILE__)}/../measure.rb"
 
 require 'minitest/autorun'
 
-class SimplifyGeometryToSlicedBar_Test < MiniTest::Unit::TestCase
+class SimplifyGeometryToSlicedBar_Test < MiniTest::Test
   def test_SimplifyGeometryToSlicedBar
     # create an instance of the measure
     measure = SimplifyGeometryToSlicedBar.new
 
     # create an instance of a runner
-    runner = OpenStudio::Ruleset::OSRunner.new
+    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new).new
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
@@ -61,7 +61,7 @@ class SimplifyGeometryToSlicedBar_Test < MiniTest::Unit::TestCase
     assert_equal(1, arguments.size)
 
     # set argument values to good values and run the measure on model with spaces
-    argument_map = OpenStudio::Ruleset::OSArgumentMap.new
+    argument_map = OpenStudio::Measure::OSArgumentMap.new
 
     logic = arguments[0].clone
     # assert(logic.setValue("Maintain Bounding Box Aspect Ratio"))

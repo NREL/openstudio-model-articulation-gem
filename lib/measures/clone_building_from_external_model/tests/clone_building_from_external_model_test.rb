@@ -39,7 +39,7 @@ require 'minitest/autorun'
 require_relative '../measure.rb'
 require 'fileutils'
 
-class CloneBuildingFromExternalModelTest < MiniTest::Unit::TestCase
+class CloneBuildingFromExternalModelTest < MiniTest::Test
   # def setup
   # end
 
@@ -51,7 +51,7 @@ class CloneBuildingFromExternalModelTest < MiniTest::Unit::TestCase
     measure = CloneBuildingFromExternalModel.new
 
     # create an instance of a runner
-    runner = OpenStudio::Ruleset::OSRunner.new
+    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new).new
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
@@ -102,7 +102,7 @@ class CloneBuildingFromExternalModelTest < MiniTest::Unit::TestCase
     # create an instance of a runner with OSW
     osw_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/test.osw')
     osw = OpenStudio::WorkflowJSON.load(osw_path).get
-    runner = OpenStudio::Ruleset::OSRunner.new(osw)
+    runner = OpenStudio::Measure::OSRunner.new(osw)
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new

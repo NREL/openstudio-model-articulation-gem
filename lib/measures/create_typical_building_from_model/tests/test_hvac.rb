@@ -39,7 +39,7 @@ require 'minitest/autorun'
 require_relative '../measure.rb'
 require 'fileutils'
 
-class AddHVACSystemTest < MiniTest::Unit::TestCase
+class AddHVACSystemTest < MiniTest::Test
   def test_add_hvac_systems
     # Get the original working directory
     start_dir = Dir.pwd
@@ -149,7 +149,7 @@ class AddHVACSystemTest < MiniTest::Unit::TestCase
         measure = CreateTypicalBuildingFromModel.new
 
         # create an instance of a runner
-        runner = OpenStudio::Ruleset::OSRunner.new
+        runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new).new
 
         # get arguments
         arguments = measure.arguments(model)
