@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>merge_spaces_from_external_file</name>
   <uid>e439a1a9-d075-4a25-9f83-2dca79d2826e</uid>
-  <version_id>a65b13c8-59f2-4340-80c1-d30b8e0ea69b</version_id>
-  <version_modified>20190627T000550Z</version_modified>
+  <version_id>1c2dfd6e-162c-4796-905e-6b7b300a2ca8</version_id>
+  <version_modified>20190627T012519Z</version_modified>
   <xml_checksum>D8922A73</xml_checksum>
   <class_name>MergeSpacesFromExternalFile</class_name>
   <display_name>Merge Spaces from External File</display_name>
@@ -223,16 +223,16 @@
       <checksum>22515A49</checksum>
     </file>
     <file>
-      <filename>merge_spaces_from_external_file_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>E1CD5069</checksum>
-    </file>
-    <file>
       <filename>ScheduleTranslator.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
       <checksum>E5053224</checksum>
+    </file>
+    <file>
+      <filename>merge_spaces_from_external_file_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>471A05FB</checksum>
     </file>
     <file>
       <version>
@@ -243,7 +243,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>E3F7ED38</checksum>
+      <checksum>99D073C6</checksum>
     </file>
   </files>
 </measure>

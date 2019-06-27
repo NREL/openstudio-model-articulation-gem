@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>simplify_geometry_to_sliced_bar</name>
   <uid>eb218516-5fa5-47fe-948d-274777c7d592</uid>
-  <version_id>6cd58aa9-e42e-40ea-baa9-5a7c6729a7aa</version_id>
-  <version_modified>20190627T000551Z</version_modified>
+  <version_id>01a1ed69-0798-4749-9ed0-078af89845b1</version_id>
+  <version_modified>20190627T012520Z</version_modified>
   <xml_checksum>45097B60</xml_checksum>
   <class_name>SimplifyGeometryToSlicedBar</class_name>
   <display_name>SimplifyGeometryToSlicedBar</display_name>
@@ -90,6 +90,12 @@ In a future version I may try to identify similar spaces types and blend them to
       <checksum>22515A49</checksum>
     </file>
     <file>
+      <filename>os_lib_cofee.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>F702B09E</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -98,19 +104,13 @@ In a future version I may try to identify similar spaces types and blend them to
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>36073870</checksum>
-    </file>
-    <file>
-      <filename>os_lib_cofee.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>F702B09E</checksum>
+      <checksum>F5515455</checksum>
     </file>
     <file>
       <filename>SimplifyGeometryToSlicedBar_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>AB5F44CE</checksum>
+      <checksum>17C198F2</checksum>
     </file>
   </files>
 </measure>
