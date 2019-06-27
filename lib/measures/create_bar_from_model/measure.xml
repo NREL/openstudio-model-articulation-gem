@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>create_bar_from_model</name>
   <uid>87fb0783-7a38-4900-8969-40e744c67814</uid>
-  <version_id>96a592fe-7770-4435-a190-c36d6c5703b2</version_id>
-  <version_modified>20190212T182915Z</version_modified>
+  <version_id>ff844641-d3f4-48e2-adb3-8ea2882a1688</version_id>
+  <version_modified>20190627T012518Z</version_modified>
   <xml_checksum>2AF3A68E</xml_checksum>
   <class_name>CreateBarFromModel</class_name>
   <display_name>Create Bar From Model</display_name>
@@ -165,13 +165,13 @@
       <filename>os_lib_model_generation.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>C37C7D0E</checksum>
+      <checksum>EDE22C1A</checksum>
     </file>
     <file>
       <filename>create_bar_from_model_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>4D6EFB07</checksum>
+      <checksum>418E7EC7</checksum>
     </file>
     <file>
       <version>
@@ -182,7 +182,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>B661294D</checksum>
+      <checksum>3EE3E22D</checksum>
     </file>
   </files>
 </measure>

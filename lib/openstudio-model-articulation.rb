@@ -33,5 +33,4 @@
 # OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # *******************************************************************************
 
-require 'openstudio/model_articulation/version'
-require 'openstudio/model_articulation/extension'
+require_relative 'openstudio/model_articulation'

@@ -169,5 +169,4 @@ class CreateTypicalBuildingFromModel_Test < Minitest::Test
     args = {}
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, 'GenericGbxml.osm', nil, nil)
   end
-
 end

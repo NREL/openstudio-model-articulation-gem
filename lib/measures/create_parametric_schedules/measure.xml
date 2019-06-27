@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>create_parametric_schedules</name>
   <uid>befa8099-c6a7-4045-8792-53fc7124b862</uid>
-  <version_id>24c1e61a-8ccd-4d76-91c2-c7af2ff05392</version_id>
-  <version_modified>20190212T182916Z</version_modified>
+  <version_id>7898a52e-0142-4ef8-a0d9-6397a9bb9c26</version_id>
+  <version_modified>20190627T012519Z</version_modified>
   <xml_checksum>03F02484</xml_checksum>
   <class_name>CreateParametricSchedules</class_name>
   <display_name>Create Parametric Schedules</display_name>
@@ -338,7 +338,7 @@
       <filename>create_parametric_schedules_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>B5D38F79</checksum>
+      <checksum>9A688A56</checksum>
     </file>
     <file>
       <version>
@@ -349,7 +349,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>7700BA69</checksum>
+      <checksum>D8141F20</checksum>
     </file>
   </files>
 </measure>
