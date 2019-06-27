@@ -40,7 +40,6 @@ require_relative '../measure.rb'
 require 'fileutils'
 
 class CloneBuildingFromExternalModelTest < MiniTest::Unit::TestCase
-
   # def setup
   # end
 
@@ -56,9 +55,9 @@ class CloneBuildingFromExternalModelTest < MiniTest::Unit::TestCase
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + "/example_model.osm")
+    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/example_model.osm')
     model = translator.loadModel(path)
-    assert((not model.empty?))
+    assert(!model.empty?)
     model = model.get
 
     # get arguments
@@ -68,7 +67,7 @@ class CloneBuildingFromExternalModelTest < MiniTest::Unit::TestCase
     # create hash of argument values.
     # If the argument has a default that you want to use, you don't need it in the hash
     args_hash = {}
-    args_hash["external_model_name"] = File.dirname(__FILE__) + "/AedgK12HvacDualDuctDoas_ASHRAE 169-2006-5B.osm"
+    args_hash['external_model_name'] = File.dirname(__FILE__) + '/AedgK12HvacDualDuctDoas_ASHRAE 169-2006-5B.osm'
 
     # populate argument with specified hash value if specified
     arguments.each do |arg|
@@ -87,13 +86,13 @@ class CloneBuildingFromExternalModelTest < MiniTest::Unit::TestCase
     show_output(result)
 
     # assert that it ran correctly
-    assert_equal("Success", result.value.valueName)
-    #assert(result.info.size == 1)
-    #assert(result.warnings.size == 0)
+    assert_equal('Success', result.value.valueName)
+    # assert(result.info.size == 1)
+    # assert(result.warnings.size == 0)
 
     # save the model to test output directory
-    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + "/output/test_output.osm")
-    model.save(output_file_path,true)
+    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/test_output.osm')
+    model.save(output_file_path, true)
   end
 
   def test_file_name_only
@@ -101,15 +100,15 @@ class CloneBuildingFromExternalModelTest < MiniTest::Unit::TestCase
     measure = CloneBuildingFromExternalModel.new
 
     # create an instance of a runner with OSW
-    osw_path = OpenStudio::Path.new(File.dirname(__FILE__) + "/test.osw")
+    osw_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/test.osw')
     osw = OpenStudio::WorkflowJSON.load(osw_path).get
     runner = OpenStudio::Ruleset::OSRunner.new(osw)
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + "/example_model.osm")
+    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/example_model.osm')
     model = translator.loadModel(path)
-    assert((not model.empty?))
+    assert(!model.empty?)
     model = model.get
 
     # get arguments
@@ -119,7 +118,7 @@ class CloneBuildingFromExternalModelTest < MiniTest::Unit::TestCase
     # create hash of argument values.
     # If the argument has a default that you want to use, you don't need it in the hash
     args_hash = {}
-    args_hash["external_model_name"] = "AedgK12HvacDualDuctDoas_ASHRAE 169-2006-5B.osm"
+    args_hash['external_model_name'] = 'AedgK12HvacDualDuctDoas_ASHRAE 169-2006-5B.osm'
 
     # populate argument with specified hash value if specified
     arguments.each do |arg|
@@ -138,13 +137,12 @@ class CloneBuildingFromExternalModelTest < MiniTest::Unit::TestCase
     show_output(result)
 
     # assert that it ran correctly
-    assert_equal("Success", result.value.valueName)
-    #assert(result.info.size == 1)
-    #assert(result.warnings.size == 0)
+    assert_equal('Success', result.value.valueName)
+    # assert(result.info.size == 1)
+    # assert(result.warnings.size == 0)
 
     # save the model to test output directory
-    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + "/output/test_output.osm")
-    model.save(output_file_path,true)
+    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/test_output.osm')
+    model.save(output_file_path, true)
   end
-
 end

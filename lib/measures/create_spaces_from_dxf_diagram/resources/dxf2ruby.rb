@@ -1,19 +1,19 @@
 # dxf2ruby.rb - (C) 2011 jim.foltz@gmail.com
-# 
+#
 #     This library is free software; you can redistribute it and/or
 #     modify it under the terms of the GNU Lesser General Public
 #     License as published by the Free Software Foundation; either
 #     version 2.1 of the License, or (at your option) any later version.
-# 
+#
 #     This library is distributed in the hope that it will be useful,
 #     but WITHOUT ANY WARRANTY; without even the implied warranty of
 #     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 #     Lesser General Public License for more details.
-# 
+#
 #     You should have received a copy of the GNU Lesser General Public
 #     License along with this library; if not, write to the Free Software
 #     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
-# 
+#
 # About DXF (Nots from AutoCAD)
 #
 # DXF _Objects_ have no graphical representation. (aka nongraphical objects)
@@ -32,28 +32,27 @@
 #
 
 module Dxf2Ruby
-
   module_function
 
   def parse(filename)
     fp        = File.open(filename)
-    dxf       = {'HEADER' => {}, 'BLOCKS' => [], 'ENTITIES' => []}
+    dxf       = { 'HEADER' => {}, 'BLOCKS' => [], 'ENTITIES' => [] }
 
     #
     # main loop
     #
 
-    while true
+    loop do
       c, v = read_codes(fp)
-      break if v == "EOF"
-      if v == "SECTION"
+      break if v == 'EOF'
+      if v == 'SECTION'
         c, v = read_codes(fp)
 
-        if v == "HEADER"
+        if v == 'HEADER'
           hdr = dxf['HEADER']
-          while true
+          loop do
             c, v = read_codes(fp)
-            break if v == "ENDSEC"
+            break if v == 'ENDSEC'
             if c == 9
               key = v
               hdr[key] = {}
@@ -63,18 +62,17 @@ module Dxf2Ruby
           end
         end
 
-        if v == "BLOCKS"
+        if v == 'BLOCKS'
           blks = dxf[v]
           parse_entities(blks, fp)
         end
 
-        if v == "ENTITIES"
+        if v == 'ENTITIES'
           ents = dxf[v]
           parse_entities(ents, fp)
         end
 
       end
-
     end
 
     return dxf
@@ -83,12 +81,12 @@ module Dxf2Ruby
   def parse_entities(section, fp)
     last_ent = nil
     last_code = nil
-    while true
+    loop do
       c, v = read_codes(fp)
-      break if v == "ENDSEC"
+      break if v == 'ENDSEC'
       next if c == 999
       # LWPOLYLINE seems to break the rule that we can ignore the order of codes.
-      if last_ent == "LWPOLYLINE"
+      if last_ent == 'LWPOLYLINE'
         if c == 10
           section[-1][42] ||= []
           # Create default 42
@@ -102,7 +100,7 @@ module Dxf2Ruby
       end
       if c == 0
         last_ent = v
-        section << {c => v}
+        section << { c => v }
       else
         add_att(section[-1], c, v)
       end
@@ -117,16 +115,16 @@ module Dxf2Ruby
     case c
     when 10..59, 140..147, 210..239, 1010..1059
       v = v.to_f
-    when 60..79, 90..99, 170..175,280..289, 370..379, 380..389,500..409, 1060..1079
+    when 60..79, 90..99, 170..175, 280..289, 370..379, 380..389, 500..409, 1060..1079
       v = v.to_i
     end
-    return( [c, v] )
+    return([c, v])
   end
 
   def add_att(ent, code, value)
     # Initially, I thought each code mapped to a single value. Turns out
-    # a code can be a list of values. 
-    if ent.nil? and $JFDEBUG
+    # a code can be a list of values.
+    if ent.nil? && $JFDEBUG
       p caller
       p code
       p value
@@ -142,10 +140,7 @@ module Dxf2Ruby
       ent[code] << value
     end
   end
-
-
 end
-
 
 if $0 == __FILE__
   require 'pp'

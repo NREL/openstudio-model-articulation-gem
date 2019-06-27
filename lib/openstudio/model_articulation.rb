@@ -35,4 +35,3 @@
 
 require 'openstudio/model_articulation/version'
 require 'openstudio/model_articulation/extension'
-

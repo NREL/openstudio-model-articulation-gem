@@ -109,7 +109,7 @@ module OsLib_ModelGeneration
     hash['LargeHotel'] = { aspect_ratio: 5.1, wwr: 0.27, typical_story: 10.0, first_story: 13.0 }
 
     # code in get_space_types_from_building_type is used to override building wwr with space type specific wwr
-    hash['Warehouse'] = { aspect_ratio: 2.2, wwr: 0.0, typical_story: 28.0}
+    hash['Warehouse'] = { aspect_ratio: 2.2, wwr: 0.0, typical_story: 28.0 }
 
     hash['QuickServiceRestaurant'] = { aspect_ratio: 1.0, wwr: 0.14, typical_story: 10.0 }
     hash['FullServiceRestaurant'] = { aspect_ratio: 1.0, wwr: 0.18, typical_story: 10.0 }
@@ -693,11 +693,11 @@ module OsLib_ModelGeneration
             space_type = surface.space.get.spaceType.get
 
             # see if space type has wwr value
-            bar_hash[:space_types].each do |k,v|
-              if v.has_key?(:space_type) && space_type == v[:space_type]
+            bar_hash[:space_types].each do |k, v|
+              if v.key?(:space_type) && space_type == v[:space_type]
 
                 # if matching space type specifies a wwr then override the orientaiton specific recommendations for this surface.
-                if v.has_key?(:wwr)
+                if v.key?(:wwr)
                   wwr_n = v[:wwr]
                   wwr_e = v[:wwr]
                   wwr_s = v[:wwr]
@@ -742,7 +742,7 @@ module OsLib_ModelGeneration
     end
 
     # report space types with custom wwr values
-    space_type_wwr_overrides.each do |space_type,wwr|
+    space_type_wwr_overrides.each do |space_type, wwr|
       runner.registerInfo("For #{space_type.name} the default building wwr was replaced with a space type specifc value of #{wwr}")
     end
 

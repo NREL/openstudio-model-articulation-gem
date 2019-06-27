@@ -40,7 +40,6 @@ require_relative '../measure.rb'
 require 'fileutils'
 
 class BlendedSpaceTypeFromFloorAreaRatiosTest < MiniTest::Unit::TestCase
-
   # def setup
   # end
 
@@ -48,7 +47,6 @@ class BlendedSpaceTypeFromFloorAreaRatiosTest < MiniTest::Unit::TestCase
   # end
 
   def test_example_model
-
     # test name
     test_name = 'example_model'
 
@@ -60,9 +58,9 @@ class BlendedSpaceTypeFromFloorAreaRatiosTest < MiniTest::Unit::TestCase
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + "/example_model.osm")
+    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/example_model.osm')
     model = translator.loadModel(path)
-    assert((not model.empty?))
+    assert(!model.empty?)
     model = model.get
 
     # get arguments
@@ -72,7 +70,7 @@ class BlendedSpaceTypeFromFloorAreaRatiosTest < MiniTest::Unit::TestCase
     # create hash of argument values.
     # If the argument has a default that you want to use, you don't need it in the hash
     args_hash = {}
-    #args_hash["space_name"] = "New Space"
+    # args_hash["space_name"] = "New Space"
     # using defaults values from measure.rb for other arguments
 
     # populate argument with specified hash value if specified
@@ -92,17 +90,16 @@ class BlendedSpaceTypeFromFloorAreaRatiosTest < MiniTest::Unit::TestCase
     show_output(result)
 
     # assert that it ran correctly
-    assert_equal("Fail", result.value.valueName)
-    #assert(result.info.size == 1)
-    #assert(result.warnings.size == 0)
+    assert_equal('Fail', result.value.valueName)
+    # assert(result.info.size == 1)
+    # assert(result.warnings.size == 0)
 
     # save the model to test output directory
     output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + "/output/#{test_name}_test_output.osm")
-    model.save(output_file_path,true)
+    model.save(output_file_path, true)
   end
 
   def test_small_office_2010
-
     # test name
     test_name = 'small_office_2010'
 
@@ -114,9 +111,9 @@ class BlendedSpaceTypeFromFloorAreaRatiosTest < MiniTest::Unit::TestCase
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + "/1002_SmallOffice_2010_2a.osm")
+    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/1002_SmallOffice_2010_2a.osm')
     model = translator.loadModel(path)
-    assert((not model.empty?))
+    assert(!model.empty?)
     model = model.get
 
     # get arguments
@@ -126,7 +123,7 @@ class BlendedSpaceTypeFromFloorAreaRatiosTest < MiniTest::Unit::TestCase
     # create hash of argument values.
     # If the argument has a default that you want to use, you don't need it in the hash
     args_hash = {}
-    #args_hash["space_name"] = "New Space"
+    # args_hash["space_name"] = "New Space"
     # using defaults values from measure.rb for other arguments
 
     # populate argument with specified hash value if specified
@@ -146,17 +143,16 @@ class BlendedSpaceTypeFromFloorAreaRatiosTest < MiniTest::Unit::TestCase
     show_output(result)
 
     # assert that it ran correctly
-    assert_equal("Success", result.value.valueName)
-    #assert(result.info.size == 1)
-    #assert(result.warnings.size == 0)
+    assert_equal('Success', result.value.valueName)
+    # assert(result.info.size == 1)
+    # assert(result.warnings.size == 0)
 
     # save the model to test output directory
     output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + "/output/#{test_name}_test_output.osm")
-    model.save(output_file_path,true)
+    model.save(output_file_path, true)
   end
 
   def test_retail_standalone_2013
-
     # test name
     test_name = 'retail_standalone_2013'
 
@@ -168,9 +164,9 @@ class BlendedSpaceTypeFromFloorAreaRatiosTest < MiniTest::Unit::TestCase
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + "/1002_RetailStandalone2013.osm")
+    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/1002_RetailStandalone2013.osm')
     model = translator.loadModel(path)
-    assert((not model.empty?))
+    assert(!model.empty?)
     model = model.get
 
     # get arguments
@@ -180,7 +176,7 @@ class BlendedSpaceTypeFromFloorAreaRatiosTest < MiniTest::Unit::TestCase
     # create hash of argument values.
     # If the argument has a default that you want to use, you don't need it in the hash
     args_hash = {}
-    #args_hash["space_name"] = "New Space"
+    # args_hash["space_name"] = "New Space"
     # using defaults values from measure.rb for other arguments
 
     # populate argument with specified hash value if specified
@@ -200,13 +196,12 @@ class BlendedSpaceTypeFromFloorAreaRatiosTest < MiniTest::Unit::TestCase
     show_output(result)
 
     # assert that it ran correctly
-    assert_equal("Success", result.value.valueName)
-    #assert(result.info.size == 1)
-    #assert(result.warnings.size == 0)
+    assert_equal('Success', result.value.valueName)
+    # assert(result.info.size == 1)
+    # assert(result.warnings.size == 0)
 
     # save the model to test output directory
     output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + "/output/#{test_name}_test_output.osm")
-    model.save(output_file_path,true)
+    model.save(output_file_path, true)
   end
-
 end

@@ -40,15 +40,14 @@ class OpenStudio::Model::Model
   # http://www.nrel.gov/docs/fy08osti/41956.pdf
   # Table C-31
   def add_cbecs_hvac_system(standard, system_type, zones)
-
     # the 'zones' argument includes zones that have heating, cooling, or both
     # if the HVAC system type serves a single zone, handle zones with only heating separately by adding unit heaters
     # applies to system types PTAC, PTHP, PSZ-AC, and Window AC
-    heated_and_cooled_zones = zones.select { |zone| standard.thermal_zone_heated?(zone) && standard.thermal_zone_cooled?(zone)}
-    heated_zones = zones.select { |zone| standard.thermal_zone_heated?(zone)}
-    cooled_zones = zones.select { |zone| standard.thermal_zone_cooled?(zone)}
-    cooled_only_zones = zones.select { |zone| !standard.thermal_zone_heated?(zone) && standard.thermal_zone_cooled?(zone)}
-    heated_only_zones = zones.select { |zone| standard.thermal_zone_heated?(zone) && !standard.thermal_zone_cooled?(zone)}
+    heated_and_cooled_zones = zones.select { |zone| standard.thermal_zone_heated?(zone) && standard.thermal_zone_cooled?(zone) }
+    heated_zones = zones.select { |zone| standard.thermal_zone_heated?(zone) }
+    cooled_zones = zones.select { |zone| standard.thermal_zone_cooled?(zone) }
+    cooled_only_zones = zones.select { |zone| !standard.thermal_zone_heated?(zone) && standard.thermal_zone_cooled?(zone) }
+    heated_only_zones = zones.select { |zone| standard.thermal_zone_heated?(zone) && !standard.thermal_zone_cooled?(zone) }
     system_zones = heated_and_cooled_zones + cooled_only_zones
 
     case system_type

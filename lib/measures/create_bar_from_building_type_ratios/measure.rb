@@ -39,7 +39,7 @@
 require 'openstudio-standards'
 
 begin
-  #load OpenStudio measure libraries from common location
+  # load OpenStudio measure libraries from common location
   require 'measure_resources/os_lib_helper_methods'
   require 'measure_resources/os_lib_geometry'
   require 'measure_resources/os_lib_model_generation'
@@ -54,7 +54,6 @@ end
 
 # start the measure
 class CreateBarFromBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
-
   # resource file modules
   include OsLib_HelperMethods
   include OsLib_Geometry
@@ -311,13 +310,13 @@ class CreateBarFromBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
 
     # lookup and replace argument values from upstream measures
     if args['use_upstream_args'] == true
-      args.each do |arg,value|
+      args.each do |arg, value|
         next if arg == 'use_upstream_args' # this argument should not be changed
         value_from_osw = OsLib_HelperMethods.check_upstream_measure_for_arg(runner, arg)
         if !value_from_osw.empty?
           runner.registerInfo("Replacing argument named #{arg} from current measure with a value of #{value_from_osw[:value]} from #{value_from_osw[:measure_name]}.")
           new_val = value_from_osw[:value]
-          # todo - make code to handle non strings more robust. check_upstream_measure_for_arg coudl pass bakc the argument type
+          # TODO: - make code to handle non strings more robust. check_upstream_measure_for_arg coudl pass bakc the argument type
           if arg == 'total_bldg_floor_area'
             args[arg] = new_val.to_f
           elsif arg == 'num_stories_above_grade'
@@ -498,7 +497,7 @@ class CreateBarFromBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
         final_floor_area = ratio_of_bldg_total * total_bldg_floor_area_si # I think I can just pass ratio but passing in area is cleaner
         # only add wwr if 0 used for wwr arg and if space type has wwr as key
         space_types_hash[space_type] = { floor_area: final_floor_area, space_type: space_type }
-        if args['wwr'] == 0 && hash.has_key?(:wwr)
+        if args['wwr'] == 0 && hash.key?(:wwr)
           space_types_hash[space_type][:wwr] = hash[:wwr]
         end
       end

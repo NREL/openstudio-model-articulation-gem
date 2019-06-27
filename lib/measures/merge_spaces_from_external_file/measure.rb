@@ -37,7 +37,7 @@
 # http://nrel.github.io/OpenStudio-user-documentation/reference/measure_writing_guide/
 
 begin
-  #load OpenStudio measure libraries from common location
+  # load OpenStudio measure libraries from common location
   require 'measure_resources/os_lib_helper_methods'
 rescue LoadError
   # common location unavailable, load from local resources
@@ -48,15 +48,14 @@ require_relative 'resources/ScheduleTranslator'
 
 # start the measure
 class MergeSpacesFromExternalFile < OpenStudio::Ruleset::ModelUserScript
-  
   # human readable name
   def name
-    return "Merge Spaces from External File"
+    return 'Merge Spaces from External File'
   end
 
   # human readable description
   def description
-    return "The measure lets you merge the contents from spaces in an external file into spaces in your current model. Spaces are identifed by the space name being the same in the two models. If a space is in the current model but not the external model they will be deleted. If a space is in both models the selecd elments willl be udpated based on the external model. If a space is not in the current model but is in the external model it will be cloned into the current model."
+    return 'The measure lets you merge the contents from spaces in an external file into spaces in your current model. Spaces are identifed by the space name being the same in the two models. If a space is in the current model but not the external model they will be deleted. If a space is in both models the selecd elments willl be udpated based on the external model. If a space is not in the current model but is in the external model it will be cloned into the current model.'
   end
 
   # human readable description of modeling approach
@@ -69,63 +68,62 @@ class MergeSpacesFromExternalFile < OpenStudio::Ruleset::ModelUserScript
     args = OpenStudio::Ruleset::OSArgumentVector.new
 
     # make an argument for external_model_name
-    external_model_name = OpenStudio::Ruleset::OSArgument::makeStringArgument("external_model_name",true)
-    external_model_name.setDisplayName("External OSM File Name")
-    external_model_name.setDescription("Name of the model to merge into current model. This is the filename with the extension (e.g. MyModel.osm). Optionally this can inclucde the full file path, but for most use cases should just be file name.")
+    external_model_name = OpenStudio::Ruleset::OSArgument.makeStringArgument('external_model_name', true)
+    external_model_name.setDisplayName('External OSM File Name')
+    external_model_name.setDescription('Name of the model to merge into current model. This is the filename with the extension (e.g. MyModel.osm). Optionally this can inclucde the full file path, but for most use cases should just be file name.')
     args << external_model_name
 
     # merge geometry
-    merge_geometry = OpenStudio::Ruleset::OSArgument::makeBoolArgument("merge_geometry",true)
-    merge_geometry.setDisplayName("Merge Geometry from External Model")
-    merge_geometry.setDescription("Replace geometry in current model with geometry from external model.")
+    merge_geometry = OpenStudio::Ruleset::OSArgument.makeBoolArgument('merge_geometry', true)
+    merge_geometry.setDisplayName('Merge Geometry from External Model')
+    merge_geometry.setDescription('Replace geometry in current model with geometry from external model.')
     merge_geometry.setDefaultValue(true)
     args << merge_geometry
 
     # merge internal loads
-    merge_loads = OpenStudio::Ruleset::OSArgument::makeBoolArgument("merge_loads",true)
-    merge_loads.setDisplayName("Merge Internal Loads from External Model")
-    merge_loads.setDescription("Replace internal loads directly assigned so spaces in current model with internal loads directly assigned to spaces frp, external model. If a schedule is hard assigned to a load instance, it will be brought over as well.")
+    merge_loads = OpenStudio::Ruleset::OSArgument.makeBoolArgument('merge_loads', true)
+    merge_loads.setDisplayName('Merge Internal Loads from External Model')
+    merge_loads.setDescription('Replace internal loads directly assigned so spaces in current model with internal loads directly assigned to spaces frp, external model. If a schedule is hard assigned to a load instance, it will be brought over as well.')
     merge_loads.setDefaultValue(true)
     args << merge_loads
 
     # merge space attributes
-    merge_attribute_names = OpenStudio::Ruleset::OSArgument::makeBoolArgument("merge_attribute_names",true)
-    merge_attribute_names.setDisplayName("Merge Space Attribute names from External Model")
-    merge_attribute_names.setDescription("Replace space attribute names in current model with space attribute names from external models. When external model has unkown attribute name that object will be cloned into the current model.")
+    merge_attribute_names = OpenStudio::Ruleset::OSArgument.makeBoolArgument('merge_attribute_names', true)
+    merge_attribute_names.setDisplayName('Merge Space Attribute names from External Model')
+    merge_attribute_names.setDescription('Replace space attribute names in current model with space attribute names from external models. When external model has unkown attribute name that object will be cloned into the current model.')
     merge_attribute_names.setDefaultValue(true)
     args << merge_attribute_names
 
     # add_spaces
-    add_spaces = OpenStudio::Ruleset::OSArgument::makeBoolArgument("add_spaces",true)
-    add_spaces.setDisplayName("Add Spaces to Current Model")
-    add_spaces.setDescription("Add spaces to current model that exist in external model but do not exist in current model.")
+    add_spaces = OpenStudio::Ruleset::OSArgument.makeBoolArgument('add_spaces', true)
+    add_spaces.setDisplayName('Add Spaces to Current Model')
+    add_spaces.setDescription('Add spaces to current model that exist in external model but do not exist in current model.')
     add_spaces.setDefaultValue(true)
     args << add_spaces
 
     # remove_spaces
-    remove_spaces = OpenStudio::Ruleset::OSArgument::makeBoolArgument("remove_spaces",true)
-    remove_spaces.setDisplayName("Remove Spaces from Current Model")
-    remove_spaces.setDescription("Remove spaces from current model that do not exist in externa model.")
+    remove_spaces = OpenStudio::Ruleset::OSArgument.makeBoolArgument('remove_spaces', true)
+    remove_spaces.setDisplayName('Remove Spaces from Current Model')
+    remove_spaces.setDescription('Remove spaces from current model that do not exist in externa model.')
     remove_spaces.setDefaultValue(true)
     args << remove_spaces
 
     # merge schedules
     # doesn't bring in schedules from external model that are not used in current model, this measures isn't mean to load in resources that are not used
-    merge_schedules = OpenStudio::Ruleset::OSArgument::makeBoolArgument("merge_schedules",true)
-    merge_schedules.setDisplayName("Merge Schedules from External Model")
+    merge_schedules = OpenStudio::Ruleset::OSArgument.makeBoolArgument('merge_schedules', true)
+    merge_schedules.setDisplayName('Merge Schedules from External Model')
     merge_schedules.setDescription("This isn't limited to spaces, this will replace any scheules in the current model with schedules of the same name in the external model. It will not replace schedule named 'a' from an internal load in th emodel with a schedule named 'b' from an internal load by that same name in the external model, to perform that task currently, you must merge loads.")
     merge_schedules.setDefaultValue(true)
     args << merge_schedules
 
     # convert compact to ruleset
-    compact_to_ruleset = OpenStudio::Ruleset::OSArgument::makeBoolArgument("compact_to_ruleset",true)
-    compact_to_ruleset.setDisplayName("Convert Merged Schedule Compact objects to Schedule Ruleset.")
-    compact_to_ruleset.setDescription("Will convert any imported schedules to Schedule Ruleset instead of Schedule Compact and will connect them to objects that had previously refered to the Schedule Compact object.")
+    compact_to_ruleset = OpenStudio::Ruleset::OSArgument.makeBoolArgument('compact_to_ruleset', true)
+    compact_to_ruleset.setDisplayName('Convert Merged Schedule Compact objects to Schedule Ruleset.')
+    compact_to_ruleset.setDescription('Will convert any imported schedules to Schedule Ruleset instead of Schedule Compact and will connect them to objects that had previously refered to the Schedule Compact object.')
     compact_to_ruleset.setDefaultValue(true)
     args << compact_to_ruleset
 
-
-    # todo - in future have arg for logic when resource objects exist in both models
+    # TODO: - in future have arg for logic when resource objects exist in both models
     # (constructions, materials for geometry, and schedule and load defs for internal loads)
 
     return args
@@ -133,34 +131,33 @@ class MergeSpacesFromExternalFile < OpenStudio::Ruleset::ModelUserScript
 
   def remove_space_loads(space)
     # remove loads from target space
-    space.internalMass.each {|instance| instance.remove }
-    space.people.each {|instance| instance.remove }
-    space.lights.each {|instance| instance.remove }
-    space.luminaires.each {|instance| instance.remove }
-    space.electricEquipment.each {|instance| instance.remove }
-    space.gasEquipment.each {|instance| instance.remove }
-    space.hotWaterEquipment.each {|instance| instance.remove }
-    space.steamEquipment.each {|instance| instance.remove }
-    space.otherEquipment.each {|instance| instance.remove }
-    space.spaceInfiltrationDesignFlowRates.each {|object| object.remove }
-    space.spaceInfiltrationEffectiveLeakageAreas.each {|object| object.remove }
+    space.internalMass.each(&:remove)
+    space.people.each(&:remove)
+    space.lights.each(&:remove)
+    space.luminaires.each(&:remove)
+    space.electricEquipment.each(&:remove)
+    space.gasEquipment.each(&:remove)
+    space.hotWaterEquipment.each(&:remove)
+    space.steamEquipment.each(&:remove)
+    space.otherEquipment.each(&:remove)
+    space.spaceInfiltrationDesignFlowRates.each(&:remove)
+    space.spaceInfiltrationEffectiveLeakageAreas.each(&:remove)
     space.resetDesignSpecificationOutdoorAir
-
   end
 
-  def reassign_loads(target_space,source_space)
+  def reassign_loads(target_space, source_space)
     # re-assign loads from source space to target space
-    source_space.internalMass.each {|instance| instance.setSpace(target_space) }
-    source_space.people.each {|instance| instance.setSpace(target_space) }
-    source_space.lights.each {|instance| instance.setSpace(target_space) }
-    source_space.luminaires.each {|instance| instance.setSpace(target_space) }
-    source_space.electricEquipment.each {|instance| instance.setSpace(target_space) }
-    source_space.gasEquipment.each {|instance| instance.setSpace(target_space) }
-    source_space.hotWaterEquipment.each {|instance| instance.setSpace(target_space) }
-    source_space.steamEquipment.each {|instance| instance.setSpace(target_space) }
-    source_space.otherEquipment.each {|instance| instance.setSpace(target_space) }
-    source_space.spaceInfiltrationDesignFlowRates.each {|instance| instance.setSpace(target_space) }
-    source_space.spaceInfiltrationEffectiveLeakageAreas.each {|instance| instance.setSpace(target_space) }
+    source_space.internalMass.each { |instance| instance.setSpace(target_space) }
+    source_space.people.each { |instance| instance.setSpace(target_space) }
+    source_space.lights.each { |instance| instance.setSpace(target_space) }
+    source_space.luminaires.each { |instance| instance.setSpace(target_space) }
+    source_space.electricEquipment.each { |instance| instance.setSpace(target_space) }
+    source_space.gasEquipment.each { |instance| instance.setSpace(target_space) }
+    source_space.hotWaterEquipment.each { |instance| instance.setSpace(target_space) }
+    source_space.steamEquipment.each { |instance| instance.setSpace(target_space) }
+    source_space.otherEquipment.each { |instance| instance.setSpace(target_space) }
+    source_space.spaceInfiltrationDesignFlowRates.each { |instance| instance.setSpace(target_space) }
+    source_space.spaceInfiltrationEffectiveLeakageAreas.each { |instance| instance.setSpace(target_space) }
     target_space.setDesignSpecificationOutdoorAir(source_space.designSpecificationOutdoorAir.get)
   end
 
@@ -174,12 +171,11 @@ class MergeSpacesFromExternalFile < OpenStudio::Ruleset::ModelUserScript
 
   # don't clone object if it already exists in the model
   # todo see if space type of that name already exist in the model, if then clone in the requested on
-  def reassign_space_attributes(target_space,source_space_hash,model)
-
+  def reassign_space_attributes(target_space, source_space_hash, model)
     # re-assign space types
     if source_space_hash[:space_type].is_initialized
       target_space_type = source_space_hash[:space_type].get
-      if not model.getModelObjectByName(target_space_type.name.get).is_initialized && model.getModelObjectByName(target_space_type.name.get).get.to_SpaceType.is_initialized
+      if !(model.getModelObjectByName(target_space_type.name.get).is_initialized && model.getModelObjectByName(target_space_type.name.get).get.to_SpaceType.is_initialized)
         # clone object
         target_space_type = source_space_hash[:space_type].get.clone(model).to_SpaceType.get
       end
@@ -191,7 +187,7 @@ class MergeSpacesFromExternalFile < OpenStudio::Ruleset::ModelUserScript
     # re-assign thermal zones
     if source_space_hash[:thermal_zone].is_initialized
       target_zone = source_space_hash[:thermal_zone].get
-      if not model.getModelObjectByName(target_zone.name.get).is_initialized && model.getModelObjectByName(target_zone.name.get).get.to_ThermalZone.is_initialized
+      if !(model.getModelObjectByName(target_zone.name.get).is_initialized && model.getModelObjectByName(target_zone.name.get).get.to_ThermalZone.is_initialized)
         # clone object
         target_zone = source_space_hash[:thermal_zone].get.clone(model).to_ThermalZone.get
       end
@@ -203,7 +199,7 @@ class MergeSpacesFromExternalFile < OpenStudio::Ruleset::ModelUserScript
     # re-assign building story
     if source_space_hash[:building_story].is_initialized
       target_building_story = source_space_hash[:building_story].get
-      if not model.getModelObjectByName(target_building_story.name.get).is_initialized && model.getModelObjectByName(target_building_story.name.get).get.to_BuildingStory.is_initialized
+      if !(model.getModelObjectByName(target_building_story.name.get).is_initialized && model.getModelObjectByName(target_building_story.name.get).get.to_BuildingStory.is_initialized)
         # clone object
         target_building_story = source_space_hash[:building_story].get.clone(model).to_BuildingStory.get
       end
@@ -215,7 +211,7 @@ class MergeSpacesFromExternalFile < OpenStudio::Ruleset::ModelUserScript
     # re-assign construction set
     if source_space_hash[:const_set].is_initialized
       target_const_set = source_space_hash[:const_set].get
-      if not model.getModelObjectByName(target_const_set.name.get).is_initialized && model.getModelObjectByName(target_const_set.name.get).get.to_DefaultConstructionSet.is_initialized
+      if !(model.getModelObjectByName(target_const_set.name.get).is_initialized && model.getModelObjectByName(target_const_set.name.get).get.to_DefaultConstructionSet.is_initialized)
         # clone object
         target_const_set = source_space_hash[:const_set].get.clone(model).to_DefaultConstructionSet.get
       end
@@ -227,7 +223,7 @@ class MergeSpacesFromExternalFile < OpenStudio::Ruleset::ModelUserScript
     # re-assign schedule set
     if source_space_hash[:sch_set].is_initialized
       target_schedule_set = source_space_hash[:sch_set].get
-      if not model.getModelObjectByName(target_schedule_set.name.get).is_initialized && model.getModelObjectByName(target_schedule_set.name.get).get.to_DefaultScheduleSet.is_initialized
+      if !(model.getModelObjectByName(target_schedule_set.name.get).is_initialized && model.getModelObjectByName(target_schedule_set.name.get).get.to_DefaultScheduleSet.is_initialized)
         # clone object
         target_schedule_set = source_space_hash[:sch_set].get.clone(model).to_DefaultScheduleSet.get
       end
@@ -235,26 +231,25 @@ class MergeSpacesFromExternalFile < OpenStudio::Ruleset::ModelUserScript
     else
       target_space.resetDefaultConstructionSet
     end
-
   end
 
   # define what happens when the measure is run
   def run(model, runner, user_arguments)
     super(model, runner, user_arguments)
 
-    if not runner.validateUserArguments(arguments(model),user_arguments)
+    if !runner.validateUserArguments(arguments(model), user_arguments)
       return false
     end
 
     # assign the user inputs to variables
-    args  = OsLib_HelperMethods.createRunVariables(runner, model,user_arguments, arguments(model))
+    args = OsLib_HelperMethods.createRunVariables(runner, model, user_arguments, arguments(model))
     if !args then return false end
 
     # initial condition
     runner.registerInitialCondition("The model started with #{model.getSpaces.size} spaces.")
 
-    if args['merge_geometry'] == false && args['merge_loads'] == false && args['merge_attribute_names'] == false  && args['merge_schedules'] == false
-      runner.registerAsNotApplicable("No change made in model")
+    if args['merge_geometry'] == false && args['merge_loads'] == false && args['merge_attribute_names'] == false && args['merge_schedules'] == false
+      runner.registerAsNotApplicable('No change made in model')
       return true
     end
 
@@ -300,7 +295,7 @@ class MergeSpacesFromExternalFile < OpenStudio::Ruleset::ModelUserScript
     end
 
     # Open OSM file
-    model_2 = OpenStudio::Model::Model::load(OpenStudio::Path.new(osmPath_2)).get
+    model_2 = OpenStudio::Model::Model.load(OpenStudio::Path.new(osmPath_2)).get
     runner.registerInfo("#{args['osm_file_name']} has #{model_2.getSpaces.size} spaces")
 
     # create hash of spaces in external model
@@ -336,20 +331,20 @@ class MergeSpacesFromExternalFile < OpenStudio::Ruleset::ModelUserScript
     end
 
     # look for matching space names
-    external_spaces_hash.each do |space_name,hash|
-      if current_spaces_hash.has_key?(space_name)
+    external_spaces_hash.each do |space_name, hash|
+      if current_spaces_hash.key?(space_name)
         runner.registerInfo("Merging #{space_name} from external model to current model")
 
         if args['merge_geometry']
           # rename current space
-          current_spaces_hash[space_name][:space].setName("to be deleted")
+          current_spaces_hash[space_name][:space].setName('to be deleted')
 
           # remove loads before cloning if they will not be used
-          if not args['merge_loads']
+          if !(args['merge_loads'])
             remove_space_loads(hash[:space])
           end
           # remove space attributes before cloning if they will not be used
-          if not args['merge_attribute_names']
+          if !(args['merge_attribute_names'])
             remove_space_attributes(hash[:space])
           end
           final_space = hash[:space].clone(model).to_Space.get
@@ -373,25 +368,25 @@ class MergeSpacesFromExternalFile < OpenStudio::Ruleset::ModelUserScript
         elsif args['merge_loads'] && args['merge_geometry'] == false
           # clone in and reassign load instances from external model
           temp_space = hash[:space].clone(model).to_Space.get
-          reassign_loads(final_space,temp_space)
+          reassign_loads(final_space, temp_space)
           temp_space.remove
         elsif args['merge_loads'] == false && args['merge_geometry']
           # reassign load instances from external model
-          reassign_loads(final_space,current_spaces_hash[space_name][:space])
+          reassign_loads(final_space, current_spaces_hash[space_name][:space])
         end
 
         # merge space attribute names if requested
         if args['merge_attribute_names'] && args['merge_geometry']
           # remap attributes
-          reassign_space_attributes(final_space,hash,model)
+          reassign_space_attributes(final_space, hash, model)
         elsif args['merge_attribute_names'] == false && args['merge_geometry'] == false
           # nothing to do, correct attributes are already with space from current model, nothing brought in from external model
         elsif args['merge_attribute_names'] && args['merge_geometry'] == false
           # re-assign attributes based on names in external space hash. If object of correct name is not found in current model then clone object from external model
-          reassign_space_attributes(final_space,hash,model)
+          reassign_space_attributes(final_space, hash, model)
         elsif args['merge_attribute_names'] == false && args['merge_geometry']
           # re-assign attribute names back to what was used in current model space
-          reassign_space_attributes(final_space,current_spaces_hash[space_name],model)
+          reassign_space_attributes(final_space, current_spaces_hash[space_name], model)
         end
 
         # remove current space if replacement geometry was cloned from external model
@@ -402,14 +397,14 @@ class MergeSpacesFromExternalFile < OpenStudio::Ruleset::ModelUserScript
       elsif args['add_spaces']
         # clone space into model
         new_space_from_ext = hash[:space].clone(model).to_Space.get
-        reassign_space_attributes(new_space_from_ext,hash,model)
+        reassign_space_attributes(new_space_from_ext, hash, model)
         runner.registerInfo("Adding #{space_name} from external model to current model. Since it doesn't exist in current model bring in all characteristics reguardless of user argument values.")
       end
     end
 
     # remove spaces in current model that are not in external model
-    current_spaces_hash.each do |space_name,hash|
-      if (not external_spaces_hash.has_key?(space_name)) && args['remove_spaces']
+    current_spaces_hash.each do |space_name, hash|
+      if !external_spaces_hash.key?(space_name) && args['remove_spaces']
         hash[:space].remove
         runner.registerInfo("Removing #{space_name} from current model, since it doesn't exist in external model.")
       end
@@ -422,14 +417,13 @@ class MergeSpacesFromExternalFile < OpenStudio::Ruleset::ModelUserScript
         spaces << space
       end
 
-      #match surfaces for each space in the vector
+      # match surfaces for each space in the vector
       OpenStudio::Model.matchSurfaces(spaces)
-      runner.registerInfo("Matching surfaces..")
+      runner.registerInfo('Matching surfaces..')
     end
 
     if args['merge_schedules']
       model_2.getSchedules.each do |schedule|
-
         # swap schedule if it is already in the model
         if model.getScheduleByName(schedule.name.get).is_initialized
 
@@ -450,14 +444,13 @@ class MergeSpacesFromExternalFile < OpenStudio::Ruleset::ModelUserScript
           schedule_old.sources.each do |source|
             source_index = source.getSourceIndices(schedule_old.handle)
             source_index.each do |field|
-              source.setPointer(field,cloned_schedule.handle)
+              source.setPointer(field, cloned_schedule.handle)
             end
           end
           schedule_old.remove
           cloned_schedule.setName(orig_name)
 
         end
-
       end
     end
 
@@ -465,9 +458,7 @@ class MergeSpacesFromExternalFile < OpenStudio::Ruleset::ModelUserScript
     runner.registerFinalCondition("The model finished with #{model.getSpaces.size} spaces.")
 
     return true
-
   end
-  
 end
 
 # register the measure to be used by the application

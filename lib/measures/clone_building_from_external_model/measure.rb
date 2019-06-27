@@ -38,10 +38,9 @@
 
 # start the measure
 class CloneBuildingFromExternalModel < OpenStudio::Ruleset::ModelUserScript
-
   # human readable name
   def name
-    return "Clone Building From External Model"
+    return 'Clone Building From External Model'
   end
 
   # human readable description
@@ -51,7 +50,7 @@ class CloneBuildingFromExternalModel < OpenStudio::Ruleset::ModelUserScript
 
   # human readable description of modeling approach
   def modeler_description
-    return "The intent of this measure is to provide a measure is to provide a way in a single analysis to use a collection of custom seed models. Your real seed model woudl be an empty model, maybe containing custom weather data and simulation settings, then you would have a variety of models with pre-generated builiding envelopes to choose from. They custom seeds coudl jsut have surraes, or could contain constructions, schedules, and loads."
+    return 'The intent of this measure is to provide a measure is to provide a way in a single analysis to use a collection of custom seed models. Your real seed model woudl be an empty model, maybe containing custom weather data and simulation settings, then you would have a variety of models with pre-generated builiding envelopes to choose from. They custom seeds coudl jsut have surraes, or could contain constructions, schedules, and loads.'
   end
 
   # define the arguments that the user will input
@@ -59,9 +58,9 @@ class CloneBuildingFromExternalModel < OpenStudio::Ruleset::ModelUserScript
     args = OpenStudio::Ruleset::OSArgumentVector.new
 
     # make an argument for external model
-    external_model_name = OpenStudio::Ruleset::OSArgument::makeStringArgument("external_model_name",true)
-    external_model_name.setDisplayName("External OSM File Name")
-    external_model_name.setDescription("Name of the model to clone building from. This is the filename with the extension (e.g. MyModel.osm). Optionally this can inclucde the full file path, but for most use cases should just be file name.")
+    external_model_name = OpenStudio::Ruleset::OSArgument.makeStringArgument('external_model_name', true)
+    external_model_name.setDisplayName('External OSM File Name')
+    external_model_name.setDescription('Name of the model to clone building from. This is the filename with the extension (e.g. MyModel.osm). Optionally this can inclucde the full file path, but for most use cases should just be file name.')
     args << external_model_name
 
     return args
@@ -77,11 +76,11 @@ class CloneBuildingFromExternalModel < OpenStudio::Ruleset::ModelUserScript
     end
 
     # assign the user inputs to variables
-    external_model_name = runner.getStringArgumentValue("external_model_name",user_arguments)
+    external_model_name = runner.getStringArgumentValue('external_model_name', user_arguments)
 
-    #check the external_model_name for reasonableness
-    if external_model_name == ""
-      runner.registerError("No Source OSM File Path was Entered.")
+    # check the external_model_name for reasonableness
+    if external_model_name == ''
+      runner.registerError('No Source OSM File Path was Entered.')
       return false
     end
 
@@ -116,23 +115,21 @@ class CloneBuildingFromExternalModel < OpenStudio::Ruleset::ModelUserScript
     building2.clone(model)
 
     # match surfaces (currently clone breaks surface matching, I'll do it here vs. adding a measure to workflow just for this)
-    #put all of the spaces in the model into a vector
+    # put all of the spaces in the model into a vector
     spaces = OpenStudio::Model::SpaceVector.new
     model.getSpaces.each do |space|
       spaces << space
     end
-    #match surfaces for each space in the vector
+    # match surfaces for each space in the vector
     OpenStudio::Model.matchSurfaces(spaces)
-    runner.registerInfo("Matching surfaces..")
+    runner.registerInfo('Matching surfaces..')
 
     # report final condition of model
     runner.registerFinalCondition("The building finished with #{model.getSpaces.size} spaces.")
-    runner.registerValue("Building_Name",model.getBuilding.name.to_s)
+    runner.registerValue('Building_Name', model.getBuilding.name.to_s)
 
     return true
-
   end
-  
 end
 
 # register the measure to be used by the application
