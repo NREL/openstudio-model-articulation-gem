@@ -764,7 +764,9 @@ class CreateTypicalBuildingFromModel < OpenStudio::Measure::ModelMeasure
 
     # log messages to info messages
     log_messages_to_runner(runner, debug = false)
-
+  
+    model.save('final.osm', true)
+            
     return true
   end
 end
