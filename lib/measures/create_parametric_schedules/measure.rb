@@ -330,7 +330,7 @@ class CreateParametricSchedules < OpenStudio::Ruleset::ModelUserScript
     # todo - add in input error checking
 
     param_Schedules = OsLib_Parametric_Schedules.new
-    param_Schedules.override_hours_per_week
+    param_Schedules.override_hours_per_week(args['hoo_per_week'], args['hoo_start_wkdy'], args['hoo_end_wkdy'], args['hoo_start_sat'], args['hoo_end_sat'], args['hoo_start_sun'], args['hoo_end_sun'])
 
     # report initial condition of model
     runner.registerInitialCondition("The building started with #{model.getSchedules.size} schedules.")
