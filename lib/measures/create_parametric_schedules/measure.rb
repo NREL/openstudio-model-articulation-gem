@@ -328,6 +328,9 @@ class CreateParametricSchedules < OpenStudio::Ruleset::ModelUserScript
     end
 
     # todo - add in input error checking
+    if args['hoo_per_week'] > 0.0
+      runner.registerInfo("Hours per week input was a non zero value, it will override the user intered hours of operation for weekday, saturday, and sunday")
+    end
 
     param_Schedules = OsLib_Parametric_Schedules.new
     param_Schedules.override_hours_per_week(args['hoo_per_week'], args['hoo_start_wkdy'], args['hoo_end_wkdy'], args['hoo_start_sat'], args['hoo_end_sat'], args['hoo_start_sun'], args['hoo_end_sun'])

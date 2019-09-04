@@ -275,7 +275,6 @@ class OsLib_Parametric_Schedules
     # add in logic for hours per week override
     profile_override = [] # add to this for day types that should use weekday instead of user entered profile
     if hoo_per_week > 0.0
-      runner.registerInfo("Hours per week input was a non zero value, it will override the user intered hours of operation for weekday, saturday, and sunday")
 
       if hoo_per_week > 84
         max_hoo = [hoo_per_week/7.0,24.0].min
