@@ -335,7 +335,7 @@ class CreateParametricSchedules < OpenStudio::Ruleset::ModelUserScript
     # report initial condition of model
     runner.registerInitialCondition("The building started with #{model.getSchedules.size} schedules.")
 
-    param_Schedules.pre_process_space_types
+    param_Schedules.pre_process_space_types(args['standards_building_type'])
 
     param_Schedules.create_default_schedule_set
 

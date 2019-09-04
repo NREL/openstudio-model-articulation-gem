@@ -35,7 +35,7 @@
 
 class OsLib_Parametric_Schedules
   def initialize
-
+    @space_types_to_alter = []
   end
   # make hash of out string argument in eval. Rescue if can't be made into hash
   def process_hash(runner, string, args, profile_override = [], ruleset_name)
@@ -332,23 +332,22 @@ class OsLib_Parametric_Schedules
     end
   end
 
-  def pre_process_space_types
+  def pre_process_space_types(standards_building_type)
     # pre-process space types to identify which ones to alter
-    space_types_to_alter = []
     thermostats_to_alter = []
     air_loops_to_alter = []
     water_use_equipment_to_alter = [] # todo - populate
     model.getSpaceTypes.each do |space_type|
-      if not args['standards_building_type'] == ''
+      if not standards_building_type == ''
         next if not space_type.standardsBuildingType.is_initialized
         next if space_type.standardsBuildingType.get != args['standards_building_type']
       end
-      if not args['standards_space_type'] == ''
+      if not standards_building_type == ''
         next if not space_type.standardsSpaceType.is_initialized
         next if space_type.standardsSpaceType.get != args['standards_space_type']
       end
       next if space_type.spaces.size == 0
-      space_types_to_alter << space_type
+      @space_types_to_alter << space_type
     end
   end
 
