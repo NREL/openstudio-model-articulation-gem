@@ -33,7 +33,10 @@
 # OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # *******************************************************************************
 
-module OsLib_Parametric_Schedules
+class OsLib_Parametric_Schedules
+  def initialize
+
+  end
   # make hash of out string argument in eval. Rescue if can't be made into hash
   def process_hash(runner, string, args, profile_override = [], ruleset_name)
 
