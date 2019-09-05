@@ -332,17 +332,21 @@ class CreateParametricSchedules < OpenStudio::Ruleset::ModelUserScript
       runner.registerInfo("Hours per week input was a non zero value, it will override the user intered hours of operation for weekday, saturday, and sunday")
     end
 
-    param_Schedules = OsLib_Parametric_Schedules.new
-    param_Schedules.override_hours_per_week(args['hoo_per_week'], args['hoo_start_wkdy'], args['hoo_end_wkdy'], args['hoo_start_sat'], args['hoo_end_sat'], args['hoo_start_sun'], args['hoo_end_sun'])
+    param_Schedules = OsLib_Parametric_Schedules.new(model, args['hoo_start_wkdy'], args['hoo_end_wkdy'], args['hoo_start_sat'], args['hoo_end_sat'], args['hoo_start_sun'],
+                                                     args['hoo_end_sun'], args['error_on_out_of_order'], args['ramp_frequency'], runner)
+    param_Schedules.override_hours_per_week(args['hoo_per_week'])
 
     # report initial condition of model
     runner.registerInitialCondition("The building started with #{model.getSchedules.size} schedules.")
 
-    param_Schedules.pre_process_space_types(args['standards_building_type'])
+    param_Schedules.pre_process_space_types(args['standards_building_type'], args['standards_space_type'])
 
-    param_Schedules.create_default_schedule_set
+    param_Schedules.create_default_schedule_set(args['standards_building_type'], args['standards_space_type'], args['alter_swh_wo_space'])
 
-    param_Schedules.create_schedules_and_apply_default_schedule_set
+    param_Schedules.create_schedules_and_apply_default_schedule_set(args['lighting_profiles'], args['electric_equipment_profiles'], args['gas_equipment_profiles'],
+                                                                    args['occupancy_profiles'], args['infiltration_profiles'], args['hvac_availability_profiles'],
+                                                                    args['swh_profiles'], args['thermostat_setback_profiles'], args['htg_setpoint'], args['clg_setpoint'],
+                                                                    args['setback_delta'])
 
     # report final condition of model
     runner.registerFinalCondition("The building finished with #{model.getSchedules.size} schedules.")
