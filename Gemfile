@@ -9,16 +9,14 @@ if allow_local && File.exist?('../openstudio-extension-gem')
   # gem 'openstudio-extension', github: 'NREL/openstudio-extension-gem', branch: 'develop'
   gem 'openstudio-extension', path: '../openstudio-extension-gem'
 else
-  #gem 'openstudio-extension', github: 'NREL/openstudio-extension-gem', branch: 'develop'
-  gem 'openstudio-extension', github: 'NREL/openstudio-extension-gem', branch: 'update_2_8_0'
+  gem 'openstudio-extension', github: 'NREL/openstudio-extension-gem', branch: 'develop'
 end
 
 if allow_local && File.exist?('../openstudio-common-measures-gem')
   # gem 'openstudio-common-measures', github: 'NREL/openstudio-common-measures-gem', branch: 'develop'
   gem 'openstudio-common-measures', path: '../openstudio-common-measures-gem'
 else
-  #gem 'openstudio-common-measures', github: 'NREL/openstudio-common-measures-gem', branch: 'develop'
-  gem 'openstudio-common-measures', github: 'NREL/openstudio-common-measures-gem', branch: 'update_2_8_0'
+  gem 'openstudio-common-measures', github: 'NREL/openstudio-common-measures-gem', branch: 'develop'
 end
 
 # simplecov has an unneccesary dependency on native json gem, use fork that does not require this
