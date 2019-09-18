@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>create_typical_building_from_model</name>
   <uid>339a2e3a-273c-4494-bb50-bfe586a0647c</uid>
-  <version_id>b001fcac-a911-4495-856d-030cdd12a564</version_id>
-  <version_modified>20190430T155229Z</version_modified>
+  <version_id>4912eaba-49b8-4bc5-b9b5-9a77561d3896</version_id>
+  <version_modified>20190627T012519Z</version_modified>
   <xml_checksum>EE13F09F</xml_checksum>
   <class_name>CreateTypicalBuildingFromModel</class_name>
   <display_name>Create Typical Building from Model</display_name>
@@ -713,25 +713,19 @@
       <filename>os_lib_model_generation.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>C37C7D0E</checksum>
-    </file>
-    <file>
-      <filename>test_hvac.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>B1143A73</checksum>
+      <checksum>EDE22C1A</checksum>
     </file>
     <file>
       <filename>Model.hvac.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>0ADF940A</checksum>
+      <checksum>84B5FB0E</checksum>
     </file>
     <file>
       <filename>create_typical_building_from_model_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>64BEFE42</checksum>
+      <checksum>E5C95E54</checksum>
     </file>
     <file>
       <version>
@@ -742,7 +736,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>9194BE2C</checksum>
+      <checksum>865E94EE</checksum>
+    </file>
+    <file>
+      <filename>test_hvac.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>9C1567A6</checksum>
     </file>
   </files>
 </measure>

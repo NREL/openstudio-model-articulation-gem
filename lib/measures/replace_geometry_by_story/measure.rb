@@ -37,7 +37,7 @@
 # http://nrel.github.io/OpenStudio-user-documentation/reference/measure_writing_guide/
 
 begin
-  #load OpenStudio measure libraries from common location
+  # load OpenStudio measure libraries from common location
   require 'measure_resources/os_lib_geometry'
 rescue LoadError
   # common location unavailable, load from local resources
@@ -45,29 +45,28 @@ rescue LoadError
 end
 
 # start the measure
-class ReplaceGeometryByStory < OpenStudio::Ruleset::ModelUserScript
-
+class ReplaceGeometryByStory < OpenStudio::Measure::ModelMeasure
   # resource file modules
   include OsLib_Geometry
 
   # human readable name
   def name
-    return "Replace Geometry By Story"
+    return 'Replace Geometry By Story'
   end
 
   # human readable description
   def description
-    return "Test measure to throw away spaces and thermal zones of a completed model, adding in custom footprint for each story, and assigning proper space types, story, and fan exhaust. HVAC will be downstream."
+    return 'Test measure to throw away spaces and thermal zones of a completed model, adding in custom footprint for each story, and assigning proper space types, story, and fan exhaust. HVAC will be downstream.'
   end
 
   # human readable description of modeling approach
   def modeler_description
-    return "This is mockup for UrbanOpt, where footprint shape will come from geojson."
+    return 'This is mockup for UrbanOpt, where footprint shape will come from geojson.'
   end
 
   # define the arguments that the user will input
   def arguments(model)
-    args = OpenStudio::Ruleset::OSArgumentVector.new
+    args = OpenStudio::Measure::OSArgumentVector.new
 
     return args
   end
@@ -87,7 +86,7 @@ class ReplaceGeometryByStory < OpenStudio::Ruleset::ModelUserScript
     # create hash of space type by story
     story_hash = {}
     model.getBuildingStorys.each do |story|
-      next if not story.spaces.first.spaceType.is_initialized
+      next if !story.spaces.first.spaceType.is_initialized
       story_hash[story] = {}
       story_hash[story][:space_type] = story.spaces.first.spaceType.get
 
@@ -104,28 +103,26 @@ class ReplaceGeometryByStory < OpenStudio::Ruleset::ModelUserScript
         end
         minz_spaces << z_points.min + space.zOrigin
       end
-      if minz_spaces.size > 0
+      if !minz_spaces.empty?
         story.setNominalZCoordinate(minz_spaces.min)
       end
     end
     orig_floor_area = model.getBuilding.floorArea
 
     # un-assign fan exhaust zone objects
-    model.getFanZoneExhausts.each do |exhaust|
-      exhaust.removeFromThermalZone
-    end
+    model.getFanZoneExhausts.each(&:removeFromThermalZone)
 
     # Identity matrix for setting space origins
-    m = OpenStudio::Matrix.new(4,4,0)
-    m[0,0] = 1
-    m[1,1] = 1
-    m[2,2] = 1
-    m[3,3] = 1
+    m = OpenStudio::Matrix.new(4, 4, 0)
+    m[0, 0] = 1
+    m[1, 1] = 1
+    m[2, 2] = 1
+    m[3, 3] = 1
 
     # target origin for all spaces
-    m[0,3] = 0.0
-    m[1,3] = 0.0
-    m[2,3] = 0.0
+    m[0, 3] = 0.0
+    m[1, 3] = 0.0
+    m[2, 3] = 0.0
 
     # space transformation
     model.getSpaces.each do |space|
@@ -136,26 +133,23 @@ class ReplaceGeometryByStory < OpenStudio::Ruleset::ModelUserScript
     floor_polygons = []
     starting_footprint_area = 0.0
 
-    story_hash.each do |story,hash|
-
+    story_hash.each do |story, hash|
       hash[:basement] = false
       hash[:multipliers] = []
 
       story.spaces.each do |space|
-
         hash[:multipliers] << space.multiplier
 
         space.surfaces.each do |surface|
+          next if !(surface.outsideBoundaryCondition == 'Ground' || surface.outsideBoundaryCondition == 'OtherSideCoefficients')
 
-          next if not (surface.outsideBoundaryCondition == "Ground" || surface.outsideBoundaryCondition == "OtherSideCoefficients")
-
-          if surface.surfaceType == "Wall"
+          if surface.surfaceType == 'Wall'
             hash[:basement] = true
             next
-          elsif not surface.surfaceType == "Floor"
+          elsif surface.surfaceType != 'Floor'
             next
           end
-          #runner.registerInfo("#{surface.name} is a ground exposed floor")
+          # runner.registerInfo("#{surface.name} is a ground exposed floor")
           starting_footprint_area += surface.grossArea
 
           # add to polygons
@@ -164,13 +158,12 @@ class ReplaceGeometryByStory < OpenStudio::Ruleset::ModelUserScript
             new_floor_polygon << OpenStudio::Point3d.new(vertex.x, vertex.y, 0.0)
           end
           floor_polygons << new_floor_polygon
-
         end
       end
     end
 
     # report starting footprint area
-    starting_footprint_area_ip =  OpenStudio::toNeatString(OpenStudio::convert(starting_footprint_area,"m^2","ft^2").get,0,true)
+    starting_footprint_area_ip = OpenStudio.toNeatString(OpenStudio.convert(starting_footprint_area, 'm^2', 'ft^2').get, 0, true)
     runner.registerInfo("Model has #{floor_polygons.size} ground exposed floor surfaces, with an area of #{starting_footprint_area_ip} (ft^2).")
 
     # Combine the polygons
@@ -193,26 +186,25 @@ class ReplaceGeometryByStory < OpenStudio::Ruleset::ModelUserScript
     model.getSpaces.each(&:remove)
 
     # add new geometry
-    story_hash.each do |story,hash|
+    story_hash.each do |story, hash|
       space_type = hash[:space_type]
       options = {}
-      options["name"] = story.name.get
-      options["spaceType"] = space_type
-      options["story"] = story
-      options["makeThermalZone"] = true
-      options["thermalZoneMultiplier"] = hash[:multipliers].min
-      options["floor_to_floor_height"] = story.nominalFloortoFloorHeight.get
-      space = OsLib_Geometry.makeSpaceFromPolygon(model,OpenStudio::Point3d.new(0,0,0),combined_polygons,options)
+      options['name'] = story.name.get
+      options['spaceType'] = space_type
+      options['story'] = story
+      options['makeThermalZone'] = true
+      options['thermalZoneMultiplier'] = hash[:multipliers].min
+      options['floor_to_floor_height'] = story.nominalFloortoFloorHeight.get
+      space = OsLib_Geometry.makeSpaceFromPolygon(model, OpenStudio::Point3d.new(0, 0, 0), combined_polygons, options)
       space.setZOrigin(story.nominalZCoordinate.get)
 
       # make ext walls ground if original space had any ground exposed walls
       if hash[:basement]
         space.surfaces.each do |surface|
-          next if not surface.surfaceType == "Wall"
-          surface.setOutsideBoundaryCondition("Ground")
+          next if surface.surfaceType != 'Wall'
+          surface.setOutsideBoundaryCondition('Ground')
         end
       end
-
     end
     # surface match
     spaces = OpenStudio::Model::SpaceVector.new
@@ -224,14 +216,14 @@ class ReplaceGeometryByStory < OpenStudio::Ruleset::ModelUserScript
     # set window to wall ratio
     model.getSpaces.each do |space|
       space.surfaces.each do |surface|
-        next if not surface.outsideBoundaryCondition == "Outdoors"
-        next if not surface.surfaceType == "Wall"
+        next if surface.outsideBoundaryCondition != 'Outdoors'
+        next if surface.surfaceType != 'Wall'
         surface.setWindowToWallRatio(target_wwr)
       end
     end
 
     # re-assign fan zone exhaust objets
-    zone_hash = {} #key is zone value is floor area. It excludes zones with non 1 multiplier
+    zone_hash = {} # key is zone value is floor area. It excludes zones with non 1 multiplier
     model.getThermalZones.each do |thermal_zone|
       next if thermal_zone.multiplier > 1
       zone_hash[thermal_zone] = thermal_zone.floorArea
@@ -250,9 +242,7 @@ class ReplaceGeometryByStory < OpenStudio::Ruleset::ModelUserScript
     runner.registerFinalCondition("The building finished with #{model.getSpaces.size} spaces.")
 
     return true
-
   end
-  
 end
 
 # register the measure to be used by the application
