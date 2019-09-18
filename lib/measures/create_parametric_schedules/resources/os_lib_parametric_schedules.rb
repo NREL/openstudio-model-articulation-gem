@@ -32,10 +32,10 @@
 # STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
 # OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # *******************************************************************************
-
+require_relative 'os_lib_schedules.rb'
 class OsLib_Parametric_Schedules
-  def initialize(model, hoo_start_wkdy, hoo_end_wkdy, hoo_start_sat, hoo_end_sat, hoo_start_sun, hoo_end_sun,
-                 error_on_out_of_order, ramp_frequency, runner = nil)
+  def initialize(model, hoo_start_wkdy = 9.0, hoo_end_wkdy = 17.0, hoo_start_sat = 9.0, hoo_end_sat = 12.0, hoo_start_sun = 7.0, hoo_end_sun = 18.0,
+                 error_on_out_of_order = false, ramp_frequency = 0.5, runner = nil)
     @space_types_to_alter = []
     @air_loops_to_alter = []
     @thermostats_to_alter = []
@@ -283,7 +283,7 @@ class OsLib_Parametric_Schedules
     return hash
   end
 
-  def override_hours_per_week(hoo_per_week)
+  def override_hours_per_week(hoo_per_week = 0.0)
     # add in logic for hours per week override
     if hoo_per_week > 0.0
       if hoo_per_week > 84
@@ -341,7 +341,7 @@ class OsLib_Parametric_Schedules
     end
   end
 
-  def pre_process_space_types(standards_building_type, standards_space_type)
+  def pre_process_space_types(standards_building_type = "", standards_space_type = "")
     @model.getSpaceTypes.each do |space_type|
       if not standards_building_type == ''
         next if not space_type.standardsBuildingType.is_initialized
@@ -356,7 +356,7 @@ class OsLib_Parametric_Schedules
     end
   end
 
-  def create_default_schedule_set(standards_building_type, standards_space_type, alter_swh_wo_space)
+  def create_default_schedule_set(standards_building_type = "", standards_space_type = "", alter_swh_wo_space = true)
     # create shared default schedule set
     @default_schedule_set = OpenStudio::Model::DefaultScheduleSet.new(@model)
     @default_schedule_set.setName("Parametric Hours of Operation Schedule Set")
@@ -441,8 +441,66 @@ class OsLib_Parametric_Schedules
     end
   end
 
-  def create_schedules_and_apply_default_schedule_set(lighting_profiles, electric_equipment_profiles, gas_equipment_profiles, occupancy_profiles, infiltration_profiles,
-                                                      hvac_availability_profiles, swh_profiles, thermostat_setback_profiles, htg_setpoint, clg_setpoint, setback_delta)
+  def create_schedules_and_apply_default_schedule_set(lighting_profiles = nil, electric_equipment_profiles = nil, gas_equipment_profiles = nil, occupancy_profiles = nil,
+                                                      infiltration_profiles = nil, hvac_availability_profiles = nil, swh_profiles = nil, thermostat_setback_profiles = nil,
+                                                      htg_setpoint = 67.0, clg_setpoint = 75.0, setback_delta = 4)
+    # set the default profiles
+    if lighting_profiles.nil?
+      string = []
+      string << ":default => [[start-2,0.1],[start-1,0.3],[start,0.75],[end,0.75],[end+2,0.3],[end+vac*0.5,0.1]]"
+      string << ":saturday => [[start-1,0.1],[start,0.3],[end,0.3],[end+1,0.1]]"
+      string << ":sunday => [[start,0.1],[end,0.1]]"
+      lighting_profiles = string.join(", ")
+    end
+    if electric_equipment_profiles.nil?
+      string = []
+      string << ":default => [[start-1,0.3],[start,0.85],[start+0.5*occ-0.5,0.85],[start+0.5*occ-0.5,0.75],[start+0.5*occ+0.5,0.75],[start+0.5*occ+0.5,0.85],[end,0.85],[end+1,0.45],[end+2,0.3]]"
+      string << ":saturday => [[start-2,0.2],[start,0.35],[end,0.35],[end+6,0.2]]"
+      string << ":sunday => [[start,0.2],[end,0.2]]"
+      electric_equipment_profiles = string.join(", ")
+    end
+    if gas_equipment_profiles.nil?
+      string = []
+      string << ":default => [[start-1,0.3],[start,0.85],[start+0.5*occ-0.5,0.85],[start+0.5*occ-0.5,0.75],[start+0.5*occ+0.5,0.75],[start+0.5*occ+0.5,0.85],[end,0.85],[end+1,0.45],[end+2,0.3]]"
+      string << ":saturday => [[start-2,0.2],[start,0.35],[end,0.35],[end+6,0.2]]"
+      string << ":sunday => [[start,0.2],[end,0.2]]"
+      gas_equipment_profiles = string.join(", ")
+    end
+    if occupancy_profiles.nil?
+      string = []
+      string << ":default => [[start-3,0],[start-1,0.2],[start,0.95],[start+0.5*occ-0.5,0.95],[start+0.5*occ-0.5,0.5],[start+0.5*occ+0.5,0.5],[start+0.5*occ+0.5,0.95],[end,0.95],[end+1,0.3],[end+vac*0.4,0]]"
+      string << ":saturday => [[start-3,0],[start,0.3],[end,0.3],[end+1,0.1],[end+vac*0.3,0]]"
+      string << ":sunday => [[start,0],[start,0.05],[end,0.05],[end,0]]"
+      occupancy_profiles = string.join(", ")
+    end
+    if infiltration_profiles.nil?
+      string = []
+      string << ":default => [[start,1],[start,0.25],[end+vac*0.35,0.25],[end+vac*0.35,1]]"
+      string << ":saturday => [[start,1],[start,0.25],[end+vac*0.25,0.25],[end+vac*0.25,1]]"
+      string << ":sunday => [[start,1],[start,0.25],[end+vac*0.25,0.25],[end+vac*0.25,1]]"
+      infiltration_profiles = string.join(", ")
+    end
+    if hvac_availability_profiles.nil?
+      string = []
+      string << ":default => [[start,0],[start,1],[end+vac*0.35,1],[end+vac*0.35,0]]"
+      string << ":saturday => [[start,0],[start,1],[end+vac*0.25,1],[end+vac*0.25,0]]"
+      string << ":sunday => [[start,0],[start,1],[end+vac*0.25,1],[end+vac*0.25,0]]"
+      hvac_availability_profiles = string.join(", ")
+    end
+    if swh_profiles.nil?
+      string = []
+      string << ":default => [[start-2,0],[start-2,0.07],[start+0.5*occ,0.57],[vac-2,0.33],[vac,0.44],[end+vac*0.35,0.05],[end+vac*0.35,0]]"
+      string << ":saturday => [[start-2,0],[start-2,0.07],[start+0.5*occ,0.23],[end+vac*0.25,0.05],[end+vac*0.25,0]]"
+      string << ":sunday => [[start-2,0],[start-2,0.04],[start+0.5*occ,0.09],[end+vac*0.25,0.04],[end+vac*0.25,0]]"
+      swh_profiles = string.join(", ")
+    end
+    if thermostat_setback_profiles.nil?
+      string = []
+      string << ":default => [[start-2,floor],[start-2,ceiling],[end+vac*0.35,ceiling],[end+vac*0.35,floor]]"
+      string << ":saturday => [[start-2,floor],[start-2,ceiling],[end+vac*0.25,ceiling],[end+vac*0.25,floor]]"
+      string << ":sunday => [[start-2,floor],[start-2,ceiling],[end+vac*0.25,ceiling],[end+vac*0.25,floor]]"
+      thermostat_setback_profiles = string.join(", ")
+    end
     # create schedules and apply to default schedule set
     # populate hours of operation schedule for schedule set (this schedule isn't used but in future could be used to dynamically generate schedules)
     ruleset_name = "Parametric Hours of Operation Schedule"
