@@ -125,7 +125,11 @@ class OsLib_Parametric_Schedules
 
       hash = eval("{#{final_string}}").to_hash
     rescue SyntaxError => se
-      @runner.registerError("{#{final_string}} could not be converted to a hash.")
+      if @runner.nil?
+        puts "{#{final_string}} could not be converted to a hash."
+      else
+        @runner.registerError("{#{final_string}} could not be converted to a hash.")
+      end
       return false
     end
 
@@ -158,7 +162,11 @@ class OsLib_Parametric_Schedules
         elsif time_value_pair[0] < last_time || neg_time_hash.key?(i)
 
           if @error_on_out_of_order
-            @runner.registerError("Pre-interpolated processed hash for #{ruleset_name} #{day_type} has one or more out of order conflicts: #{pre_fix_time_value_pairs}. Measure will stop because Error on Out of Order was set to true.")
+            if @runner.nil?
+              puts "Pre-interpolated processed hash for #{ruleset_name} #{day_type} has one or more out of order conflicts: #{pre_fix_time_value_pairs}. Measure will stop because Error on Out of Order was set to true."
+            else
+              @runner.registerError("Pre-interpolated processed hash for #{ruleset_name} #{day_type} has one or more out of order conflicts: #{pre_fix_time_value_pairs}. Measure will stop because Error on Out of Order was set to true.")
+            end
             return false
           end
 
@@ -187,7 +195,11 @@ class OsLib_Parametric_Schedules
           time_value_pairs[i][0] = updated_time
 
           # reporting mostly for diagnsotic purposes
-          @runner.registerInfo("For #{ruleset_name} #{day_type} profile item #{i} time was #{last_time} and item #{i + 1} time was #{orig_current_time}. Last buffer is #{last_buffer}. Changing both times to #{updated_time}.")
+          if @runner.nil?
+            puts "For #{ruleset_name} #{day_type} profile item #{i} time was #{last_time} and item #{i + 1} time was #{orig_current_time}. Last buffer is #{last_buffer}. Changing both times to #{updated_time}."
+          else
+            @runner.registerInfo("For #{ruleset_name} #{day_type} profile item #{i} time was #{last_time} and item #{i + 1} time was #{orig_current_time}. Last buffer is #{last_buffer}. Changing both times to #{updated_time}.")
+          end
           last_time = updated_time
           throw_order_warning = true
 
@@ -198,7 +210,11 @@ class OsLib_Parametric_Schedules
 
       # issue warning if order was changed
       if throw_order_warning
-        @runner.registerWarning("Pre-interpolated processed hash for #{ruleset_name} #{day_type} has one or more out of order conflicts: #{pre_fix_time_value_pairs}. Time values were adjusted as shown to crate a valid profile: #{time_value_pairs}")
+        if @runner.nil?
+          puts "Pre-interpolated processed hash for #{ruleset_name} #{day_type} has one or more out of order conflicts: #{pre_fix_time_value_pairs}. Time values were adjusted as shown to crate a valid profile: #{time_value_pairs}"
+        else
+          @runner.registerWarning("Pre-interpolated processed hash for #{ruleset_name} #{day_type} has one or more out of order conflicts: #{pre_fix_time_value_pairs}. Time values were adjusted as shown to crate a valid profile: #{time_value_pairs}")
+        end
       end
 
       # add interpolated values at ramp_frequency
