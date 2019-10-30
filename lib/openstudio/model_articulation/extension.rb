@@ -42,6 +42,7 @@ module OpenStudio
       # Override the base class
       def initialize
         super
+
         @root_dir = File.absolute_path(File.join(File.dirname(__FILE__), '..', '..', '..'))
       end
     end
