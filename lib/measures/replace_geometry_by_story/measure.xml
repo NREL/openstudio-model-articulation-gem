@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>replace_geometry_by_story</name>
   <uid>03b18912-0ceb-47e9-8f8b-417a3008e189</uid>
-  <version_id>e1f7815a-9d13-40c6-8a41-6b3617aba65f</version_id>
-  <version_modified>20190627T012519Z</version_modified>
+  <version_id>5f5344ae-c445-466f-98a7-025860635c8a</version_id>
+  <version_modified>20191030T020544Z</version_modified>
   <xml_checksum>2AF3A68E</xml_checksum>
   <class_name>ReplaceGeometryByStory</class_name>
   <display_name>Replace Geometry By Story</display_name>
@@ -38,12 +38,6 @@
     </attribute>
   </attributes>
   <files>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>9640B6CB</checksum>
-    </file>
     <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
@@ -84,6 +78,12 @@
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
       <checksum>B45DB155</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>D41C05CF</checksum>
     </file>
   </files>
 </measure>

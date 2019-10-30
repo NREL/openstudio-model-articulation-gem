@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>create_bar_from_building_type_ratios</name>
   <uid>6e3a14f8-c3c7-4e03-bc51-bef8a52e1a05</uid>
-  <version_id>4395be45-c023-4feb-8c23-04e63727131d</version_id>
-  <version_modified>20190627T000549Z</version_modified>
+  <version_id>c56c06d4-914c-4bb0-a924-d3e790ec69a7</version_id>
+  <version_modified>20191030T020543Z</version_modified>
   <xml_checksum>2AF3A68E</xml_checksum>
   <class_name>CreateBarFromBuildingTypeRatios</class_name>
   <display_name>Create Bar From Building Type Ratios</display_name>
@@ -686,12 +686,6 @@
       <checksum>032BCDC9</checksum>
     </file>
     <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>9640B6CB</checksum>
-    </file>
-    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
@@ -743,6 +737,12 @@
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
       <checksum>8EE03ECE</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>D41C05CF</checksum>
     </file>
   </files>
 </measure>

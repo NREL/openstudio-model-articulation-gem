@@ -2,4 +2,4 @@
  
 ## Version 0.1.0 
 
-* Initial release of the articulation measures that are used for generation OpenStudio models.
+* Initial release of the articulation measures that are used for generating OpenStudio models.
