@@ -168,7 +168,7 @@ module OsLib_ModelGenerationBRICR
         hash['SmallOffice - Conference'] = { ratio: 0.99, space_type_gen: true, default: false }
         hash['SmallOffice - Corridor'] = { ratio: 0.99, space_type_gen: true, default: false }
         hash['SmallOffice - Elec/MechRoom'] = { ratio: 0.99, space_type_gen: true, default: false }
-        hash['SmallOffice - IT_Room'] = {:ratio => 0.99, :space_type_gen => true, :default => false}
+        hash['SmallOffice - IT_Room'] = { ratio: 0.99, space_type_gen: true, default: false }
         hash['SmallOffice - Lobby'] = { ratio: 0.99, space_type_gen: true, default: false }
         hash['SmallOffice - OpenOffice'] = { ratio: 0.99, space_type_gen: true, default: true }
         hash['SmallOffice - Restroom'] = { ratio: 0.99, space_type_gen: true, default: false }
@@ -187,7 +187,7 @@ module OsLib_ModelGenerationBRICR
         hash['MediumOffice - Conference'] = { ratio: 0.99, space_type_gen: true, default: false }
         hash['MediumOffice - Corridor'] = { ratio: 0.99, space_type_gen: true, default: false }
         hash['MediumOffice - Elec/MechRoom'] = { ratio: 0.99, space_type_gen: true, default: false }
-        hash['MediumOffice - IT_Room'] = {:ratio => 0.99, :space_type_gen => true, :default => false}
+        hash['MediumOffice - IT_Room'] = { ratio: 0.99, space_type_gen: true, default: false }
         hash['MediumOffice - Lobby'] = { ratio: 0.99, space_type_gen: true, default: false }
         hash['MediumOffice - OpenOffice'] = { ratio: 0.99, space_type_gen: true, default: true }
         hash['MediumOffice - Restroom'] = { ratio: 0.99, space_type_gen: true, default: false }
