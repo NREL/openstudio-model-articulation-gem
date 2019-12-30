@@ -1,0 +1,73 @@
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>cleanup_space_origins</name>
+  <uid>d81f8791-081d-4346-9f27-1b721d27ea86</uid>
+  <version_id>d9118a0d-49e0-49d2-b485-1d3bfcf924b3</version_id>
+  <version_modified>20180626T202318Z</version_modified>
+  <xml_checksum>45097B60</xml_checksum>
+  <class_name>CleanupSpaceOrigins</class_name>
+  <display_name>CleanupSpaceOrigins</display_name>
+  <description>This measure will move the space origin for all spaces to the origin of bounding box closest to the model origin.</description>
+  <modeler_description>This was originally developed to cleanup imported IDF's which sometimes had all zone origins at model 0,0,0.</modeler_description>
+  <arguments/>
+  <outputs/>
+  <provenances/>
+  <tags>
+    <tag>Envelope.Form</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Uses SketchUp API</name>
+      <value>false</value>
+      <datatype>boolean</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <filename>CleanupOrigin_Test.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>27B26D55</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>6E0EB5D4</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>9640B6CB</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>6B7F3F48</checksum>
+    </file>
+    <file>
+      <filename>CleanupSpaceOrigins_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>3FCFFC24</checksum>
+    </file>
+  </files>
+</measure>
