@@ -327,7 +327,8 @@ module OsLib_Geometry
     end
 
     # sort array by floor area, this hash will be altered to reduce floor area for each space type to 0
-    space_types_running_count = space_types.sort_by { |k, v| v[:floor_area] }
+    #space_types_running_count = space_types.sort_by { |k, v| v[:floor_area] }
+    space_types_running_count = space_types
 
     # array entry for each story
     footprints = []
@@ -354,8 +355,10 @@ module OsLib_Geometry
 
       space_types_running_count.each do |space_type, space_type_hash|
         # next if floor area is full or space type is empty
-        next if current_footprint_area >= target_footprint_area
-        next if space_type_hash[:floor_area] <= 0.0
+
+        tol_value = 0.0001
+        next if current_footprint_area + tol_value >= target_footprint_area
+        next if space_type_hash[:floor_area] <= tol_value
 
         # special test for when total floor area is smaller than valid_bar_area_min, just make bar smaller that valid min and warn user
         if target_per_space_type[space_type] < valid_bar_area_min
@@ -367,20 +370,18 @@ module OsLib_Geometry
 
         # add entry for space type if it doesn't have one yet
         if !space_types_local_count.key?(space_type)
-          space_types_local_count[space_type] = { floor_area: 0.0 }
+          if space_type_hash.has_key?(:children)
+            space_type = space_type_hash[:children][:default][:space_type] # will re-using space type create issue
+            space_types_local_count[space_type] = { floor_area: 0.0 }
+            space_types_local_count[space_type][:children] = space_type_hash[:children]
+          else
+            space_types_local_count[space_type] = { floor_area: 0.0 }
+          end
         end
 
         # if there is enough of this space type to fill rest of floor area
         remaining_in_footprint = target_footprint_area - current_footprint_area
-        if space_type_hash[:floor_area] > remaining_in_footprint
-
-          # add to local count for story and remove from running count from space type
-          raw_footprint_area_used = remaining_in_footprint
-
-        else
-          # if not then use up the rest of the floor area and move on to next space type
-          raw_footprint_area_used = space_type_hash[:floor_area]
-        end
+        raw_footprint_area_used = [space_type_hash[:floor_area],remaining_in_footprint].min
 
         # add to local hash
         space_types_local_count[space_type][:floor_area] = raw_footprint_area_used / v[:multiplier].to_f
@@ -389,13 +390,13 @@ module OsLib_Geometry
         current_footprint_area += raw_footprint_area_used
         space_type_hash[:floor_area] -= raw_footprint_area_used
 
-        # test if think slice left on current floor.
+        # test if think sliver left on current floor.
         # fix by moving smallest space type to next floor and and the same amount more of the sliver space type to this story
         raw_footprint_area_used < valid_bar_area_min && sliver_override == false ? (test_a = true) : (test_a = false)
 
         # test if what would be left of the current space type would result in a sliver on the next story.
         # fix by removing some of this space type so their is enough left for the next story, and replace the removed amount with the largest space type in the model
-        (space_type_hash[:floor_area] < valid_bar_area_min) && (space_type_hash[:floor_area] > 0.0001) ? (test_b = true) : (test_b = false)
+        (space_type_hash[:floor_area] < valid_bar_area_min) && (space_type_hash[:floor_area] > tol_value) ? (test_b = true) : (test_b = false)
 
         # identify very small slices and re-arrange spaces to different stories to avoid this
         if test_a
@@ -422,6 +423,10 @@ module OsLib_Geometry
 
           # swap size
           swap_size = valid_bar_area_min * 5 # currently equal to default perimeter zone depth of 15'
+          # this prevents too much area from being swapped resulting in a negative number for floor area
+          if swap_size > space_types_local_count[space_type][:floor_area] * v[:multiplier].to_f
+            swap_size = space_types_local_count[space_type][:floor_area] * v[:multiplier].to_f
+          end
 
           # adjust running count for current space type
           space_type_hash[:floor_area] += swap_size
@@ -445,12 +450,18 @@ module OsLib_Geometry
   end
 
   # sliced bar simple creates a single sliced bar for space types passed in
-  # todo - look at length and width to adjust slicing direction
+  # look at length and width to adjust slicing direction
   def self.make_sliced_bar_simple_polygons(runner, space_types, length, width, footprint_origin = OpenStudio::Point3d.new(0, 0, 0), perimeter_zone_depth = OpenStudio.convert(15, 'ft', 'm').get)
     hash_of_point_vectors = {} # key is name, value is a hash, one item of which is polygon. Another could be space type
 
+    reverse_slice = false
+    if length < width
+      reverse_slice = true
+      #runner.registerInfo("reverse typical slice direction for bar because of aspect ratio less than 1.0.")
+    end
+
     # determine if core and perimeter zoning can be used
-    if !(length > perimeter_zone_depth * 2.5 && width > perimeter_zone_depth * 2.5)
+    if !([length,width].min > perimeter_zone_depth * 2.5 && [length,width].min > perimeter_zone_depth * 2.5)
       perimeter_zone_depth = 0 # if any size is to small then just model floor as single zone, issue warning
       runner.registerWarning('Not modeling core and perimeter zones for some portion of the model.')
     end
@@ -461,6 +472,7 @@ module OsLib_Geometry
     # this represents the entire bar, not individual space type slices
     nw_point = OpenStudio::Point3d.new(x_delta, y_delta + width, z)
     sw_point = OpenStudio::Point3d.new(x_delta, y_delta, z)
+    se_point = OpenStudio::Point3d.new(x_delta + length, y_delta, z) # used when length is less than width
 
     # total building floor area to calculate ratios from space type floor areas
     total_floor_area = 0.0
@@ -470,7 +482,7 @@ module OsLib_Geometry
 
     # sort array by floor area but shift largest object to front
     space_types = space_types.sort_by { |k, v| v[:floor_area] }
-    space_types.insert(0, space_types.delete_at(space_types.size - 1))
+    space_types.insert(0, space_types.delete_at(space_types.size - 1)) #.to_h
 
     # min and max bar end values
     min_bar_end_multiplier = 0.75
@@ -484,20 +496,20 @@ module OsLib_Geometry
       start_perimeter_width_deduction = 0.0
       end_perimeter_width_deduction = 0.0
       if space_type == space_types.first[0]
-        if length * space_type_hash[:floor_area] / total_floor_area > max_bar_end_multiplier * perimeter_zone_depth
+        if [length,width].max * space_type_hash[:floor_area] / total_floor_area > max_bar_end_multiplier * perimeter_zone_depth
           start_perimeter_width_deduction = perimeter_zone_depth
         end
         # see if last space type is too small for perimeter. If it is then save some of this space type
-        if length * space_types.last[1][:floor_area] / total_floor_area < perimeter_zone_depth * min_bar_end_multiplier
+        if [length,width].max * space_types.last[1][:floor_area] / total_floor_area < perimeter_zone_depth * min_bar_end_multiplier
           re_apply_largest_space_type_at_end = true
         end
       end
       if space_type == space_types.last[0]
-        if length * space_type_hash[:floor_area] / total_floor_area > max_bar_end_multiplier * perimeter_zone_depth
+        if [length,width].max * space_type_hash[:floor_area] / total_floor_area > max_bar_end_multiplier * perimeter_zone_depth
           end_perimeter_width_deduction = perimeter_zone_depth
         end
       end
-      non_end_adjusted_width = (length * space_type_hash[:floor_area] / total_floor_area) - start_perimeter_width_deduction - end_perimeter_width_deduction
+      non_end_adjusted_width = ([length,width].max * space_type_hash[:floor_area] / total_floor_area) - start_perimeter_width_deduction - end_perimeter_width_deduction
 
       # adjustment of end space type is too small and is replaced with largest space type
       if (space_type == space_types.first[0]) && re_apply_largest_space_type_at_end
@@ -506,69 +518,223 @@ module OsLib_Geometry
       end
       if (space_type == space_types.last[0]) && re_apply_largest_space_type_at_end
         end_perimeter_width_deduction = space_types.first[0]
+        end_b_flag = true
+      else
+        end_b_flag = false
       end
 
-      # poulate data for core and perimeter of slice
+      # populate data for core and perimeter of slice
       section_hash_for_space_type = {}
       section_hash_for_space_type['end_a'] = start_perimeter_width_deduction
       section_hash_for_space_type[''] = non_end_adjusted_width
       section_hash_for_space_type['end_b'] = end_perimeter_width_deduction
 
-      # loop through sections for space type (main and possibly one or two end perimeter sections)
-      section_hash_for_space_type.each do |k, width|
-        if width.class.to_s == 'OpenStudio::Model::SpaceType' # confirm this
-          space_type = width
-          max_reduction = [perimeter_zone_depth, max_reduction].min
-          width = max_reduction
+      # determine if this space+type is double loaded corridor, and if so what the perimeter zone depth should be based on building width
+      # look at reverse_slice to see if length or width should be used to determine perimeter depth
+      if space_type_hash.has_key?(:children)
+        core_ratio = space_type_hash[:children][:circ][:orig_ratio]
+        perim_ratio = space_type_hash[:children][:default][:orig_ratio]
+        core_ratio_adj = core_ratio / (core_ratio + perim_ratio)
+        perim_ratio_adj = perim_ratio / (core_ratio + perim_ratio)
+        core_space_type = space_type_hash[:children][:circ][:space_type]
+        perim_space_type = space_type_hash[:children][:default][:space_type]
+        if !reverse_slice
+          custom_cor_val = width * core_ratio_adj
+          custom_perim_val = (width - custom_cor_val)/2.0
+        else
+          custom_cor_val = length * core_ratio_adj
+          custom_perim_val = (length - custom_cor_val)/2.0
         end
-        if width == 0
+        actual_perim = custom_perim_val
+        double_loaded_corridor = true
+      else
+        actual_perim = perimeter_zone_depth
+        double_loaded_corridor = false
+      end
+
+      # may overwrite
+      first_space_type_hash = space_types.first[1]
+      if end_b_flag && first_space_type_hash.has_key?(:children)
+        end_b_core_ratio = first_space_type_hash[:children][:circ][:orig_ratio]
+        end_b_perim_ratio = first_space_type_hash[:children][:default][:orig_ratio]
+        end_b_core_ratio_adj = end_b_core_ratio / (end_b_core_ratio + end_b_perim_ratio)
+        end_b_perim_ratio_adj = end_b_perim_ratio / (end_b_core_ratio + end_b_perim_ratio)
+        end_b_core_space_type = first_space_type_hash[:children][:circ][:space_type]
+        end_b_perim_space_type = first_space_type_hash[:children][:default][:space_type]
+        if !reverse_slice
+          end_b_custom_cor_val = width * end_b_core_ratio_adj
+          end_b_custom_perim_val = (width - end_b_custom_cor_val)/2.0
+        else
+          end_b_custom_cor_val = length * end_b_core_ratio_adj
+          end_b_custom_perim_val = (length - end_b_custom_cor_val)/2.0
+        end
+        end_b_actual_perim = end_b_custom_perim_val
+        end_b_double_loaded_corridor = true
+      else
+        end_b_actual_perim = perimeter_zone_depth
+        end_b_double_loaded_corridor = false
+      end
+
+      # loop through sections for space type (main and possibly one or two end perimeter sections)
+      section_hash_for_space_type.each do |k, slice|
+
+        # need to use different space type for end_b
+        if end_b_flag && k == "end_b" && space_types.first[1].has_key?(:children)
+          slice = space_types.first[0]
+          actual_perim = end_b_actual_perim
+          double_loaded_corridor = end_b_double_loaded_corridor
+          core_ratio = end_b_core_ratio
+          perim_ratio = end_b_perim_ratio
+          core_ratio_adj = end_b_core_ratio_adj
+          perim_ratio_adj = end_b_perim_ratio_adj
+          core_space_type = end_b_core_space_type
+          perim_space_type = end_b_perim_space_type
+        end
+
+        if slice.class.to_s == 'OpenStudio::Model::SpaceType' || slice.class.to_s == 'OpenStudio::Model::Building'
+          space_type = slice
+          max_reduction = [perimeter_zone_depth, max_reduction].min
+          slice = max_reduction
+        end
+        if slice == 0
           next
         end
 
-        ne_point = nw_point + OpenStudio::Vector3d.new(width, 0, 0)
-        se_point = sw_point + OpenStudio::Vector3d.new(width, 0, 0)
+        if !reverse_slice
 
-        if perimeter_zone_depth > 0
-          polygon_a = OpenStudio::Point3dVector.new
-          polygon_a << sw_point
-          polygon_a << sw_point + OpenStudio::Vector3d.new(0, perimeter_zone_depth, 0)
-          polygon_a << se_point + OpenStudio::Vector3d.new(0, perimeter_zone_depth, 0)
-          polygon_a << se_point
-          hash_of_point_vectors["#{space_type.name} A #{k}"] = {}
-          hash_of_point_vectors["#{space_type.name} A #{k}"][:space_type] = space_type
-          hash_of_point_vectors["#{space_type.name} A #{k}"][:polygon] = polygon_a
+          ne_point = nw_point + OpenStudio::Vector3d.new(slice, 0, 0)
+          se_point = sw_point + OpenStudio::Vector3d.new(slice, 0, 0)
 
-          polygon_b = OpenStudio::Point3dVector.new
-          polygon_b << sw_point + OpenStudio::Vector3d.new(0, perimeter_zone_depth, 0)
-          polygon_b << nw_point + OpenStudio::Vector3d.new(0, - perimeter_zone_depth, 0)
-          polygon_b << ne_point + OpenStudio::Vector3d.new(0, - perimeter_zone_depth, 0)
-          polygon_b << se_point + OpenStudio::Vector3d.new(0, perimeter_zone_depth, 0)
-          hash_of_point_vectors["#{space_type.name} B #{k}"] = {}
-          hash_of_point_vectors["#{space_type.name} B #{k}"][:space_type] = space_type
-          hash_of_point_vectors["#{space_type.name} B #{k}"][:polygon] = polygon_b
+          if actual_perim > 0 && (actual_perim * 2.0) < width
+            polygon_a = OpenStudio::Point3dVector.new
+            polygon_a << sw_point
+            polygon_a << sw_point + OpenStudio::Vector3d.new(0, actual_perim, 0)
+            polygon_a << se_point + OpenStudio::Vector3d.new(0, actual_perim, 0)
+            polygon_a << se_point
+            if double_loaded_corridor
+              hash_of_point_vectors["#{perim_space_type.name} A #{k}"] = {}
+              hash_of_point_vectors["#{perim_space_type.name} A #{k}"][:space_type] = perim_space_type
+              hash_of_point_vectors["#{perim_space_type.name} A #{k}"][:polygon] = polygon_a
+            else
+              hash_of_point_vectors["#{space_type.name} A #{k}"] = {}
+              hash_of_point_vectors["#{space_type.name} A #{k}"][:space_type] = space_type
+              hash_of_point_vectors["#{space_type.name} A #{k}"][:polygon] = polygon_a
+            end
 
-          polygon_c = OpenStudio::Point3dVector.new
-          polygon_c << nw_point + OpenStudio::Vector3d.new(0, - perimeter_zone_depth, 0)
-          polygon_c << nw_point
-          polygon_c << ne_point
-          polygon_c << ne_point + OpenStudio::Vector3d.new(0, - perimeter_zone_depth, 0)
-          hash_of_point_vectors["#{space_type.name} C #{k}"] = {}
-          hash_of_point_vectors["#{space_type.name} C #{k}"][:space_type] = space_type
-          hash_of_point_vectors["#{space_type.name} C #{k}"][:polygon] = polygon_c
+            polygon_b = OpenStudio::Point3dVector.new
+            polygon_b << sw_point + OpenStudio::Vector3d.new(0, actual_perim, 0)
+            polygon_b << nw_point + OpenStudio::Vector3d.new(0, - actual_perim, 0)
+            polygon_b << ne_point + OpenStudio::Vector3d.new(0, - actual_perim, 0)
+            polygon_b << se_point + OpenStudio::Vector3d.new(0, actual_perim, 0)
+            if double_loaded_corridor
+              hash_of_point_vectors["#{core_space_type.name} B #{k}"] = {}
+              hash_of_point_vectors["#{core_space_type.name} B #{k}"][:space_type] = core_space_type
+              hash_of_point_vectors["#{core_space_type.name} B #{k}"][:polygon] = polygon_b
+            else
+              hash_of_point_vectors["#{space_type.name} B #{k}"] = {}
+              hash_of_point_vectors["#{space_type.name} B #{k}"][:space_type] = space_type
+              hash_of_point_vectors["#{space_type.name} B #{k}"][:polygon] = polygon_b
+            end
+
+            polygon_c = OpenStudio::Point3dVector.new
+            polygon_c << nw_point + OpenStudio::Vector3d.new(0, - actual_perim, 0)
+            polygon_c << nw_point
+            polygon_c << ne_point
+            polygon_c << ne_point + OpenStudio::Vector3d.new(0, - actual_perim, 0)
+            if double_loaded_corridor
+              hash_of_point_vectors["#{perim_space_type.name} C #{k}"] = {}
+              hash_of_point_vectors["#{perim_space_type.name} C #{k}"][:space_type] = perim_space_type
+              hash_of_point_vectors["#{perim_space_type.name} C #{k}"][:polygon] = polygon_c
+            else
+              hash_of_point_vectors["#{space_type.name} C #{k}"] = {}
+              hash_of_point_vectors["#{space_type.name} C #{k}"][:space_type] = space_type
+              hash_of_point_vectors["#{space_type.name} C #{k}"][:polygon] = polygon_c
+            end
+          else
+            polygon_a = OpenStudio::Point3dVector.new
+            polygon_a << sw_point
+            polygon_a << nw_point
+            polygon_a << ne_point
+            polygon_a << se_point
+            hash_of_point_vectors["#{space_type.name} #{k}"] = {}
+            hash_of_point_vectors["#{space_type.name} #{k}"][:space_type] = space_type
+            hash_of_point_vectors["#{space_type.name} #{k}"][:polygon] = polygon_a
+          end
+
+          # update west points
+          nw_point = ne_point
+          sw_point = se_point
+
         else
-          polygon_a = OpenStudio::Point3dVector.new
-          polygon_a << sw_point
-          polygon_a << nw_point
-          polygon_a << ne_point
-          polygon_a << se_point
-          hash_of_point_vectors["#{space_type.name} #{k}"] = {}
-          hash_of_point_vectors["#{space_type.name} #{k}"][:space_type] = space_type
-          hash_of_point_vectors["#{space_type.name} #{k}"][:polygon] = polygon_a
-        end
 
-        # update west points
-        nw_point = ne_point
-        sw_point = se_point
+          # create_bar at 90 degrees if aspect ration is less than 1.0
+          # typical order (sw,nw,ne,se)
+          # order used here (se,sw,nw,ne)
+
+          nw_point = sw_point + OpenStudio::Vector3d.new(0, slice, 0)
+          ne_point = se_point + OpenStudio::Vector3d.new(0, slice, 0)
+
+          if actual_perim > 0 && (actual_perim * 2.0) < length
+            polygon_a = OpenStudio::Point3dVector.new
+            polygon_a << se_point
+            polygon_a << se_point + OpenStudio::Vector3d.new(- actual_perim, 0, 0)
+            polygon_a << ne_point + OpenStudio::Vector3d.new(- actual_perim, 0, 0)
+            polygon_a << ne_point
+            if double_loaded_corridor
+              hash_of_point_vectors["#{perim_space_type.name} A #{k}"] = {}
+              hash_of_point_vectors["#{perim_space_type.name} A #{k}"][:space_type] = perim_space_type
+              hash_of_point_vectors["#{perim_space_type.name} A #{k}"][:polygon] = polygon_a
+            else
+              hash_of_point_vectors["#{space_type.name} A #{k}"] = {}
+              hash_of_point_vectors["#{space_type.name} A #{k}"][:space_type] = space_type
+              hash_of_point_vectors["#{space_type.name} A #{k}"][:polygon] = polygon_a
+            end
+
+            polygon_b = OpenStudio::Point3dVector.new
+            polygon_b << se_point + OpenStudio::Vector3d.new(- actual_perim, 0, 0)
+            polygon_b << sw_point + OpenStudio::Vector3d.new(actual_perim, 0, 0)
+            polygon_b << nw_point + OpenStudio::Vector3d.new(actual_perim, 0, 0)
+            polygon_b << ne_point + OpenStudio::Vector3d.new(- actual_perim, 0, 0)
+            if double_loaded_corridor
+              hash_of_point_vectors["#{core_space_type.name} B #{k}"] = {}
+              hash_of_point_vectors["#{core_space_type.name} B #{k}"][:space_type] = core_space_type
+              hash_of_point_vectors["#{core_space_type.name} B #{k}"][:polygon] = polygon_b
+            else
+              hash_of_point_vectors["#{space_type.name} B #{k}"] = {}
+              hash_of_point_vectors["#{space_type.name} B #{k}"][:space_type] = space_type
+              hash_of_point_vectors["#{space_type.name} B #{k}"][:polygon] = polygon_b
+            end
+
+            polygon_c = OpenStudio::Point3dVector.new
+            polygon_c << sw_point + OpenStudio::Vector3d.new(actual_perim, 0, 0)
+            polygon_c << sw_point
+            polygon_c << nw_point
+            polygon_c << nw_point + OpenStudio::Vector3d.new(actual_perim, 0, 0)
+            if double_loaded_corridor
+              hash_of_point_vectors["#{perim_space_type.name} C #{k}"] = {}
+              hash_of_point_vectors["#{perim_space_type.name} C #{k}"][:space_type] = perim_space_type
+              hash_of_point_vectors["#{perim_space_type.name} C #{k}"][:polygon] = polygon_c
+            else
+              hash_of_point_vectors["#{space_type.name} C #{k}"] = {}
+              hash_of_point_vectors["#{space_type.name} C #{k}"][:space_type] = space_type
+              hash_of_point_vectors["#{space_type.name} C #{k}"][:polygon] = polygon_c
+            end
+          else
+            polygon_a = OpenStudio::Point3dVector.new
+            polygon_a << se_point
+            polygon_a << sw_point
+            polygon_a << nw_point
+            polygon_a << ne_point
+            hash_of_point_vectors["#{space_type.name} #{k}"] = {}
+            hash_of_point_vectors["#{space_type.name} #{k}"][:space_type] = space_type
+            hash_of_point_vectors["#{space_type.name} #{k}"][:polygon] = polygon_a
+          end
+
+          # update west points
+          sw_point = nw_point
+          se_point = ne_point
+
+        end
       end
     end
 
@@ -592,13 +758,24 @@ module OsLib_Geometry
       end
     end
 
+    # hash of new spaces (only change boundary conditions for these)
+    new_spaces = []
+
     # loop through story_hash and polygons to generate all of the spaces
     story_hash.each_with_index do |(story_name, story_data), index|
-      # make new story
-      story = OpenStudio::Model::BuildingStory.new(model)
-      story.setNominalFloortoFloorHeight(story_data[:space_height]) # not used for anything
-      story.setNominalZCoordinate (story_data[:space_origin_z]) # not used for anything
-      story.setName("Story #{story_name}")
+      # make new story unless story at requested height already exists.
+      story = nil
+      model.getBuildingStorys.each do |ext_story|
+        if (ext_story.nominalZCoordinate.to_f - story_data[:space_origin_z].to_f).abs < 0.01
+          story = ext_story
+        end
+      end
+      if story.nil?
+        story = OpenStudio::Model::BuildingStory.new(model)
+        story.setNominalFloortoFloorHeight(story_data[:space_height]) # not used for anything
+        story.setNominalZCoordinate (story_data[:space_origin_z]) # not used for anything
+        story.setName("Story #{story_name}")
+      end
 
       # multiplier values for adjacent stories to be altered below as needed
       multiplier_story_above = 1
@@ -647,6 +824,7 @@ module OsLib_Geometry
 
         # make space
         space = OsLib_Geometry.makeSpaceFromPolygon(model, space_data[:polygon].first, space_data[:polygon], options)
+        new_spaces << space
 
         # set z origin to proper position
         space.setZOrigin(story_data[:space_origin_z])
@@ -676,7 +854,7 @@ module OsLib_Geometry
     # any changes to wall boundary conditions will be handled by same code that calls this method.
     # this method doesn't need to know about basements and party walls.
 
-    return model
+    return new_spaces
   end
 
   # add def to create a space from input, optionally take a name, space type, story and thermal zone.
@@ -714,7 +892,7 @@ module OsLib_Geometry
       space.setName(options['name'])
     end
 
-    if !options['spaceType'].nil?
+    if !options['spaceType'].nil? && options['spaceType'].class.to_s == 'OpenStudio::Model::SpaceType'
       space.setSpaceType(options['spaceType'])
     end
 
