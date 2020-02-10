@@ -2936,9 +2936,16 @@ module OsLib_ModelGeneration
 
             # Add the primary system to the primary zones
             standard.model_add_hvac_system(model, sys_type, central_htg_fuel, zone_htg_fuel, clg_fuel, system_zones)
+
             # Add the secondary system to the secondary zones (if any)
             if !pri_sec_zone_lists['secondary'].empty?
-              standard.model_add_hvac_system(model, sec_sys_type, central_htg_fuel, zone_htg_fuel, clg_fuel, pri_sec_zone_lists['secondary'])
+              system_zones = pri_sec_zone_lists['secondary']
+              if (sec_sys_type == 'PTAC') || (sec_sys_type == 'PSZ-AC')
+                heated_and_cooled_zones = system_zones.select { |zone| standard.thermal_zone_heated?(zone) && standard.thermal_zone_cooled?(zone) }
+                cooled_only_zones = system_zones.select { |zone| !standard.thermal_zone_heated?(zone) && standard.thermal_zone_cooled?(zone) }
+                system_zones = heated_and_cooled_zones + cooled_only_zones
+              end
+              standard.model_add_hvac_system(model, sec_sys_type, central_htg_fuel, zone_htg_fuel, clg_fuel, system_zones)
             end
           end
         end

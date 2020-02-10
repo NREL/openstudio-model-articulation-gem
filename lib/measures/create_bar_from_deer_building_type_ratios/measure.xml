@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>create_bar_from_deer_building_type_ratios</name>
   <uid>aa4a7ecf-5bfd-4c5e-b0ca-e68babbacff1</uid>
-  <version_id>534602e2-3148-4626-8f54-03f03ce6645d</version_id>
-  <version_modified>20191215T043514Z</version_modified>
+  <version_id>f69312a3-96d8-470a-b8ad-e9be6d48363a</version_id>
+  <version_modified>20200210T145630Z</version_modified>
   <xml_checksum>B31F0C1F</xml_checksum>
   <class_name>CreateBarFromDEERBuildingTypeRatios</class_name>
   <display_name>Create Bar From DEER Building Type Ratios</display_name>
@@ -1148,7 +1148,7 @@
       <filename>os_lib_model_generation.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>EB7A69ED</checksum>
+      <checksum>ADB982EE</checksum>
     </file>
   </files>
 </measure>

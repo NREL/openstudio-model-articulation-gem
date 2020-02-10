@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>create_typical_doe_building_from_model</name>
   <uid>b2c80210-33b3-4dfd-8267-535efd81f552</uid>
-  <version_id>aeb23e9c-9fe8-43c2-9274-9e08fe0d091b</version_id>
-  <version_modified>20191215T043516Z</version_modified>
+  <version_id>9a3a81b4-6433-4ebc-ac5c-e801a2ee9ef9</version_id>
+  <version_modified>20200210T145631Z</version_modified>
   <xml_checksum>99E7000D</xml_checksum>
   <class_name>CreateTypicalDOEBuildingFromModel</class_name>
   <display_name>Create Typical DOE Building from Model</display_name>
@@ -1408,7 +1408,7 @@
       <filename>os_lib_model_generation.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>EB7A69ED</checksum>
+      <checksum>ADB982EE</checksum>
     </file>
   </files>
 </measure>

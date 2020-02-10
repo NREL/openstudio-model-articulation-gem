@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>replace_geometry_by_story</name>
   <uid>03b18912-0ceb-47e9-8f8b-417a3008e189</uid>
-  <version_id>5f5344ae-c445-466f-98a7-025860635c8a</version_id>
-  <version_modified>20191030T020544Z</version_modified>
+  <version_id>f96f97e6-5cc0-4d79-b032-6003fb59eade</version_id>
+  <version_modified>20200210T152129Z</version_modified>
   <xml_checksum>2AF3A68E</xml_checksum>
   <class_name>ReplaceGeometryByStory</class_name>
   <display_name>Replace Geometry By Story</display_name>
@@ -39,10 +39,33 @@
   </attributes>
   <files>
     <file>
+      <filename>replace_geometry_by_story_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>454CB983</checksum>
+    </file>
+    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
       <checksum>703C9964</checksum>
+    </file>
+    <file>
+      <filename>mixed_hotel_rest_by_story_test_output.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>B5DB5BF9</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.9.0</identifier>
+        <min_compatible>2.9.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>51EC0937</checksum>
     </file>
     <file>
       <filename>README.md</filename>
@@ -54,30 +77,7 @@
       <filename>os_lib_geometry.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>D6D0E98F</checksum>
-    </file>
-    <file>
-      <filename>replace_geometry_by_story_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>454CB983</checksum>
-    </file>
-    <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.1.1</identifier>
-        <min_compatible>2.1.1</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>51EC0937</checksum>
-    </file>
-    <file>
-      <filename>mixed_hotel_rest_by_story_test_output.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>B45DB155</checksum>
+      <checksum>FBB26B44</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
