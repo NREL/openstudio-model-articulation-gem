@@ -9,7 +9,7 @@
       "measure_dir_name": "ChangeBuildingLocation",
 			"arguments": {
         "weather_file_name": "openstudio_model_articulation_tests.epw",
-        "climate_zone": "5B"
+        "climate_zone": "ASHRAE 169-2013-5B"
       }	
     },{
       "measure_dir_name": "set_run_period",
