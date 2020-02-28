@@ -65,9 +65,12 @@ def run_osw(test_name, in_osw_filename)
   expect(File.exist?(run_osw_path)).to be true
   expect(File.exist?(out_osw_path)).to be true
 
-  # should make reason for failure more visible
-  print(File.read(run_osw_path).split)
-
+  if File.exist?(failed_job_path)
+    # should make reason for failure more visible
+    print(File.read(failed_job_path).split)
+  else
+    #print(File.read(out_osw_path).split)
+  end
   expect(File.exist?(failed_job_path)).to be false
 end
 
