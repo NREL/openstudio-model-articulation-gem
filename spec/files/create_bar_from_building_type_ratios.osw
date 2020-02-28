@@ -1,27 +1,12 @@
 {
 	"seed_file": "seed_5b_rp.osm",
 	"weather_file": "openstudio_model_articulation_tests.epw",
-	"measure_paths": ["../../../openstudio-common-measures-gem/lib/measures","../../lib/measures"],
+	"measure_paths": ["../../lib/measures"],
 	"file_paths": ["../../files"],
 	"run_directory": null,
 	"steps": [
     {
-      "measure_dir_name": "ChangeBuildingLocation",
-			"arguments": {
-        "__SKIP__": false,
-        "weather_file_name": "openstudio_model_articulation_tests.epw",
-        "climate_zone": "ASHRAE 169-2013-5B"
-      }	
-    },{
-      "measure_dir_name": "set_run_period",
-			"arguments": {
-        "__SKIP__": false,
-        "timesteps_per_hour": 1,
-        "begin_date": "2012-06-01",
-        "end_date": "2012-06-01"
-      }	
-    },{
-			"measure_dir_name": "create_bar_from_building_type_ratios",
+		"measure_dir_name": "create_bar_from_building_type_ratios",
 			"arguments": {
         "__SKIP__": true,
         "total_bldg_floor_area": 10000.0,
@@ -29,7 +14,7 @@
         "floor_height": 0.0,
         "wwr": 0.0
       }	
-		},{
+    },{
 			"measure_dir_name": "create_typical_building_from_model",
 			"arguments": {
         "__SKIP__": true
