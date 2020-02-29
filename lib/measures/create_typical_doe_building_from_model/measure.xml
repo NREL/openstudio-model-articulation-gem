@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>create_typical_doe_building_from_model</name>
   <uid>b2c80210-33b3-4dfd-8267-535efd81f552</uid>
-  <version_id>9a3a81b4-6433-4ebc-ac5c-e801a2ee9ef9</version_id>
-  <version_modified>20200210T145631Z</version_modified>
+  <version_id>58b6e117-b132-4ff9-a767-73baa62b9c23</version_id>
+  <version_modified>20200229T024055Z</version_modified>
   <xml_checksum>99E7000D</xml_checksum>
   <class_name>CreateTypicalDOEBuildingFromModel</class_name>
   <display_name>Create Typical DOE Building from Model</display_name>
@@ -1202,12 +1202,6 @@
       <checksum>E27658D5</checksum>
     </file>
     <file>
-      <filename>os_lib_helper_methods.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>22515A49</checksum>
-    </file>
-    <file>
       <filename>ecc.osm</filename>
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
@@ -1346,30 +1340,6 @@
       <checksum>F22DEFBC</checksum>
     </file>
     <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>9640B6CB</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>9640B6CB</checksum>
-    </file>
-    <file>
-      <filename>test_hvac.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>0C2BA868</checksum>
-    </file>
-    <file>
-      <filename>create_typical_doe_building_from_model_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>5FDEC21B</checksum>
-    </file>
-    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
@@ -1382,6 +1352,30 @@
       <checksum>1B1C70D8</checksum>
     </file>
     <file>
+      <filename>os_lib_helper_methods.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>07B01D67</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
+    </file>
+    <file>
+      <filename>test_hvac.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>729C035B</checksum>
+    </file>
+    <file>
+      <filename>create_typical_doe_building_from_model_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>AEA50B1F</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -1390,25 +1384,25 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>5AB745F4</checksum>
+      <checksum>6BE2490D</checksum>
     </file>
     <file>
       <filename>deer_vintages.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>83490F1E</checksum>
+      <checksum>9026C006</checksum>
     </file>
     <file>
       <filename>Model.hvac.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>4479B1D5</checksum>
+      <checksum>007BDD2B</checksum>
     </file>
     <file>
       <filename>os_lib_model_generation.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>ADB982EE</checksum>
+      <checksum>5141DA9F</checksum>
     </file>
   </files>
 </measure>

@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>rotate_building</name>
   <uid>b2742307-bce7-4747-8f94-977718217305</uid>
-  <version_id>30fc0dc3-f66c-4c4c-90fa-fcfcce6db100</version_id>
-  <version_modified>20190325T200053Z</version_modified>
+  <version_id>49895ac3-da96-498f-b46d-4f54597a0137</version_id>
+  <version_modified>20200229T024052Z</version_modified>
   <xml_checksum>49BEF039</xml_checksum>
   <class_name>RotateBuilding</class_name>
   <display_name>Rotate Building</display_name>
@@ -55,33 +55,10 @@
       <checksum>550314F1</checksum>
     </file>
     <file>
-      <filename>RotateBuilding_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>E9F1EDAC</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>9640B6CB</checksum>
-    </file>
-    <file>
       <filename>design.md</filename>
       <filetype>md</filetype>
       <usage_type>doc</usage_type>
       <checksum>B256482B</checksum>
-    </file>
-    <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>E2B4D377</checksum>
     </file>
     <file>
       <filename>README.md.erb</filename>
@@ -94,6 +71,29 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>7E721F8C</checksum>
+    </file>
+    <file>
+      <filename>RotateBuilding_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>EF3CE1FE</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>D81D9FE0</checksum>
     </file>
   </files>
 </measure>

@@ -33,7 +33,6 @@
 # OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # *******************************************************************************
 
-
 # Start the measure
 class CreateDOEPrototypeBuilding < OpenStudio::Measure::ModelMeasure
   require 'openstudio-standards'
