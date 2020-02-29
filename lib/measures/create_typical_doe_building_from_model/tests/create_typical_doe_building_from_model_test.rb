@@ -49,7 +49,7 @@ class CreateTypicalDOEBuildingFromModel_Test < Minitest::Test
     "#{File.dirname(__FILE__)}/output/#{test_name}"
   end
 
-  # todo - remove excess test files
+  # TODO: - remove excess test files
   # todo - consider minimal testing if combined measuers has full test set
 
   # method to apply arguments, run measure, and assert results (only populate args hash with non-default argument values)

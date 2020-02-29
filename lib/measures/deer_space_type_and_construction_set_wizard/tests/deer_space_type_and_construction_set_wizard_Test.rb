@@ -110,6 +110,5 @@ class DEERSpaceTypeAndConstructionSetWizard_Test < Minitest::Test
     model.save("#{output_dir}/#{test_name}_test.osm", true)
   end
 
-  # todo - add more tests once DEER building types are re-named
-
+  # TODO: - add more tests once DEER building types are re-named
 end

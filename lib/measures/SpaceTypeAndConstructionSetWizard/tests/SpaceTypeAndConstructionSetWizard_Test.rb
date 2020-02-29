@@ -492,7 +492,7 @@ class SpaceTypeAndConstructionSetWizard_Test < Minitest::Test
     argument_map['building_type'] = building_type
 
     template = arguments[count += 1].clone
-    assert(template.setValue("DOE Ref 1980-2004"))
+    assert(template.setValue('DOE Ref 1980-2004'))
     argument_map['template'] = template
 
     climate_zone = arguments[count += 1].clone
@@ -553,7 +553,7 @@ class SpaceTypeAndConstructionSetWizard_Test < Minitest::Test
     argument_map['building_type'] = building_type
 
     template = arguments[count += 1].clone
-    assert(template.setValue("DOE Ref Pre-1980"))
+    assert(template.setValue('DOE Ref Pre-1980'))
     argument_map['template'] = template
 
     climate_zone = arguments[count += 1].clone

@@ -81,7 +81,7 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
     split_at_doors = OpenStudio::Measure::OSArgument.makeChoiceArgument('split_at_doors', choices, true)
     split_at_doors.setDisplayName('Exterior Door Logic')
     split_at_doors.setDescription('This will only impact exterior surfaces with specified orientation. Can do nothing, split all, or remove doors.')
-    split_at_doors.setDefaultValue("Split Walls at Doors")
+    split_at_doors.setDefaultValue('Split Walls at Doors')
     args << split_at_doors
 
     # bool to create inset windows for triangular base surfaces
@@ -120,7 +120,7 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
 
     # check reasonableness of fraction
     if wwr == 0
-      runner.registerInfo("Target window to wall ratio is 0. Windows for selected surfaces will be removed, no new windows will be added.")
+      runner.registerInfo('Target window to wall ratio is 0. Windows for selected surfaces will be removed, no new windows will be added.')
     elsif (wwr < 0) || (wwr >= 1)
       runner.registerError('Window to Wall Ratio must be greater than or equal to 0 and less than 1.')
       return false
@@ -206,11 +206,10 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
 
     # pre-loop through sub-surfaces to store constructions
     model.getSubSurfaces.each do |sub_surf|
-
       # store constructions for entire building
-      next if sub_surf.subSurfaceType == "Door" || sub_surf.subSurfaceType == "OverheadDoor"
+      next if sub_surf.subSurfaceType == 'Door' || sub_surf.subSurfaceType == 'OverheadDoor'
       if sub_surf.construction.is_initialized
-        if orig_sub_surf_const_for_target_all_ext.has_key?(sub_surf.construction.get)
+        if orig_sub_surf_const_for_target_all_ext.key?(sub_surf.construction.get)
           orig_sub_surf_const_for_target_all_ext[sub_surf.construction.get] += 1
         else
           orig_sub_surf_const_for_target_all_ext[sub_surf.construction.get] = 1
@@ -229,7 +228,7 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
         next if !((absoluteAzimuth >= 135.0) && (absoluteAzimuth < 225.0))
       elsif facade == 'West'
         next if !((absoluteAzimuth >= 225.0) && (absoluteAzimuth < 315.0))
-      elsif facade == "All"
+      elsif facade == 'All'
         # no next needed
       else
         runner.registerError('Unexpected value of facade: ' + facade + '.')
@@ -238,7 +237,7 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
 
       # store constructions for this facade
       if sub_surf.construction.is_initialized
-        if orig_sub_surf_const_for_target_facade.has_key?(sub_surf.construction.get)
+        if orig_sub_surf_const_for_target_facade.key?(sub_surf.construction.get)
           orig_sub_surf_const_for_target_facade[sub_surf.construction.get] += 1
         else
           orig_sub_surf_const_for_target_facade[sub_surf.construction.get] = 1
@@ -299,8 +298,8 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
       has_doors = false
       s.subSurfaces.each do |subSurface|
         # stop if non window or glass door
-        if subSurface.subSurfaceType == "Door" || subSurface.subSurfaceType == "OverheadDoor"
-          if split_at_doors == "Remove Doors"
+        if subSurface.subSurfaceType == 'Door' || subSurface.subSurfaceType == 'OverheadDoor'
+          if split_at_doors == 'Remove Doors'
             subSurface.remove
           else
             has_doors = true
@@ -317,7 +316,7 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
       starting_ext_window_area += ext_window_area
 
       all_surfaces = [s]
-      if split_at_doors == "Split Walls at Doors" && has_doors
+      if split_at_doors == 'Split Walls at Doors' && has_doors
         # split base surfaces at doors to create  multiple base surfaces
         split_surfaces = s.splitSurfaceForSubSurfaces.to_a # frozen array
 
@@ -331,7 +330,6 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
 
         all_surfaces2 = []
         all_surfaces.each do |ss|
-
           # see if surface is rectangular (only checking non rotated on vertical wall)
           # todo - add in more robust rectangle check that can look for rotate and tilted rectangles
           rect_tri = false
@@ -343,7 +341,7 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
           vertices.each do |vertex|
             # initialize new vertex to old vertex
             # rounding values to address tolerance issue 10 digits digits in
-            x_vals <<  vertex.x.round(8)
+            x_vals << vertex.x.round(8)
             y_vals << vertex.y.round(8)
             z_vals << vertex.z.round(8)
           end
@@ -353,7 +351,7 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
 
           has_doors = false
           ss.subSurfaces.each do |subSurface|
-            if subSurface.subSurfaceType == "Door" || subSurface.subSurfaceType == "OverheadDoor"
+            if subSurface.subSurfaceType == 'Door' || subSurface.subSurfaceType == 'OverheadDoor'
               has_doors = true
             end
           end
@@ -369,23 +367,23 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
           # get construction from sub-surfaces and then delete them
           pre_tri_sub_const = {}
           ss.subSurfaces.each do |subSurface|
-            if subSurface.construction.is_initialized && ! subSurface.isConstructionDefaulted
-              if pre_tri_sub_const.has_key?(subSurface.construction.get)
+            if subSurface.construction.is_initialized && !subSurface.isConstructionDefaulted
+              if pre_tri_sub_const.key?(subSurface.construction.get)
                 pre_tri_sub_const[subSurface.construction.get] = subSurface.grossArea
               else
-                pre_tri_sub_const[subSurface.construction.get] =+ subSurface.grossArea
+                pre_tri_sub_const[subSurface.construction.get] = + subSurface.grossArea
               end
             end
             subSurface.remove
           end
 
           ss.triangulation.each do |tri|
-            new_surface = OpenStudio::Model::Surface.new(tri,model)
+            new_surface = OpenStudio::Model::Surface.new(tri, model)
             new_surface.setSpace(ss.space.get)
-            if ss.construction.is_initialized && ! ss.isConstructionDefaulted
+            if ss.construction.is_initialized && !ss.isConstructionDefaulted
               new_surface.setConstruction(ss.construction.get)
             end
-            if pre_tri_sub_const.size > 0
+            if !pre_tri_sub_const.empty?
               non_rect_parent[new_surface] = pre_tri_sub_const.key(pre_tri_sub_const.values.max)
             end
             all_surfaces2 << new_surface
@@ -393,7 +391,6 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
 
           # remove orig surface
           ss.remove
-
         end
 
       else
@@ -402,12 +399,11 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
 
       # add windows
       all_surfaces2.each do |ss|
-
         orig_sub_surf_constructions = {}
         ss.subSurfaces.each do |sub_surf|
-          next if sub_surf.subSurfaceType == "Door" || sub_surf.subSurfaceType == "OverheadDoor"
+          next if sub_surf.subSurfaceType == 'Door' || sub_surf.subSurfaceType == 'OverheadDoor'
           if sub_surf.construction.is_initialized
-            if orig_sub_surf_constructions.has_key?(sub_surf.construction.get)
+            if orig_sub_surf_constructions.key?(sub_surf.construction.get)
               orig_sub_surf_constructions[sub_surf.construction.get] += 1
             else
               orig_sub_surf_constructions[sub_surf.construction.get] = 1
@@ -418,9 +414,7 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
         # remove windows if ratio 0 or add in other cases
         if wwr == 0
           # remove all sub surfaces
-          ss.subSurfaces.each do |sub_surface|
-            sub_surface.remove
-          end
+          ss.subSurfaces.each(&:remove)
           new_window = []
           window_confirmed = true
         else
@@ -434,7 +428,7 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
           if inset_tri_sub
 
             # skip of surface already has sub-surfaces or if not triangle
-            if ss.subSurfaces.size == 0 && ss.vertices.size <= 3
+            if ss.subSurfaces.empty? && ss.vertices.size <= 3
               # get centroid
               vertices = ss.vertices
               centroid = OpenStudio.getCentroid(vertices).get
@@ -453,10 +447,10 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
               end
 
               # create inset window
-              new_window = OpenStudio::Model::SubSurface.new(new_vertices,model)
+              new_window = OpenStudio::Model::SubSurface.new(new_vertices, model)
               new_window.setSurface(ss)
-              new_window.setSubSurfaceType("FixedWindow")
-              if non_rect_parent.has_key?(ss)
+              new_window.setSubSurfaceType('FixedWindow')
+              if non_rect_parent.key?(ss)
                 new_window.setConstruction(non_rect_parent[ss])
               end
               window_confirmed = true
@@ -470,19 +464,19 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
           window_confirmed = true
         end
 
-        if not window_confirmed
+        if !window_confirmed
           runner.registerWarning("Fenestration could not be added for #{ss.name}. Surface may not be rectangular or triangular, may have a door, or the requested WWR may be too large.")
         end
 
         # warn user if resulting window doesn't have a construction, as it will result in failed simulation. In the future may use logic from starting windows to apply construction to new window.
-        if  wwr > 0 && window_confirmed && new_window.construction.empty?
+        if wwr > 0 && window_confirmed && new_window.construction.empty?
           # construction search order (orig window on this base surface, window in this orientation, andy window in building)
-          if orig_sub_surf_constructions.size > 0
+          if !orig_sub_surf_constructions.empty?
             new_window.setConstruction(orig_sub_surf_constructions.key(orig_sub_surf_constructions.values.max))
-          elsif orig_sub_surf_const_for_target_facade.size > 0
+          elsif !orig_sub_surf_const_for_target_facade.empty?
             new_window.setConstruction(orig_sub_surf_const_for_target_facade.key(orig_sub_surf_const_for_target_facade.values.max))
             facade_const_warning = true
-          elsif orig_sub_surf_const_for_target_all_ext.size > 0
+          elsif !orig_sub_surf_const_for_target_all_ext.empty?
             new_window.setConstruction(orig_sub_surf_const_for_target_all_ext.key(orig_sub_surf_const_for_target_all_ext.values.max))
             bldg_const_warning = true
           else
@@ -494,7 +488,7 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
               material.setVisibleTransmittance(0.812)
               catchall_glazing_const = OpenStudio::Model::Construction.new(model)
               catchall_glazing_const.insertLayer(0, material)
-              catchall_glazing_const.setName("Dbl Clr 3mm/13mm Air") # from E+ dataset
+              catchall_glazing_const.setName('Dbl Clr 3mm/13mm Air') # from E+ dataset
             end
             new_window.setConstruction(catchall_glazing_const)
           end
@@ -504,13 +498,13 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
 
     # warn if some constructions do not have sub-surfaces
     if facade_const_warning
-      runner.registerInfo("One or more new sub-surfaces did not have construction, using most commonly used construction for this facade.")
+      runner.registerInfo('One or more new sub-surfaces did not have construction, using most commonly used construction for this facade.')
     end
     if bldg_const_warning
-      runner.registerInfo("One or more new sub-surfaces did not have construction, using most commonly used construction across the entire building.")
+      runner.registerInfo('One or more new sub-surfaces did not have construction, using most commonly used construction across the entire building.')
     end
     if empty_const_warning
-      # todo - add in catchall like something equiv to double glazed of glass with new simple glazing construction
+      # TODO: - add in catchall like something equiv to double glazed of glass with new simple glazing construction
       runner.registerWarning("Could not find existing window with construction as guide for new windows. Using a catchall glazing of #{catchall_glazing_const.name}.")
     end
 

@@ -95,7 +95,6 @@ class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
 
     # if 'Fail' passed in make sure at least one error message (while not typical there may be more than one message)
     if result_value == 'Fail' then assert(result.errors.size >= 1) end
-
   end
 
   def test_good_argument_values
@@ -166,7 +165,7 @@ class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
     args['bldg_type_a'] = 'PrimarySchool'
     args['building_rotation'] = -90
     args['party_wall_stories_east'] = 2
-    args['double_loaded_corridor'] = "Primary Space Type"
+    args['double_loaded_corridor'] = 'Primary Space Type'
     args['make_mid_story_surfaces_adiabatic'] = false
     args['bar_division_method'] = 'Multiple Space Types - Individual Stories Sliced'
     # intersection errors only on this test
@@ -175,7 +174,7 @@ class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
     # Initial area of other surface 'Surface 365' 535.72 does not equal post intersection area 593.326
     # should still fail with check of ground exposed floor or outdoor exposed roof
 
-    apply_measure_to_model(__method__.to_s.gsub('test_', ''), args,nil, nil, 1)
+    apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, 1)
   end
 
   def test_non_zero_rotation_primary_school_adiabatic # to test intersection of just walls but not floors
@@ -185,7 +184,7 @@ class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
     args['bldg_type_a'] = 'PrimarySchool'
     args['building_rotation'] = -90
     args['party_wall_stories_east'] = 2
-    args['double_loaded_corridor'] = "Primary Space Type"
+    args['double_loaded_corridor'] = 'Primary Space Type'
     args['make_mid_story_surfaces_adiabatic'] = true
     args['bar_division_method'] = 'Multiple Space Types - Individual Stories Sliced'
 
@@ -199,7 +198,7 @@ class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
     args['bldg_type_a'] = 'LargeHotel'
     args['bldg_type_b'] = 'FullServiceRestaurant'
     args['bldg_type_b_fract_bldg_area'] = 0.1
-    #args['space_type_sort_logic'] = "Building Type > Size"
+    # args['space_type_sort_logic'] = "Building Type > Size"
 
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args)
   end
@@ -384,8 +383,8 @@ class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
     args = {}
     args['total_bldg_floor_area'] = 100000.0
     args['bldg_type_a'] = 'Warehouse'
-    #args['custom_height_bar'] = false
-    
+    # args['custom_height_bar'] = false
+
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
   end
 
@@ -485,9 +484,9 @@ class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
     args['bldg_type_a'] = 'Htl'
     args['num_stories_above_grade'] = 6
     args['bar_division_method'] = 'Multiple Space Types - Simple Sliced'
-    
+
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
-  end    
+  end
 
   def test_dual_bar_1
     args = {}
@@ -545,11 +544,11 @@ class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
     args['bldg_type_a'] = 'MLI'
     args['num_stories_above_grade'] = 1
     args['bar_division_method'] = 'Multiple Space Types - Simple Sliced'
-    
+
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
   end
-      
-  # todo - add in check that won't make second bar unless it is 5' wide
+
+  # TODO: - add in check that won't make second bar unless it is 5' wide
   # puts similar check on non-adiabatic (switch back to adiabatic then?)
   def test_dual_bar_101
     args = {}
@@ -593,10 +592,10 @@ class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
     args['bldg_type_a'] = 'OfL'
     args['num_stories_above_grade'] = 3
     args['bar_division_method'] = 'Multiple Space Types - Simple Sliced'
-    
+
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
   end
-      
+
   def test_dual_bar_11a
     args = {}
     args['total_bldg_floor_area'] = 100000.0
@@ -628,9 +627,10 @@ class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
     args['bldg_type_a'] = 'RFF'
     args['num_stories_above_grade'] = 1
     args['bar_division_method'] = 'Multiple Space Types - Simple Sliced'
-    
+
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
   end
+
   def test_dual_bar_11b
     args = {}
     args['total_bldg_floor_area'] = 100000.0
@@ -673,12 +673,12 @@ class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
     args['bldg_type_a'] = 'RtL'
     args['num_stories_above_grade'] = 1
     args['bar_division_method'] = 'Multiple Space Types - Simple Sliced'
-    
+
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
   end
-      
+
   def test_dual_bar_15
-    # todo - check calcs, error on this seem to almost exactly 1 ft error in where stretched bar is placed
+    # TODO: - check calcs, error on this seem to almost exactly 1 ft error in where stretched bar is placed
     args = {}
     args['total_bldg_floor_area'] = 100000.0
     args['bldg_type_a'] = 'SecondarySchool'
@@ -687,7 +687,7 @@ class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
     args['ns_to_ew_ratio'] = 3.0
     args['perim_mult'] = 1.5
     args['custom_height_bar'] = false
-    args['double_loaded_corridor'] = "Primary Space Type"
+    args['double_loaded_corridor'] = 'Primary Space Type'
     args['building_rotation'] = 0
     args['make_mid_story_surfaces_adiabatic'] = false
 
@@ -701,12 +701,12 @@ class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
     args['bldg_type_a'] = 'RtS'
     args['num_stories_above_grade'] = 1
     args['bar_division_method'] = 'Multiple Space Types - Simple Sliced'
-    
+
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
   end
-    
+
   def test_dual_bar_15b
-    # todo - check calcs, error on this seem to almost exactly 1 ft error in where stretched bar is placed
+    # TODO: - check calcs, error on this seem to almost exactly 1 ft error in where stretched bar is placed
     args = {}
     args['total_bldg_floor_area'] = 100000.0
     args['bldg_type_a'] = 'SecondarySchool'
@@ -726,10 +726,10 @@ class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
     args['bldg_type_a'] = 'SCn'
     args['num_stories_above_grade'] = 1
     args['bar_division_method'] = 'Multiple Space Types - Simple Sliced'
-    
+
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
   end
-    
+
   def test_dual_bar_3
     args = {}
     args['total_bldg_floor_area'] = 100000.0
@@ -749,10 +749,10 @@ class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
     args['bldg_type_a'] = 'SUn'
     args['num_stories_above_grade'] = 1
     args['bar_division_method'] = 'Multiple Space Types - Simple Sliced'
-    
+
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
   end
-    
+
   def test_dual_bar_split_low
     args = {}
     args['total_bldg_floor_area'] = 100000.0
@@ -773,7 +773,7 @@ class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
     args['bldg_type_a'] = 'WRf'
     args['num_stories_above_grade'] = 1
     args['bar_division_method'] = 'Multiple Space Types - Simple Sliced'
-    
+
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
   end
 
@@ -875,7 +875,7 @@ class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
     args['ns_to_ew_ratio'] = 2
     args['perim_mult'] = 1.1
     args['custom_height_bar'] = false
-    args['double_loaded_corridor'] = "None"
+    args['double_loaded_corridor'] = 'None'
 
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
   end
@@ -923,7 +923,7 @@ class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
     args['bldg_type_a'] = 'PrimarySchool'
     args['ns_to_ew_ratio'] = 0.0
     args['perim_mult'] = 0.0
-    args['space_type_sort_logic'] = "Size"
+    args['space_type_sort_logic'] = 'Size'
 
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
   end
@@ -936,7 +936,7 @@ class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
     args['ns_to_ew_ratio'] = 0.0
     args['perim_mult'] = 0.0
     args['custom_height_bar'] = false
-    args['double_loaded_corridor'] = "None"
+    args['double_loaded_corridor'] = 'None'
 
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args)
   end
@@ -972,7 +972,7 @@ class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
     args['bar_width'] = 60.0
     args['bldg_type_b'] = 'RetailStandalone'
     args['bldg_type_b_fract_bldg_area'] = 0.25
-    args['space_type_sort_logic'] = "Building Type > Size"
+    args['space_type_sort_logic'] = 'Building Type > Size'
 
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
   end
@@ -986,7 +986,7 @@ class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
     args['bar_width'] = 60.0
     args['bldg_type_b'] = 'RetailStandalone'
     args['bldg_type_b_fract_bldg_area'] = 0.25
-    args['space_type_sort_logic'] = "Building Type > Size"
+    args['space_type_sort_logic'] = 'Building Type > Size'
 
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
   end
@@ -1000,11 +1000,10 @@ class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
     args['bar_width'] = 60.0
     args['bldg_type_b'] = 'RetailStandalone'
     args['bldg_type_b_fract_bldg_area'] = 0.25
-    args['double_loaded_corridor'] = "None"
+    args['double_loaded_corridor'] = 'None'
 
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
   end
-
 
   def test_multi_width_d
     args = {}
@@ -1042,7 +1041,7 @@ class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
     args['ns_to_ew_ratio'] = 2
     args['perim_mult'] = 1
     args['custom_height_bar'] = true
-    args['double_loaded_corridor'] = "None"
+    args['double_loaded_corridor'] = 'None'
     args['building_rotation'] = 0
     args['make_mid_story_surfaces_adiabatic'] = true
     args['bar_sep_dist_mult'] = 3
@@ -1064,14 +1063,14 @@ class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
     args['ns_to_ew_ratio'] = 3
     args['perim_mult'] = 1
     args['custom_height_bar'] = true
-    args['double_loaded_corridor'] = "Primary Space Type"
+    args['double_loaded_corridor'] = 'Primary Space Type'
     args['building_rotation'] = 0
     args['make_mid_story_surfaces_adiabatic'] = true
     args['bar_sep_dist_mult'] = 3
-    #args['story_multiplier'] = 'None'
-    #args['num_stories_below_grade'] = 1
-    #args['party_wall_stories_south'] = 1
-    #args['party_wall_stories_east'] = 2
+    # args['story_multiplier'] = 'None'
+    # args['num_stories_below_grade'] = 1
+    # args['party_wall_stories_south'] = 1
+    # args['party_wall_stories_east'] = 2
     args['space_type_sort_logic'] = 'Size'
 
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
@@ -1088,18 +1087,17 @@ class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
     args['ns_to_ew_ratio'] = 3
     args['perim_mult'] = 1
     args['custom_height_bar'] = true
-    args['double_loaded_corridor'] = "Primary Space Type"
+    args['double_loaded_corridor'] = 'Primary Space Type'
     args['building_rotation'] = 0
     args['make_mid_story_surfaces_adiabatic'] = true
     args['bar_sep_dist_mult'] = 3
-    #args['story_multiplier'] = 'None'
-    #args['num_stories_below_grade'] = 1
-    #args['party_wall_stories_south'] = 1
-    #args['party_wall_stories_east'] = 2
+    # args['story_multiplier'] = 'None'
+    # args['num_stories_below_grade'] = 1
+    # args['party_wall_stories_south'] = 1
+    # args['party_wall_stories_east'] = 2
     args['space_type_sort_logic'] = 'Size'
-    #args['story_multiplier'] = "None"
+    # args['story_multiplier'] = "None"
 
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
   end
-
 end

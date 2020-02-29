@@ -95,7 +95,6 @@ class CreateBarFromDEERBuildingTypeRatios_Test < Minitest::Test
 
     # if 'Fail' passed in make sure at least one error message (while not typical there may be more than one message)
     if result_value == 'Fail' then assert(result.errors.size >= 1) end
-
   end
 
   def test_good_argument_values
@@ -104,5 +103,4 @@ class CreateBarFromDEERBuildingTypeRatios_Test < Minitest::Test
 
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, 'example_model.osm')
   end
-
 end

@@ -69,7 +69,7 @@ def run_osw(test_name, in_osw_filename)
     # should make reason for failure more visible
     print(File.read(failed_job_path).split)
   else
-    #print(File.read(out_osw_path).split)
+    # print(File.read(out_osw_path).split)
   end
   expect(File.exist?(failed_job_path)).to be false
 end

@@ -123,7 +123,6 @@ class SpaceTypeAndConstructionSetWizard < OpenStudio::Measure::ModelMeasure
     else
       return true
     end
-
   end
 end
 

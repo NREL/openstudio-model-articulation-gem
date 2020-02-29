@@ -114,12 +114,12 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
     result = runner.result
     # show_output(result)
     assert(result.value.valueName == 'Success')
-    #assert(result.warnings.size == 2)
-    #assert(result.info.size == 2)
+    # assert(result.warnings.size == 2)
+    # assert(result.info.size == 2)
 
     # save the model
-    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + "/output/south.osm")
-    model.save(output_file_path,true)
+    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/south.osm')
+    model.save(output_file_path, true)
   end
 
   def test_SetWindowToWallRatioByFacade_with_model_RotationTest
@@ -203,8 +203,8 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
     result = runner.result
     # show_output(result)
     assert(result.value.valueName == 'Success')
-    #assert(result.warnings.size == 2)
-    #assert(result.info.size == 2)
+    # assert(result.warnings.size == 2)
+    # assert(result.info.size == 2)
   end
 
   def test_SetWindowToWallRatioByFacade_with_model_NoCost
@@ -243,8 +243,8 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
     result = runner.result
     # show_output(result)
     assert(result.value.valueName == 'Success')
-    #assert(result.warnings.size == 2)
-    #assert(result.info.size == 2)
+    # assert(result.warnings.size == 2)
+    # assert(result.info.size == 2)
   end
 
   def test_SetWindowToWallRatioByFacade_ReverseTranslatedModel
@@ -283,8 +283,8 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
     result = runner.result
     # show_output(result)
     assert(result.value.valueName == 'Success')
-    #assert(result.warnings.size == 1)
-    #assert(result.info.empty?)
+    # assert(result.warnings.size == 1)
+    # assert(result.info.empty?)
   end
 
   def test_SetWindowToWallRatioByFacade_EmptySpaceNoLoadsOrSurfaces
@@ -327,7 +327,6 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
   end
 
   def test_triangle
-
     # create an instance of the measure
     measure = SetWindowToWallRatioByFacade.new
 
@@ -368,12 +367,11 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
     assert(result.value.valueName == 'Success')
 
     # save the model
-    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + "/output/triangle.osm")
-    model.save(output_file_path,true)
+    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/triangle.osm')
+    model.save(output_file_path, true)
   end
 
   def test_pentagon
-
     # create an instance of the measure
     measure = SetWindowToWallRatioByFacade.new
 
@@ -411,15 +409,14 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
     measure.run(model, runner, argument_map)
     result = runner.result
     show_output(result)
-    #assert(result.value.valueName == 'Success')
+    # assert(result.value.valueName == 'Success')
 
     # save the model
-    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + "/output/pentagon.osm")
-    model.save(output_file_path,true)
+    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/pentagon.osm')
+    model.save(output_file_path, true)
   end
 
   def test_sloped
-
     # create an instance of the measure
     measure = SetWindowToWallRatioByFacade.new
 
@@ -460,12 +457,11 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
     assert(result.value.valueName == 'Success')
 
     # save the model
-    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + "/output/sloped.osm")
-    model.save(output_file_path,true)
+    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/sloped.osm')
+    model.save(output_file_path, true)
   end
 
   def test_door_split
-
     # create an instance of the measure
     measure = SetWindowToWallRatioByFacade.new
 
@@ -506,12 +502,11 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
     assert(result.value.valueName == 'Success')
 
     # save the model
-    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + "/output/door_split.osm")
-    model.save(output_file_path,true)
+    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/door_split.osm')
+    model.save(output_file_path, true)
   end
 
   def test_door_remove
-
     # create an instance of the measure
     measure = SetWindowToWallRatioByFacade.new
 
@@ -556,12 +551,11 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
     assert(result.value.valueName == 'Success')
 
     # save the model
-    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + "/output/door_remove.osm")
-    model.save(output_file_path,true)
+    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/door_remove.osm')
+    model.save(output_file_path, true)
   end
 
   def test_door_nothing
-
     # create an instance of the measure
     measure = SetWindowToWallRatioByFacade.new
 
@@ -606,8 +600,8 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
     assert(result.value.valueName == 'Success')
 
     # save the model
-    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + "/output/door_nothing.osm")
-    model.save(output_file_path,true)
+    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/door_nothing.osm')
+    model.save(output_file_path, true)
   end
 
   def test_not_in_floor_area
@@ -652,9 +646,8 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
     assert(result.value.valueName == 'Success')
 
     # save the model
-    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + "/output/not_in_floor_area.osm")
-    model.save(output_file_path,true)
-
+    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/not_in_floor_area.osm')
+    model.save(output_file_path, true)
   end
 
   def test_SetWindowToWallRatioByFacade_zero_target
@@ -746,5 +739,4 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
     FileUtils.mkdir output_dir unless Dir.exist? output_dir
     model.save("#{output_dir}/zero_test.osm", true)
   end
-  
 end

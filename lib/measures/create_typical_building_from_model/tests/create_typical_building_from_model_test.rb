@@ -229,7 +229,7 @@ class CreateTypicalBuildingFromModel_Test < Minitest::Test
     args = {}
     args['template'] = 'DEER Pre-1975'
     args['use_upstream_args'] = false
-    apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, 'eun.osm', "Fail", nil)
+    apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, 'eun.osm', 'Fail', nil)
   end
 
   def test_gro
