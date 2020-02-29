@@ -107,7 +107,7 @@ class AddHVACSystemTest < MiniTest::Test
 
     template = '90.1-2013'
     building_type = 'SmallOffice'
-    climate_zone = 'ASHRAE 169-2006-2A'
+    climate_zone = 'ASHRAE 169-2013-2A'
 
     # Add each HVAC system to the test model
     # and run a sizing run to ensure it simulates.
@@ -162,6 +162,7 @@ class AddHVACSystemTest < MiniTest::Test
         args_hash['template'] = template
         args_hash['climate_zone'] = climate_zone
         args_hash['add_elevators'] = false
+        args_hash['add_internal_mass'] = false
         args_hash['add_exhaust'] = false
         args_hash['add_exterior_lights'] = false
         args_hash['add_swh'] = false
