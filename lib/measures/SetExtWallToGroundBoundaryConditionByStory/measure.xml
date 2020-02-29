@@ -1,0 +1,91 @@
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>set_ext_wall_to_ground_boundary_condition_by_story</name>
+  <uid>a6da6f2b-2d07-4d25-b2b4-4b1dd62df237</uid>
+  <version_id>5034062b-3794-4a5e-9059-9952c09014b2</version_id>
+  <version_modified>20180626T202332Z</version_modified>
+  <xml_checksum>0F858D9E</xml_checksum>
+  <class_name>SetExtWallToGroundBoundaryConditionByStory</class_name>
+  <display_name>SetExtWallToGroundBoundaryConditionByStory</display_name>
+  <description>Use this to setup one of your building stories as a basement.</description>
+  <modeler_description>This measure will find all exterior walls for spaces on the selected building story and change their outside boundary condition to ground. Make sure surface matching has been done first, or walls intended to be interior walls will end up with a ground boundary condition.</modeler_description>
+  <arguments>
+    <argument>
+      <name>storyBasement</name>
+      <display_name>Choose a Story to Change Wall Boundary Conditions For.</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+    </argument>
+  </arguments>
+  <outputs/>
+  <provenances/>
+  <tags>
+    <tag>Envelope.Opaque</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Measure Function</name>
+      <value>Measure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Requires EnergyPlus Results</name>
+      <value>false</value>
+      <datatype>boolean</datatype>
+    </attribute>
+    <attribute>
+      <name>Uses SketchUp API</name>
+      <value>false</value>
+      <datatype>boolean</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <filename>3Story2Space.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>B4AB814E</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>8679165C</checksum>
+    </file>
+    <file>
+      <filename>SetExtWallToGroundByStory_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>C2178D83</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>9640B6CB</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>9C2BACF9</checksum>
+    </file>
+  </files>
+</measure>

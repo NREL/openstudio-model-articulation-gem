@@ -1,0 +1,844 @@
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>create_deer_prototype_building</name>
+  <uid>752055bd-10d9-4ede-8a35-18487fedf579</uid>
+  <version_id>5d559ab8-7b14-4e1a-92a1-6050332cee15</version_id>
+  <version_modified>20191030T152022Z</version_modified>
+  <xml_checksum>A514F332</xml_checksum>
+  <class_name>CreateDEERPrototypeBuilding</class_name>
+  <display_name>Create DEER Prototype Building ALPHA Version</display_name>
+  <description>Creates the DEER Prototype Building Models as starting points for other analyses.  This measure is a work-in-progress ALPHA version.  Some of the building types do not simulate correctly, and no attempt has yet been made to ensure that the simulation results match the DOE-2 DEER Prototypes.</description>
+  <modeler_description></modeler_description>
+  <arguments>
+    <argument>
+      <name>building_hvac</name>
+      <display_name>Building Type: HVAC Type</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>Assembly: Split or Packaged DX Unit with Gas Furnace</default_value>
+      <choices>
+        <choice>
+          <value>Assembly: Split or Packaged DX Unit with Electric Heat</value>
+          <display_name>Assembly: Split or Packaged DX Unit with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Assembly: Split or Packaged DX Unit with Gas Furnace</value>
+          <display_name>Assembly: Split or Packaged DX Unit with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Assembly: Split or Packaged DX Unit with Heat Pump</value>
+          <display_name>Assembly: Split or Packaged DX Unit with Heat Pump</display_name>
+        </choice>
+        <choice>
+          <value>Assembly: No Cooling with Electric Heat</value>
+          <display_name>Assembly: No Cooling with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Assembly: No Cooling with Gas Furnace</value>
+          <display_name>Assembly: No Cooling with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Education - Community College: Split or Packaged DX Unit with Electric Heat</value>
+          <display_name>Education - Community College: Split or Packaged DX Unit with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Education - Community College: Split or Packaged DX Unit with Gas Furnace</value>
+          <display_name>Education - Community College: Split or Packaged DX Unit with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Education - Community College: Split or Packaged DX Unit with Heat Pump</value>
+          <display_name>Education - Community College: Split or Packaged DX Unit with Heat Pump</display_name>
+        </choice>
+        <choice>
+          <value>Education - Community College: No Cooling with Electric Heat</value>
+          <display_name>Education - Community College: No Cooling with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Education - Community College: No Cooling with Gas Furnace</value>
+          <display_name>Education - Community College: No Cooling with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Education - Community College: Packaged VAV System with Electric Heat</value>
+          <display_name>Education - Community College: Packaged VAV System with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Education - Community College: Packaged VAV System with Gas Boiler</value>
+          <display_name>Education - Community College: Packaged VAV System with Gas Boiler</display_name>
+        </choice>
+        <choice>
+          <value>Education - Community College: Built-Up VAV System with Electric Reheat</value>
+          <display_name>Education - Community College: Built-Up VAV System with Electric Reheat</display_name>
+        </choice>
+        <choice>
+          <value>Education - Community College: Built-Up VAV System with Gas Boiler</value>
+          <display_name>Education - Community College: Built-Up VAV System with Gas Boiler</display_name>
+        </choice>
+        <choice>
+          <value>Education - Community College: Water Loop Heat Pump</value>
+          <display_name>Education - Community College: Water Loop Heat Pump</display_name>
+        </choice>
+        <choice>
+          <value>Education - Primary School: Split or Packaged DX Unit with Electric Heat</value>
+          <display_name>Education - Primary School: Split or Packaged DX Unit with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Education - Primary School: Split or Packaged DX Unit with Gas Furnace</value>
+          <display_name>Education - Primary School: Split or Packaged DX Unit with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Education - Primary School: Split or Packaged DX Unit with Heat Pump</value>
+          <display_name>Education - Primary School: Split or Packaged DX Unit with Heat Pump</display_name>
+        </choice>
+        <choice>
+          <value>Education - Primary School: No Cooling with Electric Heat</value>
+          <display_name>Education - Primary School: No Cooling with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Education - Primary School: No Cooling with Gas Furnace</value>
+          <display_name>Education - Primary School: No Cooling with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Education - Primary School: Water Loop Heat Pump</value>
+          <display_name>Education - Primary School: Water Loop Heat Pump</display_name>
+        </choice>
+        <choice>
+          <value>Education - Relocatable Classroom: Split or Packaged DX Unit with Electric Heat</value>
+          <display_name>Education - Relocatable Classroom: Split or Packaged DX Unit with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Education - Relocatable Classroom: Split or Packaged DX Unit with Gas Furnace</value>
+          <display_name>Education - Relocatable Classroom: Split or Packaged DX Unit with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Education - Relocatable Classroom: Split or Packaged DX Unit with Heat Pump</value>
+          <display_name>Education - Relocatable Classroom: Split or Packaged DX Unit with Heat Pump</display_name>
+        </choice>
+        <choice>
+          <value>Education - Relocatable Classroom: No Cooling with Electric Heat</value>
+          <display_name>Education - Relocatable Classroom: No Cooling with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Education - Relocatable Classroom: No Cooling with Gas Furnace</value>
+          <display_name>Education - Relocatable Classroom: No Cooling with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Education - Secondary School: Split or Packaged DX Unit with Electric Heat</value>
+          <display_name>Education - Secondary School: Split or Packaged DX Unit with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Education - Secondary School: Split or Packaged DX Unit with Gas Furnace</value>
+          <display_name>Education - Secondary School: Split or Packaged DX Unit with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Education - Secondary School: Split or Packaged DX Unit with Heat Pump</value>
+          <display_name>Education - Secondary School: Split or Packaged DX Unit with Heat Pump</display_name>
+        </choice>
+        <choice>
+          <value>Education - Secondary School: No Cooling with Electric Heat</value>
+          <display_name>Education - Secondary School: No Cooling with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Education - Secondary School: No Cooling with Gas Furnace</value>
+          <display_name>Education - Secondary School: No Cooling with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Education - Secondary School: Packaged VAV System with Electric Heat</value>
+          <display_name>Education - Secondary School: Packaged VAV System with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Education - Secondary School: Packaged VAV System with Gas Boiler</value>
+          <display_name>Education - Secondary School: Packaged VAV System with Gas Boiler</display_name>
+        </choice>
+        <choice>
+          <value>Education - Secondary School: Built-Up VAV System with Electric Reheat</value>
+          <display_name>Education - Secondary School: Built-Up VAV System with Electric Reheat</display_name>
+        </choice>
+        <choice>
+          <value>Education - Secondary School: Built-Up VAV System with Gas Boiler</value>
+          <display_name>Education - Secondary School: Built-Up VAV System with Gas Boiler</display_name>
+        </choice>
+        <choice>
+          <value>Education - Secondary School: Water Loop Heat Pump</value>
+          <display_name>Education - Secondary School: Water Loop Heat Pump</display_name>
+        </choice>
+        <choice>
+          <value>Education - University: Split or Packaged DX Unit with Electric Heat</value>
+          <display_name>Education - University: Split or Packaged DX Unit with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Education - University: Split or Packaged DX Unit with Gas Furnace</value>
+          <display_name>Education - University: Split or Packaged DX Unit with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Education - University: Split or Packaged DX Unit with Heat Pump</value>
+          <display_name>Education - University: Split or Packaged DX Unit with Heat Pump</display_name>
+        </choice>
+        <choice>
+          <value>Education - University: No Cooling with Electric Heat</value>
+          <display_name>Education - University: No Cooling with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Education - University: No Cooling with Gas Furnace</value>
+          <display_name>Education - University: No Cooling with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Education - University: Packaged VAV System with Electric Heat</value>
+          <display_name>Education - University: Packaged VAV System with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Education - University: Packaged VAV System with Gas Boiler</value>
+          <display_name>Education - University: Packaged VAV System with Gas Boiler</display_name>
+        </choice>
+        <choice>
+          <value>Education - University: Built-Up VAV System with Electric Reheat</value>
+          <display_name>Education - University: Built-Up VAV System with Electric Reheat</display_name>
+        </choice>
+        <choice>
+          <value>Education - University: Built-Up VAV System with Gas Boiler</value>
+          <display_name>Education - University: Built-Up VAV System with Gas Boiler</display_name>
+        </choice>
+        <choice>
+          <value>Grocery: Split or Packaged DX Unit with Electric Heat</value>
+          <display_name>Grocery: Split or Packaged DX Unit with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Grocery: Split or Packaged DX Unit with Gas Furnace</value>
+          <display_name>Grocery: Split or Packaged DX Unit with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Grocery: Split or Packaged DX Unit with Heat Pump</value>
+          <display_name>Grocery: Split or Packaged DX Unit with Heat Pump</display_name>
+        </choice>
+        <choice>
+          <value>Grocery: No Cooling with Electric Heat</value>
+          <display_name>Grocery: No Cooling with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Grocery: No Cooling with Gas Furnace</value>
+          <display_name>Grocery: No Cooling with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Health/Medical - Hospital: Split or Packaged DX Unit with Electric Heat</value>
+          <display_name>Health/Medical - Hospital: Split or Packaged DX Unit with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Health/Medical - Hospital: Split or Packaged DX Unit with Gas Furnace</value>
+          <display_name>Health/Medical - Hospital: Split or Packaged DX Unit with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Health/Medical - Hospital: Split or Packaged DX Unit with Heat Pump</value>
+          <display_name>Health/Medical - Hospital: Split or Packaged DX Unit with Heat Pump</display_name>
+        </choice>
+        <choice>
+          <value>Health/Medical - Hospital: No Cooling with Electric Heat</value>
+          <display_name>Health/Medical - Hospital: No Cooling with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Health/Medical - Hospital: No Cooling with Gas Furnace</value>
+          <display_name>Health/Medical - Hospital: No Cooling with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Health/Medical - Hospital: Packaged VAV System with Electric Heat</value>
+          <display_name>Health/Medical - Hospital: Packaged VAV System with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Health/Medical - Hospital: Packaged VAV System with Gas Boiler</value>
+          <display_name>Health/Medical - Hospital: Packaged VAV System with Gas Boiler</display_name>
+        </choice>
+        <choice>
+          <value>Health/Medical - Hospital: Built-Up VAV System with Electric Reheat</value>
+          <display_name>Health/Medical - Hospital: Built-Up VAV System with Electric Reheat</display_name>
+        </choice>
+        <choice>
+          <value>Health/Medical - Hospital: Built-Up VAV System with Gas Boiler</value>
+          <display_name>Health/Medical - Hospital: Built-Up VAV System with Gas Boiler</display_name>
+        </choice>
+        <choice>
+          <value>Health/Medical - Nursing Home: Split or Packaged DX Unit with Electric Heat</value>
+          <display_name>Health/Medical - Nursing Home: Split or Packaged DX Unit with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Health/Medical - Nursing Home: Split or Packaged DX Unit with Gas Furnace</value>
+          <display_name>Health/Medical - Nursing Home: Split or Packaged DX Unit with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Health/Medical - Nursing Home: Split or Packaged DX Unit with Heat Pump</value>
+          <display_name>Health/Medical - Nursing Home: Split or Packaged DX Unit with Heat Pump</display_name>
+        </choice>
+        <choice>
+          <value>Health/Medical - Nursing Home: Four Pipe Fan Coil</value>
+          <display_name>Health/Medical - Nursing Home: Four Pipe Fan Coil</display_name>
+        </choice>
+        <choice>
+          <value>Health/Medical - Nursing Home: No Cooling with Electric Heat</value>
+          <display_name>Health/Medical - Nursing Home: No Cooling with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Health/Medical - Nursing Home: No Cooling with Gas Furnace</value>
+          <display_name>Health/Medical - Nursing Home: No Cooling with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Health/Medical - Nursing Home: Packaged VAV System with Electric Heat</value>
+          <display_name>Health/Medical - Nursing Home: Packaged VAV System with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Health/Medical - Nursing Home: Packaged VAV System with Gas Boiler</value>
+          <display_name>Health/Medical - Nursing Home: Packaged VAV System with Gas Boiler</display_name>
+        </choice>
+        <choice>
+          <value>Health/Medical - Nursing Home: Built-Up VAV System with Electric Reheat</value>
+          <display_name>Health/Medical - Nursing Home: Built-Up VAV System with Electric Reheat</display_name>
+        </choice>
+        <choice>
+          <value>Health/Medical - Nursing Home: Built-Up VAV System with Gas Boiler</value>
+          <display_name>Health/Medical - Nursing Home: Built-Up VAV System with Gas Boiler</display_name>
+        </choice>
+        <choice>
+          <value>Lodging - Hotel: Split or Packaged DX Unit with Electric Heat</value>
+          <display_name>Lodging - Hotel: Split or Packaged DX Unit with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Lodging - Hotel: Split or Packaged DX Unit with Gas Furnace</value>
+          <display_name>Lodging - Hotel: Split or Packaged DX Unit with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Lodging - Hotel: Split or Packaged DX Unit with Heat Pump</value>
+          <display_name>Lodging - Hotel: Split or Packaged DX Unit with Heat Pump</display_name>
+        </choice>
+        <choice>
+          <value>Lodging - Hotel: No Cooling with Electric Heat</value>
+          <display_name>Lodging - Hotel: No Cooling with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Lodging - Hotel: No Cooling with Gas Furnace</value>
+          <display_name>Lodging - Hotel: No Cooling with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Lodging - Hotel: Packaged VAV System with Electric Heat</value>
+          <display_name>Lodging - Hotel: Packaged VAV System with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Lodging - Hotel: Packaged VAV System with Gas Boiler</value>
+          <display_name>Lodging - Hotel: Packaged VAV System with Gas Boiler</display_name>
+        </choice>
+        <choice>
+          <value>Lodging - Hotel: Built-Up VAV System with Electric Reheat</value>
+          <display_name>Lodging - Hotel: Built-Up VAV System with Electric Reheat</display_name>
+        </choice>
+        <choice>
+          <value>Lodging - Hotel: Built-Up VAV System with Gas Boiler</value>
+          <display_name>Lodging - Hotel: Built-Up VAV System with Gas Boiler</display_name>
+        </choice>
+        <choice>
+          <value>Lodging - Hotel: Water Loop Heat Pump</value>
+          <display_name>Lodging - Hotel: Water Loop Heat Pump</display_name>
+        </choice>
+        <choice>
+          <value>Lodging - Motel: Split or Packaged DX Unit with Electric Heat</value>
+          <display_name>Lodging - Motel: Split or Packaged DX Unit with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Lodging - Motel: Split or Packaged DX Unit with Gas Furnace</value>
+          <display_name>Lodging - Motel: Split or Packaged DX Unit with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Lodging - Motel: Split or Packaged DX Unit with Heat Pump</value>
+          <display_name>Lodging - Motel: Split or Packaged DX Unit with Heat Pump</display_name>
+        </choice>
+        <choice>
+          <value>Lodging - Motel: No Cooling with Electric Heat</value>
+          <display_name>Lodging - Motel: No Cooling with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Lodging - Motel: No Cooling with Gas Furnace</value>
+          <display_name>Lodging - Motel: No Cooling with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Manufacturing Biotech: Split or Packaged DX Unit with Electric Heat</value>
+          <display_name>Manufacturing Biotech: Split or Packaged DX Unit with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Manufacturing Biotech: Split or Packaged DX Unit with Gas Furnace</value>
+          <display_name>Manufacturing Biotech: Split or Packaged DX Unit with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Manufacturing Biotech: Split or Packaged DX Unit with Heat Pump</value>
+          <display_name>Manufacturing Biotech: Split or Packaged DX Unit with Heat Pump</display_name>
+        </choice>
+        <choice>
+          <value>Manufacturing Biotech: No Cooling with Electric Heat</value>
+          <display_name>Manufacturing Biotech: No Cooling with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Manufacturing Biotech: No Cooling with Gas Furnace</value>
+          <display_name>Manufacturing Biotech: No Cooling with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Manufacturing Biotech: Packaged VAV System with Electric Heat</value>
+          <display_name>Manufacturing Biotech: Packaged VAV System with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Manufacturing Biotech: Packaged VAV System with Gas Boiler</value>
+          <display_name>Manufacturing Biotech: Packaged VAV System with Gas Boiler</display_name>
+        </choice>
+        <choice>
+          <value>Manufacturing Biotech: Built-Up VAV System with Electric Reheat</value>
+          <display_name>Manufacturing Biotech: Built-Up VAV System with Electric Reheat</display_name>
+        </choice>
+        <choice>
+          <value>Manufacturing Biotech: Built-Up VAV System with Gas Boiler</value>
+          <display_name>Manufacturing Biotech: Built-Up VAV System with Gas Boiler</display_name>
+        </choice>
+        <choice>
+          <value>Manufacturing Biotech: Water Loop Heat Pump</value>
+          <display_name>Manufacturing Biotech: Water Loop Heat Pump</display_name>
+        </choice>
+        <choice>
+          <value>Residential Multi-family: Split or Packaged DX Unit with Gas Furnace</value>
+          <display_name>Residential Multi-family: Split or Packaged DX Unit with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Residential Multi-family: Split or Packaged DX Unit with Heat Pump</value>
+          <display_name>Residential Multi-family: Split or Packaged DX Unit with Heat Pump</display_name>
+        </choice>
+        <choice>
+          <value>Residential Multi-family: No Cooling with Electric Heat</value>
+          <display_name>Residential Multi-family: No Cooling with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Residential Multi-family: No Cooling with Gas Furnace</value>
+          <display_name>Residential Multi-family: No Cooling with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Manufacturing Light Industrial: Split or Packaged DX Unit with Electric Heat</value>
+          <display_name>Manufacturing Light Industrial: Split or Packaged DX Unit with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Manufacturing Light Industrial: Split or Packaged DX Unit with Gas Furnace</value>
+          <display_name>Manufacturing Light Industrial: Split or Packaged DX Unit with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Manufacturing Light Industrial: Split or Packaged DX Unit with Heat Pump</value>
+          <display_name>Manufacturing Light Industrial: Split or Packaged DX Unit with Heat Pump</display_name>
+        </choice>
+        <choice>
+          <value>Manufacturing Light Industrial: No Cooling with Electric Heat</value>
+          <display_name>Manufacturing Light Industrial: No Cooling with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Manufacturing Light Industrial: No Cooling with Gas Furnace</value>
+          <display_name>Manufacturing Light Industrial: No Cooling with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Office - Large: Split or Packaged DX Unit with Electric Heat</value>
+          <display_name>Office - Large: Split or Packaged DX Unit with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Office - Large: Split or Packaged DX Unit with Gas Furnace</value>
+          <display_name>Office - Large: Split or Packaged DX Unit with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Office - Large: Split or Packaged DX Unit with Heat Pump</value>
+          <display_name>Office - Large: Split or Packaged DX Unit with Heat Pump</display_name>
+        </choice>
+        <choice>
+          <value>Office - Large: No Cooling with Electric Heat</value>
+          <display_name>Office - Large: No Cooling with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Office - Large: No Cooling with Gas Furnace</value>
+          <display_name>Office - Large: No Cooling with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Office - Large: Packaged VAV System with Electric Heat</value>
+          <display_name>Office - Large: Packaged VAV System with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Office - Large: Packaged VAV System with Gas Boiler</value>
+          <display_name>Office - Large: Packaged VAV System with Gas Boiler</display_name>
+        </choice>
+        <choice>
+          <value>Office - Large: Built-Up VAV System with Electric Reheat</value>
+          <display_name>Office - Large: Built-Up VAV System with Electric Reheat</display_name>
+        </choice>
+        <choice>
+          <value>Office - Large: Built-Up VAV System with Gas Boiler</value>
+          <display_name>Office - Large: Built-Up VAV System with Gas Boiler</display_name>
+        </choice>
+        <choice>
+          <value>Office - Large: Water Loop Heat Pump</value>
+          <display_name>Office - Large: Water Loop Heat Pump</display_name>
+        </choice>
+        <choice>
+          <value>Office - Small: Split or Packaged DX Unit with Electric Heat</value>
+          <display_name>Office - Small: Split or Packaged DX Unit with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Office - Small: Split or Packaged DX Unit with Gas Furnace</value>
+          <display_name>Office - Small: Split or Packaged DX Unit with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Office - Small: Split or Packaged DX Unit with Heat Pump</value>
+          <display_name>Office - Small: Split or Packaged DX Unit with Heat Pump</display_name>
+        </choice>
+        <choice>
+          <value>Office - Small: No Cooling with Electric Heat</value>
+          <display_name>Office - Small: No Cooling with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Office - Small: No Cooling with Gas Furnace</value>
+          <display_name>Office - Small: No Cooling with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Office - Small: Packaged VAV System with Electric Heat</value>
+          <display_name>Office - Small: Packaged VAV System with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Office - Small: Packaged VAV System with Gas Boiler</value>
+          <display_name>Office - Small: Packaged VAV System with Gas Boiler</display_name>
+        </choice>
+        <choice>
+          <value>Office - Small: Built-Up VAV System with Electric Reheat</value>
+          <display_name>Office - Small: Built-Up VAV System with Electric Reheat</display_name>
+        </choice>
+        <choice>
+          <value>Office - Small: Built-Up VAV System with Gas Boiler</value>
+          <display_name>Office - Small: Built-Up VAV System with Gas Boiler</display_name>
+        </choice>
+        <choice>
+          <value>Office - Small: Water Loop Heat Pump</value>
+          <display_name>Office - Small: Water Loop Heat Pump</display_name>
+        </choice>
+        <choice>
+          <value>Restaurant - Fast-Food: Split or Packaged DX Unit with Electric Heat</value>
+          <display_name>Restaurant - Fast-Food: Split or Packaged DX Unit with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Restaurant - Fast-Food: Split or Packaged DX Unit with Gas Furnace</value>
+          <display_name>Restaurant - Fast-Food: Split or Packaged DX Unit with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Restaurant - Fast-Food: Split or Packaged DX Unit with Heat Pump</value>
+          <display_name>Restaurant - Fast-Food: Split or Packaged DX Unit with Heat Pump</display_name>
+        </choice>
+        <choice>
+          <value>Restaurant - Fast-Food: No Cooling with Electric Heat</value>
+          <display_name>Restaurant - Fast-Food: No Cooling with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Restaurant - Fast-Food: No Cooling with Gas Furnace</value>
+          <display_name>Restaurant - Fast-Food: No Cooling with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Restaurant - Sit-Down: Split or Packaged DX Unit with Electric Heat</value>
+          <display_name>Restaurant - Sit-Down: Split or Packaged DX Unit with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Restaurant - Sit-Down: Split or Packaged DX Unit with Gas Furnace</value>
+          <display_name>Restaurant - Sit-Down: Split or Packaged DX Unit with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Restaurant - Sit-Down: Split or Packaged DX Unit with Heat Pump</value>
+          <display_name>Restaurant - Sit-Down: Split or Packaged DX Unit with Heat Pump</display_name>
+        </choice>
+        <choice>
+          <value>Restaurant - Sit-Down: No Cooling with Electric Heat</value>
+          <display_name>Restaurant - Sit-Down: No Cooling with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Restaurant - Sit-Down: No Cooling with Gas Furnace</value>
+          <display_name>Restaurant - Sit-Down: No Cooling with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Retail - Multistory Large: Split or Packaged DX Unit with Electric Heat</value>
+          <display_name>Retail - Multistory Large: Split or Packaged DX Unit with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Retail - Multistory Large: Split or Packaged DX Unit with Gas Furnace</value>
+          <display_name>Retail - Multistory Large: Split or Packaged DX Unit with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Retail - Multistory Large: Split or Packaged DX Unit with Heat Pump</value>
+          <display_name>Retail - Multistory Large: Split or Packaged DX Unit with Heat Pump</display_name>
+        </choice>
+        <choice>
+          <value>Retail - Multistory Large: No Cooling with Electric Heat</value>
+          <display_name>Retail - Multistory Large: No Cooling with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Retail - Multistory Large: No Cooling with Gas Furnace</value>
+          <display_name>Retail - Multistory Large: No Cooling with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Retail - Multistory Large: Packaged VAV System with Electric Heat</value>
+          <display_name>Retail - Multistory Large: Packaged VAV System with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Retail - Multistory Large: Packaged VAV System with Gas Boiler</value>
+          <display_name>Retail - Multistory Large: Packaged VAV System with Gas Boiler</display_name>
+        </choice>
+        <choice>
+          <value>Retail - Multistory Large: Built-Up VAV System with Electric Reheat</value>
+          <display_name>Retail - Multistory Large: Built-Up VAV System with Electric Reheat</display_name>
+        </choice>
+        <choice>
+          <value>Retail - Multistory Large: Built-Up VAV System with Gas Boiler</value>
+          <display_name>Retail - Multistory Large: Built-Up VAV System with Gas Boiler</display_name>
+        </choice>
+        <choice>
+          <value>Retail - Multistory Large: Water Loop Heat Pump</value>
+          <display_name>Retail - Multistory Large: Water Loop Heat Pump</display_name>
+        </choice>
+        <choice>
+          <value>Retail - Single-Story Large: Split or Packaged DX Unit with Electric Heat</value>
+          <display_name>Retail - Single-Story Large: Split or Packaged DX Unit with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Retail - Single-Story Large: Split or Packaged DX Unit with Gas Furnace</value>
+          <display_name>Retail - Single-Story Large: Split or Packaged DX Unit with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Retail - Single-Story Large: Split or Packaged DX Unit with Heat Pump</value>
+          <display_name>Retail - Single-Story Large: Split or Packaged DX Unit with Heat Pump</display_name>
+        </choice>
+        <choice>
+          <value>Retail - Single-Story Large: No Cooling with Electric Heat</value>
+          <display_name>Retail - Single-Story Large: No Cooling with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Retail - Single-Story Large: No Cooling with Gas Furnace</value>
+          <display_name>Retail - Single-Story Large: No Cooling with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Retail - Small: Split or Packaged DX Unit with Electric Heat</value>
+          <display_name>Retail - Small: Split or Packaged DX Unit with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Retail - Small: Split or Packaged DX Unit with Gas Furnace</value>
+          <display_name>Retail - Small: Split or Packaged DX Unit with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Retail - Small: Split or Packaged DX Unit with Heat Pump</value>
+          <display_name>Retail - Small: Split or Packaged DX Unit with Heat Pump</display_name>
+        </choice>
+        <choice>
+          <value>Retail - Small: No Cooling with Electric Heat</value>
+          <display_name>Retail - Small: No Cooling with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Retail - Small: No Cooling with Gas Furnace</value>
+          <display_name>Retail - Small: No Cooling with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Storage - Conditioned: Split or Packaged DX Unit with Electric Heat</value>
+          <display_name>Storage - Conditioned: Split or Packaged DX Unit with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Storage - Conditioned: Split or Packaged DX Unit with Gas Furnace</value>
+          <display_name>Storage - Conditioned: Split or Packaged DX Unit with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Storage - Conditioned: Split or Packaged DX Unit with Heat Pump</value>
+          <display_name>Storage - Conditioned: Split or Packaged DX Unit with Heat Pump</display_name>
+        </choice>
+        <choice>
+          <value>Storage - Conditioned: No Cooling with Electric Heat</value>
+          <display_name>Storage - Conditioned: No Cooling with Electric Heat</display_name>
+        </choice>
+        <choice>
+          <value>Storage - Conditioned: No Cooling with Gas Furnace</value>
+          <display_name>Storage - Conditioned: No Cooling with Gas Furnace</display_name>
+        </choice>
+        <choice>
+          <value>Storage - Unconditioned: No HVAC (Unconditioned)</value>
+          <display_name>Storage - Unconditioned: No HVAC (Unconditioned)</display_name>
+        </choice>
+        <choice>
+          <value>Warehouse - Refrigerated: Split or Packaged DX Unit with Gas Furnace</value>
+          <display_name>Warehouse - Refrigerated: Split or Packaged DX Unit with Gas Furnace</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>template</name>
+      <display_name>Template</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>DEER 1985</default_value>
+      <choices>
+        <choice>
+          <value>DEER Pre-1975</value>
+          <display_name>DEER Pre-1975</display_name>
+        </choice>
+        <choice>
+          <value>DEER 1985</value>
+          <display_name>DEER 1985</display_name>
+        </choice>
+        <choice>
+          <value>DEER 1996</value>
+          <display_name>DEER 1996</display_name>
+        </choice>
+        <choice>
+          <value>DEER 2003</value>
+          <display_name>DEER 2003</display_name>
+        </choice>
+        <choice>
+          <value>DEER 2007</value>
+          <display_name>DEER 2007</display_name>
+        </choice>
+        <choice>
+          <value>DEER 2011</value>
+          <display_name>DEER 2011</display_name>
+        </choice>
+        <choice>
+          <value>DEER 2014</value>
+          <display_name>DEER 2014</display_name>
+        </choice>
+        <choice>
+          <value>DEER 2015</value>
+          <display_name>DEER 2015</display_name>
+        </choice>
+        <choice>
+          <value>DEER 2017</value>
+          <display_name>DEER 2017</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>climate_zone</name>
+      <display_name>Climate Zone</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>CEC T24-CEC1</default_value>
+      <choices>
+        <choice>
+          <value>CEC T24-CEC1</value>
+          <display_name>CEC T24-CEC1</display_name>
+        </choice>
+        <choice>
+          <value>CEC T24-CEC2</value>
+          <display_name>CEC T24-CEC2</display_name>
+        </choice>
+        <choice>
+          <value>CEC T24-CEC3</value>
+          <display_name>CEC T24-CEC3</display_name>
+        </choice>
+        <choice>
+          <value>CEC T24-CEC4</value>
+          <display_name>CEC T24-CEC4</display_name>
+        </choice>
+        <choice>
+          <value>CEC T24-CEC5</value>
+          <display_name>CEC T24-CEC5</display_name>
+        </choice>
+        <choice>
+          <value>CEC T24-CEC6</value>
+          <display_name>CEC T24-CEC6</display_name>
+        </choice>
+        <choice>
+          <value>CEC T24-CEC7</value>
+          <display_name>CEC T24-CEC7</display_name>
+        </choice>
+        <choice>
+          <value>CEC T24-CEC8</value>
+          <display_name>CEC T24-CEC8</display_name>
+        </choice>
+        <choice>
+          <value>CEC T24-CEC9</value>
+          <display_name>CEC T24-CEC9</display_name>
+        </choice>
+        <choice>
+          <value>CEC T24-CEC10</value>
+          <display_name>CEC T24-CEC10</display_name>
+        </choice>
+        <choice>
+          <value>CEC T24-CEC11</value>
+          <display_name>CEC T24-CEC11</display_name>
+        </choice>
+        <choice>
+          <value>CEC T24-CEC12</value>
+          <display_name>CEC T24-CEC12</display_name>
+        </choice>
+        <choice>
+          <value>CEC T24-CEC13</value>
+          <display_name>CEC T24-CEC13</display_name>
+        </choice>
+        <choice>
+          <value>CEC T24-CEC14</value>
+          <display_name>CEC T24-CEC14</display_name>
+        </choice>
+        <choice>
+          <value>CEC T24-CEC15</value>
+          <display_name>CEC T24-CEC15</display_name>
+        </choice>
+        <choice>
+          <value>CEC T24-CEC16</value>
+          <display_name>CEC T24-CEC16</display_name>
+        </choice>
+      </choices>
+    </argument>
+  </arguments>
+  <outputs/>
+  <provenances/>
+  <tags>
+    <tag>Whole Building.Space Types</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Uses SketchUp API</name>
+      <value>false</value>
+      <datatype>boolean</datatype>
+    </attribute>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <filename>create_DEER_prototype_building_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>60DDBC66</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>9640B6CB</checksum>
+    </file>
+    <file>
+      <filename>deer_building_types.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>A69C9A27</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.5.1</identifier>
+        <min_compatible>2.5.1</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>F4F5A5F6</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>A5517AE1</checksum>
+    </file>
+  </files>
+</measure>
