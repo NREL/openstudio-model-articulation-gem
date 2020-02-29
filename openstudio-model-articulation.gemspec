@@ -28,6 +28,6 @@ Gem::Specification.new do |spec|
 
   # do not require openstudio-extension since openstudio-common-measures inherits from it.
   # spec.add_dependency 'openstudio-extension', '~> 0.1.3'
-  spec.add_dependency 'openstudio-common-measures', '~> 0.1.0'
+  spec.add_dependency 'openstudio-common-measures', '~> 0.1.1'
   spec.add_dependency 'openstudio-standards', '~> 0.2.10'
 end
