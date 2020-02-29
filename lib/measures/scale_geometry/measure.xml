@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>scale_geometry</name>
   <uid>f9cc2ffc-2838-4a18-8330-97e7cc94cdf8</uid>
-  <version_id>511e0193-b31e-4028-8c76-8fd569865e8c</version_id>
-  <version_modified>20200210T152130Z</version_modified>
+  <version_id>cd9cd047-bfbc-499a-8ac2-10e6a482b5da</version_id>
+  <version_modified>20200229T024054Z</version_modified>
   <xml_checksum>7AD75066</xml_checksum>
   <class_name>ScaleGeometry</class_name>
   <display_name>scale_geometry</display_name>
@@ -83,23 +83,6 @@
       <checksum>C4F35230</checksum>
     </file>
     <file>
-      <filename>scale_geometry_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>FB577782</checksum>
-    </file>
-    <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>856D4B8F</checksum>
-    </file>
-    <file>
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
@@ -112,10 +95,27 @@
       <checksum>703C9964</checksum>
     </file>
     <file>
+      <filename>scale_geometry_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>E935F6C8</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>57103EB1</checksum>
+    </file>
+    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>D41C05CF</checksum>
+      <checksum>E0468DD6</checksum>
     </file>
   </files>
 </measure>

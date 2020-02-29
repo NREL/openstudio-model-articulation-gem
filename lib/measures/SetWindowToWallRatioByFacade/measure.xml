@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>set_window_to_wall_ratio_by_facade</name>
   <uid>c567a0bf-a7d9-4a06-afe9-bf7df79e6bf8</uid>
-  <version_id>c76c08af-9be4-45a2-8cb8-5afe0b6a453b</version_id>
-  <version_modified>20191024T204541Z</version_modified>
+  <version_id>414d2d0c-3a99-4e9d-9284-aebc24fc6f81</version_id>
+  <version_modified>20200229T024052Z</version_modified>
   <xml_checksum>6DE831F7</xml_checksum>
   <class_name>SetWindowToWallRatioByFacade</class_name>
   <display_name>Set Window to Wall Ratio by Facade</display_name>
@@ -179,12 +179,6 @@ The measure doesn?t have any cost or lifecycle arguments, however If lifecycle o
       <checksum>0B94403D</checksum>
     </file>
     <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>9640B6CB</checksum>
-    </file>
-    <file>
       <filename>EnvelopeAndLoadTestModel_01.osm</filename>
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
@@ -203,10 +197,22 @@ The measure doesn?t have any cost or lifecycle arguments, however If lifecycle o
       <checksum>232D0477</checksum>
     </file>
     <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>C85B9D94</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
+    </file>
+    <file>
       <filename>SetWindowToWallRatioByFacade_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>2DD494EF</checksum>
+      <checksum>11565A2D</checksum>
     </file>
     <file>
       <version>
@@ -217,13 +223,7 @@ The measure doesn?t have any cost or lifecycle arguments, however If lifecycle o
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>92AF3F83</checksum>
-    </file>
-    <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>C85B9D94</checksum>
+      <checksum>7703E5B6</checksum>
     </file>
   </files>
 </measure>

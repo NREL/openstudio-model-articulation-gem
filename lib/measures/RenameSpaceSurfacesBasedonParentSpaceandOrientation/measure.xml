@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>rename_space_surfaces_basedon_parent_spaceand_orientation</name>
   <uid>fee62510-c076-423a-b172-0810ecedba10</uid>
-  <version_id>3ebb09d6-20b9-41f2-bc10-924bb1fde812</version_id>
-  <version_modified>20180626T202330Z</version_modified>
+  <version_id>ebcace9b-81c0-4baf-997a-61489efa781d</version_id>
+  <version_modified>20200229T024044Z</version_modified>
   <xml_checksum>0F858D9E</xml_checksum>
   <class_name>RenameSpaceSurfacesBasedonParentSpaceandOrientation</class_name>
   <display_name>RenameSpaceSurfacesBasedonParentSpaceandOrientation</display_name>
@@ -45,29 +45,6 @@
       <checksum>870B4270</checksum>
     </file>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>C71D9A0B</checksum>
-    </file>
-    <file>
-      <filename>RenameSpaceSurfacesBasedonParentSpaceandOrientation_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>904CE8A5</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>9640B6CB</checksum>
-    </file>
-    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
@@ -78,6 +55,29 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>C70B379F</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>60D817D1</checksum>
+    </file>
+    <file>
+      <filename>RenameSpaceSurfacesBasedonParentSpaceandOrientation_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>C0576CB8</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
     </file>
   </files>
 </measure>

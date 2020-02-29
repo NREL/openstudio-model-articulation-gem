@@ -1,5 +1,5 @@
 # *******************************************************************************
-# OpenStudio(R), Copyright (c) 2008-2019, Alliance for Sustainable Energy, LLC.
+# OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -326,11 +326,11 @@ class CreateBarFromBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     choices = OpenStudio::StringVector.new
     choices << 'None'
     choices << 'Primary Space Type'
-    #choices << 'All Space Types' # possible future option
+    # choices << 'All Space Types' # possible future option
     double_loaded_corridor = OpenStudio::Measure::OSArgument.makeChoiceArgument('double_loaded_corridor', choices, true)
     double_loaded_corridor.setDisplayName('Double Loaded Corridor')
     double_loaded_corridor.setDescription('Add double loaded corridor for building types that have a defined circulation space type, to the selected space types.')
-    double_loaded_corridor.setDefaultValue("Primary Space Type")
+    double_loaded_corridor.setDefaultValue('Primary Space Type')
     args << double_loaded_corridor
 
     # Make argument for space_type_sort_logic
@@ -350,10 +350,10 @@ class CreateBarFromBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     use_upstream_args.setDefaultValue(true)
     args << use_upstream_args
 
-    # todo - expose perimeter depth as an argument
+    # TODO: - expose perimeter depth as an argument
 
     # Argument used to make ComStock tsv workflow run correctly
-    climate_zone = OpenStudio::Measure::OSArgument.makeChoiceArgument('climate_zone', get_climate_zones(false,'Lookup From Stat File'), true)
+    climate_zone = OpenStudio::Measure::OSArgument.makeChoiceArgument('climate_zone', get_climate_zones(false, 'Lookup From Stat File'), true)
     climate_zone.setDisplayName('Climate Zone')
     climate_zone.setDefaultValue('Lookup From Stat File')
     climate_zone.setDescription('Climate Zone argument is not used by this measure')
@@ -375,7 +375,6 @@ class CreateBarFromBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
       return true
     end
   end
-
 end
 
 # register the measure to be used by the application

@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>surface_matching</name>
   <uid>e9c69c36-bf33-4ac4-b695-41dee26ee880</uid>
-  <version_id>9f694565-a2c8-4702-8cf2-8c64c488e7f3</version_id>
-  <version_modified>20180626T202333Z</version_modified>
+  <version_id>8bf090a7-cdaf-457d-961a-997181926b5c</version_id>
+  <version_modified>20200229T024053Z</version_modified>
   <xml_checksum>45097B60</xml_checksum>
   <class_name>SurfaceMatching</class_name>
   <display_name>SurfaceMatching</display_name>
@@ -54,29 +54,6 @@
       <checksum>9102B03C</checksum>
     </file>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>838E875C</checksum>
-    </file>
-    <file>
-      <filename>SurfaceMatching_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>70873E4F</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>9640B6CB</checksum>
-    </file>
-    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
@@ -87,6 +64,29 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>FBF56DB2</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>25FFA145</checksum>
+    </file>
+    <file>
+      <filename>SurfaceMatching_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>08C70C49</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
     </file>
   </files>
 </measure>
