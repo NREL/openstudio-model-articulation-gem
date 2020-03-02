@@ -1,5 +1,5 @@
 # *******************************************************************************
-# OpenStudio(R), Copyright (c) 2008-2018, Alliance for Sustainable Energy, LLC.
+# OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -285,13 +285,13 @@ class RadianceMeasure < OpenStudio::Measure::ModelMeasure
 
   def run(model, runner, user_arguments)
     super(model, runner, user_arguments)
-    
+
     # record current directory
     current_dir = Dir.pwd
-    
+
     runner.registerInfo("Begin Encoding.default_external = #{Encoding.default_external}")
     runner.registerInfo("Begin Encoding.default_internal = #{Encoding.default_internal}")
-    
+
     OpenStudio::Logger.instance.standardOutLogger.enable
 
     # Enable debug-level log messages
@@ -1185,7 +1185,7 @@ class RadianceMeasure < OpenStudio::Measure::ModelMeasure
             sleep(5)
           end
           exec_statement("rmtxop -fa output/final_merge.tmp + #{merge} -t > #{temp_fname}", runner)
-          FileUtils.mv temp_fname, 'output/final_merge.tmp', :force => true
+          FileUtils.mv temp_fname, 'output/final_merge.tmp', force: true
         end
         # strip header
         while merge_count > 1
@@ -2522,10 +2522,10 @@ class RadianceMeasure < OpenStudio::Measure::ModelMeasure
 
     # report final condition of model
     runner.registerFinalCondition("Measure ran Radiance on the #{daylightAnalysisSpaces.size} spaces containing daylighting objects.")
-    
+
     runner.registerInfo("End Encoding.default_external = #{Encoding.default_external}")
     runner.registerInfo("End Encoding.default_internal = #{Encoding.default_internal}")
-    
+
     return true
   ensure
     Dir.chdir(current_dir)

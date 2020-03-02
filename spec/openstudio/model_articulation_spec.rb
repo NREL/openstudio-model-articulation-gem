@@ -1,5 +1,5 @@
 # *******************************************************************************
-# OpenStudio(R), Copyright (c) 2008-2019, Alliance for Sustainable Energy, LLC.
+# OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -69,7 +69,7 @@ def run_osw(test_name, in_osw_filename)
     # should make reason for failure more visible
     print(File.read(failed_job_path).split)
   else
-    #print(File.read(out_osw_path).split)
+    # print(File.read(out_osw_path).split)
   end
   expect(File.exist?(failed_job_path)).to be false
 end
