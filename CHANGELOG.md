@@ -1,6 +1,6 @@
 # OpenStudio Model Articulation Gems
 
-## Version 0.1.1 (Unreleased)
+## Version 0.1.1
 
 * Update to OpenStudio Common Gem 0.1.1 (and extension gem 0.1.6)
 * Merge in OpenStudio articulation measures from OpenStudio-measures
