@@ -1,5 +1,5 @@
 # *******************************************************************************
-# OpenStudio(R), Copyright (c) 2008-2019, Alliance for Sustainable Energy, LLC.
+# OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -95,7 +95,6 @@ class CreateBarFromDOEBuildingTypeRatios_Test < Minitest::Test
 
     # if 'Fail' passed in make sure at least one error message (while not typical there may be more than one message)
     if result_value == 'Fail' then assert(result.errors.size >= 1) end
-
   end
 
   def test_good_argument_values
@@ -361,8 +360,8 @@ class CreateBarFromDOEBuildingTypeRatios_Test < Minitest::Test
     args = {}
     args['total_bldg_floor_area'] = 100000.0
     args['bldg_type_a'] = 'Warehouse'
-    #args['custom_height_bar'] = false
-    
+    # args['custom_height_bar'] = false
+
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
   end
 
@@ -378,8 +377,8 @@ class CreateBarFromDOEBuildingTypeRatios_Test < Minitest::Test
 
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
   end
-      
-  # todo - add in check that won't make second bar unless it is 5' wide
+
+  # TODO: - add in check that won't make second bar unless it is 5' wide
   # puts similar check on non-adiabatic (switch back to adiabatic then?)
   def test_dual_bar_101
     args = {}
@@ -393,7 +392,7 @@ class CreateBarFromDOEBuildingTypeRatios_Test < Minitest::Test
 
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
   end
-      
+
   def test_dual_bar_11a
     args = {}
     args['total_bldg_floor_area'] = 100000.0
@@ -421,7 +420,7 @@ class CreateBarFromDOEBuildingTypeRatios_Test < Minitest::Test
   end
 
   def test_dual_bar_15
-    # todo - check calcs, error on this seem to almost exactly 1 ft error in where stretched bar is placed
+    # TODO: - check calcs, error on this seem to almost exactly 1 ft error in where stretched bar is placed
     args = {}
     args['total_bldg_floor_area'] = 100000.0
     args['bldg_type_a'] = 'SecondarySchool'
@@ -433,9 +432,9 @@ class CreateBarFromDOEBuildingTypeRatios_Test < Minitest::Test
 
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
   end
-    
+
   def test_dual_bar_15b
-    # todo - check calcs, error on this seem to almost exactly 1 ft error in where stretched bar is placed
+    # TODO: - check calcs, error on this seem to almost exactly 1 ft error in where stretched bar is placed
     args = {}
     args['total_bldg_floor_area'] = 100000.0
     args['bldg_type_a'] = 'SecondarySchool'
@@ -447,7 +446,7 @@ class CreateBarFromDOEBuildingTypeRatios_Test < Minitest::Test
 
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
   end
-    
+
   def test_dual_bar_3
     args = {}
     args['total_bldg_floor_area'] = 100000.0
@@ -459,7 +458,7 @@ class CreateBarFromDOEBuildingTypeRatios_Test < Minitest::Test
 
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
   end
-    
+
   def test_dual_bar_split_low
     args = {}
     args['total_bldg_floor_area'] = 100000.0
@@ -654,7 +653,7 @@ class CreateBarFromDOEBuildingTypeRatios_Test < Minitest::Test
     args['bar_width'] = 60.0
     args['bldg_type_b'] = 'RetailStandalone'
     args['bldg_type_b_fract_bldg_area'] = 0.25
-    args['space_type_sort_logic'] = "Building Type > Size"
+    args['space_type_sort_logic'] = 'Building Type > Size'
 
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
   end
@@ -668,7 +667,7 @@ class CreateBarFromDOEBuildingTypeRatios_Test < Minitest::Test
     args['bar_width'] = 60.0
     args['bldg_type_b'] = 'RetailStandalone'
     args['bldg_type_b_fract_bldg_area'] = 0.25
-    args['space_type_sort_logic'] = "Building Type > Size"
+    args['space_type_sort_logic'] = 'Building Type > Size'
 
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
   end
@@ -685,7 +684,6 @@ class CreateBarFromDOEBuildingTypeRatios_Test < Minitest::Test
 
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
   end
-
 
   def test_multi_width_d
     args = {}
@@ -712,5 +710,4 @@ class CreateBarFromDOEBuildingTypeRatios_Test < Minitest::Test
 
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
   end
-
 end

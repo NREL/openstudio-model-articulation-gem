@@ -1,5 +1,5 @@
 # *******************************************************************************
-# OpenStudio(R), Copyright (c) 2008-2018, Alliance for Sustainable Energy, LLC.
+# OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -56,16 +56,19 @@ class DEERSpaceTypeAndConstructionSetWizard < OpenStudio::Measure::ModelMeasure
   # define the name that a user will see, this method may be deprecated as
   # the display name in PAT comes from the name field in measure.xml
   def name
-    return "DEER Space Type and Construction Set Wizard"
+    return 'DEER Space Type and Construction Set Wizard'
   end
+
   # human readable description
   def description
-    return "Create DEER space types and or construction sets for the requested building type, climate zone, and target."
+    return 'Create DEER space types and or construction sets for the requested building type, climate zone, and target.'
   end
+
   # human readable description of modeling approach
   def modeler_description
-    return "The data for this measure comes from the openstudio-standards Ruby Gem. They are no longer created from the same JSON file that was used to make the OpenStudio templates. Optionally this will also set the building default space type and construction set."
+    return 'The data for this measure comes from the openstudio-standards Ruby Gem. They are no longer created from the same JSON file that was used to make the OpenStudio templates. Optionally this will also set the building default space type and construction set.'
   end
+
   # define the arguments that the user will input
   def arguments(model)
     args = OpenStudio::Measure::OSArgumentVector.new
@@ -120,7 +123,6 @@ class DEERSpaceTypeAndConstructionSetWizard < OpenStudio::Measure::ModelMeasure
     else
       return true
     end
-
   end
 end
 

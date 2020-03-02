@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>create_bar_from_deer_building_type_ratios</name>
   <uid>aa4a7ecf-5bfd-4c5e-b0ca-e68babbacff1</uid>
-  <version_id>f69312a3-96d8-470a-b8ad-e9be6d48363a</version_id>
-  <version_modified>20200210T145630Z</version_modified>
+  <version_id>95049328-c071-4d5d-8ac5-11c1e67c8484</version_id>
+  <version_modified>20200229T024054Z</version_modified>
   <xml_checksum>B31F0C1F</xml_checksum>
   <class_name>CreateBarFromDEERBuildingTypeRatios</class_name>
   <display_name>Create Bar From DEER Building Type Ratios</display_name>
@@ -966,36 +966,6 @@
       <checksum>032BCDC9</checksum>
     </file>
     <file>
-      <filename>os_lib_helper_methods.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>22515A49</checksum>
-    </file>
-    <file>
-      <filename>os_lib_model_simplification.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>3E3D40E3</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>9640B6CB</checksum>
-    </file>
-    <file>
-      <filename>create_bar_from_deer_building_type_ratios_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>102F9FE1</checksum>
-    </file>
-    <file>
-      <filename>os_lib_geometry.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>FBB26B44</checksum>
-    </file>
-    <file>
       <filename>ar_05.png</filename>
       <filetype>png</filetype>
       <usage_type>doc</usage_type>
@@ -1128,6 +1098,42 @@
       <checksum>843BCF80</checksum>
     </file>
     <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>6935E74D</checksum>
+    </file>
+    <file>
+      <filename>os_lib_helper_methods.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>07B01D67</checksum>
+    </file>
+    <file>
+      <filename>os_lib_model_simplification.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>D6BB6EEE</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
+    </file>
+    <file>
+      <filename>create_bar_from_deer_building_type_ratios_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>99AA0518</checksum>
+    </file>
+    <file>
+      <filename>os_lib_geometry.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>47A6EB77</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -1136,19 +1142,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>10E9B0C6</checksum>
-    </file>
-    <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>6935E74D</checksum>
+      <checksum>EC625CF1</checksum>
     </file>
     <file>
       <filename>os_lib_model_generation.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>ADB982EE</checksum>
+      <checksum>5141DA9F</checksum>
     </file>
   </files>
 </measure>

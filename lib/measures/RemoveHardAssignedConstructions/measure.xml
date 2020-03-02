@@ -2,8 +2,8 @@
   <schema_version>3.0</schema_version>
   <name>remove_hard_assigned_constructions</name>
   <uid>8fd2557e-907d-46a3-aebf-8cc81c58bc65</uid>
-  <version_id>e71f3824-5535-4c79-880a-c83b94c65fa8</version_id>
-  <version_modified>20180626T202330Z</version_modified>
+  <version_id>08479221-f488-4a11-8c58-97dfe88252c0</version_id>
+  <version_modified>20200229T024056Z</version_modified>
   <xml_checksum>1E963D9C</xml_checksum>
   <class_name>RemoveHardAssignedConstructions</class_name>
   <display_name>RemoveHardAssignedConstructions</display_name>
@@ -54,29 +54,6 @@
       <checksum>C9C6BBB8</checksum>
     </file>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>CC4EE803</checksum>
-    </file>
-    <file>
-      <filename>RemoveHardAssignedConstructions_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>01AC3F84</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>9640B6CB</checksum>
-    </file>
-    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
@@ -87,6 +64,29 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>873D0763</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>A259558F</checksum>
+    </file>
+    <file>
+      <filename>RemoveHardAssignedConstructions_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>36381DED</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
     </file>
   </files>
 </measure>

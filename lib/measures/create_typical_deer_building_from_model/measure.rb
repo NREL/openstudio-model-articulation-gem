@@ -1,5 +1,5 @@
 # *******************************************************************************
-# OpenStudio(R), Copyright (c) 2008-2019, Alliance for Sustainable Energy, LLC.
+# OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -58,7 +58,7 @@ class CreateTypicalDEERBuildingFromModel < OpenStudio::Measure::ModelMeasure
 
   # human readable name
   def name
-    return "Create Typical DEER Building from Model"
+    return 'Create Typical DEER Building from Model'
   end
 
   # human readable description
@@ -404,7 +404,7 @@ class CreateTypicalDEERBuildingFromModel < OpenStudio::Measure::ModelMeasure
     wkdy_op_hrs_start_time = OpenStudio::Measure::OSArgument.makeDoubleArgument('wkdy_op_hrs_start_time', true)
     wkdy_op_hrs_start_time.setDisplayName('Weekday Operating Hours Start Time')
     wkdy_op_hrs_start_time.setDescription('Enter 24 hour values with fractional values converted to minutes. e.g. 17.25 = 5:15pm. Only used if Modify weekday hours of operation is true.')
-    wkdy_op_hrs_start_time.setUnits("Hours")
+    wkdy_op_hrs_start_time.setUnits('Hours')
     wkdy_op_hrs_start_time.setDefaultValue(8.0)
     args << wkdy_op_hrs_start_time
 
@@ -412,7 +412,7 @@ class CreateTypicalDEERBuildingFromModel < OpenStudio::Measure::ModelMeasure
     wkdy_op_hrs_duration = OpenStudio::Measure::OSArgument.makeDoubleArgument('wkdy_op_hrs_duration', true)
     wkdy_op_hrs_duration.setDisplayName('Weekday Operating Hours Duration')
     wkdy_op_hrs_duration.setDescription('Length of weekday operating hours. Enter 24 hour values with fractional values converted to minutes. e.g. 17.25 = 5:15pm. Only used if Modify weekday hours of operation is true.')
-    wkdy_op_hrs_duration.setUnits("Hours")
+    wkdy_op_hrs_duration.setUnits('Hours')
     wkdy_op_hrs_duration.setDefaultValue(8.0)
     args << wkdy_op_hrs_duration
 
@@ -427,7 +427,7 @@ class CreateTypicalDEERBuildingFromModel < OpenStudio::Measure::ModelMeasure
     wknd_op_hrs_start_time = OpenStudio::Measure::OSArgument.makeDoubleArgument('wknd_op_hrs_start_time', true)
     wknd_op_hrs_start_time.setDisplayName('Weekend Operating Hours Start Time')
     wknd_op_hrs_start_time.setDescription('Enter 24 hour values with fractional values converted to minutes. e.g. 17.25 = 5:15pm.  Only used if Modify weekend hours of operation is true.')
-    wknd_op_hrs_start_time.setUnits("Hours")
+    wknd_op_hrs_start_time.setUnits('Hours')
     wknd_op_hrs_start_time.setDefaultValue(8.0)
     args << wknd_op_hrs_start_time
 
@@ -435,7 +435,7 @@ class CreateTypicalDEERBuildingFromModel < OpenStudio::Measure::ModelMeasure
     wknd_op_hrs_duration = OpenStudio::Measure::OSArgument.makeDoubleArgument('wknd_op_hrs_duration', true)
     wknd_op_hrs_duration.setDisplayName('Weekend Operating Hours Duration')
     wknd_op_hrs_duration.setDescription('Length of weekend operating hours. Enter 24 hour values with fractional values converted to minutes. e.g. 17.25 = 5:15pm.  Only used if Modify weekend hours of operation is true.')
-    wknd_op_hrs_duration.setUnits("Hours")
+    wknd_op_hrs_duration.setUnits('Hours')
     wknd_op_hrs_duration.setDefaultValue(8.0)
     args << wknd_op_hrs_duration
 

@@ -1,5 +1,5 @@
 # *******************************************************************************
-# OpenStudio(R), Copyright (c) 2008-2018, Alliance for Sustainable Energy, LLC.
+# OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -174,17 +174,16 @@ class RadianceMeasureTest < Minitest::Test
     # save the model to test output directory
     output_file_path = OpenStudio::Path.new('./test_output.osm')
     model.save(output_file_path, true)
-    
+
     # show the output
     show_output(result)
-    
+
     runner.registerInfo(" Encoding.default_external = #{Encoding.default_external}")
     runner.registerInfo(" Encoding.default_internal = #{Encoding.default_internal}")
 
     # assert that it ran correctly
     assert_equal('Success', result.value.valueName.to_s)
     assert(result.warnings.empty?)
-
   ensure
     Dir.chdir(current_dir)
   end
@@ -207,27 +206,26 @@ class RadianceMeasureTest < Minitest::Test
   end
 
   def test_default
-    run_with_test_model('Default', {'rad_settings'=> 'Model'})
+    run_with_test_model('Default', 'rad_settings' => 'Model')
   end
 
   def test_none
-    run_with_test_model('None', {'rad_settings'=> 'High'})
+    run_with_test_model('None', 'rad_settings' => 'High')
   end
 
   def test_blind
     run_with_test_model('Blind')
-  end  
+  end
 
   def test_drd
     run_with_test_model('DaylightRedirectionDevice')
   end
 
   def test_screen
-    run_with_test_model('Screen', {'apply_schedules'=> 'false'})
+    run_with_test_model('Screen', 'apply_schedules' => 'false')
   end
 
   def test_shade
     run_with_test_model('Shade')
   end
-
 end

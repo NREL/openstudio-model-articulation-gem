@@ -5,6 +5,6 @@
 // Build for PR to develop branch only. 
 if ((env.CHANGE_ID) && (env.CHANGE_TARGET) ) { // check if set
 
-  openstudio_model_articulation_gem()
+  openstudio_extension_gems()
     
 }

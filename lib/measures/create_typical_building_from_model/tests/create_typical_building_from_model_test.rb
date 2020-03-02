@@ -1,5 +1,5 @@
 # *******************************************************************************
-# OpenStudio(R), Copyright (c) 2008-2019, Alliance for Sustainable Energy, LLC.
+# OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -229,7 +229,7 @@ class CreateTypicalBuildingFromModel_Test < Minitest::Test
     args = {}
     args['template'] = 'DEER Pre-1975'
     args['use_upstream_args'] = false
-    apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, 'eun.osm', "Fail", nil)
+    apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, 'eun.osm', 'Fail', nil)
   end
 
   def test_gro
