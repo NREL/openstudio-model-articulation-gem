@@ -16,8 +16,10 @@
 /lib/measures/*/test_results
 /lib/measures/*/tests/output
 /lib/measures/*/.rubocop.yml
-
+/output
+create_baseline.log
 .rubocop*s3*
+
 
 # rspec failure tracking
 .rspec_status
