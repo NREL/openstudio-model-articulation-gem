@@ -24,6 +24,3 @@ if allow_local && File.exist?('../openstudio-common-measures-gem')
 elsif allow_local
   gem 'openstudio-common-measures', github: 'NREL/openstudio-common-measures-gem', branch: 'develop'
 end
-
-# simplecov has an unnecessary dependency on native json gem, use fork that does not require this
-gem 'simplecov', github: 'NREL/simplecov'
