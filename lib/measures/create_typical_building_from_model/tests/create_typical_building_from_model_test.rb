@@ -543,6 +543,15 @@ class CreateTypicalBuildingFromModel_Test < Minitest::Test
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, 'sun.osm', nil, nil)
   end
 
+  def test_mfm_hpwh
+    args = {}
+    args['template'] = 'DEER 2011'
+    args['use_upstream_args'] = false
+    args['swh_src'] = 'HeatPump'
+    args['climate_zone'] = 'CEC T24-CEC5'
+    apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, 'mfm.osm', nil, nil)
+  end
+
   def test_wrf_hpwh
     args = {}
     args['template'] = 'DEER Pre-1975'
