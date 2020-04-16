@@ -895,7 +895,7 @@ class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
   def test_multi_rot_b
 
     skip # intersect issue
-    
+
     args = {}
     args['total_bldg_floor_area'] = 100000.0
     args['bldg_type_a'] = 'SecondarySchool'

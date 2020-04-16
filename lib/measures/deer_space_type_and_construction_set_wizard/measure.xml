@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>deer_space_type_and_construction_set_wizard</name>
   <uid>d8effcbd-52b2-4e5c-866c-e85091142aa6</uid>
-  <version_id>e1c31d58-a055-49cc-977d-f3ed1464a8dd</version_id>
-  <version_modified>20200416T064705Z</version_modified>
+  <version_id>22232274-af9f-4716-9171-4a7d7b5d4bdf</version_id>
+  <version_modified>20200416T185420Z</version_modified>
   <xml_checksum>A514F332</xml_checksum>
   <class_name>DEERSpaceTypeAndConstructionSetWizard</class_name>
   <display_name>DEER Space Type and Construction Set Wizard</display_name>
@@ -14,12 +14,9 @@
     <argument>
       <name>building_type</name>
       <display_name>Building Type.</display_name>
-      <description></description>
       <type>Choice</type>
-      <units></units>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value></default_value>
       <choices>
         <choice>
           <value>Asm</value>
@@ -130,18 +127,13 @@
           <display_name>WRf</display_name>
         </choice>
       </choices>
-      <min_value></min_value>
-      <max_value></max_value>
     </argument>
     <argument>
       <name>template</name>
       <display_name>Template.</display_name>
-      <description></description>
       <type>Choice</type>
-      <units></units>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value></default_value>
       <choices>
         <choice>
           <value>DEER Pre-1975</value>
@@ -184,18 +176,13 @@
           <display_name>DEER 2020</display_name>
         </choice>
       </choices>
-      <min_value></min_value>
-      <max_value></max_value>
     </argument>
     <argument>
       <name>climate_zone</name>
       <display_name>Climate Zone.</display_name>
-      <description></description>
       <type>Choice</type>
-      <units></units>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value></default_value>
       <choices>
         <choice>
           <value>CEC T24-CEC1</value>
@@ -262,15 +249,11 @@
           <display_name>CEC T24-CEC16</display_name>
         </choice>
       </choices>
-      <min_value></min_value>
-      <max_value></max_value>
     </argument>
     <argument>
       <name>create_space_types</name>
       <display_name>Create Space Types?</display_name>
-      <description></description>
       <type>Boolean</type>
-      <units></units>
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>true</default_value>
@@ -284,15 +267,11 @@
           <display_name>false</display_name>
         </choice>
       </choices>
-      <min_value></min_value>
-      <max_value></max_value>
     </argument>
     <argument>
       <name>create_construction_set</name>
       <display_name>Create Construction Set?</display_name>
-      <description></description>
       <type>Boolean</type>
-      <units></units>
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>true</default_value>
@@ -306,15 +285,11 @@
           <display_name>false</display_name>
         </choice>
       </choices>
-      <min_value></min_value>
-      <max_value></max_value>
     </argument>
     <argument>
       <name>set_building_defaults</name>
       <display_name>Set Building Defaults Using New Objects?</display_name>
-      <description></description>
       <type>Boolean</type>
-      <units></units>
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>true</default_value>
@@ -328,8 +303,6 @@
           <display_name>false</display_name>
         </choice>
       </choices>
-      <min_value></min_value>
-      <max_value></max_value>
     </argument>
   </arguments>
   <outputs />
@@ -381,6 +354,12 @@
       <checksum>E0468DD6</checksum>
     </file>
     <file>
+      <filename>deer_space_type_and_construction_set_wizard_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>3F17D906</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -389,20 +368,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>E2DDA61C</checksum>
-    </file>
-    <file>
-      <filename>deer_space_type_and_construction_set_wizard_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>3F17D906</checksum>
+      <checksum>70E4E892</checksum>
     </file>
     <file>
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
-      <checksum>0B68E96D</checksum>
+      <checksum>DA87BC3D</checksum>
     </file>
   </files>
 </measure>
-<error>undefined local variable or method `get_deer_building_types' for #&lt;DEERSpaceTypeAndConstructionSetWizard:0x00007fc9092b7a08&gt;</error>
