@@ -3,7 +3,7 @@
 ## Version 0.2.0 (Unrelease)
 * Upgrade Bundler to 2.1.x
 * Removed dependency on openstudio-common-measures gem
-* Added openstudio-extension to 0.2.0
+* Added openstudio-extension to 0.2.1
 * Upgrade openstudio-standards to 0.2.11
 * Restrict to Ruby ~> 2.5.0
 
