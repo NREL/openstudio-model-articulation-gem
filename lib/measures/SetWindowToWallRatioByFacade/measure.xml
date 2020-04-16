@@ -1,16 +1,17 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>set_window_to_wall_ratio_by_facade</name>
   <uid>c567a0bf-a7d9-4a06-afe9-bf7df79e6bf8</uid>
-  <version_id>414d2d0c-3a99-4e9d-9284-aebc24fc6f81</version_id>
-  <version_modified>20200229T024052Z</version_modified>
+  <version_id>45e78bc0-d849-4c44-a2ad-002f3d03613c</version_id>
+  <version_modified>20200416T064704Z</version_modified>
   <xml_checksum>6DE831F7</xml_checksum>
   <class_name>SetWindowToWallRatioByFacade</class_name>
   <display_name>Set Window to Wall Ratio by Facade</display_name>
   <description>This measure will set the window to wall ratio for exterior surfaces with a specified orientation. If one or more windows exist on an affected wall, they will be removed and replaced with a single ribbon window. Doors will not be removed. If the requested ratio can?t be achieved then the wall will remain un-touched.</description>
-  <modeler_description>This measure identifies exterior surfaces of the proper orientation. Then it runs a method that removes existing windows and applies a new window with a specified window to wall ratio and sill height. The construction chosen for the new window is defaulted to what is assigned to the space, or inherited from a higher level object, such as the building. If the baseline model uses hard assigned constructions you may not get the expected results.&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;
-&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;
-The measure doesn?t have any cost or lifecycle arguments, however If lifecycle objects exist for exterior wall and window constructions, then this measure will be able to calculate the economic impact of change in window to wall ratio.&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;
+  <modeler_description>This measure identifies exterior surfaces of the proper orientation. Then it runs a method that removes existing windows and applies a new window with a specified window to wall ratio and sill height. The construction chosen for the new window is defaulted to what is assigned to the space, or inherited from a higher level object, such as the building. If the baseline model uses hard assigned constructions you may not get the expected results.
+
+The measure doesn?t have any cost or lifecycle arguments, however If lifecycle objects exist for exterior wall and window constructions, then this measure will be able to calculate the economic impact of change in window to wall ratio.
   </modeler_description>
   <arguments>
     <argument>
@@ -138,8 +139,8 @@ The measure doesn?t have any cost or lifecycle arguments, however If lifecycle o
       </choices>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Envelope.Fenestration</tag>
   </tags>
@@ -212,7 +213,7 @@ The measure doesn?t have any cost or lifecycle arguments, however If lifecycle o
       <filename>SetWindowToWallRatioByFacade_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>11565A2D</checksum>
+      <checksum>1D1488B2</checksum>
     </file>
     <file>
       <version>
@@ -223,7 +224,7 @@ The measure doesn?t have any cost or lifecycle arguments, however If lifecycle o
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>7703E5B6</checksum>
+      <checksum>FCC2E4DD</checksum>
     </file>
   </files>
 </measure>

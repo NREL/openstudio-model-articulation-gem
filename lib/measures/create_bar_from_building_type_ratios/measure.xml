@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>create_bar_from_building_type_ratios</name>
   <uid>6e3a14f8-c3c7-4e03-bc51-bef8a52e1a05</uid>
-  <version_id>98068f42-8546-42bc-b4a5-6bfcd0e332d4</version_id>
-  <version_modified>20200229T024044Z</version_modified>
+  <version_id>a0b1e16e-4895-4662-9582-e2a673fe888f</version_id>
+  <version_modified>20200416T064703Z</version_modified>
   <xml_checksum>2AF3A68E</xml_checksum>
   <class_name>CreateBarFromBuildingTypeRatios</class_name>
   <display_name>Create Bar From Building Type Ratios</display_name>
@@ -1224,15 +1225,15 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>Building Type > Size</default_value>
+      <default_value>Building Type &gt; Size</default_value>
       <choices>
         <choice>
           <value>Size</value>
           <display_name>Size</display_name>
         </choice>
         <choice>
-          <value>Building Type > Size</value>
-          <display_name>Building Type > Size</display_name>
+          <value>Building Type &gt; Size</value>
+          <display_name>Building Type &gt; Size</display_name>
         </choice>
       </choices>
     </argument>
@@ -1403,8 +1404,8 @@
       </choices>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Envelope.Form</tag>
   </tags>
@@ -1576,51 +1577,27 @@
       <checksum>9A40EF3B</checksum>
     </file>
     <file>
-      <filename>os_lib_helper_methods.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>07B01D67</checksum>
-    </file>
-    <file>
-      <filename>os_lib_model_simplification.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>D6BB6EEE</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
       <checksum>E0468DD6</checksum>
     </file>
     <file>
-      <filename>os_lib_geometry.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>47A6EB77</checksum>
-    </file>
-    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
-        <min_compatible>2.9.0</min_compatible>
+        <min_compatible>3.0.0</min_compatible>
       </version>
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>057A68A1</checksum>
+      <checksum>2519A6D8</checksum>
     </file>
     <file>
       <filename>create_bar_from_building_type_ratios_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>BFC429A7</checksum>
-    </file>
-    <file>
-      <filename>os_lib_model_generation.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>5141DA9F</checksum>
+      <checksum>2741D3DB</checksum>
     </file>
   </files>
 </measure>

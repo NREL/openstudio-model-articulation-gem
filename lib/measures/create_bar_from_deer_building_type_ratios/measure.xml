@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>create_bar_from_deer_building_type_ratios</name>
   <uid>aa4a7ecf-5bfd-4c5e-b0ca-e68babbacff1</uid>
-  <version_id>95049328-c071-4d5d-8ac5-11c1e67c8484</version_id>
-  <version_modified>20200229T024054Z</version_modified>
+  <version_id>adefea78-378c-47a6-9cbd-267777fa54d6</version_id>
+  <version_modified>20200416T064706Z</version_modified>
   <xml_checksum>B31F0C1F</xml_checksum>
   <class_name>CreateBarFromDEERBuildingTypeRatios</class_name>
   <display_name>Create Bar From DEER Building Type Ratios</display_name>
@@ -869,15 +870,15 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>Building Type > Size</default_value>
+      <default_value>Building Type &gt; Size</default_value>
       <choices>
         <choice>
           <value>Size</value>
           <display_name>Size</display_name>
         </choice>
         <choice>
-          <value>Building Type > Size</value>
-          <display_name>Building Type > Size</display_name>
+          <value>Building Type &gt; Size</value>
+          <display_name>Building Type &gt; Size</display_name>
         </choice>
       </choices>
     </argument>
@@ -901,8 +902,8 @@
       </choices>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Envelope.Form</tag>
   </tags>
@@ -1104,18 +1105,6 @@
       <checksum>6935E74D</checksum>
     </file>
     <file>
-      <filename>os_lib_helper_methods.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>07B01D67</checksum>
-    </file>
-    <file>
-      <filename>os_lib_model_simplification.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>D6BB6EEE</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
@@ -1125,30 +1114,18 @@
       <filename>create_bar_from_deer_building_type_ratios_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>99AA0518</checksum>
-    </file>
-    <file>
-      <filename>os_lib_geometry.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>47A6EB77</checksum>
+      <checksum>822C2A34</checksum>
     </file>
     <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
-        <min_compatible>2.9.0</min_compatible>
+        <min_compatible>3.0.0</min_compatible>
       </version>
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>EC625CF1</checksum>
-    </file>
-    <file>
-      <filename>os_lib_model_generation.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>5141DA9F</checksum>
+      <checksum>A1C05436</checksum>
     </file>
   </files>
 </measure>

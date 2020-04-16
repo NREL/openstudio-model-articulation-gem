@@ -36,13 +36,9 @@
 # see the URL below for information on how to write OpenStudio measures
 # http://nrel.github.io/OpenStudio-user-documentation/reference/measure_writing_guide/
 
-begin
-  # load OpenStudio measure libraries from common location
-  require 'measure_resources/os_lib_geometry'
-rescue LoadError
-  # common location unavailable, load from local resources
-  require_relative 'resources/os_lib_geometry'
-end
+# load OpenStudio measure libraries from openstudio-extension gem
+require 'openstudio-extension'
+require 'openstudio/extension/core/os_lib_geometry'
 
 # start the measure
 class ReplaceGeometryByStory < OpenStudio::Measure::ModelMeasure

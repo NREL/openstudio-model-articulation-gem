@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>space_type_and_construction_set_wizard</name>
   <uid>7c65af63-4316-47c9-b7a5-68d7a019e533</uid>
-  <version_id>74816e87-5878-4dca-83eb-1fc1fe24eb8e</version_id>
-  <version_modified>20200229T024054Z</version_modified>
+  <version_id>9a611442-3450-4e79-aa71-e588123d5746</version_id>
+  <version_modified>20200416T064706Z</version_modified>
   <xml_checksum>057E8D9D</xml_checksum>
   <class_name>SpaceTypeAndConstructionSetWizard</class_name>
   <display_name>Space Type and Construction Set Wizard</display_name>
@@ -255,8 +256,8 @@
       </choices>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Whole Building.Space Types</tag>
   </tags>
@@ -316,33 +317,21 @@
       <checksum>E0468DD6</checksum>
     </file>
     <file>
-      <filename>os_lib_helper_methods.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>07B01D67</checksum>
-    </file>
-    <file>
       <filename>SpaceTypeAndConstructionSetWizard_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>118662AB</checksum>
+      <checksum>BC2A5358</checksum>
     </file>
     <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
-        <min_compatible>2.5.1</min_compatible>
+        <min_compatible>2.8.0</min_compatible>
       </version>
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>5EE2F91E</checksum>
-    </file>
-    <file>
-      <filename>os_lib_model_generation.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>5141DA9F</checksum>
+      <checksum>434C37B9</checksum>
     </file>
   </files>
 </measure>

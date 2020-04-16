@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>blended_space_type_from_model</name>
   <uid>667c2f1f-0927-4dbd-a7be-1087b5c15181</uid>
-  <version_id>291ff117-9c95-4d04-b17b-edf8b051678d</version_id>
-  <version_modified>20200229T024055Z</version_modified>
+  <version_id>d33d88e1-5c16-42d7-8f78-14d54bcd4134</version_id>
+  <version_modified>20200416T064706Z</version_modified>
   <xml_checksum>28AD5222</xml_checksum>
   <class_name>BlendedSpaceTypeFromModel</class_name>
   <display_name>Blended Space Type from Model</display_name>
@@ -33,8 +34,8 @@
       </choices>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Whole Building.Space Types</tag>
   </tags>
@@ -132,17 +133,6 @@
       <checksum>703C9964</checksum>
     </file>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>6EAF4F82</checksum>
-    </file>
-    <file>
       <filename>measure_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
@@ -159,6 +149,17 @@
       <filetype>md</filetype>
       <usage_type>license</usage_type>
       <checksum>E0468DD6</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.8.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>28D3525F</checksum>
     </file>
   </files>
 </measure>
