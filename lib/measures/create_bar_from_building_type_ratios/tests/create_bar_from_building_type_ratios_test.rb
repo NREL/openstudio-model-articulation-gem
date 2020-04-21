@@ -507,11 +507,8 @@ class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
   end
 
-  def test_dual_bar_smart
+  def test_dual_bar_smart 
 
-    # todo - figure out why this is fine on local run but fails on CI
-    skip
-    
     args = {}
     args['total_bldg_floor_area'] = 210887.0
     args['bldg_type_a'] = 'SecondarySchool'

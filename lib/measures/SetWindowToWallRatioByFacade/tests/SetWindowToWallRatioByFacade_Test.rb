@@ -598,8 +598,7 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
     result = runner.result
     show_output(result)
 
-    # todo - figure out why this is fine on local run but fails on CI
-    #assert(result.value.valueName == 'Success')
+    assert(result.value.valueName == 'Success')
 
     # save the model
     output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/door_nothing.osm')
