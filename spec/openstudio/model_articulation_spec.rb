@@ -35,8 +35,6 @@
 
 require_relative '../spec_helper'
 
-require 'openstudio/common_measures'
-
 def run_osw(test_name, in_osw_filename)
   instance = OpenStudio::ModelArticulation::Extension.new
   runner = OpenStudio::Extension::Runner.new(instance.root_dir)
