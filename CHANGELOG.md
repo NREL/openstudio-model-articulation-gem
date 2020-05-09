@@ -1,11 +1,16 @@
 # OpenStudio Model Articulation Gems
 
-## Version 0.2.0 (Unrelease)
-* Upgrade Bundler to 2.1.x
+## Version 0.2.0 (Unreleased)
+
+* Support for OpenStudio 3.0
+    * Upgrade Bundler to 2.1.x
+    * Restrict to Ruby ~> 2.5.0   
+    * Removed simplecov forked dependency 
+* Upgraded openstudio-extension to 0.2.2
+    * Updated measure tester to 0.2.0 (removes need for github gem in downstream projects)
+* Upgraded openstudio-standards to 0.2.11
+* Exclude measure tests from being released with the gem (reduces the size of the installed gem significantly)
 * Removed dependency on openstudio-common-measures gem
-* Added openstudio-extension to 0.2.1
-* Upgrade openstudio-standards to 0.2.11
-* Restrict to Ruby ~> 2.5.0
 
 ## Version 0.1.1
 
