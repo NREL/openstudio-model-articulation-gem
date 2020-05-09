@@ -34,7 +34,7 @@
 # *******************************************************************************
 
 require 'openstudio'
-require 'openstudio/ruleset/ShowRunnerOutput'
+require 'openstudio/measure/ShowRunnerOutput'
 require 'minitest/autorun'
 require_relative '../measure.rb'
 require 'fileutils'
@@ -62,7 +62,7 @@ class CreateParametricSchedules_Test < MiniTest::Test
 
     # get arguments
     arguments = measure.arguments(model)
-    argument_map = OpenStudio::Ruleset.convertOSArgumentVectorToMap(arguments)
+    argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
 
     # populate argument with specified hash value if specified
     arguments.each do |arg|

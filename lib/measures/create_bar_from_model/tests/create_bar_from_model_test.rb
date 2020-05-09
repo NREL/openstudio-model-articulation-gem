@@ -34,7 +34,7 @@
 # *******************************************************************************
 
 require 'openstudio'
-require 'openstudio/ruleset/ShowRunnerOutput'
+require 'openstudio/measure/ShowRunnerOutput'
 require 'minitest/autorun'
 require_relative '../measure.rb'
 require 'fileutils'
@@ -56,7 +56,7 @@ class CreateBarFromModel_Test < MiniTest::Test
 
     # get arguments
     arguments = measure.arguments(model)
-    argument_map = OpenStudio::Ruleset.convertOSArgumentVectorToMap(arguments)
+    argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
 
     # create hash of argument values.
     # If the argument has a default that you want to use, you don't need it in the hash
@@ -107,7 +107,7 @@ class CreateBarFromModel_Test < MiniTest::Test
 
     # get arguments
     arguments = measure.arguments(model)
-    argument_map = OpenStudio::Ruleset.convertOSArgumentVectorToMap(arguments)
+    argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
 
     # create hash of argument values.
     # If the argument has a default that you want to use, you don't need it in the hash
@@ -158,7 +158,7 @@ class CreateBarFromModel_Test < MiniTest::Test
 
     # get arguments
     arguments = measure.arguments(model)
-    argument_map = OpenStudio::Ruleset.convertOSArgumentVectorToMap(arguments)
+    argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
 
     # create hash of argument values.
     # If the argument has a default that you want to use, you don't need it in the hash
@@ -209,7 +209,7 @@ class CreateBarFromModel_Test < MiniTest::Test
 
     # get arguments
     arguments = measure.arguments(model)
-    argument_map = OpenStudio::Ruleset.convertOSArgumentVectorToMap(arguments)
+    argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
 
     # create hash of argument values.
     # If the argument has a default that you want to use, you don't need it in the hash
@@ -260,7 +260,7 @@ class CreateBarFromModel_Test < MiniTest::Test
 
     # get arguments
     arguments = measure.arguments(model)
-    argument_map = OpenStudio::Ruleset.convertOSArgumentVectorToMap(arguments)
+    argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
 
     # create hash of argument values.
     # If the argument has a default that you want to use, you don't need it in the hash
@@ -312,7 +312,7 @@ class CreateBarFromModel_Test < MiniTest::Test
 
     # get arguments
     arguments = measure.arguments(model)
-    argument_map = OpenStudio::Ruleset.convertOSArgumentVectorToMap(arguments)
+    argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
 
     # create hash of argument values.
     # If the argument has a default that you want to use, you don't need it in the hash
@@ -367,7 +367,7 @@ class CreateBarFromModel_Test < MiniTest::Test
 
     # get arguments
     arguments = measure.arguments(model)
-    argument_map = OpenStudio::Ruleset.convertOSArgumentVectorToMap(arguments)
+    argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
 
     # create hash of argument values.
     # If the argument has a default that you want to use, you don't need it in the hash
@@ -422,7 +422,7 @@ class CreateBarFromModel_Test < MiniTest::Test
 
     # get arguments
     arguments = measure.arguments(model)
-    argument_map = OpenStudio::Ruleset.convertOSArgumentVectorToMap(arguments)
+    argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
 
     # create hash of argument values.
     # If the argument has a default that you want to use, you don't need it in the hash
@@ -477,7 +477,7 @@ class CreateBarFromModel_Test < MiniTest::Test
 
     # get arguments
     arguments = measure.arguments(model)
-    argument_map = OpenStudio::Ruleset.convertOSArgumentVectorToMap(arguments)
+    argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
 
     # create hash of argument values.
     # If the argument has a default that you want to use, you don't need it in the hash
