@@ -254,7 +254,6 @@ class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
   end
 
   def test_two_and_half_stories
-
     skip # intersect issue
 
     args = {}
@@ -357,7 +356,6 @@ class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
   end
 
   def test_rotation_45_party_wall_fraction
-
     skip # intersect issue
 
     args = {}
@@ -507,8 +505,7 @@ class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
   end
 
-  def test_dual_bar_smart 
-
+  def test_dual_bar_smart
     args = {}
     args['total_bldg_floor_area'] = 210887.0
     args['bldg_type_a'] = 'SecondarySchool'
@@ -604,7 +601,6 @@ class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
   end
 
   def test_dual_bar_11a
-
     skip # intersect issue
 
     args = {}
@@ -688,7 +684,6 @@ class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
   end
 
   def test_dual_bar_15
-
     skip # intersect issue
 
     # TODO: - check calcs, error on this seem to almost exactly 1 ft error in where stretched bar is placed
@@ -894,7 +889,6 @@ class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
   end
 
   def test_multi_rot_b
-
     skip # intersect issue
 
     args = {}

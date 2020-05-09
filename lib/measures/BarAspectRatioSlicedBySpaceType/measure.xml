@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>bar_aspect_ratio_sliced_by_space_type</name>
   <uid>3e988765-9673-46f8-9b65-99d5b86c2b22</uid>
-  <version_id>b3deb327-92cd-4e1c-8601-7c8f401889ed</version_id>
-  <version_modified>20200416T064710Z</version_modified>
+  <version_id>ae664185-7251-4abb-b2e0-5a7c1893e519</version_id>
+  <version_modified>20200509T155942Z</version_modified>
   <xml_checksum>49BEF039</xml_checksum>
   <class_name>BarAspectRatioSlicedBySpaceType</class_name>
   <display_name>BarAspectRatioSlicedBySpaceType</display_name>
@@ -104,12 +104,6 @@
       <checksum>703C9964</checksum>
     </file>
     <file>
-      <filename>BarAspectRatioSlicedBySpaceType_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>5B781923</checksum>
-    </file>
-    <file>
       <filename>os_lib_cofee.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
@@ -122,6 +116,12 @@
       <checksum>E0468DD6</checksum>
     </file>
     <file>
+      <filename>BarAspectRatioSlicedBySpaceType_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>9F6868DA</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -130,7 +130,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>980DE775</checksum>
+      <checksum>11E11D57</checksum>
     </file>
   </files>
 </measure>

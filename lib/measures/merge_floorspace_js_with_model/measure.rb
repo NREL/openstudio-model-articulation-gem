@@ -63,9 +63,9 @@ class MergeFloorspaceJsWithModel < OpenStudio::Measure::ModelMeasure
     args = OpenStudio::Measure::OSArgumentVector.new
 
     # path to the floorplan JSON file to load
-    floorplan_path = OpenStudio::Ruleset::OSArgument.makeStringArgument("floorplan_path", true)
-    floorplan_path.setDisplayName("Floorplan Path")
-    floorplan_path.setDescription("Path to the floorplan JSON.")
+    floorplan_path = OpenStudio::Measure::OSArgument.makeStringArgument('floorplan_path', true)
+    floorplan_path.setDisplayName('Floorplan Path')
+    floorplan_path.setDescription('Path to the floorplan JSON.')
     args << floorplan_path
 
     return args
@@ -81,11 +81,11 @@ class MergeFloorspaceJsWithModel < OpenStudio::Measure::ModelMeasure
     end
 
     # assign the user inputs to variables
-    floorplan_path = runner.getStringArgumentValue("floorplan_path", user_arguments)
+    floorplan_path = runner.getStringArgumentValue('floorplan_path', user_arguments)
 
     # check the floorplan_path for reasonableness
     if floorplan_path.empty?
-      runner.registerError("Empty floorplan path was entered.")
+      runner.registerError('Empty floorplan path was entered.')
       return false
     end
 
@@ -100,7 +100,7 @@ class MergeFloorspaceJsWithModel < OpenStudio::Measure::ModelMeasure
       json = file.read
     end
 
-    floorplan = OpenStudio::FloorplanJS::load(json)
+    floorplan = OpenStudio::FloorplanJS.load(json)
     if floorplan.empty?
       runner.registerError("Cannot load floorplan from '#{floorplan_path}'.")
       return false
@@ -111,7 +111,7 @@ class MergeFloorspaceJsWithModel < OpenStudio::Measure::ModelMeasure
     new_model = rt.modelFromThreeJS(scene)
 
     unless new_model.is_initialized
-      runner.registerError("Cannot convert floorplan to model.")
+      runner.registerError('Cannot convert floorplan to model.')
       return false
     end
     new_model = new_model.get
@@ -133,8 +133,8 @@ class MergeFloorspaceJsWithModel < OpenStudio::Measure::ModelMeasure
 
     # intersect and match surfaces for each space in the vector
     # todo - add in diagnostic intersect as option
-    #OpenStudio::Model.intersectSurfaces(spaces)
-    #OpenStudio::Model.matchSurfaces(spaces)
+    # OpenStudio::Model.intersectSurfaces(spaces)
+    # OpenStudio::Model.matchSurfaces(spaces)
 
     # removing duplicate points in a surface
     model.getPlanarSurfaces.each do |surface|
@@ -175,12 +175,10 @@ class MergeFloorspaceJsWithModel < OpenStudio::Measure::ModelMeasure
 
     # remove duplicate surfaces in a space (should be done after remove duplicate and collinear points)
     model.getSpaces.each do |space|
-
       # secondary array to compare against
       surfaces_b = space.surfaces.sort
 
       space.surfaces.sort.each do |surface_a|
-
         # delete from secondary array
         surfaces_b.delete(surface_a)
 
@@ -190,13 +188,11 @@ class MergeFloorspaceJsWithModel < OpenStudio::Measure::ModelMeasure
             runner.registerWarning("#{surface_a.name} and #{surface_b.name} in #{space.name} have duplicate geometry, removing #{surface_b.name}.")
             surface_b.remove
           elsif surface_a.reverseEqualVertices(surface_b)
-            # todo - add logic to determine which face naormal is reversed and which is correct
+            # TODO: - add logic to determine which face naormal is reversed and which is correct
             runner.registerWarning("#{surface_a.name} and #{surface_b.name} in #{space.name} have reversed geometry, removing #{surface_b.name}.")
             surface_b.remove
           end
-
         end
-
       end
     end
 
@@ -205,15 +201,13 @@ class MergeFloorspaceJsWithModel < OpenStudio::Measure::ModelMeasure
 
     # looping through vector of each space
     model.getSpaces.sort.each do |space_a|
-
       runner.registerInfo("Intersecting and matching surfaces for #{space_a.name}.")
 
       # delete from secondary array
       spaces_b.delete(space_a)
 
       spaces_b.each do |space_b|
-
-        #runner.registerInfo("Intersecting and matching surfaces between #{space_a.name} and #{space.name}")
+        # runner.registerInfo("Intersecting and matching surfaces between #{space_a.name} and #{space.name}")
         spaces = OpenStudio::Model::SpaceVector.new
         spaces << space_a
         spaces << space_b
@@ -221,30 +215,29 @@ class MergeFloorspaceJsWithModel < OpenStudio::Measure::ModelMeasure
         # intersect and match surfaces in pair of spaces
         OpenStudio::Model.intersectSurfaces(spaces)
         OpenStudio::Model.matchSurfaces(spaces)
-
       end
     end
 
     json = JSON.parse(File.read(path.get.to_s))
 
     # error checking
-    unless json["space_types"].length > 0
-      runner.registerInfo("No space types were created.")
+    unless !json['space_types'].empty?
+      runner.registerInfo('No space types were created.')
     end
 
     # set the space type standards fields based on what user wrote in the editor
-    json["space_types"].each do |st|
+    json['space_types'].each do |st|
       model.getSpaceTypes.each do |space_type|
-        next unless space_type.name.to_s.include? st["name"]
+        next unless space_type.name.to_s.include? st['name']
         next if space_type.standardsSpaceType.is_initialized
 
-        space_type.setStandardsSpaceType(st["name"])
+        space_type.setStandardsSpaceType(st['name'])
       end
     end
 
     # remove any unused space types
     model.getSpaceTypes.each do |space_type|
-      if space_type.spaces.length == 0
+      if space_type.spaces.empty?
         space_type.remove
       end
     end

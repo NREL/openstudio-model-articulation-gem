@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>clone_building_from_external_model</name>
   <uid>09711168-01a7-4abc-b710-b49d59d927d8</uid>
-  <version_id>8455346f-0cb2-4938-99a8-487e4aa20ba6</version_id>
-  <version_modified>20200229T024054Z</version_modified>
+  <version_id>abdf7679-c737-44f5-8cea-a78453643a14</version_id>
+  <version_modified>20200509T155938Z</version_modified>
   <xml_checksum>AFECFDDF</xml_checksum>
   <class_name>CloneBuildingFromExternalModel</class_name>
   <display_name>Clone Building From External Model</display_name>
@@ -19,8 +20,8 @@
       <model_dependent>false</model_dependent>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Envelope.Form</tag>
   </tags>
@@ -93,12 +94,6 @@
       <checksum>703C9964</checksum>
     </file>
     <file>
-      <filename>clone_building_from_external_model_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>A11F3732</checksum>
-    </file>
-    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -114,6 +109,12 @@
       <filetype>md</filetype>
       <usage_type>license</usage_type>
       <checksum>E0468DD6</checksum>
+    </file>
+    <file>
+      <filename>clone_building_from_external_model_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>414896DB</checksum>
     </file>
   </files>
 </measure>

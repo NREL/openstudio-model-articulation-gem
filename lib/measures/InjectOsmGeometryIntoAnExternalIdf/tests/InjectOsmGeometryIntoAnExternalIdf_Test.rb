@@ -39,7 +39,6 @@ require 'minitest/autorun'
 require_relative '../measure.rb'
 require 'fileutils'
 
-
 class InjectOsmGeometryIntoAnExternalIdf_Test < MiniTest::Test
   def test_InjectOsmGeometryIntoAnExternalIdf_a
     # create an instance of the measure

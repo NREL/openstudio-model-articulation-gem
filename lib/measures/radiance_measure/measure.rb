@@ -1317,10 +1317,8 @@ class RadianceMeasure < OpenStudio::Measure::ModelMeasure
           # iterate over each sensor and combine the views together
           new_hash = {}
 
-          if t_radGlareSensorViews[space_name]
-            t_radGlareSensorViews[space_name].each do |sensor, v|
-              new_hash[sensor] = v[hour]
-            end
+          t_radGlareSensorViews[space_name]&.each do |sensor, v|
+            new_hash[sensor] = v[hour]
           end
           splitvalues[space_name] += [new_hash]
         end
@@ -1416,12 +1414,10 @@ class RadianceMeasure < OpenStudio::Measure::ModelMeasure
     def writeTimeSeriesToSql(sqlfile, simDateTimes, illum, space_name, ts_name, ts_units)
       data = OpenStudio::Vector.new(illum.length)
       illum.length.times do |n|
-        begin
-          data[n] = illum[n].to_f
-        rescue Exception => e
-          print_statement('Error inserting data: ' + illum[n] + ' inserting 0 instead', runner)
-          data[n] = 0
-        end
+        data[n] = illum[n].to_f
+      rescue Exception => e
+        print_statement('Error inserting data: ' + illum[n] + ' inserting 0 instead', runner)
+        data[n] = 0
       end
 
       illumTS = OpenStudio::TimeSeries.new(simDateTimes, data, ts_units)

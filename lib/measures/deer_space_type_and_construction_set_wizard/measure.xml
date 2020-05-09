@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>deer_space_type_and_construction_set_wizard</name>
   <uid>d8effcbd-52b2-4e5c-866c-e85091142aa6</uid>
-  <version_id>22232274-af9f-4716-9171-4a7d7b5d4bdf</version_id>
-  <version_modified>20200416T185420Z</version_modified>
+  <version_id>44fc9ee7-0ca5-4569-b5d8-7ac498ecfd5f</version_id>
+  <version_modified>20200509T155938Z</version_modified>
   <xml_checksum>A514F332</xml_checksum>
   <class_name>DEERSpaceTypeAndConstructionSetWizard</class_name>
   <display_name>DEER Space Type and Construction Set Wizard</display_name>
@@ -336,12 +336,6 @@
       <checksum>85FF42E2</checksum>
     </file>
     <file>
-      <filename>design_doc.txt</filename>
-      <filetype>txt</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>70F856EC</checksum>
-    </file>
-    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
@@ -375,6 +369,12 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>DA87BC3D</checksum>
+    </file>
+    <file>
+      <filename>design_doc.txt</filename>
+      <filetype>txt</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>86154A1B</checksum>
     </file>
   </files>
 </measure>

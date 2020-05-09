@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>scale_geometry</name>
   <uid>f9cc2ffc-2838-4a18-8330-97e7cc94cdf8</uid>
-  <version_id>cd9cd047-bfbc-499a-8ac2-10e6a482b5da</version_id>
-  <version_modified>20200229T024054Z</version_modified>
+  <version_id>b075de7b-1223-4ce5-993b-a4010abfbded</version_id>
+  <version_modified>20200509T155938Z</version_modified>
   <xml_checksum>7AD75066</xml_checksum>
   <class_name>ScaleGeometry</class_name>
   <display_name>scale_geometry</display_name>
@@ -38,8 +39,8 @@
       <default_value>1</default_value>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Envelope.Form</tag>
   </tags>
@@ -95,12 +96,6 @@
       <checksum>703C9964</checksum>
     </file>
     <file>
-      <filename>scale_geometry_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>E935F6C8</checksum>
-    </file>
-    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -116,6 +111,12 @@
       <filetype>md</filetype>
       <usage_type>license</usage_type>
       <checksum>E0468DD6</checksum>
+    </file>
+    <file>
+      <filename>scale_geometry_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>AEBD2413</checksum>
     </file>
   </files>
 </measure>

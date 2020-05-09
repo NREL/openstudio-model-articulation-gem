@@ -13,10 +13,10 @@ Gem::Specification.new do |spec|
   spec.summary       = 'Library and measures for OpenStudio Model Articulation'
   spec.description   = 'Library and measures for OpenStudio Model Articulation'
   spec.metadata = {
-      'bug_tracker_uri' => 'https://github.com/NREL/openstudio-model-articulation-gem/issues',
-      'changelog_uri' => 'https://github.com/NREL/openstudio-model-articulation-gem/blob/develop/CHANGELOG.md',
-      # 'documentation_uri' =>  'https://www.rubydoc.info/gems/openstudio-model-articulation-gem/#{gem.version}',
-      'source_code_uri' => "https://github.com/NREL/openstudio-model-articulation-gem/tree/v#{spec.version}"
+    'bug_tracker_uri' => 'https://github.com/NREL/openstudio-model-articulation-gem/issues',
+    'changelog_uri' => 'https://github.com/NREL/openstudio-model-articulation-gem/blob/develop/CHANGELOG.md',
+    # 'documentation_uri' =>  'https://www.rubydoc.info/gems/openstudio-model-articulation-gem/#{gem.version}',
+    'source_code_uri' => "https://github.com/NREL/openstudio-model-articulation-gem/tree/v#{spec.version}"
   }
 
   spec.files = `git ls-files -z`.split("\x0").reject do |f|

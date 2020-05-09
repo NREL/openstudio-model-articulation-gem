@@ -3,18 +3,48 @@
   <schema_version>3.0</schema_version>
   <name>inject_osm_geometry_into_an_external_idf</name>
   <uid>633cd1c5-5b55-4b50-ab20-cf2d2f7ddff8</uid>
-  <version_id>f5c4c734-8b75-4366-a736-b5e059d32d58</version_id>
-  <version_modified>20200416T064704Z</version_modified>
+  <version_id>3f37233f-eeaf-47d0-8a13-27c86aaf7b0b</version_id>
+  <version_modified>20200509T155937Z</version_modified>
   <xml_checksum>3BE1CF9C</xml_checksum>
   <class_name>InjectOsmGeometryIntoAnExternalIdf</class_name>
   <display_name>InjectOsmGeometryIntoAnExternalIdf</display_name>
   <description>The goal here is to let people bring an IDF into OpenStudio to add or alter geometry. Then to inject only the geometry back into a copy of the source IDF file, which has never been brought into OpenStudio.</description>
-  <modeler_description>This can make newer OpenStudio features accessible to anyone to someone who is still using an IDF file for their core workflow instead of an OSM. This could grow into a replacement of the legacy plugin.
-If a zone exists in OSM generated IDF and original IDF then all surfaces in old will be removed and ones from OSM will be added.
-If a zone exists in OSM generated IDF but does not exist in IDF then that zone will be added to the IDF.
-If a zone does not exist in the OSM but does exist in the original IDF then that zone will be deleted from the IDF. In these last two scenarios a warning should be issued.
-Site, building and zone shading surfaces should are included in this.
-Constructions and other resources won?t be moved back and forth but the surface should carry the assignments if they are not new constructions.
+  <modeler_description>This can make newer OpenStudio features accessible to anyone to someone who is still using an IDF file for their core workflow instead of an OSM. This could grow into a replacement of the legacy plugin.
+
+
+
+
+
+If a zone exists in OSM generated IDF and original IDF then all surfaces in old will be removed and ones from OSM will be added.
+
+
+
+
+
+If a zone exists in OSM generated IDF but does not exist in IDF then that zone will be added to the IDF.
+
+
+
+
+
+If a zone does not exist in the OSM but does exist in the original IDF then that zone will be deleted from the IDF. In these last two scenarios a warning should be issued.
+
+
+
+
+
+Site, building and zone shading surfaces should are included in this.
+
+
+
+
+
+Constructions and other resources won?t be moved back and forth but the surface should carry the assignments if they are not new constructions.
+
+
+
+
+
 </modeler_description>
   <arguments>
     <argument>
@@ -133,7 +163,7 @@ Constructions and other resources won?t be moved back and forth but the surface 
       <filename>InjectOsmGeometryIntoAnExternalIdf_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>3008DB9E</checksum>
+      <checksum>91289177</checksum>
     </file>
     <file>
       <version>
@@ -144,7 +174,7 @@ Constructions and other resources won?t be moved back and forth but the surface 
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>0B0A1D18</checksum>
+      <checksum>A76C44E1</checksum>
     </file>
   </files>
 </measure>

@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>create_typical_doe_building_from_model</name>
   <uid>b2c80210-33b3-4dfd-8267-535efd81f552</uid>
-  <version_id>5f40e3ef-26f8-4c57-a69b-b3e80f89fe86</version_id>
-  <version_modified>20200416T064708Z</version_modified>
+  <version_id>a4f92e3f-7b90-4113-b88c-96adef4a626f</version_id>
+  <version_modified>20200509T155940Z</version_modified>
   <xml_checksum>99E7000D</xml_checksum>
   <class_name>CreateTypicalDOEBuildingFromModel</class_name>
   <display_name>Create Typical DOE Building from Model</display_name>
@@ -1359,22 +1359,10 @@
       <checksum>E0468DD6</checksum>
     </file>
     <file>
-      <filename>test_hvac.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>729C035B</checksum>
-    </file>
-    <file>
       <filename>Model.hvac.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
       <checksum>007BDD2B</checksum>
-    </file>
-    <file>
-      <filename>create_typical_doe_building_from_model_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>CA59587B</checksum>
     </file>
     <file>
       <version>
@@ -1386,6 +1374,18 @@
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
       <checksum>57D960DB</checksum>
+    </file>
+    <file>
+      <filename>test_hvac.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>2785485F</checksum>
+    </file>
+    <file>
+      <filename>create_typical_doe_building_from_model_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>2724D460</checksum>
     </file>
   </files>
 </measure>

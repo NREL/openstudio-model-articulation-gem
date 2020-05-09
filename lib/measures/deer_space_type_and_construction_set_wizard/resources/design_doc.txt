@@ -15,12 +15,12 @@ Modeler Description:
     'The data for this measure comes from the openstudio-standards Ruby Gem. They are no longer created from the same JSON file that was used to make the OpenStudio templates. Optionally this will also set the building default space type and construction set.'
 
 Arguments:
-    building_type = OpenStudio::Ruleset::OSArgument::makeChoiceArgument('building_type', building_type_chs, true)
-    template = OpenStudio::Ruleset::OSArgument::makeChoiceArgument('template', template_chs, true)
-    climate_zone = OpenStudio::Ruleset::OSArgument::makeChoiceArgument('climate_zone', climate_zone_chs, true)
-    create_space_types = OpenStudio::Ruleset::OSArgument::makeBoolArgument("create_space_types",true)
-    create_construction_set = OpenStudio::Ruleset::OSArgument::makeBoolArgument("create_construction_set",true)
-    set_building_defaults = OpenStudio::Ruleset::OSArgument::makeBoolArgument("set_building_defaults",true)
+    building_type = OpenStudio::Measure::OSArgument.makeChoiceArgument('building_type', building_type_chs, true)
+    template = OpenStudio::Measure::OSArgument.makeChoiceArgument('template', template_chs, true)
+    climate_zone = OpenStudio::Measure::OSArgument.makeChoiceArgument('climate_zone', climate_zone_chs, true)
+    create_space_types = OpenStudio::Measure::OSArgument.makeBoolArgument("create_space_types",true)
+    create_construction_set = OpenStudio::Measure::OSArgument.makeBoolArgument("create_construction_set",true)
+    set_building_defaults = OpenStudio::Measure::OSArgument.makeBoolArgument("set_building_defaults",true)
 
 Error Message:
     runner.registerError("#{building_type} is an unexpected building type.")

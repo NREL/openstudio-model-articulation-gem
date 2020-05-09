@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>create_bar_from_deer_building_type_ratios</name>
   <uid>aa4a7ecf-5bfd-4c5e-b0ca-e68babbacff1</uid>
-  <version_id>adefea78-378c-47a6-9cbd-267777fa54d6</version_id>
-  <version_modified>20200416T064706Z</version_modified>
+  <version_id>3238e1de-bbbb-4588-b1f3-e4d4e4b76339</version_id>
+  <version_modified>20200509T155939Z</version_modified>
   <xml_checksum>B31F0C1F</xml_checksum>
   <class_name>CreateBarFromDEERBuildingTypeRatios</class_name>
   <display_name>Create Bar From DEER Building Type Ratios</display_name>
@@ -1111,12 +1111,6 @@
       <checksum>E0468DD6</checksum>
     </file>
     <file>
-      <filename>create_bar_from_deer_building_type_ratios_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>822C2A34</checksum>
-    </file>
-    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -1126,6 +1120,12 @@
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
       <checksum>A1C05436</checksum>
+    </file>
+    <file>
+      <filename>create_bar_from_deer_building_type_ratios_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>661DE193</checksum>
     </file>
   </files>
 </measure>

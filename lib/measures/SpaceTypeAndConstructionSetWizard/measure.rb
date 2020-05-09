@@ -46,7 +46,7 @@
 class SpaceTypeAndConstructionSetWizard < OpenStudio::Measure::ModelMeasure
   require 'openstudio-standards'
 
-# load OpenStudio measure libraries from openstudio-extension gem
+  # load OpenStudio measure libraries from openstudio-extension gem
   require 'openstudio-extension'
   require 'openstudio/extension/core/os_lib_helper_methods'
   require 'openstudio/extension/core/os_lib_model_generation.rb'

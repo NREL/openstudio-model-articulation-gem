@@ -46,7 +46,6 @@ require 'openstudio/extension/core/os_lib_model_simplification.rb'
 
 # start the measure
 class BlendedSpaceTypeFromFloorAreaRatios < OpenStudio::Measure::ModelMeasure
-
   # resource file modules
   include OsLib_HelperMethods
   include OsLib_ModelGeneration

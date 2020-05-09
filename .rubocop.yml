@@ -3,4 +3,4 @@ AllCops:
     - 'spec/test_measures/**/*'
 
 inherit_from:
-  - http://s3.amazonaws.com/openstudio-resources/styles/rubocop.yml
+  - http://s3.amazonaws.com/openstudio-resources/styles/rubocop_v3.yml

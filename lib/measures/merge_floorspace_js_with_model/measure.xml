@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>merge_floorspace_js_with_model</name>
   <uid>16ef6369-6420-4f17-894c-a767895bcaa4</uid>
-  <version_id>fceb8d71-0232-4cfa-b4fd-370d960bb404</version_id>
-  <version_modified>20200509T125956Z</version_modified>
+  <version_id>81182772-83db-4244-bc0f-377cde800b1a</version_id>
+  <version_modified>20200509T155939Z</version_modified>
   <xml_checksum>0AD1E2E2</xml_checksum>
   <class_name>MergeFloorspaceJsWithModel</class_name>
   <display_name>Merge FloorspaceJs with Model</display_name>
@@ -99,7 +99,7 @@
       <filename>merge_floorspace_js_with_model_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>849EFC20</checksum>
+      <checksum>04B13C39</checksum>
     </file>
     <file>
       <version>
@@ -110,7 +110,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>78699DCF</checksum>
+      <checksum>00F6B912</checksum>
     </file>
   </files>
 </measure>
