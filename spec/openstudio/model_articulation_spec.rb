@@ -82,7 +82,7 @@ RSpec.describe OpenStudio::ModelArticulation do
     expect(File.exist?(File.join(instance.measures_dir, 'BarAspectRatioStudy/'))).to be true
   end
 
-  it 'can run create_bar_from_building_type_ratios.osw' do
-    run_osw('create_bar_from_building_type_ratios', 'create_bar_from_building_type_ratios.osw')
-  end
+  # it 'can run create_bar_from_building_type_ratios.osw' do
+  #   run_osw('create_bar_from_building_type_ratios', 'create_bar_from_building_type_ratios.osw')
+  # end
 end
