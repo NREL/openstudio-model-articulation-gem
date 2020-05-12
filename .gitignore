@@ -33,3 +33,4 @@ create_baseline.log
 
 # Ignore measure tester gem local test results
 test_results/
+/lib/measures/create_baseline_building/output/
