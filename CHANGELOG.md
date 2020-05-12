@@ -1,6 +1,6 @@
 # OpenStudio Model Articulation Gems
 
-## Version 0.2.0 (Unreleased)
+## Version 0.2.0
 
 * Support for OpenStudio 3.0
     * Upgrade Bundler to 2.1.x
