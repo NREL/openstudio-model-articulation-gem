@@ -1,5 +1,5 @@
 # *******************************************************************************
-# OpenStudio(R), Copyright (c) 2008-2019, Alliance for Sustainable Energy, LLC.
+# OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -34,7 +34,7 @@
 # *******************************************************************************
 
 require 'openstudio'
-require 'openstudio/ruleset/ShowRunnerOutput'
+require 'openstudio/measure/ShowRunnerOutput'
 require 'minitest/autorun'
 require_relative '../measure.rb'
 require 'fileutils'
@@ -107,7 +107,7 @@ class AddHVACSystemTest < MiniTest::Test
 
     template = '90.1-2013'
     building_type = 'SmallOffice'
-    climate_zone = 'ASHRAE 169-2006-2A'
+    climate_zone = 'ASHRAE 169-2013-2A'
 
     # Add each HVAC system to the test model
     # and run a sizing run to ensure it simulates.
@@ -153,7 +153,7 @@ class AddHVACSystemTest < MiniTest::Test
 
         # get arguments
         arguments = measure.arguments(model)
-        argument_map = OpenStudio::Ruleset.convertOSArgumentVectorToMap(arguments)
+        argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
 
         # create hash of argument values.
         args_hash = {}
@@ -162,6 +162,7 @@ class AddHVACSystemTest < MiniTest::Test
         args_hash['template'] = template
         args_hash['climate_zone'] = climate_zone
         args_hash['add_elevators'] = false
+        args_hash['add_internal_mass'] = false
         args_hash['add_exhaust'] = false
         args_hash['add_exterior_lights'] = false
         args_hash['add_swh'] = false

@@ -1,5 +1,5 @@
 # *******************************************************************************
-# OpenStudio(R), Copyright (c) 2008-2019, Alliance for Sustainable Energy, LLC.
+# OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -34,12 +34,9 @@
 # *******************************************************************************
 
 require 'openstudio'
-
-require 'openstudio/ruleset/ShowRunnerOutput'
-
-require "#{File.dirname(__FILE__)}/../measure.rb"
-
+require 'openstudio/measure/ShowRunnerOutput'
 require 'minitest/autorun'
+require_relative '../measure.rb'
 
 class SimplifyGeometryToSlicedBar_Test < MiniTest::Test
   def test_SimplifyGeometryToSlicedBar

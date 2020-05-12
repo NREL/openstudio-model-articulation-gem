@@ -1,15 +1,50 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>simplify_geometry_to_sliced_bar</name>
   <uid>eb218516-5fa5-47fe-948d-274777c7d592</uid>
-  <version_id>052d2393-b1a0-4e80-9e89-a64cf23b8149</version_id>
-  <version_modified>20191030T020544Z</version_modified>
+  <version_id>c8762599-9d85-4f35-a235-7b27de14498d</version_id>
+  <version_modified>20200509T155938Z</version_modified>
   <xml_checksum>45097B60</xml_checksum>
   <class_name>SimplifyGeometryToSlicedBar</class_name>
   <display_name>SimplifyGeometryToSlicedBar</display_name>
   <description>This is an experimental measure looking at ways to simply the geometry, or to create geometry when you only no percentage of space types number of floors and total area. This technique will match the building floor area but will sacrifice the exterior exposure. So it will produce better results on more boxy buildings than a building with many wings. I may try to come up with solution that also tries to maintain exterior exposure in another version.</description>
-  <modeler_description>I'm going to extract space type area breakdown and number of floors from the source model. I'll also keep track of exterior exposure. I won't directly use exterior exposure but can report the change in this as a kind of confidence metric. I'll then create a bar building using the bounding box aspect ratio, but shrunk to fit the building area. I will slice the building across the shorter axis by space type. The two most prevalent space types will go on the outside of the building. Instead of core and perimeter zoning the building will have a variation with square corners. I will create one zone per space, and will use a zone multiplier for any building more than 3 stories tall.&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;
-&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;&#xd;
+  <modeler_description>I'm going to extract space type area breakdown and number of floors from the source model. I'll also keep track of exterior exposure. I won't directly use exterior exposure but can report the change in this as a kind of confidence metric. I'll then create a bar building using the bounding box aspect ratio, but shrunk to fit the building area. I will slice the building across the shorter axis by space type. The two most prevalent space types will go on the outside of the building. Instead of core and perimeter zoning the building will have a variation with square corners. I will create one zone per space, and will use a zone multiplier for any building more than 3 stories tall.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 In a future version I may try to identify similar spaces types and blend them together before slicing, although I expect that will be a separate measure, so it is more modular.</modeler_description>
   <arguments>
     <argument>
@@ -35,8 +70,8 @@ In a future version I may try to identify similar spaces types and blend them to
       </choices>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Envelope.Form</tag>
   </tags>
@@ -60,57 +95,57 @@ In a future version I may try to identify similar spaces types and blend them to
       <checksum>7E96D119</checksum>
     </file>
     <file>
-      <filename>README.md.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>readmeerb</usage_type>
-      <checksum>703C9964</checksum>
-    </file>
-    <file>
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>DE7E458B</checksum>
     </file>
     <file>
-      <filename>os_lib_geometry.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>D6D0E98F</checksum>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
     </file>
     <file>
       <filename>os_lib_helper_methods.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>22515A49</checksum>
+      <checksum>07B01D67</checksum>
     </file>
     <file>
       <filename>os_lib_cofee.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>F702B09E</checksum>
-    </file>
-    <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>F5515455</checksum>
-    </file>
-    <file>
-      <filename>SimplifyGeometryToSlicedBar_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>17C198F2</checksum>
+      <checksum>3C10BF38</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>D41C05CF</checksum>
+      <checksum>E0468DD6</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.8.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>0FCFDE6E</checksum>
+    </file>
+    <file>
+      <filename>os_lib_geometry.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>674C561A</checksum>
+    </file>
+    <file>
+      <filename>SimplifyGeometryToSlicedBar_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>8CD4C265</checksum>
     </file>
   </files>
 </measure>

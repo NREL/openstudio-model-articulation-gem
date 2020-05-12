@@ -1,0 +1,1131 @@
+<?xml version="1.0"?>
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>create_bar_from_deer_building_type_ratios</name>
+  <uid>aa4a7ecf-5bfd-4c5e-b0ca-e68babbacff1</uid>
+  <version_id>3238e1de-bbbb-4588-b1f3-e4d4e4b76339</version_id>
+  <version_modified>20200509T155939Z</version_modified>
+  <xml_checksum>B31F0C1F</xml_checksum>
+  <class_name>CreateBarFromDEERBuildingTypeRatios</class_name>
+  <display_name>Create Bar From DEER Building Type Ratios</display_name>
+  <description>Creates one or more rectangular building elements based on space type ratios of selected mix of building types, along with user arguments that describe the desired geometry characteristics.</description>
+  <modeler_description>The building floor area can be described as a footprint size or as a total building area. The shape can be described by its aspect ratio or can be defined as a set width.</modeler_description>
+  <arguments>
+    <argument>
+      <name>bldg_type_a</name>
+      <display_name>Primary Building Type</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>OfS</default_value>
+      <choices>
+        <choice>
+          <value>Asm</value>
+          <display_name>Asm</display_name>
+        </choice>
+        <choice>
+          <value>DMo</value>
+          <display_name>DMo</display_name>
+        </choice>
+        <choice>
+          <value>ECC</value>
+          <display_name>ECC</display_name>
+        </choice>
+        <choice>
+          <value>EPr</value>
+          <display_name>EPr</display_name>
+        </choice>
+        <choice>
+          <value>ERC</value>
+          <display_name>ERC</display_name>
+        </choice>
+        <choice>
+          <value>ESe</value>
+          <display_name>ESe</display_name>
+        </choice>
+        <choice>
+          <value>EUn</value>
+          <display_name>EUn</display_name>
+        </choice>
+        <choice>
+          <value>GHs</value>
+          <display_name>GHs</display_name>
+        </choice>
+        <choice>
+          <value>Gro</value>
+          <display_name>Gro</display_name>
+        </choice>
+        <choice>
+          <value>Hsp</value>
+          <display_name>Hsp</display_name>
+        </choice>
+        <choice>
+          <value>Htl</value>
+          <display_name>Htl</display_name>
+        </choice>
+        <choice>
+          <value>MBT</value>
+          <display_name>MBT</display_name>
+        </choice>
+        <choice>
+          <value>MFm</value>
+          <display_name>MFm</display_name>
+        </choice>
+        <choice>
+          <value>MLI</value>
+          <display_name>MLI</display_name>
+        </choice>
+        <choice>
+          <value>Mtl</value>
+          <display_name>Mtl</display_name>
+        </choice>
+        <choice>
+          <value>Nrs</value>
+          <display_name>Nrs</display_name>
+        </choice>
+        <choice>
+          <value>OfL</value>
+          <display_name>OfL</display_name>
+        </choice>
+        <choice>
+          <value>OfS</value>
+          <display_name>OfS</display_name>
+        </choice>
+        <choice>
+          <value>RFF</value>
+          <display_name>RFF</display_name>
+        </choice>
+        <choice>
+          <value>RSD</value>
+          <display_name>RSD</display_name>
+        </choice>
+        <choice>
+          <value>Rt3</value>
+          <display_name>Rt3</display_name>
+        </choice>
+        <choice>
+          <value>RtL</value>
+          <display_name>RtL</display_name>
+        </choice>
+        <choice>
+          <value>RtS</value>
+          <display_name>RtS</display_name>
+        </choice>
+        <choice>
+          <value>SCn</value>
+          <display_name>SCn</display_name>
+        </choice>
+        <choice>
+          <value>SFm</value>
+          <display_name>SFm</display_name>
+        </choice>
+        <choice>
+          <value>SUn</value>
+          <display_name>SUn</display_name>
+        </choice>
+        <choice>
+          <value>WRf</value>
+          <display_name>WRf</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>bldg_type_b</name>
+      <display_name>Building Type B</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>OfS</default_value>
+      <choices>
+        <choice>
+          <value>Asm</value>
+          <display_name>Asm</display_name>
+        </choice>
+        <choice>
+          <value>DMo</value>
+          <display_name>DMo</display_name>
+        </choice>
+        <choice>
+          <value>ECC</value>
+          <display_name>ECC</display_name>
+        </choice>
+        <choice>
+          <value>EPr</value>
+          <display_name>EPr</display_name>
+        </choice>
+        <choice>
+          <value>ERC</value>
+          <display_name>ERC</display_name>
+        </choice>
+        <choice>
+          <value>ESe</value>
+          <display_name>ESe</display_name>
+        </choice>
+        <choice>
+          <value>EUn</value>
+          <display_name>EUn</display_name>
+        </choice>
+        <choice>
+          <value>GHs</value>
+          <display_name>GHs</display_name>
+        </choice>
+        <choice>
+          <value>Gro</value>
+          <display_name>Gro</display_name>
+        </choice>
+        <choice>
+          <value>Hsp</value>
+          <display_name>Hsp</display_name>
+        </choice>
+        <choice>
+          <value>Htl</value>
+          <display_name>Htl</display_name>
+        </choice>
+        <choice>
+          <value>MBT</value>
+          <display_name>MBT</display_name>
+        </choice>
+        <choice>
+          <value>MFm</value>
+          <display_name>MFm</display_name>
+        </choice>
+        <choice>
+          <value>MLI</value>
+          <display_name>MLI</display_name>
+        </choice>
+        <choice>
+          <value>Mtl</value>
+          <display_name>Mtl</display_name>
+        </choice>
+        <choice>
+          <value>Nrs</value>
+          <display_name>Nrs</display_name>
+        </choice>
+        <choice>
+          <value>OfL</value>
+          <display_name>OfL</display_name>
+        </choice>
+        <choice>
+          <value>OfS</value>
+          <display_name>OfS</display_name>
+        </choice>
+        <choice>
+          <value>RFF</value>
+          <display_name>RFF</display_name>
+        </choice>
+        <choice>
+          <value>RSD</value>
+          <display_name>RSD</display_name>
+        </choice>
+        <choice>
+          <value>Rt3</value>
+          <display_name>Rt3</display_name>
+        </choice>
+        <choice>
+          <value>RtL</value>
+          <display_name>RtL</display_name>
+        </choice>
+        <choice>
+          <value>RtS</value>
+          <display_name>RtS</display_name>
+        </choice>
+        <choice>
+          <value>SCn</value>
+          <display_name>SCn</display_name>
+        </choice>
+        <choice>
+          <value>SFm</value>
+          <display_name>SFm</display_name>
+        </choice>
+        <choice>
+          <value>SUn</value>
+          <display_name>SUn</display_name>
+        </choice>
+        <choice>
+          <value>WRf</value>
+          <display_name>WRf</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>bldg_type_b_fract_bldg_area</name>
+      <display_name>Building Type B Fraction of Building Floor Area</display_name>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>bldg_type_c</name>
+      <display_name>Building Type C</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>OfS</default_value>
+      <choices>
+        <choice>
+          <value>Asm</value>
+          <display_name>Asm</display_name>
+        </choice>
+        <choice>
+          <value>DMo</value>
+          <display_name>DMo</display_name>
+        </choice>
+        <choice>
+          <value>ECC</value>
+          <display_name>ECC</display_name>
+        </choice>
+        <choice>
+          <value>EPr</value>
+          <display_name>EPr</display_name>
+        </choice>
+        <choice>
+          <value>ERC</value>
+          <display_name>ERC</display_name>
+        </choice>
+        <choice>
+          <value>ESe</value>
+          <display_name>ESe</display_name>
+        </choice>
+        <choice>
+          <value>EUn</value>
+          <display_name>EUn</display_name>
+        </choice>
+        <choice>
+          <value>GHs</value>
+          <display_name>GHs</display_name>
+        </choice>
+        <choice>
+          <value>Gro</value>
+          <display_name>Gro</display_name>
+        </choice>
+        <choice>
+          <value>Hsp</value>
+          <display_name>Hsp</display_name>
+        </choice>
+        <choice>
+          <value>Htl</value>
+          <display_name>Htl</display_name>
+        </choice>
+        <choice>
+          <value>MBT</value>
+          <display_name>MBT</display_name>
+        </choice>
+        <choice>
+          <value>MFm</value>
+          <display_name>MFm</display_name>
+        </choice>
+        <choice>
+          <value>MLI</value>
+          <display_name>MLI</display_name>
+        </choice>
+        <choice>
+          <value>Mtl</value>
+          <display_name>Mtl</display_name>
+        </choice>
+        <choice>
+          <value>Nrs</value>
+          <display_name>Nrs</display_name>
+        </choice>
+        <choice>
+          <value>OfL</value>
+          <display_name>OfL</display_name>
+        </choice>
+        <choice>
+          <value>OfS</value>
+          <display_name>OfS</display_name>
+        </choice>
+        <choice>
+          <value>RFF</value>
+          <display_name>RFF</display_name>
+        </choice>
+        <choice>
+          <value>RSD</value>
+          <display_name>RSD</display_name>
+        </choice>
+        <choice>
+          <value>Rt3</value>
+          <display_name>Rt3</display_name>
+        </choice>
+        <choice>
+          <value>RtL</value>
+          <display_name>RtL</display_name>
+        </choice>
+        <choice>
+          <value>RtS</value>
+          <display_name>RtS</display_name>
+        </choice>
+        <choice>
+          <value>SCn</value>
+          <display_name>SCn</display_name>
+        </choice>
+        <choice>
+          <value>SFm</value>
+          <display_name>SFm</display_name>
+        </choice>
+        <choice>
+          <value>SUn</value>
+          <display_name>SUn</display_name>
+        </choice>
+        <choice>
+          <value>WRf</value>
+          <display_name>WRf</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>bldg_type_c_fract_bldg_area</name>
+      <display_name>Building Type C Fraction of Building Floor Area</display_name>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>bldg_type_d</name>
+      <display_name>Building Type D</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>OfS</default_value>
+      <choices>
+        <choice>
+          <value>Asm</value>
+          <display_name>Asm</display_name>
+        </choice>
+        <choice>
+          <value>DMo</value>
+          <display_name>DMo</display_name>
+        </choice>
+        <choice>
+          <value>ECC</value>
+          <display_name>ECC</display_name>
+        </choice>
+        <choice>
+          <value>EPr</value>
+          <display_name>EPr</display_name>
+        </choice>
+        <choice>
+          <value>ERC</value>
+          <display_name>ERC</display_name>
+        </choice>
+        <choice>
+          <value>ESe</value>
+          <display_name>ESe</display_name>
+        </choice>
+        <choice>
+          <value>EUn</value>
+          <display_name>EUn</display_name>
+        </choice>
+        <choice>
+          <value>GHs</value>
+          <display_name>GHs</display_name>
+        </choice>
+        <choice>
+          <value>Gro</value>
+          <display_name>Gro</display_name>
+        </choice>
+        <choice>
+          <value>Hsp</value>
+          <display_name>Hsp</display_name>
+        </choice>
+        <choice>
+          <value>Htl</value>
+          <display_name>Htl</display_name>
+        </choice>
+        <choice>
+          <value>MBT</value>
+          <display_name>MBT</display_name>
+        </choice>
+        <choice>
+          <value>MFm</value>
+          <display_name>MFm</display_name>
+        </choice>
+        <choice>
+          <value>MLI</value>
+          <display_name>MLI</display_name>
+        </choice>
+        <choice>
+          <value>Mtl</value>
+          <display_name>Mtl</display_name>
+        </choice>
+        <choice>
+          <value>Nrs</value>
+          <display_name>Nrs</display_name>
+        </choice>
+        <choice>
+          <value>OfL</value>
+          <display_name>OfL</display_name>
+        </choice>
+        <choice>
+          <value>OfS</value>
+          <display_name>OfS</display_name>
+        </choice>
+        <choice>
+          <value>RFF</value>
+          <display_name>RFF</display_name>
+        </choice>
+        <choice>
+          <value>RSD</value>
+          <display_name>RSD</display_name>
+        </choice>
+        <choice>
+          <value>Rt3</value>
+          <display_name>Rt3</display_name>
+        </choice>
+        <choice>
+          <value>RtL</value>
+          <display_name>RtL</display_name>
+        </choice>
+        <choice>
+          <value>RtS</value>
+          <display_name>RtS</display_name>
+        </choice>
+        <choice>
+          <value>SCn</value>
+          <display_name>SCn</display_name>
+        </choice>
+        <choice>
+          <value>SFm</value>
+          <display_name>SFm</display_name>
+        </choice>
+        <choice>
+          <value>SUn</value>
+          <display_name>SUn</display_name>
+        </choice>
+        <choice>
+          <value>WRf</value>
+          <display_name>WRf</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>bldg_type_d_fract_bldg_area</name>
+      <display_name>Building Type D Fraction of Building Floor Area</display_name>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>total_bldg_floor_area</name>
+      <display_name>Total Building Floor Area</display_name>
+      <type>Double</type>
+      <units>ft^2</units>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>10000</default_value>
+    </argument>
+    <argument>
+      <name>single_floor_area</name>
+      <display_name>Single Floor Area</display_name>
+      <description>Non-zero value will fix the single floor area, overriding a user entry for Total Building Floor Area</description>
+      <type>Double</type>
+      <units>ft^2</units>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>floor_height</name>
+      <display_name>Typical Floor to FLoor Height</display_name>
+      <description>Selecting a typical floor height of 0 will trigger a smart building type default.</description>
+      <type>Double</type>
+      <units>ft</units>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>custom_height_bar</name>
+      <display_name>Enable Custom Height Bar Application</display_name>
+      <description>This is argument value is only relevant when smart default floor to floor height is used for a building type that has spaces with custom heights.</description>
+      <type>Boolean</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>true</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>num_stories_above_grade</name>
+      <display_name>Number of Stories Above Grade</display_name>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>1</default_value>
+    </argument>
+    <argument>
+      <name>num_stories_below_grade</name>
+      <display_name>Number of Stories Below Grade</display_name>
+      <type>Integer</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>building_rotation</name>
+      <display_name>Building Rotation</display_name>
+      <description>Set Building Rotation off of North (positive value is clockwise). Rotation applied after geometry generation. Values greater than +/- 45 will result in aspect ratio and party wall orientations that do not match cardinal directions of the inputs.</description>
+      <type>Double</type>
+      <units>Degrees</units>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>template</name>
+      <display_name>Target Standard</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>DEER 2017</default_value>
+      <choices>
+        <choice>
+          <value>DEER Pre-1975</value>
+          <display_name>DEER Pre-1975</display_name>
+        </choice>
+        <choice>
+          <value>DEER 1985</value>
+          <display_name>DEER 1985</display_name>
+        </choice>
+        <choice>
+          <value>DEER 1996</value>
+          <display_name>DEER 1996</display_name>
+        </choice>
+        <choice>
+          <value>DEER 2003</value>
+          <display_name>DEER 2003</display_name>
+        </choice>
+        <choice>
+          <value>DEER 2007</value>
+          <display_name>DEER 2007</display_name>
+        </choice>
+        <choice>
+          <value>DEER 2011</value>
+          <display_name>DEER 2011</display_name>
+        </choice>
+        <choice>
+          <value>DEER 2014</value>
+          <display_name>DEER 2014</display_name>
+        </choice>
+        <choice>
+          <value>DEER 2015</value>
+          <display_name>DEER 2015</display_name>
+        </choice>
+        <choice>
+          <value>DEER 2017</value>
+          <display_name>DEER 2017</display_name>
+        </choice>
+        <choice>
+          <value>DEER 2020</value>
+          <display_name>DEER 2020</display_name>
+        </choice>
+        <choice>
+          <value>DEER 2025</value>
+          <display_name>DEER 2025</display_name>
+        </choice>
+        <choice>
+          <value>DEER 2030</value>
+          <display_name>DEER 2030</display_name>
+        </choice>
+        <choice>
+          <value>DEER 2035</value>
+          <display_name>DEER 2035</display_name>
+        </choice>
+        <choice>
+          <value>DEER 2040</value>
+          <display_name>DEER 2040</display_name>
+        </choice>
+        <choice>
+          <value>DEER 2045</value>
+          <display_name>DEER 2045</display_name>
+        </choice>
+        <choice>
+          <value>DEER 2050</value>
+          <display_name>DEER 2050</display_name>
+        </choice>
+        <choice>
+          <value>DEER 2055</value>
+          <display_name>DEER 2055</display_name>
+        </choice>
+        <choice>
+          <value>DEER 2060</value>
+          <display_name>DEER 2060</display_name>
+        </choice>
+        <choice>
+          <value>DEER 2065</value>
+          <display_name>DEER 2065</display_name>
+        </choice>
+        <choice>
+          <value>DEER 2070</value>
+          <display_name>DEER 2070</display_name>
+        </choice>
+        <choice>
+          <value>DEER 2075</value>
+          <display_name>DEER 2075</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>ns_to_ew_ratio</name>
+      <display_name>Ratio of North/South Facade Length Relative to East/West Facade Length</display_name>
+      <description>Selecting an aspect ratio of 0 will trigger a smart building type default. Aspect ratios less than one are not recommended for sliced bar geometry, instead rotate building and use a greater than 1 aspect ratio.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>perim_mult</name>
+      <display_name>Perimeter Multiplier</display_name>
+      <description>Selecting a value of 0 will trigger a smart building type default. This represents a multiplier for the building perimeter relative to the perimeter of a rectangular building that meets the area and aspect ratio inputs. Other than the smart default of 0.0 this argument should have a value of 1.0 or higher and is only applicable Multiple Space Types - Individual Stories Sliced division method.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>bar_width</name>
+      <display_name>Bar Width</display_name>
+      <description>Non-zero value will fix the building width, overriding user entry for Perimeter Multiplier. NS/EW Aspect Ratio may be limited based on target width.</description>
+      <type>Double</type>
+      <units>ft</units>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>bar_sep_dist_mult</name>
+      <display_name>Bar Separation Distance Multiplier</display_name>
+      <description>Multiplier of separation between bar elements relative to building height.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>10</default_value>
+    </argument>
+    <argument>
+      <name>wwr</name>
+      <display_name>Window to Wall Ratio</display_name>
+      <description>Selecting a window to wall ratio of 0 will trigger a smart building type default.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>party_wall_fraction</name>
+      <display_name>Fraction of Exterior Wall Area with Adjacent Structure</display_name>
+      <description>This will impact how many above grade exterior walls are modeled with adiabatic boundary condition.</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>party_wall_stories_north</name>
+      <display_name>Number of North facing stories with party wall</display_name>
+      <description>This will impact how many above grade exterior north walls are modeled with adiabatic boundary condition. If this is less than the number of above grade stoes, upper flor will reamin exterior</description>
+      <type>Integer</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>party_wall_stories_south</name>
+      <display_name>Number of South facing stories with party wall</display_name>
+      <description>This will impact how many above grade exterior south walls are modeled with adiabatic boundary condition. If this is less than the number of above grade stoes, upper flor will reamin exterior</description>
+      <type>Integer</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>party_wall_stories_east</name>
+      <display_name>Number of East facing stories with party wall</display_name>
+      <description>This will impact how many above grade exterior east walls are modeled with adiabatic boundary condition. If this is less than the number of above grade stoes, upper flor will reamin exterior</description>
+      <type>Integer</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>party_wall_stories_west</name>
+      <display_name>Number of West facing stories with party wall</display_name>
+      <description>This will impact how many above grade exterior west walls are modeled with adiabatic boundary condition. If this is less than the number of above grade stoes, upper flor will reamin exterior</description>
+      <type>Integer</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>bottom_story_ground_exposed_floor</name>
+      <display_name>Is the Bottom Story Exposed to Ground</display_name>
+      <description>This should be true unless you are modeling a partial building which doesn't include the lowest story. The bottom story floor will have an adiabatic boundary condition when false.</description>
+      <type>Boolean</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>true</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>top_story_exterior_exposed_roof</name>
+      <display_name>Is the Top Story an Exterior Roof</display_name>
+      <description>This should be true unless you are modeling a partial building which doesn't include the highest story. The top story ceiling will have an adiabatic boundary condition when false.</description>
+      <type>Boolean</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>true</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>story_multiplier</name>
+      <display_name>Calculation Method for Story Multiplier</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>Basements Ground Mid Top</default_value>
+      <choices>
+        <choice>
+          <value>None</value>
+          <display_name>None</display_name>
+        </choice>
+        <choice>
+          <value>Basements Ground Mid Top</value>
+          <display_name>Basements Ground Mid Top</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>make_mid_story_surfaces_adiabatic</name>
+      <display_name>Make Mid Story Floor Surfaces Adiabatic</display_name>
+      <description>If set to true, this will skip surface intersection and make mid story floors and celings adiabatic, not just at multiplied gaps.</description>
+      <type>Boolean</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>false</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>bar_division_method</name>
+      <display_name>Division Method for Bar Space Types</display_name>
+      <description>To use perimeter multiplier greater than 1 selected Multiple Space Types - Individual Stories Sliced.</description>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>Multiple Space Types - Individual Stories Sliced</default_value>
+      <choices>
+        <choice>
+          <value>Multiple Space Types - Simple Sliced</value>
+          <display_name>Multiple Space Types - Simple Sliced</display_name>
+        </choice>
+        <choice>
+          <value>Multiple Space Types - Individual Stories Sliced</value>
+          <display_name>Multiple Space Types - Individual Stories Sliced</display_name>
+        </choice>
+        <choice>
+          <value>Single Space Type - Core and Perimeter</value>
+          <display_name>Single Space Type - Core and Perimeter</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>space_type_sort_logic</name>
+      <display_name>Choose Space Type Sorting Method</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>Building Type &gt; Size</default_value>
+      <choices>
+        <choice>
+          <value>Size</value>
+          <display_name>Size</display_name>
+        </choice>
+        <choice>
+          <value>Building Type &gt; Size</value>
+          <display_name>Building Type &gt; Size</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>use_upstream_args</name>
+      <display_name>Use Upstream Argument Values</display_name>
+      <description>When true this will look for arguments or registerValues in upstream measures that match arguments from this measure, and will use the value from the upstream measure in place of what is entered for this measure.</description>
+      <type>Boolean</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>true</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
+    </argument>
+  </arguments>
+  <outputs />
+  <provenances />
+  <tags>
+    <tag>Envelope.Form</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Apply Measure Now</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>OpenStudio Application</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Parametric Analysis Tool</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Apply Measure Now</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>OpenStudio Application</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Parametric Analysis Tool</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Apply Measure Now</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>OpenStudio Application</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Parametric Analysis Tool</value>
+      <datatype>string</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <filename>example_model.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>032BCDC9</checksum>
+    </file>
+    <file>
+      <filename>ar_05.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>A86ECE4C</checksum>
+    </file>
+    <file>
+      <filename>ar_1.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>F5818F2F</checksum>
+    </file>
+    <file>
+      <filename>ar_2.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>1CAF9C96</checksum>
+    </file>
+    <file>
+      <filename>bar_double_loaded.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>29AECFF4</checksum>
+    </file>
+    <file>
+      <filename>bar_single_core_perim.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>D1ED9343</checksum>
+    </file>
+    <file>
+      <filename>bar_sliced_indiv.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>B737F7E5</checksum>
+    </file>
+    <file>
+      <filename>bar_sliced_simple.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>EF138637</checksum>
+    </file>
+    <file>
+      <filename>basement.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>6436A0E2</checksum>
+    </file>
+    <file>
+      <filename>custom_height_false.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>0684A3AD</checksum>
+    </file>
+    <file>
+      <filename>custom_height_true.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>37DBC088</checksum>
+    </file>
+    <file>
+      <filename>no_party_mult.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>E68AC690</checksum>
+    </file>
+    <file>
+      <filename>party.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>B70845E6</checksum>
+    </file>
+    <file>
+      <filename>party_multi.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>1CA071B4</checksum>
+    </file>
+    <file>
+      <filename>perim_mult_2010.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>7704044F</checksum>
+    </file>
+    <file>
+      <filename>perim_mult_2012.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>8809F075</checksum>
+    </file>
+    <file>
+      <filename>perim_mult_2020.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>0925C42D</checksum>
+    </file>
+    <file>
+      <filename>sep_05.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>86E7AC6E</checksum>
+    </file>
+    <file>
+      <filename>sep_10.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>91062F24</checksum>
+    </file>
+    <file>
+      <filename>sep_3.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>4DE3ED94</checksum>
+    </file>
+    <file>
+      <filename>story_sort.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>A64E1184</checksum>
+    </file>
+    <file>
+      <filename>wwr_custom.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>D1E7B644</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>843BCF80</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>6935E74D</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>3.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>A1C05436</checksum>
+    </file>
+    <file>
+      <filename>create_bar_from_deer_building_type_ratios_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>661DE193</checksum>
+    </file>
+  </files>
+</measure>

@@ -1,0 +1,269 @@
+[openstudio.EpwFile] <0> Successive data points (1999-Jan-31 to 2001-Feb-01, ending on line 753) are greater than 1 day apart in EPW file '/Users/rgugliel/src/OpenStudio-measures/nrel_published/RadianceMeasure/tests/USA_CO_Golden-NREL.724666_TMY3.epw'. Data will be treated as typical (TMY)
+[OpenStudio.Measure] <0> OpenStudio::Ruleset::convertOSArgumentVectorToMap is deprecated, use OpenStudio::Measure::convertOSArgumentVectorToMap instead.
+Run options: --seed 48202
+
+# Running:
+
+apply_schedules
+setting apply_schedules = true
+use_cores
+setting use_cores = Max
+rad_settings
+setting rad_settings = Testing
+debug_mode
+setting debug_mode = true
+cleanup_data
+setting cleanup_data = false
+[openstudio.measure.OSRunner] <1> Cannot find current Workflow Step
+[Radiance Measure 2018-06-28 15:35:58 UTC]: Using 8 core(s) for Radiance jobs
+[Radiance Measure 2018-06-28 15:35:58 UTC]: Found Radiance at: /Applications/OpenStudio-2.4.1/Ruby/../Radiance
+[Radiance Measure 2018-06-28 15:35:58 UTC]: Found Perl at: /usr/bin
+[Radiance Measure 2018-06-28 15:35:58 UTC]: Found EnergyPlus at: /Applications/OpenStudio-2.4.1/Ruby/../EnergyPlus/energyplus
+[Radiance Measure 2018-06-28 15:35:58 UTC]: Radiance version: NREL 5.0.a.12 (by googs 2017.01.02) based on RADIANCE 5.0 Official Release by G. Ward
+[Radiance Measure 2018-06-28 15:35:58 UTC]: Radiance binary dir: /Applications/OpenStudio-2.4.1/Ruby/../Radiance/bin
+[Radiance Measure 2018-06-28 15:35:58 UTC]: Radiance library dir: /Applications/OpenStudio-2.4.1/Ruby/../Radiance/lib
+[Radiance Measure 2018-06-28 15:35:58 UTC]: Running on unix
+[Radiance Measure 2018-06-28 15:35:58 UTC]: Translating OpenStudio 2.x model to Radiance format...
+[openstudio.radiance.ForwardTranslator] <0> DaylightingControl Daylighting Control SW is not associated with this Space's ThermalZone, it will not be translated.
+[openstudio.radiance.ForwardTranslator] <0> DaylightingControl Daylighting Control North2 is not associated with this Space's ThermalZone, it will not be translated.
+[openstudio.radiance.ForwardTranslator] <0> Space NE Space 104 contains Radiance daylighting objects but no GlareSensor objects.
+[openstudio.radiance.ForwardTranslator] <0> inside reveal depth increased to 0.05 m
+[openstudio.radiance.ForwardTranslator] <0> inside sill depth increased to 0.05 m
+[Radiance Measure 2018-06-28 15:36:22 UTC]: Working directory: '/Users/rgugliel/src/OpenStudio-measures/nrel_published/RadianceMeasure/tests/output/Shade/radiance'
+[openstudio.EpwFile] <0> Successive data points (1999-Jan-31 to 2001-Feb-01, ending on line 753) are greater than 1 day apart in EPW file '/Users/rgugliel/src/OpenStudio-measures/nrel_published/RadianceMeasure/tests/USA_CO_Golden-NREL.724666_TMY3.epw'. Data will be treated as typical (TMY)
+[openstudio.energyplus.SqlFile] <1> Exception while opening database at '/Users/rgugliel/src/OpenStudio-measures/nrel_published/RadianceMeasure/tests/output/Shade/radiance/../eplus_preprocess/run/eplusout.sql': File not successfully opened.
+F[openstudio.EpwFile] <0> Successive data points (1999-Jan-31 to 2001-Feb-01, ending on line 753) are greater than 1 day apart in EPW file '/Users/rgugliel/src/OpenStudio-measures/nrel_published/RadianceMeasure/tests/USA_CO_Golden-NREL.724666_TMY3.epw'. Data will be treated as typical (TMY)
+[OpenStudio.Measure] <0> OpenStudio::Ruleset::convertOSArgumentVectorToMap is deprecated, use OpenStudio::Measure::convertOSArgumentVectorToMap instead.
+apply_schedules
+setting apply_schedules = false
+use_cores
+setting use_cores = Max
+rad_settings
+setting rad_settings = Testing
+debug_mode
+setting debug_mode = true
+cleanup_data
+setting cleanup_data = true
+[openstudio.measure.OSRunner] <1> Cannot find current Workflow Step
+[Radiance Measure 2018-06-28 15:36:23 UTC]: Using 8 core(s) for Radiance jobs
+[Radiance Measure 2018-06-28 15:36:23 UTC]: Found Radiance at: /Applications/OpenStudio-2.4.1/Ruby/../Radiance
+[Radiance Measure 2018-06-28 15:36:23 UTC]: Found Perl at: /usr/bin
+[Radiance Measure 2018-06-28 15:36:23 UTC]: Found EnergyPlus at: /Applications/OpenStudio-2.4.1/Ruby/../EnergyPlus/energyplus
+[Radiance Measure 2018-06-28 15:36:23 UTC]: Radiance version: NREL 5.0.a.12 (by googs 2017.01.02) based on RADIANCE 5.0 Official Release by G. Ward
+[Radiance Measure 2018-06-28 15:36:23 UTC]: Radiance binary dir: /Applications/OpenStudio-2.4.1/Ruby/../Radiance/bin
+[Radiance Measure 2018-06-28 15:36:23 UTC]: Radiance library dir: /Applications/OpenStudio-2.4.1/Ruby/../Radiance/lib
+[Radiance Measure 2018-06-28 15:36:23 UTC]: Running on unix
+[Radiance Measure 2018-06-28 15:36:23 UTC]: Translating OpenStudio 2.x model to Radiance format...
+[openstudio.radiance.ForwardTranslator] <0> DaylightingControl Daylighting Control SW is not associated with this Space's ThermalZone, it will not be translated.
+[openstudio.radiance.ForwardTranslator] <0> DaylightingControl Daylighting Control North2 is not associated with this Space's ThermalZone, it will not be translated.
+[openstudio.radiance.ForwardTranslator] <0> Space NE Space 104 contains Radiance daylighting objects but no GlareSensor objects.
+[openstudio.radiance.ForwardTranslator] <0> Removing ShadingControl 'Shading Control 1' with unsupported shadingType 'ExteriorScreen'
+[openstudio.radiance.ForwardTranslator] <0> inside reveal depth increased to 0.05 m
+[openstudio.radiance.ForwardTranslator] <0> inside sill depth increased to 0.05 m
+[Radiance Measure 2018-06-28 15:36:47 UTC]: Working directory: '/Users/rgugliel/src/OpenStudio-measures/nrel_published/RadianceMeasure/tests/output/Screen/radiance'
+[openstudio.EpwFile] <0> Successive data points (1999-Jan-31 to 2001-Feb-01, ending on line 753) are greater than 1 day apart in EPW file '/Users/rgugliel/src/OpenStudio-measures/nrel_published/RadianceMeasure/tests/USA_CO_Golden-NREL.724666_TMY3.epw'. Data will be treated as typical (TMY)
+[openstudio.energyplus.SqlFile] <1> Exception while opening database at '/Users/rgugliel/src/OpenStudio-measures/nrel_published/RadianceMeasure/tests/output/Screen/radiance/../eplus_preprocess/run/eplusout.sql': File not successfully opened.
+**MEASURE APPLICABILITY**
+1 = Fail
+**INITIAL CONDITION**
+**FINAL CONDITION**
+**INFO MESSAGES**
+Begin Encoding.default_external = UTF-8
+Begin Encoding.default_internal = 
+Using 8 core(s) for Radiance jobs
+Running in debug mode
+Found Radiance at: /Applications/OpenStudio-2.4.1/Ruby/../Radiance
+Found Perl at: /usr/bin
+Found EnergyPlus at: /Applications/OpenStudio-2.4.1/Ruby/../EnergyPlus/energyplus
+Radiance version: NREL 5.0.a.12 (by googs 2017.01.02) based on RADIANCE 5.0 Official Release by G. Ward
+Radiance binary dir: /Applications/OpenStudio-2.4.1/Ruby/../Radiance/bin
+Radiance library dir: /Applications/OpenStudio-2.4.1/Ruby/../Radiance/lib
+Running on unix
+Translating OpenStudio 2.x model to Radiance format...
+OpenStudio CLI version: 2.4.1.fcd9a4317a
+Working directory: '/Users/rgugliel/src/OpenStudio-measures/nrel_published/RadianceMeasure/tests/output/Screen/radiance'
+**WARNING MESSAGES**
+**ERROR MESSAGES**
+SqlFile /Users/rgugliel/src/OpenStudio-measures/nrel_published/RadianceMeasure/tests/output/Screen/radiance/../eplus_preprocess/run/eplusout.sql connection is not open
+***Machine-Readable Attributes**
+[
+{
+   "name" : "apply_schedules",
+   "value" : false
+}
+,{
+   "name" : "use_cores",
+   "value" : "Max"
+}
+,{
+   "name" : "rad_settings",
+   "value" : "Testing"
+}
+,{
+   "name" : "debug_mode",
+   "value" : true
+}
+,{
+   "name" : "cleanup_data",
+   "value" : true
+}
+]
+***Files Generated**
+
+
+F[openstudio.EpwFile] <0> Successive data points (1999-Jan-31 to 2001-Feb-01, ending on line 753) are greater than 1 day apart in EPW file '/Users/rgugliel/src/OpenStudio-measures/nrel_published/RadianceMeasure/tests/USA_CO_Golden-NREL.724666_TMY3.epw'. Data will be treated as typical (TMY)
+[OpenStudio.Measure] <0> OpenStudio::Ruleset::convertOSArgumentVectorToMap is deprecated, use OpenStudio::Measure::convertOSArgumentVectorToMap instead.
+apply_schedules
+setting apply_schedules = true
+use_cores
+setting use_cores = Max
+rad_settings
+setting rad_settings = Model
+debug_mode
+setting debug_mode = false
+cleanup_data
+setting cleanup_data = true
+[openstudio.measure.OSRunner] <1> Cannot find current Workflow Step
+[Radiance Measure 2018-06-28 15:36:49 UTC]: Using 8 core(s) for Radiance jobs
+[Radiance Measure 2018-06-28 15:36:49 UTC]: Found Radiance at: /Applications/OpenStudio-2.4.1/Ruby/../Radiance
+[Radiance Measure 2018-06-28 15:36:49 UTC]: Found Perl at: /usr/bin
+[Radiance Measure 2018-06-28 15:36:49 UTC]: Found EnergyPlus at: /Applications/OpenStudio-2.4.1/Ruby/../EnergyPlus/energyplus
+[Radiance Measure 2018-06-28 15:36:49 UTC]: Radiance version: NREL 5.0.a.12 (by googs 2017.01.02) based on RADIANCE 5.0 Official Release by G. Ward
+[Radiance Measure 2018-06-28 15:36:49 UTC]: Radiance binary dir: /Applications/OpenStudio-2.4.1/Ruby/../Radiance/bin
+[Radiance Measure 2018-06-28 15:36:49 UTC]: Radiance library dir: /Applications/OpenStudio-2.4.1/Ruby/../Radiance/lib
+[Radiance Measure 2018-06-28 15:36:49 UTC]: Translating OpenStudio 2.x model to Radiance format...
+[openstudio.radiance.ForwardTranslator] <0> DaylightingControl Daylighting Control SW is not associated with this Space's ThermalZone, it will not be translated.
+[openstudio.radiance.ForwardTranslator] <0> DaylightingControl Daylighting Control North2 is not associated with this Space's ThermalZone, it will not be translated.
+[openstudio.radiance.ForwardTranslator] <0> Space NE Space 104 contains Radiance daylighting objects but no GlareSensor objects.
+[openstudio.radiance.ForwardTranslator] <0> inside reveal depth increased to 0.05 m
+[openstudio.radiance.ForwardTranslator] <0> inside sill depth increased to 0.05 m
+[Radiance Measure 2018-06-28 15:37:12 UTC]: Working directory: '/Users/rgugliel/src/OpenStudio-measures/nrel_published/RadianceMeasure/tests/output/Default/radiance'
+[openstudio.EpwFile] <0> Successive data points (1999-Jan-31 to 2001-Feb-01, ending on line 753) are greater than 1 day apart in EPW file '/Users/rgugliel/src/OpenStudio-measures/nrel_published/RadianceMeasure/tests/USA_CO_Golden-NREL.724666_TMY3.epw'. Data will be treated as typical (TMY)
+[openstudio.energyplus.SqlFile] <1> Exception while opening database at '/Users/rgugliel/src/OpenStudio-measures/nrel_published/RadianceMeasure/tests/output/Default/radiance/../eplus_preprocess/run/eplusout.sql': File not successfully opened.
+F.[openstudio.EpwFile] <0> Successive data points (1999-Jan-31 to 2001-Feb-01, ending on line 753) are greater than 1 day apart in EPW file '/Users/rgugliel/src/OpenStudio-measures/nrel_published/RadianceMeasure/tests/USA_CO_Golden-NREL.724666_TMY3.epw'. Data will be treated as typical (TMY)
+[OpenStudio.Measure] <0> OpenStudio::Ruleset::convertOSArgumentVectorToMap is deprecated, use OpenStudio::Measure::convertOSArgumentVectorToMap instead.
+apply_schedules
+setting apply_schedules = true
+use_cores
+setting use_cores = Max
+rad_settings
+setting rad_settings = Testing
+debug_mode
+setting debug_mode = false
+cleanup_data
+setting cleanup_data = true
+[openstudio.measure.OSRunner] <1> Cannot find current Workflow Step
+[Radiance Measure 2018-06-28 15:37:13 UTC]: Using 8 core(s) for Radiance jobs
+[Radiance Measure 2018-06-28 15:37:13 UTC]: Found Radiance at: /Applications/OpenStudio-2.4.1/Ruby/../Radiance
+[Radiance Measure 2018-06-28 15:37:13 UTC]: Found Perl at: /usr/bin
+[Radiance Measure 2018-06-28 15:37:13 UTC]: Found EnergyPlus at: /Applications/OpenStudio-2.4.1/Ruby/../EnergyPlus/energyplus
+[Radiance Measure 2018-06-28 15:37:13 UTC]: Radiance version: NREL 5.0.a.12 (by googs 2017.01.02) based on RADIANCE 5.0 Official Release by G. Ward
+[Radiance Measure 2018-06-28 15:37:13 UTC]: Radiance binary dir: /Applications/OpenStudio-2.4.1/Ruby/../Radiance/bin
+[Radiance Measure 2018-06-28 15:37:13 UTC]: Radiance library dir: /Applications/OpenStudio-2.4.1/Ruby/../Radiance/lib
+[Radiance Measure 2018-06-28 15:37:13 UTC]: Translating OpenStudio 2.x model to Radiance format...
+[openstudio.radiance.ForwardTranslator] <0> DaylightingControl Daylighting Control SW is not associated with this Space's ThermalZone, it will not be translated.
+[openstudio.radiance.ForwardTranslator] <0> DaylightingControl Daylighting Control North2 is not associated with this Space's ThermalZone, it will not be translated.
+[openstudio.radiance.ForwardTranslator] <0> Space NE Space 104 contains Radiance daylighting objects but no GlareSensor objects.
+[openstudio.radiance.ForwardTranslator] <0> inside reveal depth increased to 0.05 m
+[openstudio.radiance.ForwardTranslator] <0> inside sill depth increased to 0.05 m
+[Radiance Measure 2018-06-28 15:37:37 UTC]: Working directory: '/Users/rgugliel/src/OpenStudio-measures/nrel_published/RadianceMeasure/tests/output/Blind/radiance'
+[openstudio.EpwFile] <0> Successive data points (1999-Jan-31 to 2001-Feb-01, ending on line 753) are greater than 1 day apart in EPW file '/Users/rgugliel/src/OpenStudio-measures/nrel_published/RadianceMeasure/tests/USA_CO_Golden-NREL.724666_TMY3.epw'. Data will be treated as typical (TMY)
+[openstudio.energyplus.SqlFile] <1> Exception while opening database at '/Users/rgugliel/src/OpenStudio-measures/nrel_published/RadianceMeasure/tests/output/Blind/radiance/../eplus_preprocess/run/eplusout.sql': File not successfully opened.
+F[openstudio.EpwFile] <0> Successive data points (1999-Jan-31 to 2001-Feb-01, ending on line 753) are greater than 1 day apart in EPW file '/Users/rgugliel/src/OpenStudio-measures/nrel_published/RadianceMeasure/tests/USA_CO_Golden-NREL.724666_TMY3.epw'. Data will be treated as typical (TMY)
+[OpenStudio.Measure] <0> OpenStudio::Ruleset::convertOSArgumentVectorToMap is deprecated, use OpenStudio::Measure::convertOSArgumentVectorToMap instead.
+apply_schedules
+setting apply_schedules = true
+use_cores
+setting use_cores = Max
+rad_settings
+setting rad_settings = Testing
+debug_mode
+setting debug_mode = false
+cleanup_data
+setting cleanup_data = true
+[openstudio.measure.OSRunner] <1> Cannot find current Workflow Step
+[Radiance Measure 2018-06-28 15:37:38 UTC]: Using 8 core(s) for Radiance jobs
+[Radiance Measure 2018-06-28 15:37:38 UTC]: Found Radiance at: /Applications/OpenStudio-2.4.1/Ruby/../Radiance
+[Radiance Measure 2018-06-28 15:37:38 UTC]: Found Perl at: /usr/bin
+[Radiance Measure 2018-06-28 15:37:38 UTC]: Found EnergyPlus at: /Applications/OpenStudio-2.4.1/Ruby/../EnergyPlus/energyplus
+[Radiance Measure 2018-06-28 15:37:38 UTC]: Radiance version: NREL 5.0.a.12 (by googs 2017.01.02) based on RADIANCE 5.0 Official Release by G. Ward
+[Radiance Measure 2018-06-28 15:37:38 UTC]: Radiance binary dir: /Applications/OpenStudio-2.4.1/Ruby/../Radiance/bin
+[Radiance Measure 2018-06-28 15:37:38 UTC]: Radiance library dir: /Applications/OpenStudio-2.4.1/Ruby/../Radiance/lib
+[Radiance Measure 2018-06-28 15:37:38 UTC]: Translating OpenStudio 2.x model to Radiance format...
+[openstudio.radiance.ForwardTranslator] <0> DaylightingControl Daylighting Control SW is not associated with this Space's ThermalZone, it will not be translated.
+[openstudio.radiance.ForwardTranslator] <0> DaylightingControl Daylighting Control North2 is not associated with this Space's ThermalZone, it will not be translated.
+[openstudio.radiance.ForwardTranslator] <0> Space NE Space 104 contains Radiance daylighting objects but no GlareSensor objects.
+[openstudio.radiance.ForwardTranslator] <0> inside reveal depth increased to 0.05 m
+[openstudio.radiance.ForwardTranslator] <0> inside sill depth increased to 0.05 m
+[Radiance Measure 2018-06-28 15:38:02 UTC]: Working directory: '/Users/rgugliel/src/OpenStudio-measures/nrel_published/RadianceMeasure/tests/output/DaylightRedirectionDevice/radiance'
+[openstudio.EpwFile] <0> Successive data points (1999-Jan-31 to 2001-Feb-01, ending on line 753) are greater than 1 day apart in EPW file '/Users/rgugliel/src/OpenStudio-measures/nrel_published/RadianceMeasure/tests/USA_CO_Golden-NREL.724666_TMY3.epw'. Data will be treated as typical (TMY)
+[openstudio.energyplus.SqlFile] <1> Exception while opening database at '/Users/rgugliel/src/OpenStudio-measures/nrel_published/RadianceMeasure/tests/output/DaylightRedirectionDevice/radiance/../eplus_preprocess/run/eplusout.sql': File not successfully opened.
+F[openstudio.EpwFile] <0> Successive data points (1999-Jan-31 to 2001-Feb-01, ending on line 753) are greater than 1 day apart in EPW file '/Users/rgugliel/src/OpenStudio-measures/nrel_published/RadianceMeasure/tests/USA_CO_Golden-NREL.724666_TMY3.epw'. Data will be treated as typical (TMY)
+[OpenStudio.Measure] <0> OpenStudio::Ruleset::convertOSArgumentVectorToMap is deprecated, use OpenStudio::Measure::convertOSArgumentVectorToMap instead.
+apply_schedules
+setting apply_schedules = true
+use_cores
+setting use_cores = Max
+rad_settings
+setting rad_settings = High
+debug_mode
+setting debug_mode = false
+cleanup_data
+setting cleanup_data = true
+[openstudio.measure.OSRunner] <1> Cannot find current Workflow Step
+[Radiance Measure 2018-06-28 15:38:03 UTC]: Using 8 core(s) for Radiance jobs
+[Radiance Measure 2018-06-28 15:38:03 UTC]: Found Radiance at: /Applications/OpenStudio-2.4.1/Ruby/../Radiance
+[Radiance Measure 2018-06-28 15:38:03 UTC]: Found Perl at: /usr/bin
+[Radiance Measure 2018-06-28 15:38:03 UTC]: Found EnergyPlus at: /Applications/OpenStudio-2.4.1/Ruby/../EnergyPlus/energyplus
+[Radiance Measure 2018-06-28 15:38:03 UTC]: Radiance version: NREL 5.0.a.12 (by googs 2017.01.02) based on RADIANCE 5.0 Official Release by G. Ward
+[Radiance Measure 2018-06-28 15:38:03 UTC]: Radiance binary dir: /Applications/OpenStudio-2.4.1/Ruby/../Radiance/bin
+[Radiance Measure 2018-06-28 15:38:03 UTC]: Radiance library dir: /Applications/OpenStudio-2.4.1/Ruby/../Radiance/lib
+[Radiance Measure 2018-06-28 15:38:03 UTC]: Translating OpenStudio 2.x model to Radiance format...
+[openstudio.radiance.ForwardTranslator] <0> DaylightingControl Daylighting Control SW is not associated with this Space's ThermalZone, it will not be translated.
+[openstudio.radiance.ForwardTranslator] <0> DaylightingControl Daylighting Control North2 is not associated with this Space's ThermalZone, it will not be translated.
+[openstudio.radiance.ForwardTranslator] <0> Space NE Space 104 contains Radiance daylighting objects but no GlareSensor objects.
+[openstudio.radiance.ForwardTranslator] <0> inside reveal depth increased to 0.05 m
+[openstudio.radiance.ForwardTranslator] <0> inside sill depth increased to 0.05 m
+[Radiance Measure 2018-06-28 15:38:26 UTC]: Working directory: '/Users/rgugliel/src/OpenStudio-measures/nrel_published/RadianceMeasure/tests/output/None/radiance'
+[openstudio.EpwFile] <0> Successive data points (1999-Jan-31 to 2001-Feb-01, ending on line 753) are greater than 1 day apart in EPW file '/Users/rgugliel/src/OpenStudio-measures/nrel_published/RadianceMeasure/tests/USA_CO_Golden-NREL.724666_TMY3.epw'. Data will be treated as typical (TMY)
+[openstudio.energyplus.SqlFile] <1> Exception while opening database at '/Users/rgugliel/src/OpenStudio-measures/nrel_published/RadianceMeasure/tests/output/None/radiance/../eplus_preprocess/run/eplusout.sql': File not successfully opened.
+F
+
+Finished in 151.054010s, 0.0463 runs/s, 0.3641 assertions/s.
+
+  1) Failure:
+RadianceMeasureTest#test_shade [./radiance_measure_test.rb:169]:
+Expected: 2
+  Actual: 0
+
+  2) Failure:
+RadianceMeasureTest#test_screen [./radiance_measure_test.rb:185]:
+--- expected
++++ actual
+@@ -1 +1,2 @@
+-"Success"
++# encoding: ASCII-8BIT
++"Fail"
+
+
+  3) Failure:
+RadianceMeasureTest#test_default [./radiance_measure_test.rb:169]:
+Expected: 2
+  Actual: 0
+
+  4) Failure:
+RadianceMeasureTest#test_blind [./radiance_measure_test.rb:169]:
+Expected: 2
+  Actual: 0
+
+  5) Failure:
+RadianceMeasureTest#test_drd [./radiance_measure_test.rb:169]:
+Expected: 2
+  Actual: 0
+
+  6) Failure:
+RadianceMeasureTest#test_none [./radiance_measure_test.rb:169]:
+Expected: 2
+  Actual: 0
+
+7 runs, 55 assertions, 6 failures, 0 errors, 0 skips

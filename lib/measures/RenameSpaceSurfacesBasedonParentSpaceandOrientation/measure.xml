@@ -1,0 +1,83 @@
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>rename_space_surfaces_basedon_parent_spaceand_orientation</name>
+  <uid>fee62510-c076-423a-b172-0810ecedba10</uid>
+  <version_id>ebcace9b-81c0-4baf-997a-61489efa781d</version_id>
+  <version_modified>20200229T024044Z</version_modified>
+  <xml_checksum>0F858D9E</xml_checksum>
+  <class_name>RenameSpaceSurfacesBasedonParentSpaceandOrientation</class_name>
+  <display_name>RenameSpaceSurfacesBasedonParentSpaceandOrientation</display_name>
+  <description>This will rename surfaces so so that they will look like "Surface MySpace1 wall 230-01" where "MySpace1" is the name of my space "wall" is the surface type and 230 is the orientation of the surface and 01 is the first surface of that orientation. SubSurfaces will start with SubSurface instead of "Surface.</description>
+  <modeler_description>This is a modeling aid. It just cleans up surface naming and will not have any impact on the simulation results. The  orientation will be rounded to the closest integer and padding all surfaces will have be padded to show 2 figures. so that single digit numbers will have a leading 0. This will help in sort order on pull down lists.</modeler_description>
+  <arguments/>
+  <outputs/>
+  <provenances/>
+  <tags>
+    <tag>Envelope.Opaque</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Measure Function</name>
+      <value>Measure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Requires EnergyPlus Results</name>
+      <value>false</value>
+      <datatype>boolean</datatype>
+    </attribute>
+    <attribute>
+      <name>Uses SketchUp API</name>
+      <value>false</value>
+      <datatype>boolean</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <filename>Section 6 - Model.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>870B4270</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>C70B379F</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>60D817D1</checksum>
+    </file>
+    <file>
+      <filename>RenameSpaceSurfacesBasedonParentSpaceandOrientation_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>C0576CB8</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
+    </file>
+  </files>
+</measure>

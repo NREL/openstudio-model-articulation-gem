@@ -1,5 +1,5 @@
 # *******************************************************************************
-# OpenStudio(R), Copyright (c) 2008-2019, Alliance for Sustainable Energy, LLC.
+# OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -35,8 +35,6 @@
 
 require_relative '../spec_helper'
 
-require 'openstudio/common_measures'
-
 def run_osw(test_name, in_osw_filename)
   instance = OpenStudio::ModelArticulation::Extension.new
   runner = OpenStudio::Extension::Runner.new(instance.root_dir)
@@ -64,6 +62,13 @@ def run_osw(test_name, in_osw_filename)
 
   expect(File.exist?(run_osw_path)).to be true
   expect(File.exist?(out_osw_path)).to be true
+
+  if File.exist?(failed_job_path)
+    # should make reason for failure more visible
+    print(File.read(failed_job_path).split)
+  else
+    # print(File.read(out_osw_path).split)
+  end
   expect(File.exist?(failed_job_path)).to be false
 end
 
@@ -77,7 +82,7 @@ RSpec.describe OpenStudio::ModelArticulation do
     expect(File.exist?(File.join(instance.measures_dir, 'BarAspectRatioStudy/'))).to be true
   end
 
-  it 'can run create_bar_from_building_type_ratios.osw' do
-    run_osw('create_bar_from_building_type_ratios', 'create_bar_from_building_type_ratios.osw')
-  end
+  # it 'can run create_bar_from_building_type_ratios.osw' do
+  #   run_osw('create_bar_from_building_type_ratios', 'create_bar_from_building_type_ratios.osw')
+  # end
 end

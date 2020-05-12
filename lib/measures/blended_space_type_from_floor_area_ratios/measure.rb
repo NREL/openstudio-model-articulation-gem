@@ -1,5 +1,5 @@
 # *******************************************************************************
-# OpenStudio(R), Copyright (c) 2008-2019, Alliance for Sustainable Energy, LLC.
+# OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -38,21 +38,15 @@
 
 require 'openstudio-standards'
 
-begin
-  # load OpenStudio measure libraries from common location
-  require 'measure_resources/os_lib_helper_methods'
-  require 'measure_resources/os_lib_model_generation'
-  require 'measure_resources/os_lib_model_simplification'
-rescue LoadError
-  # common location unavailable, load from local resources
-  require_relative 'resources/os_lib_helper_methods'
-  require_relative 'resources/os_lib_model_generation'
-  require_relative 'resources/os_lib_model_simplification'
-end
+# load OpenStudio measure libraries from openstudio-extension gem
+require 'openstudio-extension'
+require 'openstudio/extension/core/os_lib_helper_methods'
+require 'openstudio/extension/core/os_lib_model_generation.rb'
+require 'openstudio/extension/core/os_lib_model_simplification.rb'
 
 # start the measure
 class BlendedSpaceTypeFromFloorAreaRatios < OpenStudio::Measure::ModelMeasure
-  # contains code to blend space types
+  # resource file modules
   include OsLib_HelperMethods
   include OsLib_ModelGeneration
   include OsLib_ModelSimplification

@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>create_parametric_schedules</name>
   <uid>befa8099-c6a7-4045-8792-53fc7124b862</uid>
-  <version_id>1134babb-892a-4423-a8c8-c0b7b39ca57f</version_id>
-  <version_modified>20191030T020543Z</version_modified>
+  <version_id>feffd422-7afb-49cf-b8ad-3da237d78c65</version_id>
+  <version_modified>20200509T155940Z</version_modified>
   <xml_checksum>03F02484</xml_checksum>
   <class_name>CreateParametricSchedules</class_name>
   <display_name>Create Parametric Schedules</display_name>
@@ -112,7 +113,7 @@
       <type>String</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>:default => [[start-2,0.1],[start-1,0.3],[start,0.75],[end,0.75],[end+2,0.3],[end+vac*0.5,0.1]], :saturday => [[start-1,0.1],[start,0.3],[end,0.3],[end+1,0.1]], :sunday => [[start,0.1],[end,0.1]]</default_value>
+      <default_value>:default =&gt; [[start-2,0.1],[start-1,0.3],[start,0.75],[end,0.75],[end+2,0.3],[end+vac*0.5,0.1]], :saturday =&gt; [[start-1,0.1],[start,0.3],[end,0.3],[end+1,0.1]], :sunday =&gt; [[start,0.1],[end,0.1]]</default_value>
     </argument>
     <argument>
       <name>electric_equipment_profiles</name>
@@ -120,7 +121,7 @@
       <type>String</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>:default => [[start-1,0.3],[start,0.85],[start+0.5*occ-0.5,0.85],[start+0.5*occ-0.5,0.75],[start+0.5*occ+0.5,0.75],[start+0.5*occ+0.5,0.85],[end,0.85],[end+1,0.45],[end+2,0.3]], :saturday => [[start-2,0.2],[start,0.35],[end,0.35],[end+6,0.2]], :sunday => [[start,0.2],[end,0.2]]</default_value>
+      <default_value>:default =&gt; [[start-1,0.3],[start,0.85],[start+0.5*occ-0.5,0.85],[start+0.5*occ-0.5,0.75],[start+0.5*occ+0.5,0.75],[start+0.5*occ+0.5,0.85],[end,0.85],[end+1,0.45],[end+2,0.3]], :saturday =&gt; [[start-2,0.2],[start,0.35],[end,0.35],[end+6,0.2]], :sunday =&gt; [[start,0.2],[end,0.2]]</default_value>
     </argument>
     <argument>
       <name>electric_equipment_value</name>
@@ -168,7 +169,7 @@
       <type>String</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>:default => [[start-1,0.3],[start,0.85],[start+0.5*occ-0.5,0.85],[start+0.5*occ-0.5,0.75],[start+0.5*occ+0.5,0.75],[start+0.5*occ+0.5,0.85],[end,0.85],[end+1,0.45],[end+2,0.3]], :saturday => [[start-2,0.2],[start,0.35],[end,0.35],[end+6,0.2]], :sunday => [[start,0.2],[end,0.2]]</default_value>
+      <default_value>:default =&gt; [[start-1,0.3],[start,0.85],[start+0.5*occ-0.5,0.85],[start+0.5*occ-0.5,0.75],[start+0.5*occ+0.5,0.75],[start+0.5*occ+0.5,0.85],[end,0.85],[end+1,0.45],[end+2,0.3]], :saturday =&gt; [[start-2,0.2],[start,0.35],[end,0.35],[end+6,0.2]], :sunday =&gt; [[start,0.2],[end,0.2]]</default_value>
     </argument>
     <argument>
       <name>occupancy_profiles</name>
@@ -176,7 +177,7 @@
       <type>String</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>:default => [[start-3,0],[start-1,0.2],[start,0.95],[start+0.5*occ-0.5,0.95],[start+0.5*occ-0.5,0.5],[start+0.5*occ+0.5,0.5],[start+0.5*occ+0.5,0.95],[end,0.95],[end+1,0.3],[end+vac*0.4,0]], :saturday => [[start-3,0],[start,0.3],[end,0.3],[end+1,0.1],[end+vac*0.3,0]], :sunday => [[start,0],[start,0.05],[end,0.05],[end,0]]</default_value>
+      <default_value>:default =&gt; [[start-3,0],[start-1,0.2],[start,0.95],[start+0.5*occ-0.5,0.95],[start+0.5*occ-0.5,0.5],[start+0.5*occ+0.5,0.5],[start+0.5*occ+0.5,0.95],[end,0.95],[end+1,0.3],[end+vac*0.4,0]], :saturday =&gt; [[start-3,0],[start,0.3],[end,0.3],[end+1,0.1],[end+vac*0.3,0]], :sunday =&gt; [[start,0],[start,0.05],[end,0.05],[end,0]]</default_value>
     </argument>
     <argument>
       <name>infiltration_profiles</name>
@@ -184,7 +185,7 @@
       <type>String</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>:default => [[start,1],[start,0.25],[end+vac*0.35,0.25],[end+vac*0.35,1]], :saturday => [[start,1],[start,0.25],[end+vac*0.25,0.25],[end+vac*0.25,1]], :sunday => [[start,1],[start,0.25],[end+vac*0.25,0.25],[end+vac*0.25,1]]</default_value>
+      <default_value>:default =&gt; [[start,1],[start,0.25],[end+vac*0.35,0.25],[end+vac*0.35,1]], :saturday =&gt; [[start,1],[start,0.25],[end+vac*0.25,0.25],[end+vac*0.25,1]], :sunday =&gt; [[start,1],[start,0.25],[end+vac*0.25,0.25],[end+vac*0.25,1]]</default_value>
     </argument>
     <argument>
       <name>thermostat_setback_profiles</name>
@@ -192,7 +193,7 @@
       <type>String</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>:default => [[start-2,floor],[start-2,ceiling],[end+vac*0.35,ceiling],[end+vac*0.35,floor]], :saturday => [[start-2,floor],[start-2,ceiling],[end+vac*0.25,ceiling],[end+vac*0.25,floor]], :sunday => [[start-2,floor],[start-2,ceiling],[end+vac*0.25,ceiling],[end+vac*0.25,floor]]</default_value>
+      <default_value>:default =&gt; [[start-2,floor],[start-2,ceiling],[end+vac*0.35,ceiling],[end+vac*0.35,floor]], :saturday =&gt; [[start-2,floor],[start-2,ceiling],[end+vac*0.25,ceiling],[end+vac*0.25,floor]], :sunday =&gt; [[start-2,floor],[start-2,ceiling],[end+vac*0.25,ceiling],[end+vac*0.25,floor]]</default_value>
     </argument>
     <argument>
       <name>htg_setpoint</name>
@@ -227,7 +228,7 @@
       <type>String</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>:default => [[start,0],[start,1],[end+vac*0.35,1],[end+vac*0.35,0]], :saturday => [[start,0],[start,1],[end+vac*0.25,1],[end+vac*0.25,0]], :sunday => [[start,0],[start,1],[end+vac*0.25,1],[end+vac*0.25,0]]</default_value>
+      <default_value>:default =&gt; [[start,0],[start,1],[end+vac*0.35,1],[end+vac*0.35,0]], :saturday =&gt; [[start,0],[start,1],[end+vac*0.25,1],[end+vac*0.25,0]], :sunday =&gt; [[start,0],[start,1],[end+vac*0.25,1],[end+vac*0.25,0]]</default_value>
     </argument>
     <argument>
       <name>swh_profiles</name>
@@ -235,7 +236,7 @@
       <type>String</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>:default => [[start-2,0],[start-2,0.07],[start+0.5*occ,0.57],[vac-2,0.33],[vac,0.44],[end+vac*0.35,0.05],[end+vac*0.35,0]], :saturday => [[start-2,0],[start-2,0.07],[start+0.5*occ,0.23],[end+vac*0.25,0.05],[end+vac*0.25,0]], :sunday => [[start-2,0],[start-2,0.04],[start+0.5*occ,0.09],[end+vac*0.25,0.04],[end+vac*0.25,0]]</default_value>
+      <default_value>:default =&gt; [[start-2,0],[start-2,0.07],[start+0.5*occ,0.57],[vac-2,0.33],[vac,0.44],[end+vac*0.35,0.05],[end+vac*0.35,0]], :saturday =&gt; [[start-2,0],[start-2,0.07],[start+0.5*occ,0.23],[end+vac*0.25,0.05],[end+vac*0.25,0]], :sunday =&gt; [[start-2,0],[start-2,0.04],[start+0.5*occ,0.09],[end+vac*0.25,0.04],[end+vac*0.25,0]]</default_value>
     </argument>
     <argument>
       <name>alter_swh_wo_space</name>
@@ -285,8 +286,8 @@
       </choices>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Whole Building.Whole Building Schedules</tag>
   </tags>
@@ -305,51 +306,39 @@
       <checksum>8A9CF7E6</checksum>
     </file>
     <file>
-      <filename>README.md.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>readmeerb</usage_type>
-      <checksum>703C9964</checksum>
-    </file>
-    <file>
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>A4C7C363</checksum>
     </file>
     <file>
-      <filename>os_lib_schedules.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>E1011B09</checksum>
-    </file>
-    <file>
-      <filename>os_lib_helper_methods.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>22515A49</checksum>
-    </file>
-    <file>
-      <filename>create_parametric_schedules_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>9A688A56</checksum>
-    </file>
-    <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.1.0</identifier>
-        <min_compatible>2.1.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>D8141F20</checksum>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>D41C05CF</checksum>
+      <checksum>E0468DD6</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.1.0</identifier>
+        <min_compatible>2.8.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>D7799451</checksum>
+    </file>
+    <file>
+      <filename>create_parametric_schedules_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>35C96C2F</checksum>
     </file>
   </files>
 </measure>

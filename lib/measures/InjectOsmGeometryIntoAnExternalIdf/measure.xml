@@ -1,0 +1,180 @@
+<?xml version="1.0"?>
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>inject_osm_geometry_into_an_external_idf</name>
+  <uid>633cd1c5-5b55-4b50-ab20-cf2d2f7ddff8</uid>
+  <version_id>3f37233f-eeaf-47d0-8a13-27c86aaf7b0b</version_id>
+  <version_modified>20200509T155937Z</version_modified>
+  <xml_checksum>3BE1CF9C</xml_checksum>
+  <class_name>InjectOsmGeometryIntoAnExternalIdf</class_name>
+  <display_name>InjectOsmGeometryIntoAnExternalIdf</display_name>
+  <description>The goal here is to let people bring an IDF into OpenStudio to add or alter geometry. Then to inject only the geometry back into a copy of the source IDF file, which has never been brought into OpenStudio.</description>
+  <modeler_description>This can make newer OpenStudio features accessible to anyone to someone who is still using an IDF file for their core workflow instead of an OSM. This could grow into a replacement of the legacy plugin.
+
+
+
+
+
+If a zone exists in OSM generated IDF and original IDF then all surfaces in old will be removed and ones from OSM will be added.
+
+
+
+
+
+If a zone exists in OSM generated IDF but does not exist in IDF then that zone will be added to the IDF.
+
+
+
+
+
+If a zone does not exist in the OSM but does exist in the original IDF then that zone will be deleted from the IDF. In these last two scenarios a warning should be issued.
+
+
+
+
+
+Site, building and zone shading surfaces should are included in this.
+
+
+
+
+
+Constructions and other resources won?t be moved back and forth but the surface should carry the assignments if they are not new constructions.
+
+
+
+
+
+</modeler_description>
+  <arguments>
+    <argument>
+      <name>source_idf_path</name>
+      <display_name>External IDF File Name</display_name>
+      <description>Name of the IDF file to inject OSM geometry into. This is the filename with the extension (e.g. MyModel.idf). Optionally this can inclucde the full file path, but for most use cases should just be file name.</description>
+      <type>String</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+    </argument>
+    <argument>
+      <name>merge_geometry_from_osm</name>
+      <display_name>Merge Geometry From OpenStudio Model into Source IDF File?</display_name>
+      <description>If set to false the entire external IDF will replace the initial IDF generated from the OSM file.</description>
+      <type>Boolean</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>true</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
+    </argument>
+  </arguments>
+  <outputs />
+  <provenances />
+  <tags>
+    <tag>Envelope.Form</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Measure Type</name>
+      <value>EnergyPlusMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Uses SketchUp API</name>
+      <value>false</value>
+      <datatype>boolean</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <filename>4ZoneWithShading_Simple_1.idf</filename>
+      <filetype>idf</filetype>
+      <usage_type>test</usage_type>
+      <checksum>74BD2E40</checksum>
+    </file>
+    <file>
+      <filename>4ZoneWithShading_Simple_1_AlteredGeo.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>1A51EFB6</checksum>
+    </file>
+    <file>
+      <filename>RefBldgMediumOfficeNew2004_Chicago.idf</filename>
+      <filetype>idf</filetype>
+      <usage_type>test</usage_type>
+      <checksum>648B2179</checksum>
+    </file>
+    <file>
+      <filename>RefBldgMediumOfficeNew2004_Chicago_AlteredGeo.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>D2B1A458</checksum>
+    </file>
+    <file>
+      <filename>RefBldgMediumOfficeNew2004_Chicago_AlteredGeo_b.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>10D18F37</checksum>
+    </file>
+    <file>
+      <filename>B10_Crawlspace_1Story_50_RibbonWindows.idf</filename>
+      <filetype>idf</filetype>
+      <usage_type>test</usage_type>
+      <checksum>8E9EDFE4</checksum>
+    </file>
+    <file>
+      <filename>B10_Crawlspace_1Story_50_RibbonWindows_altered.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>56ED3E65</checksum>
+    </file>
+    <file>
+      <filename>test.osw</filename>
+      <filetype>osw</filetype>
+      <usage_type>test</usage_type>
+      <checksum>F5FABCCF</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>6FF2AF68</checksum>
+    </file>
+    <file>
+      <filename>InjectOsmGeometryIntoAnExternalIdf_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>91289177</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>A76C44E1</checksum>
+    </file>
+  </files>
+</measure>
