@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>deer_space_type_and_construction_set_wizard</name>
   <uid>d8effcbd-52b2-4e5c-866c-e85091142aa6</uid>
-  <version_id>15cacc8b-b42b-47e5-ab7d-2b56da120470</version_id>
-  <version_modified>20200229T024053Z</version_modified>
+  <version_id>44fc9ee7-0ca5-4569-b5d8-7ac498ecfd5f</version_id>
+  <version_modified>20200509T155938Z</version_modified>
   <xml_checksum>A514F332</xml_checksum>
   <class_name>DEERSpaceTypeAndConstructionSetWizard</class_name>
   <display_name>DEER Space Type and Construction Set Wizard</display_name>
@@ -304,8 +305,8 @@
       </choices>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Whole Building.Space Types</tag>
   </tags>
@@ -335,22 +336,10 @@
       <checksum>85FF42E2</checksum>
     </file>
     <file>
-      <filename>design_doc.txt</filename>
-      <filetype>txt</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>70F856EC</checksum>
-    </file>
-    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
       <checksum>703C9964</checksum>
-    </file>
-    <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>DA87BC3D</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
@@ -359,33 +348,33 @@
       <checksum>E0468DD6</checksum>
     </file>
     <file>
-      <filename>os_lib_helper_methods.rb</filename>
+      <filename>deer_space_type_and_construction_set_wizard_Test.rb</filename>
       <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>07B01D67</checksum>
+      <usage_type>test</usage_type>
+      <checksum>3F17D906</checksum>
     </file>
     <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
-        <min_compatible>2.5.1</min_compatible>
+        <min_compatible>2.8.0</min_compatible>
       </version>
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>27458199</checksum>
+      <checksum>70E4E892</checksum>
     </file>
     <file>
-      <filename>deer_space_type_and_construction_set_wizard_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>498C94CD</checksum>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>DA87BC3D</checksum>
     </file>
     <file>
-      <filename>os_lib_model_generation.rb</filename>
-      <filetype>rb</filetype>
+      <filename>design_doc.txt</filename>
+      <filetype>txt</filetype>
       <usage_type>resource</usage_type>
-      <checksum>5141DA9F</checksum>
+      <checksum>86154A1B</checksum>
     </file>
   </files>
 </measure>

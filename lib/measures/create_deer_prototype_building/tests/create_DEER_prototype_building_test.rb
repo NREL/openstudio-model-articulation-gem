@@ -34,7 +34,7 @@
 # *******************************************************************************
 
 require 'openstudio'
-require 'openstudio/ruleset/ShowRunnerOutput'
+require 'openstudio/measure/ShowRunnerOutput'
 require 'minitest/autorun'
 require 'json'
 require_relative '../measure.rb'

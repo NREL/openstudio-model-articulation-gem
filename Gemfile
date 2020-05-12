@@ -11,19 +11,9 @@ gemspec
 # checkout the latest version (develop) from github.
 allow_local = ENV['FAVOR_LOCAL_GEMS']
 
-# Only uncomment if you need to test a different version of the extension gem that is not
-# included in the openstudio-common-measures
+# Only uncomment if you need to test a different version of the extension gem
 # if allow_local && File.exist?('../OpenStudio-extension-gem')
 #   gem 'openstudio-extension', path: '../OpenStudio-extension-gem'
 # elsif allow_local
 #   gem 'openstudio-extension', github: 'NREL/OpenStudio-extension-gem', branch: 'develop'
 # end
-
-if allow_local && File.exist?('../openstudio-common-measures-gem')
-  gem 'openstudio-common-measures', path: '../openstudio-common-measures-gem'
-elsif allow_local
-  gem 'openstudio-common-measures', github: 'NREL/openstudio-common-measures-gem', branch: 'develop'
-end
-
-# simplecov has an unnecessary dependency on native json gem, use fork that does not require this
-gem 'simplecov', github: 'NREL/simplecov'

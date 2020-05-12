@@ -34,7 +34,7 @@
 # *******************************************************************************
 
 require 'openstudio'
-require 'openstudio/ruleset/ShowRunnerOutput'
+require 'openstudio/measure/ShowRunnerOutput'
 require 'minitest/autorun'
 require_relative '../measure.rb'
 require 'fileutils'
@@ -541,6 +541,15 @@ class CreateTypicalBuildingFromModel_Test < Minitest::Test
     args['use_upstream_args'] = false
     args['swh_src'] = 'HeatPump'
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, 'sun.osm', nil, nil)
+  end
+
+  def test_mfm_hpwh
+    args = {}
+    args['template'] = 'DEER 2011'
+    args['use_upstream_args'] = false
+    args['swh_src'] = 'HeatPump'
+    args['climate_zone'] = 'CEC T24-CEC5'
+    apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, 'mfm.osm', nil, nil)
   end
 
   def test_wrf_hpwh

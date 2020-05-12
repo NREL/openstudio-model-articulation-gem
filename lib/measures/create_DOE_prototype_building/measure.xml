@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>create_doe_prototype_building</name>
   <uid>be90fd0b-a651-467a-bc8d-29d310b0f937</uid>
-  <version_id>cd701563-ea80-44d7-9fdd-55b6ec2438fb</version_id>
-  <version_modified>20200229T024053Z</version_modified>
+  <version_id>9f4d9c24-2ae4-4598-90eb-0165066d0733</version_id>
+  <version_modified>20200512T025556Z</version_modified>
   <xml_checksum>057E8D9D</xml_checksum>
   <class_name>CreateDOEPrototypeBuilding</class_name>
   <display_name>Create DOE Prototype Building</display_name>
@@ -209,6 +210,10 @@
           <display_name>Not Applicable</display_name>
         </choice>
         <choice>
+          <value>ARE_Abu.Dhabi.412170_IWEC.epw</value>
+          <display_name>ARE_Abu.Dhabi.412170_IWEC.epw</display_name>
+        </choice>
+        <choice>
           <value>USA_CO_Denver-Aurora-Buckley.AFB.724695_TMY3.epw</value>
           <display_name>USA_CO_Denver-Aurora-Buckley.AFB.724695_TMY3.epw</display_name>
         </choice>
@@ -331,6 +336,10 @@
         <choice>
           <value>TRUCKEE-TAHOE_725846_CZ2010.epw</value>
           <display_name>TRUCKEE-TAHOE_725846_CZ2010.epw</display_name>
+        </choice>
+        <choice>
+          <value>VNM_Ho.Chi.Minh.City-Tan.Son.Nhat.AP.489000_IWEC2.epw</value>
+          <display_name>VNM_Ho.Chi.Minh.City-Tan.Son.Nhat.AP.489000_IWEC2.epw</display_name>
         </choice>
         <choice>
           <value>SAN-JOSE-INTL_724945_CZ2010.epw</value>
@@ -535,6 +544,10 @@
         <choice>
           <value>CAN_QC_Quebec-Lesage.Intl.AP.717140_CWEC2016.epw</value>
           <display_name>CAN_QC_Quebec-Lesage.Intl.AP.717140_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>VNM_Hanoi.488200_IWEC.epw</value>
+          <display_name>VNM_Hanoi.488200_IWEC.epw</display_name>
         </choice>
         <choice>
           <value>CAN_QC_Riviere-du-Loup.717150_CWEC2016.epw</value>
@@ -825,6 +838,10 @@
           <display_name>CAN_PE_Charlottetown.AP.717060_CWEC2016.epw</display_name>
         </choice>
         <choice>
+          <value>ARE_Dubai.Intl.AP.411940_IWEC2.epw</value>
+          <display_name>ARE_Dubai.Intl.AP.411940_IWEC2.epw</display_name>
+        </choice>
+        <choice>
           <value>USA_TX_El.Paso.Intl.AP.722700_TMY3.epw</value>
           <display_name>USA_TX_El.Paso.Intl.AP.722700_TMY3.epw</display_name>
         </choice>
@@ -967,8 +984,8 @@
       </choices>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Whole Building.Space Types</tag>
   </tags>
@@ -1010,12 +1027,6 @@
       <checksum>E0468DD6</checksum>
     </file>
     <file>
-      <filename>create_DOE_prototype_building_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>B2C0CF9C</checksum>
-    </file>
-    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -1025,6 +1036,12 @@
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
       <checksum>958EEF0B</checksum>
+    </file>
+    <file>
+      <filename>create_DOE_prototype_building_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>FDA31861</checksum>
     </file>
   </files>
 </measure>

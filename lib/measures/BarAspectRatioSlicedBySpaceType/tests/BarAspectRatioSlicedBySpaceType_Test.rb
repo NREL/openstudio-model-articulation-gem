@@ -34,12 +34,9 @@
 # *******************************************************************************
 
 require 'openstudio'
-
-require 'openstudio/ruleset/ShowRunnerOutput'
-
-require "#{File.dirname(__FILE__)}/../measure.rb"
-
+require 'openstudio/measure/ShowRunnerOutput'
 require 'minitest/autorun'
+require_relative '../measure.rb'
 
 class BarAspectRatioSlicedBySpaceType_Test < MiniTest::Test
   def test_BarAspectRatioSlicedBySpaceType

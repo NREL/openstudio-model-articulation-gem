@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>create_baseline_building</name>
   <uid>4de56e21-b6cd-45d9-8466-862507d228b2</uid>
-  <version_id>31fb62bb-9e86-4fd9-a9f2-e687e4604794</version_id>
-  <version_modified>20200229T024052Z</version_modified>
+  <version_id>faa2647b-3193-426c-8b25-1470e0bfb1a2</version_id>
+  <version_modified>20200512T025555Z</version_modified>
   <xml_checksum>A514F332</xml_checksum>
   <class_name>CreateBaselineBuilding</class_name>
   <display_name>Create Baseline Building</display_name>
@@ -210,8 +211,8 @@
       </choices>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Whole Building.Space Types</tag>
   </tags>

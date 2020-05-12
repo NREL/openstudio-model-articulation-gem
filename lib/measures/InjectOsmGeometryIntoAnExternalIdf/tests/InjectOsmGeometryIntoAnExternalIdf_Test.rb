@@ -34,21 +34,15 @@
 # *******************************************************************************
 
 require 'openstudio'
-require 'openstudio/ruleset/ShowRunnerOutput'
-
-require "#{File.dirname(__FILE__)}/../measure.rb"
-
+require 'openstudio/measure/ShowRunnerOutput'
 require 'minitest/autorun'
+require_relative '../measure.rb'
+require 'fileutils'
 
-class InjectOsmGeometryIntoAnExternalIdf_Test < MiniTest::Unit::TestCase
+class InjectOsmGeometryIntoAnExternalIdf_Test < MiniTest::Test
   def test_InjectOsmGeometryIntoAnExternalIdf_a
     # create an instance of the measure
     measure = InjectOsmGeometryIntoAnExternalIdf.new
-
-    # create an instance of a runner with OSW
-    osw_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/test.osw')
-    osw = OpenStudio::WorkflowJSON.load(osw_path).get
-    runner = OpenStudio::Ruleset::OSRunner.new(osw)
 
     # make an empty model
     model = OpenStudio::Model::Model.new
@@ -69,7 +63,7 @@ class InjectOsmGeometryIntoAnExternalIdf_Test < MiniTest::Unit::TestCase
     # create an instance of a runner with OSW
     osw_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/test.osw')
     osw = OpenStudio::WorkflowJSON.load(osw_path).get
-    runner = OpenStudio::Ruleset::OSRunner.new(osw)
+    runner = OpenStudio::Measure::OSRunner.new(osw)
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
@@ -84,7 +78,7 @@ class InjectOsmGeometryIntoAnExternalIdf_Test < MiniTest::Unit::TestCase
 
     # get arguments and test that they are what we are expecting
     arguments = measure.arguments(workspace)
-    argument_map = OpenStudio::Ruleset::OSArgumentMap.new
+    argument_map = OpenStudio::Measure::OSArgumentMap.new
 
     count = -1
 
@@ -109,7 +103,7 @@ class InjectOsmGeometryIntoAnExternalIdf_Test < MiniTest::Unit::TestCase
     # create an instance of a runner with OSW
     osw_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/test.osw')
     osw = OpenStudio::WorkflowJSON.load(osw_path).get
-    runner = OpenStudio::Ruleset::OSRunner.new(osw)
+    runner = OpenStudio::Measure::OSRunner.new(osw)
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
@@ -124,7 +118,7 @@ class InjectOsmGeometryIntoAnExternalIdf_Test < MiniTest::Unit::TestCase
 
     # get arguments and test that they are what we are expecting
     arguments = measure.arguments(workspace)
-    argument_map = OpenStudio::Ruleset::OSArgumentMap.new
+    argument_map = OpenStudio::Measure::OSArgumentMap.new
 
     count = -1
 
@@ -153,7 +147,7 @@ class InjectOsmGeometryIntoAnExternalIdf_Test < MiniTest::Unit::TestCase
     # create an instance of a runner with OSW
     osw_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/test.osw')
     osw = OpenStudio::WorkflowJSON.load(osw_path).get
-    runner = OpenStudio::Ruleset::OSRunner.new(osw)
+    runner = OpenStudio::Measure::OSRunner.new(osw)
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
@@ -168,7 +162,7 @@ class InjectOsmGeometryIntoAnExternalIdf_Test < MiniTest::Unit::TestCase
 
     # get arguments and test that they are what we are expecting
     arguments = measure.arguments(workspace)
-    argument_map = OpenStudio::Ruleset::OSArgumentMap.new
+    argument_map = OpenStudio::Measure::OSArgumentMap.new
 
     count = -1
 
@@ -193,7 +187,7 @@ class InjectOsmGeometryIntoAnExternalIdf_Test < MiniTest::Unit::TestCase
     # create an instance of a runner with OSW
     osw_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/test.osw')
     osw = OpenStudio::WorkflowJSON.load(osw_path).get
-    runner = OpenStudio::Ruleset::OSRunner.new(osw)
+    runner = OpenStudio::Measure::OSRunner.new(osw)
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
@@ -208,7 +202,7 @@ class InjectOsmGeometryIntoAnExternalIdf_Test < MiniTest::Unit::TestCase
 
     # get arguments and test that they are what we are expecting
     arguments = measure.arguments(workspace)
-    argument_map = OpenStudio::Ruleset::OSArgumentMap.new
+    argument_map = OpenStudio::Measure::OSArgumentMap.new
 
     count = -1
 

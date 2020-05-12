@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>radiance_measure</name>
   <uid>1e3cfef8-b051-4e60-8bb0-ed2d29d4f45f</uid>
-  <version_id>3e475985-29da-4987-ab50-13448081eeab</version_id>
-  <version_modified>20200229T024053Z</version_modified>
+  <version_id>f7e317e9-190f-4f45-b02a-77d2b39deb2f</version_id>
+  <version_modified>20200512T025556Z</version_modified>
   <xml_checksum>381B7733</xml_checksum>
   <class_name>RadianceMeasure</class_name>
   <display_name>Radiance Daylighting Measure</display_name>
@@ -114,8 +115,8 @@
       </choices>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Electric Lighting.Electric Lighting Controls</tag>
   </tags>
@@ -192,13 +193,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>61FFD698</checksum>
+      <checksum>609FCC24</checksum>
     </file>
     <file>
       <filename>radiance_measure_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>68B8AE06</checksum>
+      <checksum>1182B148</checksum>
     </file>
   </files>
 </measure>

@@ -46,7 +46,7 @@
 # http://openstudio.nrel.gov/sites/openstudio.nrel.gov/files/nv_data/cpp_documentation_it/utilities/html/idf_page.html
 
 # start the measure
-class InjectOsmGeometryIntoAnExternalIdf < OpenStudio::Ruleset::WorkspaceUserScript
+class InjectOsmGeometryIntoAnExternalIdf < OpenStudio::Measure::EnergyPlusMeasure
   # define the name that a user will see, this method may be deprecated as
   # the display name in PAT comes from the name field in measure.xml
   def name
@@ -55,16 +55,16 @@ class InjectOsmGeometryIntoAnExternalIdf < OpenStudio::Ruleset::WorkspaceUserScr
 
   # define the arguments that the user will input
   def arguments(workspace)
-    args = OpenStudio::Ruleset::OSArgumentVector.new
+    args = OpenStudio::Measure::OSArgumentVector.new
 
     # make an argument for external idf
-    source_idf_path = OpenStudio::Ruleset::OSArgument.makeStringArgument('source_idf_path', true)
+    source_idf_path = OpenStudio::Measure::OSArgument.makeStringArgument('source_idf_path', true)
     source_idf_path.setDisplayName('External IDF File Name')
     source_idf_path.setDescription('Name of the IDF file to inject OSM geometry into. This is the filename with the extension (e.g. MyModel.idf). Optionally this can inclucde the full file path, but for most use cases should just be file name.')
     args << source_idf_path
 
     # make an argument to add new zone true/false
-    merge_geometry_from_osm = OpenStudio::Ruleset::OSArgument.makeBoolArgument('merge_geometry_from_osm', true)
+    merge_geometry_from_osm = OpenStudio::Measure::OSArgument.makeBoolArgument('merge_geometry_from_osm', true)
     merge_geometry_from_osm.setDisplayName('Merge Geometry From OpenStudio Model into Source IDF File?')
     merge_geometry_from_osm.setDescription('If set to false the entire external IDF will replace the initial IDF generated from the OSM file.')
     merge_geometry_from_osm.setDefaultValue(true)

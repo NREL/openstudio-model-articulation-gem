@@ -19,6 +19,7 @@
 /output
 create_baseline.log
 .rubocop*s3*
+.rubocop.yml
 
 
 # rspec failure tracking
@@ -29,3 +30,7 @@ create_baseline.log
 
 # Ignore mac specific files
 .DS_Store
+
+# Ignore measure tester gem local test results
+test_results/
+/lib/measures/create_baseline_building/output/

@@ -597,6 +597,7 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
     measure.run(model, runner, argument_map)
     result = runner.result
     show_output(result)
+
     assert(result.value.valueName == 'Success')
 
     # save the model

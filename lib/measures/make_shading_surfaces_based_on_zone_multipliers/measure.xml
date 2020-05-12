@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>make_shading_surfaces_based_on_zone_multipliers</name>
   <uid>57d7314d-2ff0-4c13-bf07-b63380bfdea6</uid>
-  <version_id>2824c9b3-b7dd-4201-9640-60ed21c66c3b</version_id>
-  <version_modified>20200229T024051Z</version_modified>
+  <version_id>403921df-59a1-4e44-93c6-3b773625c037</version_id>
+  <version_modified>20200509T155936Z</version_modified>
   <xml_checksum>2AF3A68E</xml_checksum>
   <class_name>MakeShadingSurfacesBasedOnZoneMultipliers</class_name>
   <display_name>Make Shading Surfaces Based on Zone Multipliers</display_name>
@@ -29,8 +30,8 @@
       <default_value>1</default_value>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Envelope.Form</tag>
   </tags>
@@ -82,33 +83,27 @@
       <checksum>703C9964</checksum>
     </file>
     <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>E0468DD6</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
+        <min_compatible>2.8.0</min_compatible>
       </version>
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>6A28A456</checksum>
+      <checksum>16D78867</checksum>
     </file>
     <file>
       <filename>make_shading_surfaces_based_on_zone_multipliers_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>BB5F3FC4</checksum>
-    </file>
-    <file>
-      <filename>os_lib_helper_methods.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>07B01D67</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
+      <checksum>3DBDBE31</checksum>
     </file>
   </files>
 </measure>

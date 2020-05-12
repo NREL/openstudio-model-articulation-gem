@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>create_deer_prototype_building</name>
   <uid>752055bd-10d9-4ede-8a35-18487fedf579</uid>
-  <version_id>7e858ecd-abb5-4153-9fd1-7a2bda0ef1e5</version_id>
-  <version_modified>20200229T024052Z</version_modified>
+  <version_id>72174604-9ced-4545-80f1-50a58f852f3a</version_id>
+  <version_modified>20200512T025555Z</version_modified>
   <xml_checksum>A514F332</xml_checksum>
   <class_name>CreateDEERPrototypeBuilding</class_name>
   <display_name>Create DEER Prototype Building ALPHA Version</display_name>
@@ -781,8 +782,8 @@
       </choices>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Whole Building.Space Types</tag>
   </tags>
@@ -812,12 +813,6 @@
       <checksum>A5517AE1</checksum>
     </file>
     <file>
-      <filename>create_DEER_prototype_building_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>25CFAFAA</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
@@ -839,6 +834,12 @@
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
       <checksum>C614EF0D</checksum>
+    </file>
+    <file>
+      <filename>create_DEER_prototype_building_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>57A1B14A</checksum>
     </file>
   </files>
 </measure>
