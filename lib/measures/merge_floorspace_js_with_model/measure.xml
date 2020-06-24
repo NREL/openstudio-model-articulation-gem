@@ -60,12 +60,6 @@
       <checksum>703C9964</checksum>
     </file>
     <file>
-      <filename>.gitkeep</filename>
-      <filetype>gitkeep</filetype>
-      <usage_type>doc</usage_type>
-      <checksum>00000000</checksum>
-    </file>
-    <file>
       <filename>office_floorplan.json</filename>
       <filetype>json</filetype>
       <usage_type>test</usage_type>
