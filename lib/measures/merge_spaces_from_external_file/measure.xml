@@ -182,7 +182,7 @@
   </attributes>
   <files>
     <file>
-      <filename>test.osw</filename>
+      <filename>measure_test.osw</filename>
       <filetype>osw</filetype>
       <usage_type>test</usage_type>
       <checksum>F5FABCCF</checksum>

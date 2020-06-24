@@ -1190,7 +1190,7 @@
   </attributes>
   <files>
     <file>
-      <filename>test.osw</filename>
+      <filename>measure_test.osw</filename>
       <filetype>osw</filetype>
       <usage_type>test</usage_type>
       <checksum>6DB338FC</checksum>
@@ -1411,7 +1411,7 @@
       <checksum>B6303750</checksum>
     </file>
     <file>
-      <filename>test_hvac.rb</filename>
+      <filename>measure_test_hvac.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
       <checksum>9185BFA7</checksum>
