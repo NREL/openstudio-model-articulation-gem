@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>merge_spaces_from_external_file</name>
   <uid>e439a1a9-d075-4a25-9f83-2dca79d2826e</uid>
-  <version_id>4e6b6bd7-0c53-4ef7-8e77-d987ab17a232</version_id>
-  <version_modified>20200509T155942Z</version_modified>
+  <version_id>fac6015b-aad1-4ebc-8285-d27109b95171</version_id>
+  <version_modified>20200624T003830Z</version_modified>
   <xml_checksum>D8922A73</xml_checksum>
   <class_name>MergeSpacesFromExternalFile</class_name>
   <display_name>Merge Spaces from External File</display_name>
@@ -238,7 +238,7 @@
       <filename>merge_spaces_from_external_file_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>BAE573B6</checksum>
+      <checksum>6DE336DE</checksum>
     </file>
   </files>
 </measure>
