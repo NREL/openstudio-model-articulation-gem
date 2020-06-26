@@ -42,7 +42,7 @@ RSpec::Core::RakeTask.new(:spec)
 require 'openstudio/extension/rake_task'
 require 'openstudio/model_articulation'
 rake_task = OpenStudio::Extension::RakeTask.new
-rake_task.set_extension_class(OpenStudio::ModelArticulation::Extension, 'nrel/openstudio-model-articulation-gem)
+rake_task.set_extension_class(OpenStudio::ModelArticulation::Extension, 'nrel/openstudio-model-articulation-gem')
 
 require 'openstudio_measure_tester/rake_task'
 OpenStudioMeasureTester::RakeTask.new
