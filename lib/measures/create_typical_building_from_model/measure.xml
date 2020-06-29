@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>create_typical_building_from_model</name>
   <uid>339a2e3a-273c-4494-bb50-bfe586a0647c</uid>
-  <version_id>c1192b2d-7cab-4477-a756-42652cf57b39</version_id>
-  <version_modified>20200509T155937Z</version_modified>
+  <version_id>8024aeb3-803e-4ad5-b862-8b50aa8dc155</version_id>
+  <version_modified>20200624T003816Z</version_modified>
   <xml_checksum>EE13F09F</xml_checksum>
   <class_name>CreateTypicalBuildingFromModel</class_name>
   <display_name>Create Typical Building from Model</display_name>
@@ -1321,7 +1321,7 @@
   </attributes>
   <files>
     <file>
-      <filename>test.osw</filename>
+      <filename>measure_test.osw</filename>
       <filetype>osw</filetype>
       <usage_type>test</usage_type>
       <checksum>6DB338FC</checksum>
@@ -1542,7 +1542,7 @@
       <checksum>6E6F78F0</checksum>
     </file>
     <file>
-      <filename>test_hvac.rb</filename>
+      <filename>measure_test_hvac.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
       <checksum>371B841C</checksum>
@@ -1551,7 +1551,7 @@
       <filename>create_typical_building_from_model_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>7E049671</checksum>
+      <checksum>CFEF1007</checksum>
     </file>
   </files>
 </measure>
