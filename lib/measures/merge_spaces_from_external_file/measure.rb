@@ -76,6 +76,22 @@ class MergeSpacesFromExternalFile < OpenStudio::Measure::ModelMeasure
     merge_geometry.setDefaultValue(true)
     args << merge_geometry
 
+    # need now for multifamily (do surf prop first to see if it gets E+ to run)
+    # OS:SurfaceProperty:ExposedFoundationPerimeter (has no name)
+    # OS:SurfaceProperty:ConvectionCoefficients (multiple but no name, in addition to handle is surface handle)
+    # OS:Foundation:Kiva
+    # OS:Foundation:Kiva:Settings (has no name, have to take one or the other)
+    # OS:AirLoopHVAC:ReturnPlenum ? see if it just comes with air loops
+    # OS:ShadingControl
+    # todo - ems
+
+    # not now but sometime
+    # todo - see if geometry does site or building shading
+    # todo - exterior equipment and lights
+    # todo - additional properties
+    # todo - site objects (such as OS:Site:GroundTemperature:Shallow) can only have one
+    # todo - are construction sets brought over and how about loose assigned constructions
+
     # merge internal loads
     merge_loads = OpenStudio::Measure::OSArgument.makeBoolArgument('merge_loads', true)
     merge_loads.setDisplayName('Merge Internal Loads from External Model')
@@ -105,12 +121,41 @@ class MergeSpacesFromExternalFile < OpenStudio::Measure::ModelMeasure
     remove_spaces.setDefaultValue(true)
     args << remove_spaces
 
-    # merge thermostats
+=begin    # merge thermostats
     thermostats = OpenStudio::Measure::OSArgument.makeBoolArgument('thermostats', true)
     thermostats.setDisplayName('Merge Thermostats Assigned to Thermal Zones from External Model')
     thermostats.setDescription('Will merge thermostats assign to thermal zone, and merge or clone setpoint schedules')
     thermostats.setDefaultValue(true)
     args << thermostats
+
+    # merge_zone_hvac_components
+    merge_zone_hvac_components = OpenStudio::Measure::OSArgument.makeBoolArgument('merge_zone_hvac_components', true)
+    merge_zone_hvac_components.setDisplayName('Merge Thermal Zone HVAC Components from External Model')
+    merge_zone_hvac_components.setDescription('Excludes terminals, which will be merged as part of air loops')
+    merge_zone_hvac_components.setDefaultValue(true)
+    args << merge_zone_hvac_components
+
+    # merge_air_loops
+    merge_air_loops = OpenStudio::Measure::OSArgument.makeBoolArgument('merge_air_loops', true)
+    merge_air_loops.setDisplayName('Merge Air Loops from External Model')
+    merge_air_loops.setDescription('This includes air loops as well as supply and demand components, including zone air terminals.')
+    merge_air_loops.setDefaultValue(true)
+    args << merge_air_loops
+
+    # merge_plant_loops
+    merge_plant_loops = OpenStudio::Measure::OSArgument.makeBoolArgument('merge_plant_loops', true)
+    merge_plant_loops.setDisplayName('Merge Plant Loops from External Model')
+    merge_plant_loops.setDescription('This includes air loops as well as supply and demand components, including air/water coils. It does not include plant loops serving ')
+    merge_plant_loops.setDefaultValue(true)
+    args << merge_plant_loops
+
+    # merge_swh_objects
+    merge_swh_objects = OpenStudio::Measure::OSArgument.makeBoolArgument('merge_swh_objects', true)
+    merge_swh_objects.setDisplayName('Merge SWH Objets from External Model')
+    merge_swh_objects.setDescription('This includes equipment definitions, instances, and water use connections. Additionally it includes plant loops serving SWH.')
+    merge_swh_objects.setDefaultValue(true)
+    args << merge_swh_objects
+=end
 
     # merge schedules
     # doesn't bring in schedules from external model that are not used in current model, this measures isn't mean to load in resources that are not used
