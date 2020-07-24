@@ -84,6 +84,7 @@ class MergeSpacesFromExternalFile < OpenStudio::Measure::ModelMeasure
     args << merge_loads
 
     # merge space attributes
+    # todo - extend this to include buildingUnit assignments
     merge_attribute_names = OpenStudio::Measure::OSArgument.makeBoolArgument('merge_attribute_names', true)
     merge_attribute_names.setDisplayName('Merge Space Attribute names from External Model')
     merge_attribute_names.setDescription('Replace space attribute names in current model with space attribute names from external models. When external model has unkown attribute name that object will be cloned into the current model.')
@@ -104,11 +105,18 @@ class MergeSpacesFromExternalFile < OpenStudio::Measure::ModelMeasure
     remove_spaces.setDefaultValue(true)
     args << remove_spaces
 
+    # merge thermostats
+    thermostats = OpenStudio::Measure::OSArgument.makeBoolArgument('thermostats', true)
+    thermostats.setDisplayName('Merge Thermostats Assigned to Thermal Zones from External Model')
+    thermostats.setDescription('Will merge thermostats assign to thermal zone, and merge or clone setpoint schedules')
+    thermostats.setDefaultValue(true)
+    args << thermostats
+
     # merge schedules
     # doesn't bring in schedules from external model that are not used in current model, this measures isn't mean to load in resources that are not used
     merge_schedules = OpenStudio::Measure::OSArgument.makeBoolArgument('merge_schedules', true)
     merge_schedules.setDisplayName('Merge Schedules from External Model')
-    merge_schedules.setDescription("This isn't limited to spaces, this will replace any scheules in the current model with schedules of the same name in the external model. It will not replace schedule named 'a' from an internal load in th emodel with a schedule named 'b' from an internal load by that same name in the external model, to perform that task currently, you must merge loads.")
+    merge_schedules.setDescription("This isn't limited to spaces, this will replace any scheules in the current model with schedules of the same name in the external model. It will not replace schedule named 'a' from an internal load in the model with a schedule named 'b' from an internal load by that same name in the external model, to perform that task currently, you must merge loads.")
     merge_schedules.setDefaultValue(true)
     args << merge_schedules
 
@@ -119,8 +127,6 @@ class MergeSpacesFromExternalFile < OpenStudio::Measure::ModelMeasure
     compact_to_ruleset.setDefaultValue(true)
     args << compact_to_ruleset
 
-    # TODO: - in future have arg for logic when resource objects exist in both models
-    # (constructions, materials for geometry, and schedule and load defs for internal loads)
 
     return args
   end
