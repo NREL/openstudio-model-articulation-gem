@@ -75,14 +75,15 @@ class MergeSpacesFromExternalFile < OpenStudio::Measure::ModelMeasure
     merge_geometry.setDescription('Replace geometry in current model with geometry from external model.')
     merge_geometry.setDefaultValue(true)
     args << merge_geometry
-
-    # need now for multifamily (do surf prop first to see if it gets E+ to run)
+    # extend geometry for this
     # OS:SurfaceProperty:ExposedFoundationPerimeter (has no name)
     # OS:SurfaceProperty:ConvectionCoefficients (multiple but no name, in addition to handle is surface handle)
     # OS:Foundation:Kiva
     # OS:Foundation:Kiva:Settings (has no name, have to take one or the other)
-    # OS:AirLoopHVAC:ReturnPlenum ? see if it just comes with air loops
     # OS:ShadingControl
+
+    # need now for multifamily (do surf prop first to see if it gets E+ to run)
+    # todo - OS:AirLoopHVAC:ReturnPlenum ? see if it just comes with air loops
     # todo - ems
 
     # not now but sometime
@@ -295,6 +296,7 @@ class MergeSpacesFromExternalFile < OpenStudio::Measure::ModelMeasure
     # initial condition
     runner.registerInitialCondition("The model started with #{model.getSpaces.size} spaces.")
 
+    # todo - maybe update to look for all bool all bool arguments at false instead of listing each one
     if args['merge_geometry'] == false && args['merge_loads'] == false && args['merge_attribute_names'] == false && args['merge_schedules'] == false
       runner.registerAsNotApplicable('No change made in model')
       return true
@@ -311,6 +313,7 @@ class MergeSpacesFromExternalFile < OpenStudio::Measure::ModelMeasure
       hash[:building_story] = space.buildingStory
       hash[:const_set] = space.defaultConstructionSet
       hash[:sch_set] = space.defaultScheduleSet
+      hash[:building_unit] = space.buildingUnit
 
       # populate internal laods
       hash[:int_mass] = space.internalMass
@@ -356,6 +359,17 @@ class MergeSpacesFromExternalFile < OpenStudio::Measure::ModelMeasure
       hash[:building_story] = space.buildingStory
       hash[:const_set] = space.defaultConstructionSet
       hash[:sch_set] = space.defaultScheduleSet
+      hash[:building_unit] = space.buildingUnit
+      hash[:surf_prop_conv_coef] = {}
+      hash[:surf_prop_exp_found_perim] = {}
+      space.surfaces.sort.each do |surface|
+        if surface.SurfacePropertyConvectionCoefficients.is_initialized
+          hash[:surf_prop_conv_coef][surface] = surface.SurfacePropertyConvectionCoefficients.get
+        end
+        if surface.SurfacePropertyExposedFoundationPerimeter.is_initialized
+          hash[:surf_prop_exp_found_perim][surface] = surface.SurfacePropertyExposedFoundationPerimeter.get
+        end
+      end
 
       # populate internal laods
       hash[:int_mass] = space.internalMass
@@ -460,13 +474,13 @@ class MergeSpacesFromExternalFile < OpenStudio::Measure::ModelMeasure
     if args['merge_geometry']
       # put all of the spaces in the model into a vector
       spaces = OpenStudio::Model::SpaceVector.new
-      model.getSpaces.each do |space|
+      model.getSpaces.sort.each do |space|
         spaces << space
       end
 
       # match surfaces for each space in the vector
       OpenStudio::Model.matchSurfaces(spaces)
-      runner.registerInfo('Matching surfaces..')
+      runner.registerInfo('Matching surfaces.')
     end
 
     if args['merge_schedules']
@@ -498,6 +512,26 @@ class MergeSpacesFromExternalFile < OpenStudio::Measure::ModelMeasure
           cloned_schedule.setName(orig_name)
 
         end
+      end
+    end
+
+    # assign surface properties (should not be needed if clone works)
+    external_spaces_hash.each do |space_name,hash|
+      hash[:surf_prop_conv_coef].each do |surf,surf_prop|
+        target_surface = model.getSurfaceByName(surf.name.get)
+        target_surface.setSurfacePropertyOtherSideCoefficients(surf_prop.clone(model).get)
+      end 
+      hash[:surf_prop_exp_found_perim].each do |surf,surf_prop|
+        target_surface = model.getSurfaceByName(surf.name.get)
+        target_surface.setSurfacePropertyExposedFoundationPerimeter(surf_prop.clone(model).get)
+      end
+    end
+
+    # clean up objects that might be orphaned and warn user so they have option to correct
+    model.getSurfacePropertyExposedFoundationPerimeters.each do |surf_prop|
+      if surf_prop.surfaceName.nil? # isn't optional but field is ending up empty when comes over with spaces
+        runner.registerWarning("surfacePropertyExposedFoundationPerimeters with handle of #{surf_prop.handle} isn't associated with a surface.")
+        surf_prop.remove
       end
     end
 
