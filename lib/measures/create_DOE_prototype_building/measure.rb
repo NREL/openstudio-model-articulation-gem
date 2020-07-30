@@ -74,6 +74,11 @@ class CreateDOEPrototypeBuilding < OpenStudio::Measure::ModelMeasure
     building_type_chs << 'HighriseApartment'
     building_type_chs << 'Hospital'
     building_type_chs << 'Outpatient'
+    building_type_chs << 'Laboratory'
+    building_type_chs << 'LargeDataCenterHighITE'
+    building_type_chs << 'LargeDataCenterLowITE'
+    building_type_chs << 'SmallDataCenterHighITE'
+    building_type_chs << 'SmallDataCenterLowITE'
     building_type = OpenStudio::Measure::OSArgument.makeChoiceArgument('building_type', building_type_chs, true)
     building_type.setDisplayName('Building Type.')
     building_type.setDefaultValue('SmallOffice')
