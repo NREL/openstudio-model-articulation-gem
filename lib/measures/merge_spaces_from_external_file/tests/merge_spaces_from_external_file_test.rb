@@ -40,7 +40,7 @@ require_relative '../measure.rb'
 require 'fileutils'
 
 class MergeSpacesFromExternalFile_Test < MiniTest::Test
-  def test_geo_loads_attributes
+  def no_test_geo_loads_attributes
     test_name = 'geo_loads_attributes'
 
     # create an instance of the measure
@@ -98,7 +98,7 @@ class MergeSpacesFromExternalFile_Test < MiniTest::Test
     model.save(output_file_path, true)
   end
 
-  def test_geo
+  def no_test_geo
     test_name = 'geo'
 
     # create an instance of the measure
@@ -153,7 +153,7 @@ class MergeSpacesFromExternalFile_Test < MiniTest::Test
     model.save(output_file_path, true)
   end
 
-  def test_loads_attributes
+  def no_test_loads_attributes
     test_name = 'loads_attributes'
 
     # create an instance of the measure
@@ -208,7 +208,7 @@ class MergeSpacesFromExternalFile_Test < MiniTest::Test
     model.save(output_file_path, true)
   end
 
-  def test_none
+  def no_test_none
     test_name = 'none'
 
     # create an instance of the measure

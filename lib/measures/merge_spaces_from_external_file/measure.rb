@@ -87,7 +87,7 @@ class MergeSpacesFromExternalFile < OpenStudio::Measure::ModelMeasure
     # todo - ems
 
     # not now but sometime
-    # todo - see if geometry does site or building shading
+    # todo - support site or building shading
     # todo - exterior equipment and lights
     # todo - additional properties
     # todo - site objects (such as OS:Site:GroundTemperature:Shallow) can only have one
@@ -108,6 +108,37 @@ class MergeSpacesFromExternalFile < OpenStudio::Measure::ModelMeasure
     merge_attribute_names.setDefaultValue(true)
     args << merge_attribute_names
 
+     # merge_zones
+     merge_zones = OpenStudio::Measure::OSArgument.makeBoolArgument('merge_zones', true)
+     merge_zones.setDisplayName('Merge Thermal Zone and Zone HVAC Components from External Model')
+     merge_zones.setDescription('Excludes terminals, which will be merged as part of air loops')
+     merge_zones.setDefaultValue(true)
+     args << merge_zones
+
+     # merge_air_loops
+     merge_air_loops = OpenStudio::Measure::OSArgument.makeBoolArgument('merge_air_loops', true)
+     merge_air_loops.setDisplayName('Merge Air Loops from External Model')
+     merge_air_loops.setDescription('This includes air loops as well as supply and demand components, including zone air terminals.')
+     merge_air_loops.setDefaultValue(true)
+     args << merge_air_loops
+
+=begin
+     # merge_plant_loops
+     merge_plant_loops = OpenStudio::Measure::OSArgument.makeBoolArgument('merge_plant_loops', true)
+     merge_plant_loops.setDisplayName('Merge Plant Loops from External Model')
+     merge_plant_loops.setDescription('This includes air loops as well as supply and demand components, including air/water coils. It does not include plant loops serving ')
+     merge_plant_loops.setDefaultValue(true)
+     args << merge_plant_loops
+
+     # merge_swh_objects
+     merge_swh_objects = OpenStudio::Measure::OSArgument.makeBoolArgument('merge_swh_objects', true)
+     merge_swh_objects.setDisplayName('Merge SWH Objets from External Model')
+     merge_swh_objects.setDescription('This includes equipment definitions, instances, and water use connections. Additionally it includes plant loops serving SWH.')
+     merge_swh_objects.setDefaultValue(true)
+     args << merge_swh_objects
+=end
+
+    # todo - extend add_spaces and remove_spaces to do same for zones, air loops, and plant loops?
     # add_spaces
     add_spaces = OpenStudio::Measure::OSArgument.makeBoolArgument('add_spaces', true)
     add_spaces.setDisplayName('Add Spaces to Current Model')
@@ -121,36 +152,6 @@ class MergeSpacesFromExternalFile < OpenStudio::Measure::ModelMeasure
     remove_spaces.setDescription('Remove spaces from current model that do not exist in external model.')
     remove_spaces.setDefaultValue(true)
     args << remove_spaces
-
-=begin
-    # merge_zone_hvac_components
-    merge_zone_hvac_components = OpenStudio::Measure::OSArgument.makeBoolArgument('merge_zone_hvac_components', true)
-    merge_zone_hvac_components.setDisplayName('Merge Thermal Zone HVAC Components from External Model')
-    merge_zone_hvac_components.setDescription('Excludes terminals, which will be merged as part of air loops')
-    merge_zone_hvac_components.setDefaultValue(true)
-    args << merge_zone_hvac_components
-
-    # merge_air_loops
-    merge_air_loops = OpenStudio::Measure::OSArgument.makeBoolArgument('merge_air_loops', true)
-    merge_air_loops.setDisplayName('Merge Air Loops from External Model')
-    merge_air_loops.setDescription('This includes air loops as well as supply and demand components, including zone air terminals.')
-    merge_air_loops.setDefaultValue(true)
-    args << merge_air_loops
-
-    # merge_plant_loops
-    merge_plant_loops = OpenStudio::Measure::OSArgument.makeBoolArgument('merge_plant_loops', true)
-    merge_plant_loops.setDisplayName('Merge Plant Loops from External Model')
-    merge_plant_loops.setDescription('This includes air loops as well as supply and demand components, including air/water coils. It does not include plant loops serving ')
-    merge_plant_loops.setDefaultValue(true)
-    args << merge_plant_loops
-
-    # merge_swh_objects
-    merge_swh_objects = OpenStudio::Measure::OSArgument.makeBoolArgument('merge_swh_objects', true)
-    merge_swh_objects.setDisplayName('Merge SWH Objets from External Model')
-    merge_swh_objects.setDescription('This includes equipment definitions, instances, and water use connections. Additionally it includes plant loops serving SWH.')
-    merge_swh_objects.setDefaultValue(true)
-    args << merge_swh_objects
-=end
 
     # merge schedules
     # doesn't bring in schedules from external model that are not used in current model, this measures isn't mean to load in resources that are not used
@@ -212,7 +213,7 @@ class MergeSpacesFromExternalFile < OpenStudio::Measure::ModelMeasure
   end
 
   # don't clone object if it already exists in the model
-  # todo see if space type of that name already exist in the model, if then clone in the requested on
+  # todo see if space type of that name already exist in the model, if then clone in the requested one
   def reassign_space_attributes(target_space, source_space_hash, model)
     # re-assign space types
     if source_space_hash[:space_type].is_initialized
@@ -359,8 +360,6 @@ class MergeSpacesFromExternalFile < OpenStudio::Measure::ModelMeasure
       space.surfaces.sort.each do |surface|
         if surface.surfacePropertyConvectionCoefficients.is_initialized
           hash[:surf_prop_conv_coef][surface] = surface.surfacePropertyConvectionCoefficients.get
-        else
-          runner.registerInfo("test ran and was value")
         end
         if surface.surfacePropertyExposedFoundationPerimeter.is_initialized
           hash[:surf_prop_exp_found_perim][surface] = surface.surfacePropertyExposedFoundationPerimeter.get
@@ -477,6 +476,24 @@ class MergeSpacesFromExternalFile < OpenStudio::Measure::ModelMeasure
       # match surfaces for each space in the vector
       OpenStudio::Model.matchSurfaces(spaces)
       runner.registerInfo('Matching surfaces.')
+    end
+
+    # initial implementation of merge thermal zone will add zones from external model that are not in original model.
+    # Future commits can add more advanced logic to replace equipment in existing zones that are in both models
+    if args['merge_zones']
+      model_2.getThermalZones.sort.each do |zone|
+        if ! model.getThermalZoneByName(zone.name.to_s).is_initialized
+          zone.clone(model)
+        end
+        target_zone = model.getThermalZoneByName(zone.name.to_s).get
+        zone.equipment.each do |equip|
+          target_equip = equip.clone(model).to_ZoneHVACComponent
+          # this will get rid of terminals
+          next if !target_equip.is_initialized
+          target_equip = target_equip.get
+          target_equip.addToThermalZone(target_zone)
+        end
+      end
     end
 
     if args['merge_schedules']
