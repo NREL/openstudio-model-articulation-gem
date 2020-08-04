@@ -496,6 +496,16 @@ class MergeSpacesFromExternalFile < OpenStudio::Measure::ModelMeasure
       end
     end
 
+    # initial implementation of merge air loops  will add air loops from external model that are not in original model.
+    # Future commits can add more advanced logic
+    if args['merge_air_loops']
+      model_2.getAirLoopHVACs.sort.each do |air_loop|
+        if ! model.getAirLoopHVACByName(air_loop.name.to_s).is_initialized
+          air_loop.clone(model)
+        end
+      end
+    end
+
     if args['merge_schedules']
       model_2.getSchedules.each do |schedule|
         # swap schedule if it is already in the model
