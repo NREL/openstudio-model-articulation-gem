@@ -294,6 +294,7 @@ class MergeSpacesFromExternalFile_Test < MiniTest::Test
     args_hash['merge_geometry'] = true
     args_hash['merge_loads'] = true
     args_hash['merge_attribute_names'] = true
+    args_hash['remove_spaces'] = false
     # using defaults values from measure.rb for other arguments
 
     # populate argument with specified hash value if specified
