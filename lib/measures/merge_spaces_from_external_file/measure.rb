@@ -75,7 +75,7 @@ class MergeSpacesFromExternalFile < OpenStudio::Measure::ModelMeasure
     merge_geometry.setDescription('Replace geometry in current model with geometry from external model.')
     merge_geometry.setDefaultValue(true)
     args << merge_geometry
-    # extend geometry for this
+    # todo -  geometry for this
     # OS:SurfaceProperty:ExposedFoundationPerimeter (has no name)
     # OS:SurfaceProperty:ConvectionCoefficients (multiple but no name, in addition to handle is surface handle)
     # OS:Foundation:Kiva
@@ -118,17 +118,11 @@ class MergeSpacesFromExternalFile < OpenStudio::Measure::ModelMeasure
     # remove_spaces
     remove_spaces = OpenStudio::Measure::OSArgument.makeBoolArgument('remove_spaces', true)
     remove_spaces.setDisplayName('Remove Spaces from Current Model')
-    remove_spaces.setDescription('Remove spaces from current model that do not exist in externa model.')
+    remove_spaces.setDescription('Remove spaces from current model that do not exist in external model.')
     remove_spaces.setDefaultValue(true)
     args << remove_spaces
 
-=begin    # merge thermostats
-    thermostats = OpenStudio::Measure::OSArgument.makeBoolArgument('thermostats', true)
-    thermostats.setDisplayName('Merge Thermostats Assigned to Thermal Zones from External Model')
-    thermostats.setDescription('Will merge thermostats assign to thermal zone, and merge or clone setpoint schedules')
-    thermostats.setDefaultValue(true)
-    args << thermostats
-
+=begin
     # merge_zone_hvac_components
     merge_zone_hvac_components = OpenStudio::Measure::OSArgument.makeBoolArgument('merge_zone_hvac_components', true)
     merge_zone_hvac_components.setDisplayName('Merge Thermal Zone HVAC Components from External Model')
@@ -346,7 +340,7 @@ class MergeSpacesFromExternalFile < OpenStudio::Measure::ModelMeasure
 
     # Open OSM file
     model_2 = OpenStudio::Model::Model.load(OpenStudio::Path.new(osmPath_2)).get
-    runner.registerInfo("#{args['osm_file_name']} has #{model_2.getSpaces.size} spaces")
+    runner.registerInfo("#{args['external_model_name']} has #{model_2.getSpaces.size} spaces")
 
     # create hash of spaces in external model
     external_spaces_hash = {}
@@ -363,11 +357,13 @@ class MergeSpacesFromExternalFile < OpenStudio::Measure::ModelMeasure
       hash[:surf_prop_conv_coef] = {}
       hash[:surf_prop_exp_found_perim] = {}
       space.surfaces.sort.each do |surface|
-        if surface.SurfacePropertyConvectionCoefficients.is_initialized
-          hash[:surf_prop_conv_coef][surface] = surface.SurfacePropertyConvectionCoefficients.get
+        if surface.surfacePropertyConvectionCoefficients.is_initialized
+          hash[:surf_prop_conv_coef][surface] = surface.surfacePropertyConvectionCoefficients.get
+        else
+          runner.registerInfo("test ran and was value")
         end
-        if surface.SurfacePropertyExposedFoundationPerimeter.is_initialized
-          hash[:surf_prop_exp_found_perim][surface] = surface.SurfacePropertyExposedFoundationPerimeter.get
+        if surface.surfacePropertyExposedFoundationPerimeter.is_initialized
+          hash[:surf_prop_exp_found_perim][surface] = surface.surfacePropertyExposedFoundationPerimeter.get
         end
       end
 
@@ -459,7 +455,7 @@ class MergeSpacesFromExternalFile < OpenStudio::Measure::ModelMeasure
         # clone space into model
         new_space_from_ext = hash[:space].clone(model).to_Space.get
         reassign_space_attributes(new_space_from_ext, hash, model)
-        runner.registerInfo("Adding #{space_name} from external model to current model. Since it doesn't exist in current model bring in all characteristics reguardless of user argument values.")
+        runner.registerInfo("Adding #{space_name} from external model to current model. Since it doesn't exist in current model bring in all characteristics regardless of user argument values.")
       end
     end
 
@@ -515,15 +511,19 @@ class MergeSpacesFromExternalFile < OpenStudio::Measure::ModelMeasure
       end
     end
 
+    # todo - code below here should be removed when SDK updated to handle this with clone space method
+
     # assign surface properties (should not be needed if clone works)
     external_spaces_hash.each do |space_name,hash|
       hash[:surf_prop_conv_coef].each do |surf,surf_prop|
-        target_surface = model.getSurfaceByName(surf.name.get)
-        target_surface.setSurfacePropertyOtherSideCoefficients(surf_prop.clone(model).get)
+        target_surface = model.getSurfaceByName(surf.name.get.to_s).get
+        new_surf_prop = surf_prop.clone(model).to_SurfacePropertyConvectionCoefficients.get
+        new_surf_prop.setSurface(target_surface)
       end 
       hash[:surf_prop_exp_found_perim].each do |surf,surf_prop|
-        target_surface = model.getSurfaceByName(surf.name.get)
-        target_surface.setSurfacePropertyExposedFoundationPerimeter(surf_prop.clone(model).get)
+        target_surface = model.getSurfaceByName(surf.name.get).get
+        new_surf_prop = surf_prop.clone(model).to_SurfacePropertyExposedFoundationPerimeter.get
+        new_surf_prop.setString(1,target_surface.handle.to_s)
       end
     end
 
