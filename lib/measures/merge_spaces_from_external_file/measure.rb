@@ -487,10 +487,14 @@ class MergeSpacesFromExternalFile < OpenStudio::Measure::ModelMeasure
         end
         target_zone = model.getThermalZoneByName(zone.name.to_s).get
         zone.equipment.each do |equip|
-          target_equip = equip.clone(model).to_ZoneHVACComponent
+          target_equip = equip.clone(model)
           # this will get rid of terminals
-          next if !target_equip.is_initialized
-          target_equip = target_equip.get
+          if !target_equip.to_ZoneHVACComponent.is_initialized
+            # terminals are added by clone air loop
+            target_equip.remove
+            next
+          end
+          target_equip = target_equip.to_ZoneHVACComponent.get
           target_equip.addToThermalZone(target_zone)
         end
       end
@@ -502,6 +506,8 @@ class MergeSpacesFromExternalFile < OpenStudio::Measure::ModelMeasure
       model_2.getAirLoopHVACs.sort.each do |air_loop|
         if ! model.getAirLoopHVACByName(air_loop.name.to_s).is_initialized
           air_loop.clone(model)
+          # todo - hook up terminals
+          # todo - rebuild plenums
         end
       end
     end
