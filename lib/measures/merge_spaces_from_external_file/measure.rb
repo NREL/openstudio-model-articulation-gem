@@ -578,6 +578,16 @@ class MergeSpacesFromExternalFile < OpenStudio::Measure::ModelMeasure
       end
     end
 
+    # todo - code below here should be removed when SDK updated to handle this with clone air loop method
+    # create and assign AvailabilityManagerAssignmentList to cloned air loops
+    model.getAirLoopHVACs.sort.each do |air_loop|
+      if air_loop.getString(4).to_s == ""
+        list = OpenStudio::Model::AvailabilityManagerAssignmentList.new(air_loop)
+        # line above adds list but doesn't associate it with air_loop. Line below is a work around to force it in
+        air_loop.setString(4,list.handle.to_s)
+      end
+    end
+
     # register final condition
     runner.registerFinalCondition("The model finished with #{model.getSpaces.size} spaces.")
 
