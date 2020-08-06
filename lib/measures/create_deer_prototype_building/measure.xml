@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>create_deer_prototype_building</name>
   <uid>752055bd-10d9-4ede-8a35-18487fedf579</uid>
-  <version_id>3aef0d72-786e-47a0-b144-dfd6cb6c90ff</version_id>
-  <version_modified>20200624T003806Z</version_modified>
+  <version_id>caff418c-b87a-4b76-9015-c5438811f739</version_id>
+  <version_modified>20200721T182527Z</version_modified>
   <xml_checksum>A514F332</xml_checksum>
   <class_name>CreateDEERPrototypeBuilding</class_name>
   <display_name>Create DEER Prototype Building ALPHA Version</display_name>

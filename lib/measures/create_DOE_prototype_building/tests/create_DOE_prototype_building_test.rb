@@ -158,4 +158,18 @@ class CreateDOEPrototypeBuildingTest < Minitest::Test
     puts "There were #{all_failures.size} failures"
     assert(all_failures.empty?, "FAILURES: #{all_failures.join("\n")}")
   end
+
+  def test_lab
+    bldg_types = ['Laboratory']
+    vintages = ['DOE Ref Pre-1980', 'DOE Ref 1980-2004', '90.1-2004', '90.1-2007', '90.1-2010']
+    climate_zones = ['ASHRAE 169-2013-4A']
+
+    # create the model
+    all_failures  += create_models(bldg_types, vintages, climate_zones)
+
+    # Assert if there are any errors
+    puts "There were #{all_failures.size} failures"
+    assert(all_failures.empty?, "FAILURES: #{all_failures.join("\n")}")
+  end
+
 end
