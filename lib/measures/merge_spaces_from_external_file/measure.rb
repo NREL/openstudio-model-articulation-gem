@@ -517,7 +517,28 @@ class MergeSpacesFromExternalFile < OpenStudio::Measure::ModelMeasure
             target_air_loop.multiAddBranchForZone(zone)
           end
 
-          # todo - rebuild plenums
+            # grab control zones from AirLoopHVACUnitarySystem and re-assign
+            untiary_sys_ctrl_zone = nil
+            air_loop.supplyComponents.each do |component|
+              if component.to_AirLoopHVACUnitarySystem.is_initialized
+                component = component.to_AirLoopHVACUnitarySystem.get
+                next if ! component.controllingZoneorThermostatLocation.is_initialized
+                untiary_sys_ctrl_zone = component.controllingZoneorThermostatLocation.get
+                break
+              end
+            end
+            target_air_loop.supplyComponents.each do |component|
+              if component.to_AirLoopHVACUnitarySystem.is_initialized
+                component = component.to_AirLoopHVACUnitarySystem.get
+                # todo - all of these look by names need error handeling or should make sure that can't clone airloops without cloneing zones as well.
+                new_cont_zone = model.getThermalZoneByName(untiary_sys_ctrl_zone.name.to_s).get.to_ThermalZone.get
+                component.setControllingZoneorThermostatLocation(new_cont_zone)
+                break
+              end
+            end
+
+            # todo - rebuild plenums
+
         end
       end
     end
