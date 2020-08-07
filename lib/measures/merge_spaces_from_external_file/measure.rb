@@ -517,27 +517,39 @@ class MergeSpacesFromExternalFile < OpenStudio::Measure::ModelMeasure
             target_air_loop.multiAddBranchForZone(zone)
           end
 
-            # grab control zones from AirLoopHVACUnitarySystem and re-assign
-            untiary_sys_ctrl_zone = nil
-            air_loop.supplyComponents.each do |component|
-              if component.to_AirLoopHVACUnitarySystem.is_initialized
-                component = component.to_AirLoopHVACUnitarySystem.get
-                next if ! component.controllingZoneorThermostatLocation.is_initialized
-                untiary_sys_ctrl_zone = component.controllingZoneorThermostatLocation.get
-                break
-              end
+          # grab control zones from AirLoopHVACUnitarySystem and re-assign
+          untiary_sys_ctrl_zone = nil
+          air_loop.supplyComponents.each do |component|
+            if component.to_AirLoopHVACUnitarySystem.is_initialized
+              component = component.to_AirLoopHVACUnitarySystem.get
+              next if ! component.controllingZoneorThermostatLocation.is_initialized
+              untiary_sys_ctrl_zone = component.controllingZoneorThermostatLocation.get
+              break
             end
-            target_air_loop.supplyComponents.each do |component|
-              if component.to_AirLoopHVACUnitarySystem.is_initialized
-                component = component.to_AirLoopHVACUnitarySystem.get
-                # todo - all of these look by names need error handeling or should make sure that can't clone airloops without cloneing zones as well.
-                new_cont_zone = model.getThermalZoneByName(untiary_sys_ctrl_zone.name.to_s).get.to_ThermalZone.get
-                component.setControllingZoneorThermostatLocation(new_cont_zone)
-                break
-              end
+          end
+          target_air_loop.supplyComponents.each do |component|
+            if component.to_AirLoopHVACUnitarySystem.is_initialized
+              component = component.to_AirLoopHVACUnitarySystem.get
+              # todo - all of these look by names need error handeling or should make sure that can't clone airloops without cloneing zones as well.
+              new_cont_zone = model.getThermalZoneByName(untiary_sys_ctrl_zone.name.to_s).get.to_ThermalZone.get
+              component.setControllingZoneorThermostatLocation(new_cont_zone)
             end
+            # todo - add support for single zone setpoint managers
+          end
 
-            # todo - rebuild plenums
+          # setup plenums
+          air_loop.demandComponents.each_with_index do |component,i|
+            if component.to_ThermalZone.is_initialized
+              if air_loop.demandComponents[i+2].to_AirLoopHVACReturnPlenum.is_initialized
+                target_thermal_zone = model.getThermalZoneByName(component.name.to_s).get
+                target_plenum_object = air_loop.demandComponents[i+2].to_AirLoopHVACReturnPlenum.get.thermalZone
+                next if not target_plenum_object.is_initialized
+                target_plenum_zone = model.getThermalZoneByName(target_plenum_object.get.name.to_s).get
+                target_thermal_zone.setReturnPlenum(target_plenum_zone)
+              end
+              # todo - add code to look for supply plenums
+            end
+          end
 
         end
       end
