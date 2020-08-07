@@ -108,35 +108,33 @@ class MergeSpacesFromExternalFile < OpenStudio::Measure::ModelMeasure
     merge_attribute_names.setDefaultValue(true)
     args << merge_attribute_names
 
-     # merge_zones
-     merge_zones = OpenStudio::Measure::OSArgument.makeBoolArgument('merge_zones', true)
-     merge_zones.setDisplayName('Merge Thermal Zone and Zone HVAC Components from External Model')
-     merge_zones.setDescription('Excludes terminals, which will be merged as part of air loops')
-     merge_zones.setDefaultValue(true)
-     args << merge_zones
+    # merge_zones
+    merge_zones = OpenStudio::Measure::OSArgument.makeBoolArgument('merge_zones', true)
+    merge_zones.setDisplayName('Merge Thermal Zone and Zone HVAC Components from External Model')
+    merge_zones.setDescription('Excludes terminals, which will be merged as part of air loops')
+    merge_zones.setDefaultValue(true)
+    args << merge_zones
 
-     # merge_air_loops
-     merge_air_loops = OpenStudio::Measure::OSArgument.makeBoolArgument('merge_air_loops', true)
-     merge_air_loops.setDisplayName('Merge Air Loops from External Model')
-     merge_air_loops.setDescription('This includes air loops as well as supply and demand components, including zone air terminals.')
-     merge_air_loops.setDefaultValue(true)
-     args << merge_air_loops
+    # merge_air_loops
+    merge_air_loops = OpenStudio::Measure::OSArgument.makeBoolArgument('merge_air_loops', true)
+    merge_air_loops.setDisplayName('Merge Air Loops from External Model')
+    merge_air_loops.setDescription('This includes air loops as well as supply and demand components, including zone air terminals.')
+    merge_air_loops.setDefaultValue(true)
+    args << merge_air_loops
 
-=begin
-     # merge_plant_loops
-     merge_plant_loops = OpenStudio::Measure::OSArgument.makeBoolArgument('merge_plant_loops', true)
-     merge_plant_loops.setDisplayName('Merge Plant Loops from External Model')
-     merge_plant_loops.setDescription('This includes air loops as well as supply and demand components, including air/water coils. It does not include plant loops serving ')
-     merge_plant_loops.setDefaultValue(true)
-     args << merge_plant_loops
+    # merge_plant_loops
+    merge_plant_loops = OpenStudio::Measure::OSArgument.makeBoolArgument('merge_plant_loops', true)
+    merge_plant_loops.setDisplayName('Merge Plant Loops from External Model')
+    merge_plant_loops.setDescription('This includes air loops as well as supply and demand components, including air/water coils. It does not include plant loops serving ')
+    merge_plant_loops.setDefaultValue(true)
+    args << merge_plant_loops
 
-     # merge_swh_objects
-     merge_swh_objects = OpenStudio::Measure::OSArgument.makeBoolArgument('merge_swh_objects', true)
-     merge_swh_objects.setDisplayName('Merge SWH Objets from External Model')
-     merge_swh_objects.setDescription('This includes equipment definitions, instances, and water use connections. Additionally it includes plant loops serving SWH.')
-     merge_swh_objects.setDefaultValue(true)
-     args << merge_swh_objects
-=end
+    # merge_swh
+    merge_swh = OpenStudio::Measure::OSArgument.makeBoolArgument('merge_swh', true)
+    merge_swh.setDisplayName('Merge SWH Objets from External Model')
+    merge_swh.setDescription('This includes equipment definitions, instances, and water use connections. Additionally it includes plant loops serving SWH.')
+    merge_swh.setDefaultValue(true)
+    args << merge_swh
 
     # todo - extend add_spaces and remove_spaces to do same for zones, air loops, and plant loops?
     # add_spaces
@@ -548,6 +546,45 @@ class MergeSpacesFromExternalFile < OpenStudio::Measure::ModelMeasure
                 target_thermal_zone.setReturnPlenum(target_plenum_zone)
               end
               # todo - add code to look for supply plenums
+            end
+          end
+
+        end
+      end
+    end
+
+    # initial implementation of merge plant loops  will add plant loops from external model that are not in original model.
+    # Future commits can add more advanced logic
+    if args['merge_plant_loops']
+      model_2.getPlantLoops.sort.each do |plant_loop|
+        if ! model.getPlantLoopByName(plant_loop.name.to_s).is_initialized
+
+          # clone plant loop
+          target_air_loop = plant_loop.clone(model).to_PlantLoop.get
+        end
+      end
+    end
+
+    # clone WaterUseConnections and WaterUseEquipment
+    if args['merge_swh']
+      model_2.getWaterUseConnectionss.sort.each do |wtr_use_connect|
+        if ! model.getWaterUseConnectionsByName(wtr_use_connect.name.to_s).is_initialized
+
+          # clone water use connection
+          target_wtr_use_connect = wtr_use_connect.clone(model).to_WaterUseConnections.get
+
+          # clone and connect water use equipment
+          wtr_use_connect.waterUseEquipment.each do |equip|
+            target_equip = equip.clone(model).to_WaterUseEquipment.get
+            target_wtr_use_connect.addWaterUseEquipment(target_equip)
+            # todo - add code to check for space, and re-connect
+          end
+
+          # hookup to plant loop of one of correct name exists
+          if wtr_use_connect.plantLoop.is_initialized
+            if model.getPlantLoopByName(wtr_use_connect.plantLoop.get.name.to_s).is_initialized
+              target_plant_loop = model.getPlantLoopByName(wtr_use_connect.plantLoop.get.name.to_s).get
+              target_plant_loop.addDemandBranchForComponent(target_wtr_use_connect)
             end
           end
 
