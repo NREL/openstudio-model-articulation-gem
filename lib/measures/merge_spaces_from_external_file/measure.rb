@@ -75,23 +75,14 @@ class MergeSpacesFromExternalFile < OpenStudio::Measure::ModelMeasure
     merge_geometry.setDescription('Replace geometry in current model with geometry from external model.')
     merge_geometry.setDefaultValue(true)
     args << merge_geometry
-    # todo -  geometry for this
-    # OS:SurfaceProperty:ExposedFoundationPerimeter (has no name)
-    # OS:SurfaceProperty:ConvectionCoefficients (multiple but no name, in addition to handle is surface handle)
-    # OS:Foundation:Kiva
-    # OS:Foundation:Kiva:Settings (has no name, have to take one or the other)
-    # OS:ShadingControl
 
     # need now for multifamily (do surf prop first to see if it gets E+ to run)
-    # todo - OS:AirLoopHVAC:ReturnPlenum ? see if it just comes with air loops
     # todo - ems
 
     # not now but sometime
-    # todo - support site or building shading
+    # todo - support site and building shading
     # todo - exterior equipment and lights
-    # todo - additional properties
     # todo - site objects (such as OS:Site:GroundTemperature:Shallow) can only have one
-    # todo - are construction sets brought over and how about loose assigned constructions
 
     # merge internal loads
     merge_loads = OpenStudio::Measure::OSArgument.makeBoolArgument('merge_loads', true)
@@ -470,10 +461,23 @@ class MergeSpacesFromExternalFile < OpenStudio::Measure::ModelMeasure
       model.getSpaces.sort.each do |space|
         spaces << space
       end
-
       # match surfaces for each space in the vector
       OpenStudio::Model.matchSurfaces(spaces)
       runner.registerInfo('Matching surfaces.')
+
+      # add in OS:Foundation:Kiva and OS:Foundation:Kiva:Settings (has no name, have to take one or the other)
+      model_2.getFoundationKivas.each do |kiva|
+        target_kiva = kiva.clone(model).to_FoundationKiva.get
+        kiva.surfaces.each do |surface|
+          target_surface = model.getSurfaceByName(surface.name.to_s).get
+          target_surface.setAdjacentFoundation(target_kiva)
+        end
+      end
+      # clone Kiva settings if in external model but not primary model
+      if ! model.foundationKivaSettings.is_initialized && model_2.foundationKivaSettings.is_initialized
+        model_2.getFoundationKivaSettings.clone(model)
+      end
+
     end
 
     # initial implementation of merge thermal zone will add zones from external model that are not in original model.
@@ -642,7 +646,7 @@ class MergeSpacesFromExternalFile < OpenStudio::Measure::ModelMeasure
 
     # clean up objects that might be orphaned and warn user so they have option to correct
     model.getSurfacePropertyExposedFoundationPerimeters.each do |surf_prop|
-      if surf_prop.surfaceName.nil? # isn't optional but field is ending up empty when comes over with spaces
+      if surf_prop.getString(1).to_s == "" # isn't optional but field is ending up empty when comes over with spaces
         runner.registerWarning("surfacePropertyExposedFoundationPerimeters with handle of #{surf_prop.handle} isn't associated with a surface.")
         surf_prop.remove
       end
