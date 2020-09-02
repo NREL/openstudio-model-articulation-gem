@@ -28,7 +28,7 @@ class AlterDOESchoolSummerVacation < OpenStudio::Measure::ModelMeasure
     # argument for months_school
     months_school = OpenStudio::Measure::OSArgument.makeDoubleArgument('months_school', true)
     months_school.setDisplayName('Number of Months per Year School is in Session')
-    months_school.setDescription('This name will be used as the name of the new space.')
+    months_school.setDescription('This will be used to shorten the summer vacation from initlal 2 months on DOE Prototyep school schedules.')
     args << months_school
 
     return args
@@ -66,7 +66,7 @@ class AlterDOESchoolSummerVacation < OpenStudio::Measure::ModelMeasure
     end_year_date = yd.makeDate(12, 31)
 
     # store string of dates for initial and final model reporting
-    # todo - need to pad so sort works
+    # todo - doesn't sort for reporting. may want to store as integer day of year and then convert to date if wanted for reporting
     orig_rule_day_months = []
     final_rule_day_months = []
 
@@ -95,7 +95,7 @@ class AlterDOESchoolSummerVacation < OpenStudio::Measure::ModelMeasure
             #new_date = yd.makeDate(new_month, orig_day)
             
             orig_day_of_year = orig_date.dayOfYear
-            new_day_of_year = (orig_day_of_year - (30.5 * (months_school - assumed_starting_months_school).truncate)).to_i
+            new_day_of_year = orig_day_of_year - (30.5 * (months_school - assumed_starting_months_school)).truncate
             new_date = OpenStudio::Date::fromDayOfYear(new_day_of_year)
             rule.setStartDate(new_date)
             runner.registerInfo("Changing start date for #{rule.name} #{orig_date} to #{new_date}")
@@ -116,7 +116,7 @@ class AlterDOESchoolSummerVacation < OpenStudio::Measure::ModelMeasure
           if orig_date > threshold_date && orig_date < end_year_date
  
             orig_day_of_year = orig_date.dayOfYear
-            new_day_of_year = (orig_day_of_year - (30.5 * (months_school - assumed_starting_months_school).truncate)).to_i
+            new_day_of_year = orig_day_of_year - (30.5 * (months_school - assumed_starting_months_school)).truncate
             new_date = OpenStudio::Date::fromDayOfYear(new_day_of_year)
             rule.setEndDate(new_date)
             runner.registerInfo("Changing end date for #{rule.name} #{orig_date} to #{new_date}")

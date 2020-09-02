@@ -20,7 +20,7 @@ ModelMeasure
 
 
 ### Number of Months per Year School is in Session
-This name will be used as the name of the new space.
+This will be used to shorten the summer vacation from initlal 2 months on DOE Prototyep school schedules.
 **Name:** months_school,
 **Type:** Double,
 **Units:** ,
