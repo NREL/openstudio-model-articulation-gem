@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>alter_doe_school_summer_vacation</name>
   <uid>e46d740d-f1fa-4b33-86ce-f13bb0f3bef5</uid>
-  <version_id>0cad9e80-0c84-43f5-a963-aed51eaf5923</version_id>
-  <version_modified>20200902T161400Z</version_modified>
+  <version_id>0bd88ca9-aaf7-4d5d-8a2d-a079f4402c23</version_id>
+  <version_modified>20200902T161857Z</version_modified>
   <xml_checksum>ADBF05B8</xml_checksum>
   <class_name>AlterDOESchoolSummerVacation</class_name>
   <display_name>Alter DOE School Summer Vacation</display_name>
@@ -72,17 +72,6 @@
       <checksum>00000000</checksum>
     </file>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>3.0.1</identifier>
-        <min_compatible>3.0.1</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>9F318357</checksum>
-    </file>
-    <file>
       <filename>alter_doe_school_summer_vacation_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
@@ -99,6 +88,17 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>5B13CD52</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>3.0.1</identifier>
+        <min_compatible>3.0.1</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>842D7A86</checksum>
     </file>
   </files>
 </measure>

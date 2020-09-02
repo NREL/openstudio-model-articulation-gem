@@ -118,7 +118,7 @@ class AlterDOESchoolSummerVacation < OpenStudio::Measure::ModelMeasure
             orig_day_of_year = orig_date.dayOfYear
             new_day_of_year = (orig_day_of_year - (30.5 * (months_school - assumed_starting_months_school).truncate)).to_i
             new_date = OpenStudio::Date::fromDayOfYear(new_day_of_year)
-            rule.setStartDate(new_date)
+            rule.setEndDate(new_date)
             runner.registerInfo("Changing end date for #{rule.name} #{orig_date} to #{new_date}")
 
           end
