@@ -3,18 +3,18 @@
   <schema_version>3.0</schema_version>
   <name>alter_doe_school_summer_vacation</name>
   <uid>e46d740d-f1fa-4b33-86ce-f13bb0f3bef5</uid>
-  <version_id>efafe772-d6a1-4afa-8559-602892357540</version_id>
-  <version_modified>20200902T164228Z</version_modified>
+  <version_id>0f88925b-0bc0-4695-adc4-f3fd4135d739</version_id>
+  <version_modified>20200902T173005Z</version_modified>
   <xml_checksum>ADBF05B8</xml_checksum>
   <class_name>AlterDOESchoolSummerVacation</class_name>
-  <display_name>Alter DOE School Summer Vacation</display_name>
-  <description>This measure will alter seasonal components of schedules that already have rules in place for seasonal adjustments.  Initially it just shortens summery vacation, but could be updated to lengthen it. Can be generalized in future to measure named Shift Existing Seasonal Schedule Rules.</description>
+  <display_name>AlterDOESchoolSummerVacation</display_name>
+  <description>This measure will alter seasonal components of schedules that already have rules in place for seasonal adjustments.  Initially it just shortens summer vacation, but could be updated to lengthen it. Can be generalized in future to measure named Shift Existing Seasonal Schedule Rules.</description>
   <modeler_description>Initial use is to change summer vacations in primary and secondary school. Primary input will be number of months long the school year is. This is meant to be used on DOE prototype schedules which represent a 10 month school year. 11 or 12 month input will shorten or remove the summer break. Shortening from the end of the break leaving the beginning un-touched. If this measure is run on unexpected models it will not have the desired impact.</modeler_description>
   <arguments>
     <argument>
-      <name>months_school</name>
-      <display_name>Number of Months per Year School is in Session</display_name>
-      <description>This will be used to shorten the summer vacation from initlal 2 months on DOE Prototyep school schedules.</description>
+      <name>months_open</name>
+      <display_name>Number of Months per year school is in session</display_name>
+      <description>This will be used to shorten the summer vacation from initial 2 months on DOE Prototype school schedules.</description>
       <type>Double</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
@@ -54,12 +54,6 @@
   </attributes>
   <files>
     <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>CD7F5672</checksum>
-    </file>
-    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
@@ -72,16 +66,10 @@
       <checksum>00000000</checksum>
     </file>
     <file>
-      <filename>alter_doe_school_summer_vacation_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>5D0AF1CD</checksum>
-    </file>
-    <file>
-      <filename>secondary_school.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>60D7630A</checksum>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>9640B6CB</checksum>
     </file>
     <file>
       <version>
@@ -92,13 +80,37 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>F77C2119</checksum>
+      <checksum>2598117A</checksum>
+    </file>
+    <file>
+      <filename>AlterDOESchoolSummerVacationTest.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>A1F4D4AD</checksum>
+    </file>
+    <file>
+      <filename>NE_Kearney_Muni_725526_16.epw</filename>
+      <filetype>epw</filetype>
+      <usage_type>test</usage_type>
+      <checksum>978FBEFE</checksum>
+    </file>
+    <file>
+      <filename>PrimarySchool.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>FB4203B5</checksum>
+    </file>
+    <file>
+      <filename>SecondarySchool.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>F73CBB2E</checksum>
     </file>
     <file>
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
-      <checksum>D6EF2126</checksum>
+      <checksum>27A4FB26</checksum>
     </file>
   </files>
 </measure>
