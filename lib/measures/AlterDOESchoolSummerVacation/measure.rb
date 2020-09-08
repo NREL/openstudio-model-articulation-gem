@@ -85,7 +85,7 @@ class AlterDOESchoolSummerVacation < OpenStudio::Measure::ModelMeasure
 
     # check the input for reasonableness
     if months_open < 10 || months_open > 12
-      runner.registerError('We currently only support shortening summer vacation. Please enter 10-12 months as an input for Number of Months in School Year.')
+      runner.registerWarning('We currently only support shortening summer vacation. Please enter 10-12 months as an input for Number of Months in School Year.')
       return false
     end
 
