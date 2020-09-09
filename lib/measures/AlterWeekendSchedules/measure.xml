@@ -1,23 +1,34 @@
 <?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
-  <name>alter_doe_school_summer_vacation</name>
+  <name>alter_weekend_schedules</name>
   <uid>e46d740d-f1fa-4b33-86ce-f13bb0f3bef5</uid>
-  <version_id>0f88925b-0bc0-4695-adc4-f3fd4135d739</version_id>
-  <version_modified>20200902T173005Z</version_modified>
+  <version_id>d2593aae-dde8-478b-a0d5-7ca98117d468</version_id>
+  <version_modified>20200909T154311Z</version_modified>
   <xml_checksum>ADBF05B8</xml_checksum>
-  <class_name>AlterDOESchoolSummerVacation</class_name>
-  <display_name>AlterDOESchoolSummerVacation</display_name>
-  <description>This measure will alter seasonal components of schedules that already have rules in place for seasonal adjustments.  Initially it just shortens summer vacation, but could be updated to lengthen it. Can be generalized in future to measure named Shift Existing Seasonal Schedule Rules.</description>
-  <modeler_description>Initial use is to change summer vacations in primary and secondary school. Primary input will be number of months long the school year is. This is meant to be used on DOE prototype schedules which represent a 10 month school year. 11 or 12 month input will shorten or remove the summer break. Shortening from the end of the break leaving the beginning un-touched. If this measure is run on unexpected models it will not have the desired impact.</modeler_description>
+  <class_name>AlterWeekendSchedules</class_name>
+  <display_name>AlterWeekendSchedules</display_name>
+  <description>This measure will alter weekend schedules to match a weekday (e.g. Monday) instead of the default DOE schedules, which are off on the weekends for schools and sometimes offices. In the future this measure could be replaced by an overall improvement in schedules used in the create_typical measure.</description>
+  <modeler_description>Initial use is to change weekend schedules in schools and large offices for SEED project to follow weekday schedules instead of being off on weekends. Measure will loop through existing schedules and use the Monday schedules for Saturday and Sunday.</modeler_description>
   <arguments>
     <argument>
-      <name>months_open</name>
-      <display_name>Number of Months per year school is in session</display_name>
-      <description>This will be used to shorten the summer vacation from initial 2 months on DOE Prototype school schedules.</description>
-      <type>Double</type>
+      <name>weekend_open_status</name>
+      <display_name>If the building is open on the weekend</display_name>
+      <description>If the weekend open status is set to true the measure will run.</description>
+      <type>Boolean</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
+      <default_value>false</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
     </argument>
   </arguments>
   <outputs />
@@ -72,23 +83,6 @@
       <checksum>9640B6CB</checksum>
     </file>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>3.0.1</identifier>
-        <min_compatible>3.0.1</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>2598117A</checksum>
-    </file>
-    <file>
-      <filename>AlterDOESchoolSummerVacationTest.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>A1F4D4AD</checksum>
-    </file>
-    <file>
       <filename>NE_Kearney_Muni_725526_16.epw</filename>
       <filetype>epw</filetype>
       <usage_type>test</usage_type>
@@ -107,10 +101,27 @@
       <checksum>F73CBB2E</checksum>
     </file>
     <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>3.0.1</identifier>
+        <min_compatible>3.0.1</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>722DA0A9</checksum>
+    </file>
+    <file>
+      <filename>AlterWeekendSchedulesTest.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>51C4D406</checksum>
+    </file>
+    <file>
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
-      <checksum>27A4FB26</checksum>
+      <checksum>6570AC7C</checksum>
     </file>
   </files>
 </measure>

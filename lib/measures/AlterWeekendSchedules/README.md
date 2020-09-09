@@ -2,13 +2,13 @@
 
 ###### (Automatically generated documentation)
 
-# AlterDOESchoolSummerVacation
+# AlterWeekendSchedules
 
 ## Description
-This measure will alter seasonal components of schedules that already have rules in place for seasonal adjustments.  Initially it just shortens summer vacation, but could be updated to lengthen it. Can be generalized in future to measure named Shift Existing Seasonal Schedule Rules.
+This measure will alter weekend schedules to match a weekday (e.g. Monday) instead of the default DOE schedules, which are off on the weekends for schools and sometimes offices. In the future this measure could be replaced by an overall improvement in schedules used in the create_typical measure.
 
 ## Modeler Description
-Initial use is to change summer vacations in primary and secondary school. Primary input will be number of months long the school year is. This is meant to be used on DOE prototype schedules which represent a 10 month school year. 11 or 12 month input will shorten or remove the summer break. Shortening from the end of the break leaving the beginning un-touched. If this measure is run on unexpected models it will not have the desired impact.
+Initial use is to change weekend schedules in schools and large offices for SEED project to follow weekday schedules instead of being off on weekends. Measure will loop through existing schedules and use the Monday schedules for Saturday and Sunday.
 
 ## Measure Type
 ModelMeasure
@@ -19,10 +19,10 @@ ModelMeasure
 ## Arguments
 
 
-### Number of Months per year school is in session
-This will be used to shorten the summer vacation from initial 2 months on DOE Prototype school schedules.
-**Name:** months_open,
-**Type:** Double,
+### If the building is open on the weekend
+If the weekend open status is set to true the measure will run.
+**Name:** weekend_open_status,
+**Type:** Boolean,
 **Units:** ,
 **Required:** true,
 **Model Dependent:** false
