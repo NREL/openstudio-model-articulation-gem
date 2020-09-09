@@ -94,10 +94,18 @@ class AlterWeekendSchedules < OpenStudio::Measure::ModelMeasure
       # loop through rules
       schedule.scheduleRules.each do |rule|
         puts "rules = #{rule.daySchedule}"
-        if  rule.applyMonday == true
-          monday_sch = rule.daySchedule
+        if  rule.applySaturday == true
+          rule.setApplySaturday(false)
         end
 
+        if  rule.applySunday == true
+          rule.setApplySunday(false)
+        end
+
+        if  rule.applyMonday == true
+          rule.setApplySaturday(true)
+          rule.setApplySunday(true)
+        end
       end
     end
 
