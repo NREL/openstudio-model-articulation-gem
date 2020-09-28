@@ -176,7 +176,7 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
 
     # calculate initial envelope cost as negative value
     envelope_cost = 0
-    constructions = model.getConstructions
+    constructions = model.getConstructions.sort
     constructions.each do |construction|
       const_llcs = construction.lifeCycleCosts
       const_llcs.each do |const_llc|
@@ -190,14 +190,14 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
     if exl_spaces_not_incl_fl_area
       # loop through spaces to gather surfaces.
       surfaces = []
-      model.getSpaces.each do |space|
+      model.getSpaces.sort.each do |space|
         next if !space.partofTotalFloorArea
-        space.surfaces.each do |surface|
+        space.surfaces.sort.each do |surface|
           surfaces << surface
         end
       end
     else
-      surfaces = model.getSurfaces
+      surfaces = model.getSurfaces.sort
     end
 
     # used for new sub surfaces to find target construction
@@ -205,7 +205,7 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
     orig_sub_surf_const_for_target_all_ext = {}
 
     # pre-loop through sub-surfaces to store constructions
-    model.getSubSurfaces.each do |sub_surf|
+    model.getSubSurfaces.sort.each do |sub_surf|
       # store constructions for entire building
       next if sub_surf.subSurfaceType == 'Door' || sub_surf.subSurfaceType == 'OverheadDoor'
       if sub_surf.construction.is_initialized
@@ -248,7 +248,7 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
     # hash for sub surfaces removed from non rectangular surfaces
     non_rect_parent = {}
 
-    surfaces.each do |s|
+    surfaces.sort.each do |s|
       next if s.surfaceType != 'Wall'
       next if s.outsideBoundaryCondition != 'Outdoors'
       if s.space.empty?
@@ -296,7 +296,7 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
       # loop through sub surfaces and add area including multiplier
       ext_window_area = 0
       has_doors = false
-      s.subSurfaces.each do |subSurface|
+      s.subSurfaces.sort.each do |subSurface|
         # stop if non window or glass door
         if subSurface.subSurfaceType == 'Door' || subSurface.subSurfaceType == 'OverheadDoor'
           if split_at_doors == 'Remove Doors'
@@ -321,7 +321,7 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
         split_surfaces = s.splitSurfaceForSubSurfaces.to_a # frozen array
 
         # add original surface to new surfaces
-        split_surfaces.each do |ss|
+        split_surfaces.sort.each do |ss|
           all_surfaces << ss
         end
       end
@@ -329,7 +329,7 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
       if wwr > 0 && triangulate
 
         all_surfaces2 = []
-        all_surfaces.each do |ss|
+        all_surfaces.sort.each do |ss|
           # see if surface is rectangular (only checking non rotated on vertical wall)
           # todo - add in more robust rectangle check that can look for rotate and tilted rectangles
           rect_tri = false
@@ -350,7 +350,7 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
           end
 
           has_doors = false
-          ss.subSurfaces.each do |subSurface|
+          ss.subSurfaces.sort.each do |subSurface|
             if subSurface.subSurfaceType == 'Door' || subSurface.subSurfaceType == 'OverheadDoor'
               has_doors = true
             end
@@ -366,7 +366,7 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
 
           # get construction from sub-surfaces and then delete them
           pre_tri_sub_const = {}
-          ss.subSurfaces.each do |subSurface|
+          ss.subSurfaces.sort.each do |subSurface|
             if subSurface.construction.is_initialized && !subSurface.isConstructionDefaulted
               if pre_tri_sub_const.key?(subSurface.construction.get)
                 pre_tri_sub_const[subSurface.construction.get] = subSurface.grossArea
@@ -398,9 +398,9 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
       end
 
       # add windows
-      all_surfaces2.each do |ss|
+      all_surfaces2.sort.each do |ss|
         orig_sub_surf_constructions = {}
-        ss.subSurfaces.each do |sub_surf|
+        ss.subSurfaces.sort.each do |sub_surf|
           next if sub_surf.subSurfaceType == 'Door' || sub_surf.subSurfaceType == 'OverheadDoor'
           if sub_surf.construction.is_initialized
             if orig_sub_surf_constructions.key?(sub_surf.construction.get)
@@ -414,7 +414,7 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
         # remove windows if ratio 0 or add in other cases
         if wwr == 0
           # remove all sub surfaces
-          ss.subSurfaces.each(&:remove)
+          ss.subSurfaces.sort.each(&:remove)
           new_window = []
           window_confirmed = true
         else
@@ -522,7 +522,7 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
     end
 
     # data for final condition wwr
-    surfaces.each do |s|
+    surfaces.sort.each do |s|
       next if s.surfaceType != 'Wall'
       next if s.outsideBoundaryCondition != 'Outdoors'
       if s.space.empty?
@@ -565,7 +565,7 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
 
       # loop through sub surfaces and add area including multiplier
       ext_window_area = 0
-      s.subSurfaces.each do |subSurface| # onlky one and should have multiplier of 1
+      s.subSurfaces.sort.each do |subSurface| # onlky one and should have multiplier of 1
         ext_window_area += subSurface.grossArea * subSurface.multiplier * zone_multiplier
       end
 
@@ -573,27 +573,15 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
       final_ext_window_area += ext_window_area
     end
 
-    # short def to make numbers pretty (converts 4125001.25641 to 4,125,001.26 or 4,125,001). The definition be called through this measure
-    def neat_numbers(number, roundto = 2) # round to 0 or 2)
-      # round to zero or two decimals
-      if roundto == 2
-        number = format '%.2f', number
-      else
-        number = number.round
-      end
-      # regex to add commas
-      number.to_s.reverse.gsub(/([0-9]{3}(?=([0-9])))/, '\\1,').reverse
-    end
-
     # get delta in ft^2 for final - starting window area
     increase_window_area_si = OpenStudio::Quantity.new(final_ext_window_area - starting_ext_window_area, unit_area_si)
     increase_window_area_ip = OpenStudio.convert(increase_window_area_si, unit_area_ip).get
 
     # calculate final envelope cost as positive value
-    constructions = model.getConstructions
+    constructions = model.getConstructions.sort
     constructions.each do |construction|
       const_llcs = construction.lifeCycleCosts
-      const_llcs.each do |const_llc|
+      const_llcs.sort.each do |const_llc|
         if const_llc.category == 'Construction'
           envelope_cost += const_llc.totalCost
         end
@@ -602,7 +590,7 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
 
     # report final condition
     final_wwr = format('%.02f', (final_ext_window_area / final_gross_ext_wall_area))
-    runner.registerFinalCondition("The model's final window to wall ratio for #{facade} facing exterior walls is #{final_wwr}. Window area increased by #{neat_numbers(increase_window_area_ip.value, 0)} (ft^2). The material and construction costs increased by $#{neat_numbers(envelope_cost, 0)}.")
+    runner.registerFinalCondition("The model's final window to wall ratio for #{facade} facing exterior walls is #{final_wwr}. Window area increased by #{OpenStudio::toNeatString(increase_window_area_ip.value, 0)} (ft^2). The material and construction costs increased by $#{OpenStudio::toNeatString(envelope_cost, 0)}.")
 
     return true
   end
