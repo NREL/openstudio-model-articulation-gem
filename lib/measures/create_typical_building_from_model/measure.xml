@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>create_typical_building_from_model</name>
   <uid>339a2e3a-273c-4494-bb50-bfe586a0647c</uid>
-  <version_id>8024aeb3-803e-4ad5-b862-8b50aa8dc155</version_id>
-  <version_modified>20200624T003816Z</version_modified>
+  <version_id>cf4a5895-bc2f-4b83-925c-7eaaeb3d0913</version_id>
+  <version_modified>20200911T195900Z</version_modified>
   <xml_checksum>EE13F09F</xml_checksum>
   <class_name>CreateTypicalBuildingFromModel</class_name>
   <display_name>Create Typical Building from Model</display_name>
@@ -1525,12 +1525,6 @@
       <checksum>E0468DD6</checksum>
     </file>
     <file>
-      <filename>Model.hvac.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>007BDD2B</checksum>
-    </file>
-    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -1552,6 +1546,12 @@
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
       <checksum>CFEF1007</checksum>
+    </file>
+    <file>
+      <filename>Model.hvac.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>D8BF0815</checksum>
     </file>
   </files>
 </measure>
