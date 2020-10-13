@@ -1,0 +1,464 @@
+<?xml version="1.0"?>
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>zero_energy_multifamily</name>
+  <uid>5d4cf87a-8105-44cd-b47b-d5638fecec9c</uid>
+  <version_id>902ecd39-1679-4f2e-9951-067319db3972</version_id>
+  <version_modified>20200828T004217Z</version_modified>
+  <xml_checksum>D81BB109</xml_checksum>
+  <class_name>ZeroEnergyMultifamily</class_name>
+  <display_name>Zero Energy Multifamily</display_name>
+  <description>Takes a model with space and stub space types, and applies constructions, schedules, internal loads, hvac, and service water heating to match the Zero Energy Multifamily Design Guide recommendations.</description>
+  <modeler_description>This measure has optional arguments to apply recommendations from different sections of the Zero Energy Multifamily Design Guide.</modeler_description>
+  <arguments>
+    <argument>
+      <name>add_constructions</name>
+      <display_name>Add Constructions to Model</display_name>
+      <description>The Construction Set will be applied to the entire building</description>
+      <type>Boolean</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>true</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>wall_roof_construction_template</name>
+      <display_name>Construction template for adding wall and roof constructions</display_name>
+      <description>The constructions will be applied to the entire building</description>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>ZE AEDG Multifamily Recommendations</default_value>
+      <choices>
+        <choice>
+          <value>90.1-2019</value>
+          <display_name>90.1-2019</display_name>
+        </choice>
+        <choice>
+          <value>Good</value>
+          <display_name>Good</display_name>
+        </choice>
+        <choice>
+          <value>Better</value>
+          <display_name>Better</display_name>
+        </choice>
+        <choice>
+          <value>ZE AEDG Multifamily Recommendations</value>
+          <display_name>ZE AEDG Multifamily Recommendations</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>window_construction_template</name>
+      <display_name>Construction template for adding window constructions</display_name>
+      <description>The constructions will be applied to the entire building</description>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>ZE AEDG Multifamily Recommendations</default_value>
+      <choices>
+        <choice>
+          <value>90.1-2019</value>
+          <display_name>90.1-2019</display_name>
+        </choice>
+        <choice>
+          <value>Good</value>
+          <display_name>Good</display_name>
+        </choice>
+        <choice>
+          <value>Better</value>
+          <display_name>Better</display_name>
+        </choice>
+        <choice>
+          <value>ZE AEDG Multifamily Recommendations</value>
+          <display_name>ZE AEDG Multifamily Recommendations</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>add_space_type_loads</name>
+      <display_name>Add Space Type Loads to Model</display_name>
+      <description>Populate existing space types in model with internal loads.</description>
+      <type>Boolean</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>true</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>add_elevators</name>
+      <display_name>Add Elevators to Model</display_name>
+      <description>Elevators will be add directly to space in model vs. being applied to a space type.</description>
+      <type>Boolean</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>false</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>elev_spaces</name>
+      <display_name>Elevator Spaces</display_name>
+      <description>Comma separated names of spaces for elevator. Each space listed will have associated elevator loads.</description>
+      <type>String</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>Elevator_1_4,Elevator_2_4</default_value>
+    </argument>
+    <argument>
+      <name>elevator_type</name>
+      <display_name>Elevator Type</display_name>
+      <description>This will impact loads, schedules, and fraction of heat lost.</description>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>Traction</default_value>
+      <choices>
+        <choice>
+          <value>Traction</value>
+          <display_name>Traction</display_name>
+        </choice>
+        <choice>
+          <value>Hydraulic</value>
+          <display_name>Hydraulic</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>add_internal_mass</name>
+      <display_name>Add Internal Mass to Model</display_name>
+      <description>Adds internal mass to each space.</description>
+      <type>Boolean</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>true</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>add_exterior_lights</name>
+      <display_name>Add Exterior Lights to Model</display_name>
+      <description>Multiple exterior lights objects will be added for different classes of lighting such as parking and facade.</description>
+      <type>Boolean</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>true</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>onsite_parking_fraction</name>
+      <display_name>Onsite Parking Fraction</display_name>
+      <description>If set to 0 no exterior lighting for parking will be added</description>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>add_thermostat</name>
+      <display_name>Add Thermostats</display_name>
+      <description>Add Thermostat to model based on Space Type Standards information of spaces assigned to thermal zones.</description>
+      <type>Boolean</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>true</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>add_swh</name>
+      <display_name>Add Service Water Heating to Model</display_name>
+      <description>This will add both the supply and demand side of service water heating.</description>
+      <type>Boolean</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>true</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>swh_type</name>
+      <display_name>Service Water Heating Source</display_name>
+      <description>The primary source of heating used by SWH systems in the model.</description>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>HeatPump</default_value>
+      <choices>
+        <choice>
+          <value>HeatPump</value>
+          <display_name>HeatPump</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>add_hvac</name>
+      <display_name>Add HVAC System to Model</display_name>
+      <type>Boolean</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>true</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>hvac_system_type</name>
+      <display_name>HVAC System Type</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>Four-pipe Fan Coils with central air-source heat pump with DOAS</default_value>
+      <choices>
+        <choice>
+          <value>Minisplit Heat Pumps with DOAS</value>
+          <display_name>Minisplit Heat Pumps with DOAS</display_name>
+        </choice>
+        <choice>
+          <value>Minisplit Heat Pumps with ERVs</value>
+          <display_name>Minisplit Heat Pumps with ERVs</display_name>
+        </choice>
+        <choice>
+          <value>PTHPs with DOAS</value>
+          <display_name>PTHPs with DOAS</display_name>
+        </choice>
+        <choice>
+          <value>PTHPs with ERVs</value>
+          <display_name>PTHPs with ERVs</display_name>
+        </choice>
+        <choice>
+          <value>Four-pipe Fan Coils with central air-source heat pump with DOAS</value>
+          <display_name>Four-pipe Fan Coils with central air-source heat pump with DOAS</display_name>
+        </choice>
+        <choice>
+          <value>Four-pipe Fan Coils with central air-source heat pump with ERVs</value>
+          <display_name>Four-pipe Fan Coils with central air-source heat pump with ERVs</display_name>
+        </choice>
+        <choice>
+          <value>Water Source Heat Pumps with Boiler and Fluid-cooler with DOAS</value>
+          <display_name>Water Source Heat Pumps with Boiler and Fluid-cooler with DOAS</display_name>
+        </choice>
+        <choice>
+          <value>Water Source Heat Pumps with Boiler and Fluid-cooler with ERVs</value>
+          <display_name>Water Source Heat Pumps with Boiler and Fluid-cooler with ERVs</display_name>
+        </choice>
+        <choice>
+          <value>Water Source Heat Pumps with Ground Source Heat Pump with DOAS</value>
+          <display_name>Water Source Heat Pumps with Ground Source Heat Pump with DOAS</display_name>
+        </choice>
+        <choice>
+          <value>Water Source Heat Pumps with Ground Source Heat Pump with ERVs</value>
+          <display_name>Water Source Heat Pumps with Ground Source Heat Pump with ERVs</display_name>
+        </choice>
+      </choices>
+    </argument>
+  </arguments>
+  <outputs />
+  <provenances />
+  <tags>
+    <tag>Whole Building.Space Types</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Apply Measure Now</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>OpenStudio Application</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Parametric Analysis Tool</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Use Case</name>
+      <value>Model Articulation</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Apply Measure Now</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>OpenStudio Application</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Parametric Analysis Tool</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Use Case</name>
+      <value>Model Articulation</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Use Case</name>
+      <value>New Construction EE</value>
+      <datatype>string</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <filename>MidriseApartment.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>EB7A2671</checksum>
+    </file>
+    <file>
+      <filename>USA_TX_Houston-Bush.Intercontinental.AP.722430_TMY3.epw</filename>
+      <filetype>epw</filetype>
+      <usage_type>test</usage_type>
+      <checksum>EE565FCC</checksum>
+    </file>
+    <file>
+      <filename>USA_TX_Houston-Bush.Intercontinental.AP.722430_TMY3.epw</filename>
+      <filetype>epw</filetype>
+      <usage_type>test</usage_type>
+      <checksum>EE565FCC</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>9640B6CB</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
+    </file>
+    <file>
+      <filename>3c_san_diego.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>7CA62B6E</checksum>
+    </file>
+    <file>
+      <filename>5a_chicago.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>16DFA28B</checksum>
+    </file>
+    <file>
+      <filename>USA_CA_San.Deigo-Brown.Field.Muni.AP.722904_TMY3.epw</filename>
+      <filetype>epw</filetype>
+      <usage_type>test</usage_type>
+      <checksum>E255872F</checksum>
+    </file>
+    <file>
+      <filename>USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.epw</filename>
+      <filetype>epw</filetype>
+      <usage_type>test</usage_type>
+      <checksum>C254B53F</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>59252B39</checksum>
+    </file>
+    <file>
+      <filename>ze_aedg_multifamily_parametric_construction_sets.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>0594932E</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>1CA50E54</checksum>
+    </file>
+    <file>
+      <filename>zero_energy_multifamily_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>38EC95C5</checksum>
+    </file>
+  </files>
+</measure>
