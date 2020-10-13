@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>multifamily_central_waste_water_heat_pump</name>
+  <uid>42e0df75-b1b0-4f52-9c3b-3895dbe5ed0e</uid>
+  <version_id>b15ee518-598e-4782-96ab-192b284e46fd</version_id>
+  <version_modified>20200715T043225Z</version_modified>
+  <xml_checksum>9882CBDB</xml_checksum>
+  <class_name>MultifamilyCentralWasteWaterHeatPump</class_name>
+  <display_name>Multifamily Central Waste Water Heat Pump</display_name>
+  <description>This measure replaces the service water heating equipment with a waste water heat pump loop and optionally top-off water heaters.</description>
+  <modeler_description>This measure uses 4 loops to model the waste water heat pump. The WW-Water Connections loop records the waste water temperature and flow rate with EMS controls. The Waste Water Heat Pump loop models the flow from the tank to the heat pump. The Service Preheat Water loop heats up the water to a target supply temperature. The Service Hot Water Loop connects to water use objects.</modeler_description>
+  <arguments>
+    <argument>
+      <name>swh_type</name>
+      <display_name>Choose the SWH type.</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>Waste Water Heat Pump 120F Supply and Electric Tank</default_value>
+      <choices>
+        <choice>
+          <value>HPWH with Outdoor Condenser</value>
+          <display_name>HPWH with Outdoor Condenser</display_name>
+        </choice>
+        <choice>
+          <value>Waste Water Heat Pump 140F Supply</value>
+          <display_name>Waste Water Heat Pump 140F Supply</display_name>
+        </choice>
+        <choice>
+          <value>Waste Water Heat Pump 120F Supply and Electric Tank</value>
+          <display_name>Waste Water Heat Pump 120F Supply and Electric Tank</display_name>
+        </choice>
+        <choice>
+          <value>Waste Water Heat Pump 90F Supply and Electric Tank</value>
+          <display_name>Waste Water Heat Pump 90F Supply and Electric Tank</display_name>
+        </choice>
+      </choices>
+    </argument>
+  </arguments>
+  <outputs />
+  <provenances />
+  <tags>
+    <tag>Service Water Heating.Water Heating</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Uses SketchUp API</name>
+      <value>false</value>
+      <datatype>boolean</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>9640B6CB</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
+    </file>
+    <file>
+      <filename>USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.epw</filename>
+      <filetype>epw</filetype>
+      <usage_type>test</usage_type>
+      <checksum>C254B53F</checksum>
+    </file>
+    <file>
+      <filename>apartment.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>CE14D9B4</checksum>
+    </file>
+    <file>
+      <filename>MidriseApartment.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>900DC75D</checksum>
+    </file>
+    <file>
+      <filename>USA_TX_Houston-Bush.Intercontinental.AP.722430_TMY3.epw</filename>
+      <filetype>epw</filetype>
+      <usage_type>test</usage_type>
+      <checksum>EE565FCC</checksum>
+    </file>
+    <file>
+      <filename>MultifamilyCentralWasteWaterHeatPump_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>712338EA</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>F52D2CFE</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>3E0DA484</checksum>
+    </file>
+  </files>
+</measure>
