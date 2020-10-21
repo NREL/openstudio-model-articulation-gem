@@ -58,38 +58,216 @@ class BarAspectRatioSlicedBySpaceType < OpenStudio::Measure::ModelMeasure
     return 'BarAspectRatioSlicedBySpaceType'
   end
 
-  # define the arguments that the user will input
   def arguments(model)
     args = OpenStudio::Measure::OSArgumentVector.new
 
-    # make an argument for total floor area
-    total_bldg_area_ip = OpenStudio::Measure::OSArgument.makeDoubleArgument('total_bldg_area_ip', true)
-    total_bldg_area_ip.setDisplayName('Total Building Floor Area (ft^2).')
-    total_bldg_area_ip.setDefaultValue(10000.0)
-    args << total_bldg_area_ip
+    # make an argument for the meter name
+    space_type_hash_string = OpenStudio::Measure::OSArgument.makeStringArgument('space_type_hash_string', true)
+    space_type_hash_string.setDisplayName('Hash of Space Types with Name as Key and Fraction as value.')
+    args << space_type_hash_string
 
-    # make an argument for aspect ratio
+    # Make argument for total_bldg_floor_area
+    total_bldg_floor_area = OpenStudio::Measure::OSArgument.makeDoubleArgument('total_bldg_floor_area', true)
+    total_bldg_floor_area.setDisplayName('Total Building Floor Area')
+    total_bldg_floor_area.setUnits('ft^2')
+    total_bldg_floor_area.setDefaultValue(10000.0)
+    args << total_bldg_floor_area
+
+    # Make argument for single_floor_area
+    single_floor_area = OpenStudio::Measure::OSArgument.makeDoubleArgument('single_floor_area', true)
+    single_floor_area.setDisplayName('Single Floor Area')
+    single_floor_area.setDescription('Non-zero value will fix the single floor area, overriding a user entry for Total Building Floor Area')
+    single_floor_area.setUnits('ft^2')
+    single_floor_area.setDefaultValue(0.0)
+    args << single_floor_area
+
+    # Make argument for floor_height
+    floor_height = OpenStudio::Measure::OSArgument.makeDoubleArgument('floor_height', true)
+    floor_height.setDisplayName('Typical Floor to FLoor Height')
+    floor_height.setDescription('Selecting a typical floor height of 0 will trigger a smart building type default.')
+    floor_height.setUnits('ft')
+    floor_height.setDefaultValue(0.0)
+    args << floor_height
+
+    # add argument to enable/disable multi custom space height bar
+    custom_height_bar = OpenStudio::Measure::OSArgument.makeBoolArgument('custom_height_bar', true)
+    custom_height_bar.setDisplayName('Enable Custom Height Bar Application')
+    custom_height_bar.setDescription('This is argument value is only relevant when smart default floor to floor height is used for a building type that has spaces with custom heights.')
+    custom_height_bar.setDefaultValue(true)
+    args << custom_height_bar
+
+    # Make argument for num_stories_above_grade
+    num_stories_above_grade = OpenStudio::Measure::OSArgument.makeDoubleArgument('num_stories_above_grade', true)
+    num_stories_above_grade.setDisplayName('Number of Stories Above Grade')
+    num_stories_above_grade.setDefaultValue(1.0)
+    args << num_stories_above_grade
+
+    # Make argument for num_stories_below_grade
+    num_stories_below_grade = OpenStudio::Measure::OSArgument.makeIntegerArgument('num_stories_below_grade', true)
+    num_stories_below_grade.setDisplayName('Number of Stories Below Grade')
+    num_stories_below_grade.setDefaultValue(0)
+    args << num_stories_below_grade
+
+    # Make argument for building_rotation
+    building_rotation = OpenStudio::Measure::OSArgument.makeDoubleArgument('building_rotation', true)
+    building_rotation.setDisplayName('Building Rotation')
+    building_rotation.setDescription('Set Building Rotation off of North (positive value is clockwise). Rotation applied after geometry generation. Values greater than +/- 45 will result in aspect ratio and party wall orientations that do not match cardinal directions of the inputs.')
+    building_rotation.setUnits('Degrees')
+    building_rotation.setDefaultValue(0.0)
+    args << building_rotation
+
+    # Make argument for template
+    template = OpenStudio::Measure::OSArgument.makeChoiceArgument('template', get_doe_templates(true), true)
+    template.setDisplayName('Target Standard')
+    template.setDefaultValue('90.1-2004')
+    args << template
+
+    # Make argument for ns_to_ew_ratio
     ns_to_ew_ratio = OpenStudio::Measure::OSArgument.makeDoubleArgument('ns_to_ew_ratio', true)
-    ns_to_ew_ratio.setDisplayName('Ratio of North/South Facade Length Relative to East/West Facade Length.')
-    ns_to_ew_ratio.setDefaultValue(2.0)
+    ns_to_ew_ratio.setDisplayName('Ratio of North/South Facade Length Relative to East/West Facade Length')
+    ns_to_ew_ratio.setDescription('Selecting an aspect ratio of 0 will trigger a smart building type default. Aspect ratios less than one are not recommended for sliced bar geometry, instead rotate building and use a greater than 1 aspect ratio.')
+    ns_to_ew_ratio.setDefaultValue(0.0)
     args << ns_to_ew_ratio
 
-    # make an argument for number of floors
-    num_floors = OpenStudio::Measure::OSArgument.makeIntegerArgument('num_floors', true)
-    num_floors.setDisplayName('Number of Floors.')
-    num_floors.setDefaultValue(2)
-    args << num_floors
+    # Make argument for perim_mult
+    perim_mult = OpenStudio::Measure::OSArgument.makeDoubleArgument('perim_mult', true)
+    perim_mult.setDisplayName('Perimeter Multiplier')
+    perim_mult.setDescription('Selecting a value of 0 will trigger a smart building type default. This represents a multiplier for the building perimeter relative to the perimeter of a rectangular building that meets the area and aspect ratio inputs. Other than the smart default of 0.0 this argument should have a value of 1.0 or higher and is only applicable Multiple Space Types - Individual Stories Sliced division method.')
+    perim_mult.setDefaultValue(0.0)
+    args << perim_mult
 
-    # make an argument for floor height
-    floor_to_floor_height_ip = OpenStudio::Measure::OSArgument.makeDoubleArgument('floor_to_floor_height_ip', true)
-    floor_to_floor_height_ip.setDisplayName('Floor to Floor Height (ft).')
-    floor_to_floor_height_ip.setDefaultValue(10.0)
-    args << floor_to_floor_height_ip
+    # Make argument for bar_width
+    bar_width = OpenStudio::Measure::OSArgument.makeDoubleArgument('bar_width', true)
+    bar_width.setDisplayName('Bar Width')
+    bar_width.setDescription('Non-zero value will fix the building width, overriding user entry for Perimeter Multiplier. NS/EW Aspect Ratio may be limited based on target width.')
+    bar_width.setUnits('ft')
+    bar_width.setDefaultValue(0.0)
+    args << bar_width
 
-    # make an argument for the meter name
-    spaceTypeHashString = OpenStudio::Measure::OSArgument.makeStringArgument('spaceTypeHashString', true)
-    spaceTypeHashString.setDisplayName('Hash of Space Types with Name as Key and Fraction as value.')
-    args << spaceTypeHashString
+    # Make argument for bar_sep_dist_mult
+    bar_sep_dist_mult = OpenStudio::Measure::OSArgument.makeDoubleArgument('bar_sep_dist_mult', true)
+    bar_sep_dist_mult.setDisplayName('Bar Separation Distance Multiplier')
+    bar_sep_dist_mult.setDescription('Multiplier of separation between bar elements relative to building height.')
+    bar_sep_dist_mult.setDefaultValue(10.0)
+    args << bar_sep_dist_mult
+
+    # Make argument for wwr (in future add lookup for smart default)
+    wwr = OpenStudio::Measure::OSArgument.makeDoubleArgument('wwr', true)
+    wwr.setDisplayName('Window to Wall Ratio')
+    wwr.setDescription('Selecting a window to wall ratio of 0 will trigger a smart building type default.')
+    wwr.setDefaultValue(0.0)
+    args << wwr
+
+    # Make argument for party_wall_fraction
+    party_wall_fraction = OpenStudio::Measure::OSArgument.makeDoubleArgument('party_wall_fraction', true)
+    party_wall_fraction.setDisplayName('Fraction of Exterior Wall Area with Adjacent Structure')
+    party_wall_fraction.setDescription('This will impact how many above grade exterior walls are modeled with adiabatic boundary condition.')
+    party_wall_fraction.setDefaultValue(0.0)
+    args << party_wall_fraction
+
+    # party_wall_fraction was used where we wanted to represent some party walls but didn't know where they are, it ends up using methods to make whole surfaces adiabiatc by story and orientaiton to try to come close to requested fraction
+
+    # Make argument for party_wall_stories_north
+    party_wall_stories_north = OpenStudio::Measure::OSArgument.makeIntegerArgument('party_wall_stories_north', true)
+    party_wall_stories_north.setDisplayName('Number of North facing stories with party wall')
+    party_wall_stories_north.setDescription('This will impact how many above grade exterior north walls are modeled with adiabatic boundary condition. If this is less than the number of above grade stoes, upper flor will reamin exterior')
+    party_wall_stories_north.setDefaultValue(0)
+    args << party_wall_stories_north
+
+    # Make argument for party_wall_stories_south
+    party_wall_stories_south = OpenStudio::Measure::OSArgument.makeIntegerArgument('party_wall_stories_south', true)
+    party_wall_stories_south.setDisplayName('Number of South facing stories with party wall')
+    party_wall_stories_south.setDescription('This will impact how many above grade exterior south walls are modeled with adiabatic boundary condition. If this is less than the number of above grade stoes, upper flor will reamin exterior')
+    party_wall_stories_south.setDefaultValue(0)
+    args << party_wall_stories_south
+
+    # Make argument for party_wall_stories_east
+    party_wall_stories_east = OpenStudio::Measure::OSArgument.makeIntegerArgument('party_wall_stories_east', true)
+    party_wall_stories_east.setDisplayName('Number of East facing stories with party wall')
+    party_wall_stories_east.setDescription('This will impact how many above grade exterior east walls are modeled with adiabatic boundary condition. If this is less than the number of above grade stoes, upper flor will reamin exterior')
+    party_wall_stories_east.setDefaultValue(0)
+    args << party_wall_stories_east
+
+    # Make argument for party_wall_stories_west
+    party_wall_stories_west = OpenStudio::Measure::OSArgument.makeIntegerArgument('party_wall_stories_west', true)
+    party_wall_stories_west.setDisplayName('Number of West facing stories with party wall')
+    party_wall_stories_west.setDescription('This will impact how many above grade exterior west walls are modeled with adiabatic boundary condition. If this is less than the number of above grade stoes, upper flor will reamin exterior')
+    party_wall_stories_west.setDefaultValue(0)
+    args << party_wall_stories_west
+
+    # make an argument for bottom_story_ground_exposed_floor
+    bottom_story_ground_exposed_floor = OpenStudio::Measure::OSArgument.makeBoolArgument('bottom_story_ground_exposed_floor', true)
+    bottom_story_ground_exposed_floor.setDisplayName('Is the Bottom Story Exposed to Ground')
+    bottom_story_ground_exposed_floor.setDescription("This should be true unless you are modeling a partial building which doesn't include the lowest story. The bottom story floor will have an adiabatic boundary condition when false.")
+    bottom_story_ground_exposed_floor.setDefaultValue(true)
+    args << bottom_story_ground_exposed_floor
+
+    # make an argument for top_story_exterior_exposed_roof
+    top_story_exterior_exposed_roof = OpenStudio::Measure::OSArgument.makeBoolArgument('top_story_exterior_exposed_roof', true)
+    top_story_exterior_exposed_roof.setDisplayName('Is the Top Story an Exterior Roof')
+    top_story_exterior_exposed_roof.setDescription("This should be true unless you are modeling a partial building which doesn't include the highest story. The top story ceiling will have an adiabatic boundary condition when false.")
+    top_story_exterior_exposed_roof.setDefaultValue(true)
+    args << top_story_exterior_exposed_roof
+
+    # Make argument for story_multiplier
+    choices = OpenStudio::StringVector.new
+    choices << 'None'
+    choices << 'Basements Ground Mid Top'
+    # choices << "Basements Ground Midx5 Top"
+    story_multiplier = OpenStudio::Measure::OSArgument.makeChoiceArgument('story_multiplier', choices, true)
+    story_multiplier.setDisplayName('Calculation Method for Story Multiplier')
+    story_multiplier.setDefaultValue('Basements Ground Mid Top')
+    args << story_multiplier
+
+    # make an argument for make_mid_story_surfaces_adiabatic (added to avoid issues with intersect and to lower surface count when using individual stories sliced)
+    make_mid_story_surfaces_adiabatic = OpenStudio::Measure::OSArgument.makeBoolArgument('make_mid_story_surfaces_adiabatic', true)
+    make_mid_story_surfaces_adiabatic.setDisplayName('Make Mid Story Floor Surfaces Adiabatic')
+    make_mid_story_surfaces_adiabatic.setDescription('If set to true, this will skip surface intersection and make mid story floors and celings adiabatic, not just at multiplied gaps.')
+    make_mid_story_surfaces_adiabatic.setDefaultValue(false)
+    args << make_mid_story_surfaces_adiabatic
+
+    # make an argument for bar sub-division approach
+    choices = OpenStudio::StringVector.new
+    choices << 'Multiple Space Types - Simple Sliced'
+    choices << 'Multiple Space Types - Individual Stories Sliced'
+    choices << 'Single Space Type - Core and Perimeter' # not useful for most use cases
+    # choices << "Multiple Space Types - Individual Stories Sliced Keep Building Types Together"
+    # choices << "Building Type Specific Smart Division"
+    bar_division_method = OpenStudio::Measure::OSArgument.makeChoiceArgument('bar_division_method', choices, true)
+    bar_division_method.setDisplayName('Division Method for Bar Space Types')
+    bar_division_method.setDescription('To use perimeter multiplier greater than 1 selected Multiple Space Types - Individual Stories Sliced.')
+    bar_division_method.setDefaultValue('Multiple Space Types - Individual Stories Sliced')
+    args << bar_division_method
+
+    # double_loaded_corridor
+    choices = OpenStudio::StringVector.new
+    choices << 'None'
+    choices << 'Primary Space Type'
+    # choices << 'All Space Types' # possible future option
+    double_loaded_corridor = OpenStudio::Measure::OSArgument.makeChoiceArgument('double_loaded_corridor', choices, true)
+    double_loaded_corridor.setDisplayName('Double Loaded Corridor')
+    double_loaded_corridor.setDescription('Add double loaded corridor for building types that have a defined circulation space type, to the selected space types.')
+    double_loaded_corridor.setDefaultValue('Primary Space Type')
+    args << double_loaded_corridor
+
+    # Make argument for space_type_sort_logic
+    choices = OpenStudio::StringVector.new
+    choices << 'Size'
+    choices << 'Building Type > Size'
+    # choices << "Basements Ground Midx5 Top"
+    space_type_sort_logic = OpenStudio::Measure::OSArgument.makeChoiceArgument('space_type_sort_logic', choices, true)
+    space_type_sort_logic.setDisplayName('Choose Space Type Sorting Method')
+    space_type_sort_logic.setDefaultValue('Building Type > Size')
+    args << space_type_sort_logic
+
+    # make an argument for use_upstream_args
+    use_upstream_args = OpenStudio::Measure::OSArgument.makeBoolArgument('use_upstream_args', true)
+    use_upstream_args.setDisplayName('Use Upstream Argument Values')
+    use_upstream_args.setDescription('When true this will look for arguments or registerValues in upstream measures that match arguments from this measure, and will use the value from the upstream measure in place of what is entered for this measure.')
+    use_upstream_args.setDefaultValue(true)
+    args << use_upstream_args
+
+    # TODO: - expose perimeter depth as an argument
 
     return args
   end
@@ -98,85 +276,14 @@ class BarAspectRatioSlicedBySpaceType < OpenStudio::Measure::ModelMeasure
   def run(model, runner, user_arguments)
     super(model, runner, user_arguments)
 
-    # use the built-in error checking
-    if !runner.validateUserArguments(arguments(model), user_arguments)
+    # method run from os_lib_model_generation.rb
+    result = bar_from_building_type_ratios(model, runner, user_arguments)
+
+    if result == false
       return false
+    else
+      return true
     end
-
-    # assign the user inputs to variables
-    total_bldg_area_ip = runner.getDoubleArgumentValue('total_bldg_area_ip', user_arguments)
-    ns_to_ew_ratio = runner.getDoubleArgumentValue('ns_to_ew_ratio', user_arguments)
-    num_floors = runner.getIntegerArgumentValue('num_floors', user_arguments)
-    floor_to_floor_height_ip = runner.getDoubleArgumentValue('floor_to_floor_height_ip', user_arguments)
-    spaceTypeHashString = runner.getStringArgumentValue('spaceTypeHashString', user_arguments)
-
-    # test for positive inputs
-    if total_bldg_area_ip <= 0
-      runner.registerError('Enter a total building area greater than 0.')
-    end
-    if ns_to_ew_ratio <= 0
-      runner.registerError('Enter ratio grater than 0.')
-    end
-    if num_floors <= 0
-      runner.registerError('Enter a number of stories 1 or greater.')
-    end
-    if floor_to_floor_height_ip <= 0
-      runner.registerError('Enter a positive floor height.')
-    end
-    if 1 == 1
-      # TODO: - add test for spaceTypeHashString argument
-    end
-
-    # calculate needed variables
-    total_bldg_area_si = OpenStudio.convert(total_bldg_area_ip, 'ft^2', 'm^2').get
-    footprint_ip = total_bldg_area_ip / num_floors
-    footprint_si = OpenStudio.convert(footprint_ip, 'ft^2', 'm^2').get
-    floor_to_floor_height = OpenStudio.convert(floor_to_floor_height_ip, 'ft', 'm').get
-
-    # variables from original rectangle script not exposed in this measure
-    width = Math.sqrt(footprint_si / ns_to_ew_ratio)
-    length = footprint_si / width
-
-    # reporting initial condition of model
-    starting_spaces = model.getSpaces
-    runner.registerInitialCondition("The building started with #{starting_spaces.size} spaces.")
-
-    # convert string argument to hash
-    spaceTypeHashName = {}
-    spaceTypeHashString[1..-2].split(/, /).each { |entry| entryMap = entry.split(/=>/); value_str = entryMap[1]; spaceTypeHashName[entryMap[0].strip[1..-1].to_s] = value_str.nil? ? '' : value_str.strip[1..-2].to_f }
-
-    # sum of hash values
-    hashValues = 0
-
-    spaceTypeHash = {}
-    model.getSpaceTypes.each do |spaceType|
-      if spaceTypeHashName.include?(spaceType.name.to_s)
-        spaceTypeHash[spaceType] = spaceTypeHashName[spaceType.name.to_s] * total_bldg_area_si # converting fractional value to area value to pass into method
-        hashValues += spaceTypeHashName[spaceType.name.to_s]
-      end
-    end
-
-    if hashValues != 1.0
-      runner.registerWarning('Fractional hash values do not add up to one. Resulting geometry may not have expected area.')
-    end
-
-    # see which path to take
-    midFloorMultiplier = 1 # show as 1 even on 1 and 2 story buildings where there is no mid floor, in addition to 3 story building
-    if num_floors > 3
-      # use floor multiplier version. Set mid floor multiplier, use adibatic floors/ceilings and set constructions, raise up building
-      midFloorMultiplier = num_floors - 2
-    end
-
-    # run method to create envelope
-    bar_AspectRatio = OsLib_Cofee.createBar(model, spaceTypeHash, length, width, total_bldg_area_si, num_floors, midFloorMultiplier, 0.0, 0.0, length, width, 0.0, floor_to_floor_height * num_floors, true)
-
-    puts "building area #{model.getBuilding.floorArea}"
-
-    # reporting final condition of model
-    finishing_spaces = model.getSpaces
-    runner.registerFinalCondition("The building finished with #{finishing_spaces.size} spaces.")
-
-    return true
   end
 end
 
