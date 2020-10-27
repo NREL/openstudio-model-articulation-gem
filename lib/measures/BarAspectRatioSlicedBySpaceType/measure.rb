@@ -277,7 +277,7 @@ class BarAspectRatioSlicedBySpaceType < OpenStudio::Measure::ModelMeasure
     super(model, runner, user_arguments)
 
     # method run from os_lib_model_generation.rb
-    result = bar_from_building_type_ratios(model, runner, user_arguments)
+    result = bar_from_space_type_ratios(model, runner, user_arguments)
 
     if result == false
       return false
