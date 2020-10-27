@@ -1,5 +1,26 @@
 # OpenStudio Model Articulation Gems
 
+## Version 0.2.1
+
+* Updates the following in lib/measures:
+    * BarAspectRationSlicedBySpaceType
+    * InjectOsmGeometryIntoAnExternalIdf
+    * SetWindowToWallRatioByFacade
+    * SpaceTypeAndConstructionSetWizard
+    * clone_building_from_external_model
+    * create_DOE_prototype_building
+    * create_baseline_building
+    * create_deer_prototype_building
+    * create_typical_building_from_model
+    * create_typical_deer_building_from_model
+    * create_typical_doe_building_from_model
+    * merge_floorspace_js_with_model
+    * merge_spaces_from_external_file
+    * radiance_measure
+* Adds the following to lib/measures:
+    * radiant_slab_with_doas
+
+
 ## Version 0.2.0
 
 * Support for OpenStudio 3.0
