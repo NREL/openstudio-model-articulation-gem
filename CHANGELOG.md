@@ -1,7 +1,7 @@
 # OpenStudio Model Articulation Gems
 
 ## Version 0.2.1
-
+* Add rubocop to Rakefile
 * Updates the following in lib/measures:
     * BarAspectRationSlicedBySpaceType
     * InjectOsmGeometryIntoAnExternalIdf

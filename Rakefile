@@ -61,10 +61,9 @@ task :delete_measure_test_outputs do
   # get measures in repo
   measures = Dir.glob('**/**/**/measure.rb')
 
-  #create unique list of parent directories for measures.
+  # create unique list of parent directories for measures.
   measures.each do |i|
-    FileUtils.rm_rf(i.gsub("measure.rb","tests/output"))
+    FileUtils.rm_rf(i.gsub('measure.rb', 'tests/output'))
   end
-  puts "deleteting test outputs"
-
+  puts 'deleteting test outputs'
 end

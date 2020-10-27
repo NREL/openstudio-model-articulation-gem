@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # *******************************************************************************
 # OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
@@ -148,7 +150,7 @@ class RadianceMeasureTest < Minitest::Test
     # check schedules
     num_rad_schedules = 0
     model.getScheduleFixedIntervals.each do |sch|
-      if /Lights Schedule$/.match(sch.nameString)
+      if /Lights Schedule$/.match?(sch.nameString)
         num_rad_schedules += 1
       end
     end
@@ -161,7 +163,7 @@ class RadianceMeasureTest < Minitest::Test
     # check schedules
     num_rad_schedules = 0
     model.getScheduleFixedIntervals.each do |sch|
-      if /Lights Schedule$/.match(sch.nameString)
+      if /Lights Schedule$/.match?(sch.nameString)
         num_rad_schedules += 1
       end
     end
