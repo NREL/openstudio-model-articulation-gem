@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>inject_osm_geometry_into_an_external_idf</name>
   <uid>633cd1c5-5b55-4b50-ab20-cf2d2f7ddff8</uid>
-  <version_id>3f37233f-eeaf-47d0-8a13-27c86aaf7b0b</version_id>
-  <version_modified>20200509T155937Z</version_modified>
+  <version_id>280b80cc-c941-463b-bfd1-dbc3bd969f25</version_id>
+  <version_modified>20200624T003817Z</version_modified>
   <xml_checksum>3BE1CF9C</xml_checksum>
   <class_name>InjectOsmGeometryIntoAnExternalIdf</class_name>
   <display_name>InjectOsmGeometryIntoAnExternalIdf</display_name>
@@ -136,7 +136,7 @@ Constructions and other resources won?t be moved back and forth but the surface 
       <checksum>56ED3E65</checksum>
     </file>
     <file>
-      <filename>test.osw</filename>
+      <filename>measure_test.osw</filename>
       <filetype>osw</filetype>
       <usage_type>test</usage_type>
       <checksum>F5FABCCF</checksum>
@@ -160,12 +160,6 @@ Constructions and other resources won?t be moved back and forth but the surface 
       <checksum>6FF2AF68</checksum>
     </file>
     <file>
-      <filename>InjectOsmGeometryIntoAnExternalIdf_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>91289177</checksum>
-    </file>
-    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -175,6 +169,12 @@ Constructions and other resources won?t be moved back and forth but the surface 
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
       <checksum>A76C44E1</checksum>
+    </file>
+    <file>
+      <filename>InjectOsmGeometryIntoAnExternalIdf_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>A4070AAC</checksum>
     </file>
   </files>
 </measure>

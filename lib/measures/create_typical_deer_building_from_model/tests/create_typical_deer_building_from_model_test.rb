@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # *******************************************************************************
 # OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
@@ -58,7 +60,7 @@ class CreateTypicalDEERBuildingFromModel_Test < Minitest::Test
     measure = CreateTypicalDEERBuildingFromModel.new
 
     # create an instance of a runner with OSW
-    osw_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/test.osw')
+    osw_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/measure_test.osw')
     osw = OpenStudio::WorkflowJSON.load(osw_path).get
     runner = OpenStudio::Measure::OSRunner.new(osw)
 

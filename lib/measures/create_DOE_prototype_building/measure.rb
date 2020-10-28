@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # *******************************************************************************
 # OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
@@ -74,6 +76,11 @@ class CreateDOEPrototypeBuilding < OpenStudio::Measure::ModelMeasure
     building_type_chs << 'HighriseApartment'
     building_type_chs << 'Hospital'
     building_type_chs << 'Outpatient'
+    building_type_chs << 'Laboratory'
+    building_type_chs << 'LargeDataCenterHighITE'
+    building_type_chs << 'LargeDataCenterLowITE'
+    building_type_chs << 'SmallDataCenterHighITE'
+    building_type_chs << 'SmallDataCenterLowITE'
     building_type = OpenStudio::Measure::OSArgument.makeChoiceArgument('building_type', building_type_chs, true)
     building_type.setDisplayName('Building Type.')
     building_type.setDefaultValue('SmallOffice')
@@ -205,7 +212,7 @@ class CreateDOEPrototypeBuilding < OpenStudio::Measure::ModelMeasure
   def log_msgs
     @msg_log.logMessages.each do |msg|
       # DLM: you can filter on log channel here for now
-      if /openstudio.*/.match(msg.logChannel) # /openstudio\.model\..*/
+      if /openstudio.*/.match?(msg.logChannel) # /openstudio\.model\..*/
         # Skip certain messages that are irrelevant/misleading
         next if msg.logMessage.include?('Skipping layer') || # Annoying/bogus "Skipping layer" warnings
                 msg.logChannel.include?('runmanager') || # RunManager messages

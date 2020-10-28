@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # *******************************************************************************
 # OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
@@ -72,7 +74,7 @@ class ScheduleTranslator
       val = @os_schedule.getString(i).get
 
       # Trap for interpolated schedules
-      if val =~ /Interpolate/
+      if val.match?(/Interpolate/)
         puts "[WARNING] Schedule #{@sched_name} is interpolated.  It will not be translated to .osm"
         return false
       end
@@ -82,7 +84,7 @@ class ScheduleTranslator
       val = val.gsub(/For\s/, 'For: ')
       val = val.gsub(/Until\s/, 'Until: ')
 
-      if val =~ /through:/i
+      if val.match?(/through:/i)
         i_thru += 1
         i_for = -1
         i_until = -1
@@ -97,7 +99,7 @@ class ScheduleTranslator
         next
       end
 
-      if val =~ /for[:\s]/i
+      if val.match?(/for[:\s]/i)
         i_for += 1
         i_until = -1
 
@@ -106,7 +108,7 @@ class ScheduleTranslator
         next
       end
 
-      if val =~ /until:/i
+      if val.match?(/until:/i)
         i_until += 1
 
         str = val.split(':')[1..2].join(':').strip
