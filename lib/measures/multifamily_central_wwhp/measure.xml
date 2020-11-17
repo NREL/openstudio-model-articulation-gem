@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>multifamily_central_waste_water_heat_pump</name>
   <uid>42e0df75-b1b0-4f52-9c3b-3895dbe5ed0e</uid>
-  <version_id>b15ee518-598e-4782-96ab-192b284e46fd</version_id>
-  <version_modified>20200715T043225Z</version_modified>
+  <version_id>d401b2f8-4040-45e0-8c10-2e929052b11a</version_id>
+  <version_modified>20201117T085830Z</version_modified>
   <xml_checksum>9882CBDB</xml_checksum>
   <class_name>MultifamilyCentralWasteWaterHeatPump</class_name>
   <display_name>Multifamily Central Waste Water Heat Pump</display_name>
@@ -113,7 +113,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>3E0DA484</checksum>
+      <checksum>859989C0</checksum>
     </file>
   </files>
 </measure>

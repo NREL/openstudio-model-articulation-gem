@@ -183,6 +183,9 @@ class MultifamilyCentralWasteWaterHeatPump < OpenStudio::Measure::ModelMeasure
     water_use_equipments = []
     model.getWaterUseEquipments.each { |water_use_equipment| water_use_equipments << water_use_equipment }
 
+    #remove existing swh fans
+    model.getFanOnOffs.each{|fan| fan.remove if  fan.endUseSubcategory.include? 'Domestic Hot Water'}
+
     # remove existing shw loops
     model.getPlantLoops.each { |plant_loop|  plant_loop.remove if std.plant_loop_swh_loop?(plant_loop) }
 
@@ -201,7 +204,7 @@ class MultifamilyCentralWasteWaterHeatPump < OpenStudio::Measure::ModelMeasure
                         'OS:EnergyManagementSystem:ConstructionIndexVariable']
     model.getModelObjects.each do |obj|
       next unless ems_object_types.include? obj.iddObject.name
-      if (obj.name.get.include? 'res_wh_Building_Unit') || (obj.name.get.include? 'wastewater')
+      if (obj.name.get.include? 'res_wh_Building') || (obj.name.get.include? 'res wh_Building') ||(obj.name.get.include? 'wastewater')
         obj.remove
       end
     end
@@ -461,11 +464,11 @@ class MultifamilyCentralWasteWaterHeatPump < OpenStudio::Measure::ModelMeasure
     wastewater_program.addLine("Set #{wwtsource_actuator.name} = #{wastewater_temp_sensor.name}")
     wastewater_program.addLine("Set #{wastewater_massflow_actuator.name} = #{wastewater_massflow_sensor.name}")
 
-    p_Piranha_sensor = OpenStudio::Model::EnergyManagementSystemSensor.new(model, 'Water to Water Heat Pump Electric Power')
+    p_Piranha_sensor = OpenStudio::Model::EnergyManagementSystemSensor.new(model, 'Heat Pump Electric Power')
     p_Piranha_sensor.setName('P_Piranha_sensor')
     p_Piranha_sensor.setKeyName('Piranha')
 
-    q_cond_Piranha_sensor = OpenStudio::Model::EnergyManagementSystemSensor.new(model, 'Water to Water Heat Pump Load Side Heat Transfer Rate')
+    q_cond_Piranha_sensor = OpenStudio::Model::EnergyManagementSystemSensor.new(model, 'Heat Pump Load Side Heat Transfer Rate')
     q_cond_Piranha_sensor.setName('Q_cond_Piranha_sensor')
     q_cond_Piranha_sensor.setKeyName('Piranha')
 
@@ -487,18 +490,24 @@ class MultifamilyCentralWasteWaterHeatPump < OpenStudio::Measure::ModelMeasure
     # output variables
     pipe_loss_output = OpenStudio::Model::OutputVariable.new('Pipe Fluid Heat Transfer Energy', model)
     pipe_loss_output.setReportingFrequency ('timestep')
+    pipe_loss_output.setKeyValue('*')
 
-    heatpump_power = OpenStudio::Model::OutputVariable.new('Water to Water Heat Pump Electric Power', model)
+    heatpump_power = OpenStudio::Model::OutputVariable.new('Heat Pump Electric Power', model)
     heatpump_power.setReportingFrequency ('timestep')
+    heatpump_power.setKeyValue('*')
 
-    heatpump_energy = OpenStudio::Model::OutputVariable.new('Water to Water Heat Pump Electric Energy', model)
+
+    heatpump_energy = OpenStudio::Model::OutputVariable.new('Heat Pump Electric Energy', model)
     heatpump_energy.setReportingFrequency ('timestep')
+    heatpump_energy.setKeyValue('*')
 
-    heatpump_load_power = OpenStudio::Model::OutputVariable.new('Water to Water Heat Pump Load Side Heat Transfer Rate', model)
+    heatpump_load_power = OpenStudio::Model::OutputVariable.new('Heat Pump Load Side Heat Transfer Rate', model)
     heatpump_load_power.setReportingFrequency ('timestep')
+    heatpump_load_power.setKeyValue('*')
 
-    heatpump_load_energy = OpenStudio::Model::OutputVariable.new('Water to Water Heat Pump Load Side Heat Transfer Energy', model)
+    heatpump_load_energy = OpenStudio::Model::OutputVariable.new('Heat Pump Load Side Heat Transfer Energy', model)
     heatpump_load_energy.setReportingFrequency ('timestep')
+    heatpump_load_energy.setKeyValue('*')
 
     cop_piranha_output = OpenStudio::Model::EnergyManagementSystemOutputVariable.new(model, 'COP_Piranha')
     cop_piranha_output.setName('cop_piranha_output')
