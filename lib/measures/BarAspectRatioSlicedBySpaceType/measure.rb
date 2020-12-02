@@ -42,20 +42,37 @@
 # see the URL below for access to C++ documentation on model objects (click on "model" in the main window to view model objects)
 # http://openstudio.nrel.gov/sites/openstudio.nrel.gov/files/nv_data/cpp_documentation_it/model/html/namespaces.html
 
+require 'openstudio-standards'
+
 # load OpenStudio measure libraries from openstudio-extension gem
 require 'openstudio-extension'
 require 'openstudio/extension/core/os_lib_helper_methods'
 require 'openstudio/extension/core/os_lib_geometry.rb'
-
-# load OpenStudio measure libraries
-require "#{File.dirname(__FILE__)}/resources/os_lib_cofee"
+require 'openstudio/extension/core/os_lib_model_generation.rb'
+require 'openstudio/extension/core/os_lib_model_simplification.rb'
 
 # start the measure
 class BarAspectRatioSlicedBySpaceType < OpenStudio::Measure::ModelMeasure
+  # resource file modules
+  include OsLib_HelperMethods
+  include OsLib_Geometry
+  include OsLib_ModelGeneration
+  include OsLib_ModelSimplification
+
   # define the name that a user will see, this method may be deprecated as
   # the display name in PAT comes from the name field in measure.xml
   def name
     return 'BarAspectRatioSlicedBySpaceType'
+  end
+
+  # human readable description
+  def description
+    return 'Creates one or more rectangular building elements based on space type ratios of selected mix of building types, along with user arguments that describe the desired geometry characteristics.'
+  end
+
+  # human readable description of modeling approach
+  def modeler_description
+    return 'The building floor area can be described as a footprint size or as a total building area. The shape can be described by its aspect ratio or can be defined as a set width. Because this measure contains both DOE and DEER inputs, care needs to be taken to choose a template compatable with the selected building types. See readme document for additional guidance.'
   end
 
   def arguments(model)
@@ -286,6 +303,5 @@ class BarAspectRatioSlicedBySpaceType < OpenStudio::Measure::ModelMeasure
     end
   end
 end
-
 # this allows the measure to be use by the application
 BarAspectRatioSlicedBySpaceType.new.registerWithApplication
