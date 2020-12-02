@@ -1,5 +1,10 @@
 # OpenStudio Model Articulation Gems
 
+## Version 0.3.0
+* Support for OpenStudio 3.1
+	* Update OpenStudio Standards to 0.2.12
+    * Update OpenStudio Extension gem to 0.3.1
+
 ## Version 0.2.1 (Unreleased)
 
 * Support for OpenStudio 3.1
