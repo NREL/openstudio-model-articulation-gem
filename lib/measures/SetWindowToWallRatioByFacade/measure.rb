@@ -590,7 +590,7 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
 
     # report final condition
     final_wwr = format('%.02f', (final_ext_window_area / final_gross_ext_wall_area))
-    runner.registerFinalCondition("The model's final window to wall ratio for #{facade} facing exterior walls is #{final_wwr}. Window area increased by #{OpenStudio::toNeatString(increase_window_area_ip.value, 0)} (ft^2). The material and construction costs increased by $#{OpenStudio::toNeatString(envelope_cost, 0)}.")
+    runner.registerFinalCondition("The model's final window to wall ratio for #{facade} facing exterior walls is #{final_wwr}. Window area increased by #{OpenStudio.toNeatString(increase_window_area_ip.value, 0)} (ft^2). The material and construction costs increased by $#{OpenStudio.toNeatString(envelope_cost, 0)}.")
 
     return true
   end
