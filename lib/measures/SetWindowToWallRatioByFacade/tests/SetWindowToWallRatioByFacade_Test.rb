@@ -161,10 +161,9 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
     # assert(result.warnings.size == 2)
     # assert(result.info.size == 2)
 
-    # save the model in an output directory
-    output_dir = File.expand_path('output', File.dirname(__FILE__))
-    FileUtils.mkdir output_dir unless Dir.exist? output_dir
-    model.save("#{output_dir}/rotation_test.osm", true)
+    # save the model
+    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/rotation.osm')
+    model.save(output_file_path, true)
   end
 
   def test_SetWindowToWallRatioByFacade_with_model_MinimalCost
@@ -690,10 +689,9 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
     # assert(result.warnings.size == 2)
     # assert(result.info.size == 2)
 
-    # save the model in an output directory
-    output_dir = File.expand_path('output', File.dirname(__FILE__))
-    FileUtils.mkdir output_dir unless Dir.exist? output_dir
-    model.save("#{output_dir}/zero_test.osm", true)
+    # save the model
+    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/zero.osm')
+    model.save(output_file_path, true)
   end
 
   def test_SetWindowToWallRatioByFacade_all_orientations
@@ -735,9 +733,8 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
     # assert(result.warnings.size == 2)
     # assert(result.info.size == 2)
 
-    # save the model in an output directory
-    output_dir = File.expand_path('output', File.dirname(__FILE__))
-    FileUtils.mkdir output_dir unless Dir.exist? output_dir
-    model.save("#{output_dir}/zero_test.osm", true)
+    # save the model
+    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/all_orientations.osm')
+    model.save(output_file_path, true)
   end
 end

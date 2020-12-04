@@ -49,7 +49,7 @@ class RadianceMeasureTest < Minitest::Test
 
   def get_test_model(shade_type)
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/test_model.osm')
+    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/measure_test_model.osm')
     model = translator.loadModel(path)
     assert(!model.empty?)
 

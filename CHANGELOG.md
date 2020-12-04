@@ -1,5 +1,19 @@
 # OpenStudio Model Articulation Gems
 
+## Version 0.3.0
+
+* Support for OpenStudio 3.1
+	* Update OpenStudio Standards to 0.2.12
+    * Update OpenStudio Extension gem to 0.3.1
+* Move errs array creation in radiant_slab_with_doas measure
+* Fix radiant measure to work with Ruby 2.2 (remove Safe Navigation operator)
+
+## Version 0.2.1
+
+* Support for OpenStudio 3.1
+    * Update OpenStudio Standards to 0.2.12
+    * Update OpenStudio Extension gem to 0.3.1
+    
 ## Version 0.2.0
 
 * Support for OpenStudio 3.0

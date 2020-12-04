@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>create_typical_deer_building_from_model</name>
   <uid>09cc23db-5e9b-4b11-b167-1852a15ed339</uid>
-  <version_id>566684f7-5338-4c18-a682-4559ba11a0e1</version_id>
-  <version_modified>20200509T155941Z</version_modified>
+  <version_id>8429e1aa-3ac6-4cdf-8d58-b998699579a9</version_id>
+  <version_modified>20200911T195820Z</version_modified>
   <xml_checksum>AABAC479</xml_checksum>
   <class_name>CreateTypicalDEERBuildingFromModel</class_name>
   <display_name>Create Typical DEER Building from Model</display_name>
@@ -1190,7 +1190,7 @@
   </attributes>
   <files>
     <file>
-      <filename>test.osw</filename>
+      <filename>measure_test.osw</filename>
       <filetype>osw</filetype>
       <usage_type>test</usage_type>
       <checksum>6DB338FC</checksum>
@@ -1394,12 +1394,6 @@
       <checksum>E0468DD6</checksum>
     </file>
     <file>
-      <filename>Model.hvac.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>007BDD2B</checksum>
-    </file>
-    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -1411,7 +1405,7 @@
       <checksum>B6303750</checksum>
     </file>
     <file>
-      <filename>test_hvac.rb</filename>
+      <filename>measure_test_hvac.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
       <checksum>9185BFA7</checksum>
@@ -1420,7 +1414,13 @@
       <filename>create_typical_deer_building_from_model_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>37770E86</checksum>
+      <checksum>6B02F7C5</checksum>
+    </file>
+    <file>
+      <filename>Model.hvac.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>D8BF0815</checksum>
     </file>
   </files>
 </measure>

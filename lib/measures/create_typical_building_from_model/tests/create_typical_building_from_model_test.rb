@@ -55,7 +55,7 @@ class CreateTypicalBuildingFromModel_Test < Minitest::Test
     measure = CreateTypicalBuildingFromModel.new
 
     # create an instance of a runner with OSW
-    osw_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/test.osw')
+    osw_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/measure_test.osw')
     osw = OpenStudio::WorkflowJSON.load(osw_path).get
     runner = OpenStudio::Measure::OSRunner.new(osw)
 
