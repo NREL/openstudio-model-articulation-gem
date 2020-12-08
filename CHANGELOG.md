@@ -1,5 +1,9 @@
 # OpenStudio Model Articulation Gems
 
+## Version 0.3.1
+
+* Bump openstudio-extension-gem version to 0.3.2 to support updated workflow-gem
+
 ## Version 0.3.0
 
 * Support for OpenStudio 3.1
