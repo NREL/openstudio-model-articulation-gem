@@ -279,7 +279,7 @@ class OpenStudio::Model::Model
                                      chilled_water_loop_cooling_type: 'AirCooled')
 
     when 'Fan coil district chilled water with boiler'
-      standard.model_add_hvac_system(self, 'Fan Coil ', ht = 'NaturalGas', znht = nil, cl = 'DistrictCooling', zones)
+      standard.model_add_hvac_system(self, 'Fan Coil', ht = 'NaturalGas', znht = nil, cl = 'DistrictCooling', zones)
 
     when 'Fan coil district chilled water with central air source heat pump'
       standard.model_add_hvac_system(self, 'Fan Coil', ht = 'AirSourceHeatPump', znht = nil, cl = 'DistrictCooling', zones)
@@ -494,7 +494,7 @@ class OpenStudio::Model::Model
     when 'VAV chiller with gas boiler reheat'
       standard.model_add_hvac_system(self, 'VAV Reheat', ht = 'NaturalGas', znht = 'NaturalGas', cl = 'Electricity', zones)
 
-    when 'VAV chiller with central air source heat pump reheat '
+    when 'VAV chiller with central air source heat pump reheat'
       standard.model_add_hvac_system(self, 'VAV Reheat', ht = 'AirSourceHeatPump', znht = 'AirSourceHeatPump', cl = 'Electricity', zones)
 
     when 'VAV chiller with district hot water reheat'
@@ -629,7 +629,8 @@ class OpenStudio::Model::Model
 
     else
       puts "HVAC system type '#{system_type}' not recognized"
-
+      return false
     end
+    return true
   end
 end

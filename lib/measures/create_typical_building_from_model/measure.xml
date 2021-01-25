@@ -3,13 +3,13 @@
   <schema_version>3.0</schema_version>
   <name>create_typical_building_from_model</name>
   <uid>339a2e3a-273c-4494-bb50-bfe586a0647c</uid>
-  <version_id>cf4a5895-bc2f-4b83-925c-7eaaeb3d0913</version_id>
-  <version_modified>20200911T195900Z</version_modified>
+  <version_id>fb62106b-f280-49ae-bda5-c8a0e5a5a7ad</version_id>
+  <version_modified>20210125T205352Z</version_modified>
   <xml_checksum>EE13F09F</xml_checksum>
   <class_name>CreateTypicalBuildingFromModel</class_name>
   <display_name>Create Typical Building from Model</display_name>
   <description>Takes a model with space and stub space types, and assigns constructions, schedules, internal loads, hvac, and other loads such as exterior lights and service water heating.</description>
-  <modeler_description>It is important that the template argument chosen for this measure is in line with the buding types for the stub space types of the model passed in.</modeler_description>
+  <modeler_description>It is important that the template argument chosen for this measure is in line with the building types for the stub space types of the model passed in.</modeler_description>
   <arguments>
     <argument>
       <name>template</name>
@@ -1513,27 +1513,10 @@
       <checksum>9CCCA1AC</checksum>
     </file>
     <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>0D03D713</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
       <checksum>E0468DD6</checksum>
-    </file>
-    <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>3.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>6E6F78F0</checksum>
     </file>
     <file>
       <filename>measure_test_hvac.rb</filename>
@@ -1548,10 +1531,27 @@
       <checksum>CFEF1007</checksum>
     </file>
     <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>3.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>FC7E685C</checksum>
+    </file>
+    <file>
       <filename>Model.hvac.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>D8BF0815</checksum>
+      <checksum>9EBD8AE9</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>EC286BBD</checksum>
     </file>
   </files>
 </measure>
