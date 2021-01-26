@@ -1,3 +1,6 @@
+# ComStock™, Copyright (c) 2020 Alliance for Sustainable Energy, LLC. All rights reserved.
+# See top level LICENSE.txt file for license terms.
+
 # *******************************************************************************
 # OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
@@ -628,7 +631,6 @@ class OpenStudio::Model::Model
       standard.model_add_hvac_system(self, 'Window AC', ht = nil, znht = nil, cl = 'Electricity', cooled_zones)
 
     else
-      puts "HVAC system type '#{system_type}' not recognized"
       return false
     end
     return true

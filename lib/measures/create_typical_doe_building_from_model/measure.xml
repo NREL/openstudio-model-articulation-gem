@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>create_typical_doe_building_from_model</name>
   <uid>b2c80210-33b3-4dfd-8267-535efd81f552</uid>
-  <version_id>dc5eafa2-2289-4428-aa29-fc29f8be5179</version_id>
-  <version_modified>20210125T205424Z</version_modified>
+  <version_id>74d2f887-8f7c-4db5-9554-0792dd860679</version_id>
+  <version_modified>20210126T171041Z</version_modified>
   <xml_checksum>99E7000D</xml_checksum>
   <class_name>CreateTypicalDOEBuildingFromModel</class_name>
   <display_name>Create Typical DOE Building from Model</display_name>
@@ -1385,7 +1385,7 @@
       <filename>Model.hvac.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>9EBD8AE9</checksum>
+      <checksum>663488BA</checksum>
     </file>
   </files>
 </measure>

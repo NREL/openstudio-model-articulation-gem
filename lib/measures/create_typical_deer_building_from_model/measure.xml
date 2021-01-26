@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>create_typical_deer_building_from_model</name>
   <uid>09cc23db-5e9b-4b11-b167-1852a15ed339</uid>
-  <version_id>5520dc2a-84ce-44d9-913d-0306b18d0f61</version_id>
-  <version_modified>20210125T205408Z</version_modified>
+  <version_id>f60b573a-eeee-4751-aeeb-d8fb6e242802</version_id>
+  <version_modified>20210126T171056Z</version_modified>
   <xml_checksum>AABAC479</xml_checksum>
   <class_name>CreateTypicalDEERBuildingFromModel</class_name>
   <display_name>Create Typical DEER Building from Model</display_name>
@@ -1420,7 +1420,7 @@
       <filename>Model.hvac.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>9EBD8AE9</checksum>
+      <checksum>663488BA</checksum>
     </file>
   </files>
 </measure>
