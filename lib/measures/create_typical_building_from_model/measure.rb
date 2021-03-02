@@ -472,7 +472,7 @@ class CreateTypicalBuildingFromModel < OpenStudio::Measure::ModelMeasure
   def run(model, runner, user_arguments)
     super(model, runner, user_arguments)
 
-    # change night cycling control to "Thermostat" cycling
+    # change night cycling control to "Thermostat" cycling and increase thermostat tolerance
     manager_night_cycles = model.getAvailabilityManagerNightCycles
 
     manager_night_cycles.each do |night_cycle|
