@@ -465,8 +465,6 @@ class CreateTypicalBuildingFromModel < OpenStudio::Measure::ModelMeasure
     climate_zone.setDefaultValue('Lookup From Model')
     args << climate_zone
 
-
-
     # change night cycling control to "Thermostat" cycling
     night_cycling_control = OpenStudio::Model::AvailabilityManagerNightCycle.new(model)
     puts " INITIAL_night_cycling_control  =  #{night_cycling_control}"
