@@ -84,7 +84,7 @@ class CreateBarFromSpaceTypeRatios < OpenStudio::Measure::ModelMeasure
     template.setDefaultValue('90.1-2004')
     args << template
 
-    # make an argument for the meter name
+    # make an argument for space type ratios
     space_type_hash_string = OpenStudio::Measure::OSArgument.makeStringArgument('space_type_hash_string', true)
     space_type_hash_string.setDisplayName('Space Type Ratios String')
     space_type_hash_string.setDescription('Hash of Space Types with Building and Space Type name as Key and Fraction as value. All space types should come from the selected OpenStudio Standards template. Example entry is (BuildingType | SpaceType => 0.25)')
@@ -306,4 +306,4 @@ class CreateBarFromSpaceTypeRatios < OpenStudio::Measure::ModelMeasure
   end
 end
 # this allows the measure to be use by the application
-BarAspectRatioSlicedBySpaceType.new.registerWithApplication
+CreateBarFromSpaceTypeRatios.new.registerWithApplication
