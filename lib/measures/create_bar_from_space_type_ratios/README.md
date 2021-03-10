@@ -20,7 +20,7 @@ ___
 ## Table of Contents
 - [Measure Overview](#measure-overview)<br/>
 - [DOE and DEER Template and Building Type Mapping](#doe-and-deer-template-and-building-type-mapping)<br/>
-- [Building Type Mix](#building-type-mix)<br/>
+- [Space Type Ratios](#space-type-ratio)<br/>
 - [Floor Area](#floor-area)<br/>
 - [Height, Stories, and Orientation](#height-stories-and-orientation)<br/>
 - [Building Shape](#building-shape)<br/>
@@ -125,7 +125,7 @@ Note, that this particular measure has access to both DOE and DEER building type
 
 ## Functionality and Input Overview
 
-#### Space Type Ratios String
+#### Space Type Ratios
 
 While Create Bar from Building Type Ratios pulls in a pre-determined list and ratios of space types for each building type, this measures allows the modeler to bring in any combination of space types from multiple building types. The main limitation is that the space types need to come from the same OpenStudio Standards Template. You can't mix spaces from DOE and DEER or a space type that is unique to DOE Ref Pre-1980 and another space type unique to ASHRAE 90.1 2013. The string is setup like a hash where the key is a concatenated BuildingType Space type combination separated by a vertical pipe and spaces " | ". Then a separated is added before the value that looks like " => ". Lastly a fractional value is added for the space type ratio. Your space type ratio fractional values should add up to one, although the measure has some logic to normalize it to one if it is higher or lower.
 
