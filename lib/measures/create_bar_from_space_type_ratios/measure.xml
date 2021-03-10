@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>bar_aspect_ratio_sliced_by_space_type</name>
   <uid>3e988765-9673-46f8-9b65-99d5b86c2b22</uid>
-  <version_id>ae664185-7251-4abb-b2e0-5a7c1893e519</version_id>
-  <version_modified>20200509T155942Z</version_modified>
+  <version_id>281a7eba-8d77-4b47-96e6-0740a41b7566</version_id>
+  <version_modified>20210310T230515Z</version_modified>
   <xml_checksum>49BEF039</xml_checksum>
   <class_name>BarAspectRatioSlicedBySpaceType</class_name>
   <display_name>BarAspectRatioSlicedBySpaceType</display_name>
@@ -14,41 +14,62 @@
     <argument>
       <name>total_bldg_area_ip</name>
       <display_name>Total Building Floor Area (ft^2).</display_name>
+      <description></description>
       <type>Double</type>
+      <units></units>
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>10000</default_value>
+      <min_value></min_value>
+      <max_value></max_value>
     </argument>
     <argument>
       <name>ns_to_ew_ratio</name>
       <display_name>Ratio of North/South Facade Length Relative to East/West Facade Length.</display_name>
+      <description></description>
       <type>Double</type>
+      <units></units>
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>2</default_value>
+      <min_value></min_value>
+      <max_value></max_value>
     </argument>
     <argument>
       <name>num_floors</name>
       <display_name>Number of Floors.</display_name>
+      <description></description>
       <type>Integer</type>
+      <units></units>
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>2</default_value>
+      <min_value></min_value>
+      <max_value></max_value>
     </argument>
     <argument>
       <name>floor_to_floor_height_ip</name>
       <display_name>Floor to Floor Height (ft).</display_name>
+      <description></description>
       <type>Double</type>
+      <units></units>
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>10</default_value>
+      <min_value></min_value>
+      <max_value></max_value>
     </argument>
     <argument>
       <name>spaceTypeHashString</name>
       <display_name>Hash of Space Types with Name as Key and Fraction as value.</display_name>
+      <description></description>
       <type>String</type>
+      <units></units>
       <required>true</required>
       <model_dependent>false</model_dependent>
+      <default_value></default_value>
+      <min_value></min_value>
+      <max_value></max_value>
     </argument>
   </arguments>
   <outputs />
@@ -86,34 +107,16 @@
       <checksum>3FDFD18A</checksum>
     </file>
     <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>C0E5A870</checksum>
-    </file>
-    <file>
-      <filename>README.md.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>readmeerb</usage_type>
-      <checksum>703C9964</checksum>
-    </file>
-    <file>
-      <filename>os_lib_cofee.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>3C10BF38</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
       <checksum>E0468DD6</checksum>
     </file>
     <file>
-      <filename>BarAspectRatioSlicedBySpaceType_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>9F6868DA</checksum>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>7081807F</checksum>
     </file>
     <file>
       <version>
@@ -124,7 +127,146 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>11E11D57</checksum>
+      <checksum>D1EB2010</checksum>
+    </file>
+    <file>
+      <filename>create_bar_from_space_type_ratios_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>849F37FF</checksum>
+    </file>
+    <file>
+      <filename>basement.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>6436A0E2</checksum>
+    </file>
+    <file>
+      <filename>custom_height_false.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>0684A3AD</checksum>
+    </file>
+    <file>
+      <filename>ar_1.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>F5818F2F</checksum>
+    </file>
+    <file>
+      <filename>sep_3.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>4DE3ED94</checksum>
+    </file>
+    <file>
+      <filename>custom_height_true.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>37DBC088</checksum>
+    </file>
+    <file>
+      <filename>ar_2.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>1CAF9C96</checksum>
+    </file>
+    <file>
+      <filename>wwr_custom.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>D1E7B644</checksum>
+    </file>
+    <file>
+      <filename>perim_mult_2010.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>7704044F</checksum>
+    </file>
+    <file>
+      <filename>perim_mult_2012.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>8809F075</checksum>
+    </file>
+    <file>
+      <filename>ar_05.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>A86ECE4C</checksum>
+    </file>
+    <file>
+      <filename>party.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>B70845E6</checksum>
+    </file>
+    <file>
+      <filename>bar_sliced_simple.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>EF138637</checksum>
+    </file>
+    <file>
+      <filename>bar_single_core_perim.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>D1ED9343</checksum>
+    </file>
+    <file>
+      <filename>party_multi.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>1CA071B4</checksum>
+    </file>
+    <file>
+      <filename>sep_05.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>86E7AC6E</checksum>
+    </file>
+    <file>
+      <filename>sep_10.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>91062F24</checksum>
+    </file>
+    <file>
+      <filename>bar_sliced_indiv.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>B737F7E5</checksum>
+    </file>
+    <file>
+      <filename>no_party_mult.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>E68AC690</checksum>
+    </file>
+    <file>
+      <filename>bar_double_loaded.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>29AECFF4</checksum>
+    </file>
+    <file>
+      <filename>perim_mult_2020.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>0925C42D</checksum>
+    </file>
+    <file>
+      <filename>story_sort.png</filename>
+      <filetype>png</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>A64E1184</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>2EB23C39</checksum>
     </file>
   </files>
 </measure>
+<error>uninitialized constant BarAspectRatioSlicedBySpaceType</error>

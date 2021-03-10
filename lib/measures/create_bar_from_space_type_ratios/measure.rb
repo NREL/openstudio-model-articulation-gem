@@ -52,7 +52,7 @@ require 'openstudio/extension/core/os_lib_model_generation.rb'
 require 'openstudio/extension/core/os_lib_model_simplification.rb'
 
 # start the measure
-class BarAspectRatioSlicedBySpaceType < OpenStudio::Measure::ModelMeasure
+class CreateBarFromSpaceTypeRatios < OpenStudio::Measure::ModelMeasure
   # resource file modules
   include OsLib_HelperMethods
   include OsLib_Geometry
@@ -62,7 +62,7 @@ class BarAspectRatioSlicedBySpaceType < OpenStudio::Measure::ModelMeasure
   # define the name that a user will see, this method may be deprecated as
   # the display name in PAT comes from the name field in measure.xml
   def name
-    return 'BarAspectRatioSlicedBySpaceType'
+    return 'Create Bar From Space Type Ratios'
   end
 
   # human readable description
@@ -78,9 +78,17 @@ class BarAspectRatioSlicedBySpaceType < OpenStudio::Measure::ModelMeasure
   def arguments(model)
     args = OpenStudio::Measure::OSArgumentVector.new
 
+    # Make argument for template
+    template = OpenStudio::Measure::OSArgument.makeChoiceArgument('template', get_templates(true), true) # setting up measure to list all templates, but space types in string should all come from one
+    template.setDisplayName('Target Standard')
+    template.setDefaultValue('90.1-2004')
+    args << template
+
     # make an argument for the meter name
     space_type_hash_string = OpenStudio::Measure::OSArgument.makeStringArgument('space_type_hash_string', true)
-    space_type_hash_string.setDisplayName('Hash of Space Types with Name as Key and Fraction as value.')
+    space_type_hash_string.setDisplayName('Space Type Ratios String')
+    space_type_hash_string.setDescription('Hash of Space Types with Building and Space Type name as Key and Fraction as value. All space types should come from the selected OpenStudio Standards template. Example entry is (BuildingType | SpaceType => 0.25)')
+    space_type_hash_string.setDefaultValue("MediumOffice | Conference => 0.2, PrimarySchool | Corridor => 0.125, PrimarySchool | Classroom => 0.175, Warehouse | Office => 0.5")
     args << space_type_hash_string
 
     # Make argument for total_bldg_floor_area
@@ -132,12 +140,6 @@ class BarAspectRatioSlicedBySpaceType < OpenStudio::Measure::ModelMeasure
     building_rotation.setUnits('Degrees')
     building_rotation.setDefaultValue(0.0)
     args << building_rotation
-
-    # Make argument for template
-    template = OpenStudio::Measure::OSArgument.makeChoiceArgument('template', get_doe_templates(true), true)
-    template.setDisplayName('Target Standard')
-    template.setDefaultValue('90.1-2004')
-    args << template
 
     # Make argument for ns_to_ew_ratio
     ns_to_ew_ratio = OpenStudio::Measure::OSArgument.makeDoubleArgument('ns_to_ew_ratio', true)
