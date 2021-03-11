@@ -100,14 +100,59 @@ class CreateBarFromSpaceTypeRatios_Test < Minitest::Test
   def test_good_argument_values
     args = {}
     args['total_bldg_floor_area'] = 10000.0
+    # args['space_type_hash_string'] = "MediumOffice | Conference => 0.2, PrimarySchool | Corridor => 0.125, PrimarySchool | Classroom => 0.175, Warehouse | Office => 0.5"
 
-    apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, 'example_model.osm')
+    apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
   end
 
-  def test_custom_bldg_navy
+  def test_alt_string_spaces
     args = {}
-    # args['space_type_hash_string'] = "MediumOffice | Conference => 0.2, PrimarySchool | Corridor => 0.125, PrimarySchool | Classroom => 0.175, Warehouse | Office => 0.5"
-    #
+    args['total_bldg_floor_area'] = 10000.0
+    args['space_type_hash_string'] = "MediumOffice|Conference=>0.2, PrimarySchool|Corridor=>0.125, PrimarySchool|Classroom=>0.175, Warehouse|Office=>0.5"
+
+    apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
+  end
+
+  def test_high_fraction
+    skip # does not pass yet need to address this in ext gem
+    args = {}
+    args['total_bldg_floor_area'] = 10000.0
+    args['space_type_hash_string'] = "MediumOffice|Conference=>0.2, PrimarySchool|Corridor=>0.125, PrimarySchool|Classroom=>0.175, Warehouse|Office=>0.8"
+
+    apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
+  end
+
+  def test_low_fraction
+    skip # does not pass yet need to address this in ext gem
+    args = {}
+    args['total_bldg_floor_area'] = 10000.0
+    args['space_type_hash_string'] = "MediumOffice|Conference=>0.2, PrimarySchool|Corridor=>0.125, PrimarySchool|Classroom=>0.175, Warehouse|Office=>0.4"
+
+    apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
+  end
+
+  # test  double_loaded_corridor true and passes in 2 instead of 1 corridor space type and or 2 instead of 1 primary space type
+  def test_mult_primary_and_corridor
+    skip # does not pass yet need to address this in ext gem
+    args = {}
+    args['total_bldg_floor_area'] = 10000.0
+    args['double_loaded_corridor'] = 'Primary Space Type'
+    args['space_type_hash_string'] = "PrimarySchool|Corridor=>0.1, PrimarySchool|Classroom=>0.15, SmallHotel|Corridor=>0.2, SmallHotel|GuestRoom =>0.25, Warehouse|Office=>0.4"
+
+    apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
+  end
+
+  def test_madeup_space_type
+    skip # does not pass yet need to address this in ext gem. Custom space type passes but not building type
+    args = {}
+    args['total_bldg_floor_area'] = 10000.0
+    args['space_type_hash_string'] = "CustomBuildingType |CustomSpaceType =>0.2, PrimarySchool|Corridor=>0.125, PrimarySchool|Classroom=>0.175, Warehouse|Office=>0.5"
+
+    apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
+  end
+
+  def test_custom_a
+    args = {}
     args['space_type_hash_string'] = "SmallHotel | Exercise => 0.03960510364059971, Warehouse | Bulk => 0.5921979411807214, LargeOffice | Restroom => 0.021789247463482743, LargeOffice | OpenOffice => 0.19976483978, SecondarySchool | Library => 0.0023030009054764247, LargeOffice | Stair => 0.07560259606968275, LargeOffice | BreakRoom => 0.029289089032903216, LargeOffice | Conference => 0.037007636274519605, LargeOffice | Elec/MechRoom => 0.002440545649210396"
     args['total_bldg_floor_area'] = 69642.0
     args['floor_height'] = 20
@@ -128,11 +173,7 @@ class CreateBarFromSpaceTypeRatios_Test < Minitest::Test
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
   end
 
-  # todo - confirm if spaces are optional next to vertical pipes and has symbol
-
-  # todo - add test that has double_loaded_corridor true and passes in 2 instead of 1 corridor space type and or 2 instead of 1 primary space type
-
-  # todo - add in test with invalid string and see that it is handled well.
+  # todo - add in test with invalid string and see that it is handled well. (it is not handled well, will need to fix in ext gem and add test there)
 
 end
 

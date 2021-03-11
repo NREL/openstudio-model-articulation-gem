@@ -127,11 +127,13 @@ Note, that this particular measure has access to both DOE and DEER building type
 
 #### Space Type Ratios
 
-While Create Bar from Building Type Ratios pulls in a pre-determined list and ratios of space types for each building type, this measures allows the modeler to bring in any combination of space types from multiple building types. The main limitation is that the space types need to come from the same OpenStudio Standards Template. You can't mix spaces from DOE and DEER or a space type that is unique to DOE Ref Pre-1980 and another space type unique to ASHRAE 90.1 2013. The string is setup like a hash where the key is a concatenated BuildingType Space type combination separated by a vertical pipe and spaces " | ". Then a separated is added before the value that looks like " => ". Lastly a fractional value is added for the space type ratio. Your space type ratio fractional values should add up to one, although the measure has some logic to normalize it to one if it is higher or lower.
+While Create Bar from Building Type Ratios pulls in a pre-determined list and ratios of space types for each building type, this measures allows the modeler to bring in any combination of space types from multiple building types. The main limitation is that the space types need to come from the same OpenStudio Standards Template. You can't mix spaces from DOE and DEER or a space type that is unique to DOE Ref Pre-1980 and another space type unique to ASHRAE 90.1 2013.
+
+The string is setup like a hash where the key is a concatenated BuildingType Space type combination separated by a vertical pipe and spaces " | ". Then a separated is added before the value that looks like " => ". Spaces in the string are optional except for the one after the comma that is necessary. Lastly a fractional value is added for the space type ratio. Your space type ratio fractional values should add up to 1.0.
 
 Below are a few example use cases for this measure
 - If you want to use a space types from a prototype model but want to use a different mix of space types than the prototype building, which is generally where space type ratios in Create Bar from Building Type Ratios come from.
-- You want to exclude or more more space types from a bulding type, such as a school auditorium.
+- You want to exclude or more more space types from a building type, such as a school auditorium.
 - You want to pull in one or more extra space types from another building type such as adding a retail space to a restaurant.
 - You want to make a a mixed use building that pulls a completely custom selection of space types together. Keep in mind when pulling in space types from multiple buildings that schedules may vary. That may be fine if your goal is a mixed use building, but if you are trying to make a new custom building type you need to be aware of this. As a note for more basic mixed use buildings Create Bar from Building Type Ratio supports up to 4 building types as inputs.
 
