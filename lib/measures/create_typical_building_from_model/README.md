@@ -8,7 +8,7 @@
 Takes a model with space and stub space types, and assigns constructions, schedules, internal loads, hvac, and other loads such as exterior lights and service water heating.
 
 ## Modeler Description
-It is important that the template argument chosen for this measure is in line with the buding types for the stub space types of the model passed in.
+It is important that the template argument chosen for this measure is in line with the building types for the stub space types of the model passed in.
 
 ## Measure Type
 ModelMeasure

@@ -33,9 +33,6 @@
 # OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # *******************************************************************************
 
-# see the URL below for information on how to write OpenStudio measures
-# http://nrel.github.io/OpenStudio-user-documentation/reference/measure_writing_guide/
-
 require 'openstudio-standards'
 
 # load OpenStudio measure libraries from openstudio-extension gem
@@ -63,7 +60,7 @@ class CreateTypicalBuildingFromModel < OpenStudio::Measure::ModelMeasure
 
   # human readable description of modeling approach
   def modeler_description
-    return 'It is important that the template argument chosen for this measure is in line with the buding types for the stub space types of the model passed in.'
+    return 'It is important that the template argument chosen for this measure is in line with the building types for the stub space types of the model passed in.'
   end
 
   # define the arguments that the user will input

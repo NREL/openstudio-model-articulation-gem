@@ -1317,7 +1317,7 @@ class RadianceMeasure < OpenStudio::Measure::ModelMeasure
           # iterate over each sensor and combine the views together
           new_hash = {}
 
-          t_radGlareSensorViews[space_name]&.each do |sensor, v|
+          t_radGlareSensorViews[space_name].each do |sensor, v|
             new_hash[sensor] = v[hour]
           end
           splitvalues[space_name] += [new_hash]
