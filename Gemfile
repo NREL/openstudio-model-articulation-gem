@@ -11,6 +11,9 @@ gemspec
 # checkout the latest version (develop) from github.
 allow_local = ENV['FAVOR_LOCAL_GEMS']
 
+# uncomment when you want CI to use develop branch of extension gem
+gem 'openstudio-extension', github: 'NREL/OpenStudio-extension-gem', branch: 'develop'
+
 # Only uncomment if you need to test a different version of the extension gem
 # if allow_local && File.exist?('../OpenStudio-extension-gem')
 #   gem 'openstudio-extension', path: '../OpenStudio-extension-gem'
