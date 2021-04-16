@@ -1,5 +1,10 @@
 # OpenStudio Model Articulation Gems
 
+## Version 0.4.0
+
+* Support Ruby ~> 2.7
+* Support for OpenStudio 3.2 (upgrade to extension gem 0.4.1 and standards gem 0.2.13.rc3)
+
 ## Version 0.3.1
 
 * Bump openstudio-extension-gem version to 0.3.2 to support updated workflow-gem
