@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>create_bar_from_building_type_ratios</name>
   <uid>6e3a14f8-c3c7-4e03-bc51-bef8a52e1a05</uid>
-  <version_id>c569be27-f463-4721-8bfb-72bd6775d70e</version_id>
-  <version_modified>20200512T025555Z</version_modified>
+  <version_id>632174d7-2af9-4374-9f9d-89bd08967593</version_id>
+  <version_modified>20210416T201509Z</version_modified>
   <xml_checksum>2AF3A68E</xml_checksum>
   <class_name>CreateBarFromBuildingTypeRatios</class_name>
   <display_name>Create Bar From Building Type Ratios</display_name>
@@ -86,6 +86,26 @@
         <choice>
           <value>SuperMarket</value>
           <display_name>SuperMarket</display_name>
+        </choice>
+        <choice>
+          <value>Laboratory</value>
+          <display_name>Laboratory</display_name>
+        </choice>
+        <choice>
+          <value>LargeDataCenterLowITE</value>
+          <display_name>LargeDataCenterLowITE</display_name>
+        </choice>
+        <choice>
+          <value>LargeDataCenterHighITE</value>
+          <display_name>LargeDataCenterHighITE</display_name>
+        </choice>
+        <choice>
+          <value>SmallDataCenterLowITE</value>
+          <display_name>SmallDataCenterLowITE</display_name>
+        </choice>
+        <choice>
+          <value>SmallDataCenterHighITE</value>
+          <display_name>SmallDataCenterHighITE</display_name>
         </choice>
         <choice>
           <value>Asm</value>
@@ -281,6 +301,26 @@
         <choice>
           <value>SuperMarket</value>
           <display_name>SuperMarket</display_name>
+        </choice>
+        <choice>
+          <value>Laboratory</value>
+          <display_name>Laboratory</display_name>
+        </choice>
+        <choice>
+          <value>LargeDataCenterLowITE</value>
+          <display_name>LargeDataCenterLowITE</display_name>
+        </choice>
+        <choice>
+          <value>LargeDataCenterHighITE</value>
+          <display_name>LargeDataCenterHighITE</display_name>
+        </choice>
+        <choice>
+          <value>SmallDataCenterLowITE</value>
+          <display_name>SmallDataCenterLowITE</display_name>
+        </choice>
+        <choice>
+          <value>SmallDataCenterHighITE</value>
+          <display_name>SmallDataCenterHighITE</display_name>
         </choice>
         <choice>
           <value>Asm</value>
@@ -486,6 +526,26 @@
           <display_name>SuperMarket</display_name>
         </choice>
         <choice>
+          <value>Laboratory</value>
+          <display_name>Laboratory</display_name>
+        </choice>
+        <choice>
+          <value>LargeDataCenterLowITE</value>
+          <display_name>LargeDataCenterLowITE</display_name>
+        </choice>
+        <choice>
+          <value>LargeDataCenterHighITE</value>
+          <display_name>LargeDataCenterHighITE</display_name>
+        </choice>
+        <choice>
+          <value>SmallDataCenterLowITE</value>
+          <display_name>SmallDataCenterLowITE</display_name>
+        </choice>
+        <choice>
+          <value>SmallDataCenterHighITE</value>
+          <display_name>SmallDataCenterHighITE</display_name>
+        </choice>
+        <choice>
           <value>Asm</value>
           <display_name>Asm</display_name>
         </choice>
@@ -687,6 +747,26 @@
         <choice>
           <value>SuperMarket</value>
           <display_name>SuperMarket</display_name>
+        </choice>
+        <choice>
+          <value>Laboratory</value>
+          <display_name>Laboratory</display_name>
+        </choice>
+        <choice>
+          <value>LargeDataCenterLowITE</value>
+          <display_name>LargeDataCenterLowITE</display_name>
+        </choice>
+        <choice>
+          <value>LargeDataCenterHighITE</value>
+          <display_name>LargeDataCenterHighITE</display_name>
+        </choice>
+        <choice>
+          <value>SmallDataCenterLowITE</value>
+          <display_name>SmallDataCenterLowITE</display_name>
+        </choice>
+        <choice>
+          <value>SmallDataCenterHighITE</value>
+          <display_name>SmallDataCenterHighITE</display_name>
         </choice>
         <choice>
           <value>Asm</value>
@@ -920,6 +1000,30 @@
         <choice>
           <value>90.1-2013</value>
           <display_name>90.1-2013</display_name>
+        </choice>
+        <choice>
+          <value>ComStock DOE Ref Pre-1980</value>
+          <display_name>ComStock DOE Ref Pre-1980</display_name>
+        </choice>
+        <choice>
+          <value>ComStock DOE Ref 1980-2004</value>
+          <display_name>ComStock DOE Ref 1980-2004</display_name>
+        </choice>
+        <choice>
+          <value>ComStock 90.1-2004</value>
+          <display_name>ComStock 90.1-2004</display_name>
+        </choice>
+        <choice>
+          <value>ComStock 90.1-2007</value>
+          <display_name>ComStock 90.1-2007</display_name>
+        </choice>
+        <choice>
+          <value>ComStock 90.1-2010</value>
+          <display_name>ComStock 90.1-2010</display_name>
+        </choice>
+        <choice>
+          <value>ComStock 90.1-2013</value>
+          <display_name>ComStock 90.1-2013</display_name>
         </choice>
         <choice>
           <value>NREL ZNE Ready 2017</value>
@@ -1591,13 +1695,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>EF514CF1</checksum>
+      <checksum>8B9DB10F</checksum>
     </file>
     <file>
       <filename>create_bar_from_building_type_ratios_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>058A6AF0</checksum>
+      <checksum>86193630</checksum>
     </file>
   </files>
 </measure>

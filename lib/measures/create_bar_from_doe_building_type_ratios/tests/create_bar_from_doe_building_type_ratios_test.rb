@@ -165,6 +165,7 @@ class CreateBarFromDOEBuildingTypeRatios_Test < Minitest::Test
     args['bldg_type_a'] = 'PrimarySchool'
     args['building_rotation'] = -90
     args['party_wall_stories_east'] = 2
+    args['make_mid_story_surfaces_adiabatic'] = true
 
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, 1)
   end
@@ -328,6 +329,7 @@ class CreateBarFromDOEBuildingTypeRatios_Test < Minitest::Test
     args['ns_to_ew_ratio'] = 1.5
     args['num_stories_above_grade'] = 2
     # args["bar_division_method"] = 'Multiple Space Types - Simple Sliced'
+    args['make_mid_story_surfaces_adiabatic'] = true
 
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, 8)
   end
@@ -378,6 +380,7 @@ class CreateBarFromDOEBuildingTypeRatios_Test < Minitest::Test
     args['ns_to_ew_ratio'] = 3.0
     args['perim_mult'] = 1.0
     args['custom_height_bar'] = false
+    args['make_mid_story_surfaces_adiabatic'] = true
 
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
   end
@@ -393,6 +396,7 @@ class CreateBarFromDOEBuildingTypeRatios_Test < Minitest::Test
     args['ns_to_ew_ratio'] = 3.0
     args['perim_mult'] = 1.01
     args['custom_height_bar'] = false
+    args['make_mid_story_surfaces_adiabatic'] = true
 
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
   end
@@ -421,6 +425,7 @@ class CreateBarFromDOEBuildingTypeRatios_Test < Minitest::Test
     args['ns_to_ew_ratio'] = 1.0
     args['perim_mult'] = 1.1
     args['custom_height_bar'] = false
+    args['make_mid_story_surfaces_adiabatic'] = true
 
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
   end

@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>create_bar_from_doe_building_type_ratios</name>
   <uid>0de3cff9-c805-42c4-964e-18cb43a22c63</uid>
-  <version_id>1e92f356-df92-40c7-838e-30843c91521c</version_id>
-  <version_modified>20200509T155941Z</version_modified>
+  <version_id>0c9bb55b-173d-48dd-ba6f-1ca2b7c3c909</version_id>
+  <version_modified>20210416T201648Z</version_modified>
   <xml_checksum>5F523097</xml_checksum>
   <class_name>CreateBarFromDOEBuildingTypeRatios</class_name>
   <display_name>Create Bar From DOE Building Type Ratios</display_name>
@@ -87,6 +87,26 @@
           <value>SuperMarket</value>
           <display_name>SuperMarket</display_name>
         </choice>
+        <choice>
+          <value>Laboratory</value>
+          <display_name>Laboratory</display_name>
+        </choice>
+        <choice>
+          <value>LargeDataCenterLowITE</value>
+          <display_name>LargeDataCenterLowITE</display_name>
+        </choice>
+        <choice>
+          <value>LargeDataCenterHighITE</value>
+          <display_name>LargeDataCenterHighITE</display_name>
+        </choice>
+        <choice>
+          <value>SmallDataCenterLowITE</value>
+          <display_name>SmallDataCenterLowITE</display_name>
+        </choice>
+        <choice>
+          <value>SmallDataCenterHighITE</value>
+          <display_name>SmallDataCenterHighITE</display_name>
+        </choice>
       </choices>
     </argument>
     <argument>
@@ -164,6 +184,26 @@
         <choice>
           <value>SuperMarket</value>
           <display_name>SuperMarket</display_name>
+        </choice>
+        <choice>
+          <value>Laboratory</value>
+          <display_name>Laboratory</display_name>
+        </choice>
+        <choice>
+          <value>LargeDataCenterLowITE</value>
+          <display_name>LargeDataCenterLowITE</display_name>
+        </choice>
+        <choice>
+          <value>LargeDataCenterHighITE</value>
+          <display_name>LargeDataCenterHighITE</display_name>
+        </choice>
+        <choice>
+          <value>SmallDataCenterLowITE</value>
+          <display_name>SmallDataCenterLowITE</display_name>
+        </choice>
+        <choice>
+          <value>SmallDataCenterHighITE</value>
+          <display_name>SmallDataCenterHighITE</display_name>
         </choice>
       </choices>
     </argument>
@@ -251,6 +291,26 @@
           <value>SuperMarket</value>
           <display_name>SuperMarket</display_name>
         </choice>
+        <choice>
+          <value>Laboratory</value>
+          <display_name>Laboratory</display_name>
+        </choice>
+        <choice>
+          <value>LargeDataCenterLowITE</value>
+          <display_name>LargeDataCenterLowITE</display_name>
+        </choice>
+        <choice>
+          <value>LargeDataCenterHighITE</value>
+          <display_name>LargeDataCenterHighITE</display_name>
+        </choice>
+        <choice>
+          <value>SmallDataCenterLowITE</value>
+          <display_name>SmallDataCenterLowITE</display_name>
+        </choice>
+        <choice>
+          <value>SmallDataCenterHighITE</value>
+          <display_name>SmallDataCenterHighITE</display_name>
+        </choice>
       </choices>
     </argument>
     <argument>
@@ -336,6 +396,26 @@
         <choice>
           <value>SuperMarket</value>
           <display_name>SuperMarket</display_name>
+        </choice>
+        <choice>
+          <value>Laboratory</value>
+          <display_name>Laboratory</display_name>
+        </choice>
+        <choice>
+          <value>LargeDataCenterLowITE</value>
+          <display_name>LargeDataCenterLowITE</display_name>
+        </choice>
+        <choice>
+          <value>LargeDataCenterHighITE</value>
+          <display_name>LargeDataCenterHighITE</display_name>
+        </choice>
+        <choice>
+          <value>SmallDataCenterLowITE</value>
+          <display_name>SmallDataCenterLowITE</display_name>
+        </choice>
+        <choice>
+          <value>SmallDataCenterHighITE</value>
+          <display_name>SmallDataCenterHighITE</display_name>
         </choice>
       </choices>
     </argument>
@@ -452,6 +532,30 @@
         <choice>
           <value>90.1-2013</value>
           <display_name>90.1-2013</display_name>
+        </choice>
+        <choice>
+          <value>ComStock DOE Ref Pre-1980</value>
+          <display_name>ComStock DOE Ref Pre-1980</display_name>
+        </choice>
+        <choice>
+          <value>ComStock DOE Ref 1980-2004</value>
+          <display_name>ComStock DOE Ref 1980-2004</display_name>
+        </choice>
+        <choice>
+          <value>ComStock 90.1-2004</value>
+          <display_name>ComStock 90.1-2004</display_name>
+        </choice>
+        <choice>
+          <value>ComStock 90.1-2007</value>
+          <display_name>ComStock 90.1-2007</display_name>
+        </choice>
+        <choice>
+          <value>ComStock 90.1-2010</value>
+          <display_name>ComStock 90.1-2010</display_name>
+        </choice>
+        <choice>
+          <value>ComStock 90.1-2013</value>
+          <display_name>ComStock 90.1-2013</display_name>
         </choice>
         <choice>
           <value>NREL ZNE Ready 2017</value>
@@ -913,7 +1017,7 @@
       <filename>create_bar_from_doe_building_type_ratios_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>1C04409F</checksum>
+      <checksum>736B4EA7</checksum>
     </file>
   </files>
 </measure>

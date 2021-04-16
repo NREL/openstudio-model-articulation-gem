@@ -166,7 +166,7 @@ class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
     args['building_rotation'] = -90
     args['party_wall_stories_east'] = 2
     args['double_loaded_corridor'] = 'Primary Space Type'
-    args['make_mid_story_surfaces_adiabatic'] = false
+    args['make_mid_story_surfaces_adiabatic'] = true
     args['bar_division_method'] = 'Multiple Space Types - Individual Stories Sliced'
     # intersection errors only on this test
     # add diagnostic_intersect flag to use more detailed but slower intersection
