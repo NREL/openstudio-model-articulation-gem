@@ -3,7 +3,9 @@
 ## Version 0.4.0
 
 * Support Ruby ~> 2.7
-* Support for OpenStudio 3.2 (upgrade to extension gem 0.4.1 and standards gem 0.2.13.rc3)
+* Support for OpenStudio 3.2 (upgrade to extension gem 0.4.2 and standards gem 0.2.13)
+* Support for ASHRAE 90.1 2016 for DOE prototype measure
+* Support for ASHRAE 90.1 216 and 2019 for measures that pull templates from extension gem. This includes but is not limited to DOE create_bar, create_typical, and space type and construction set wizard measures.
 
 ## Version 0.3.1
 
