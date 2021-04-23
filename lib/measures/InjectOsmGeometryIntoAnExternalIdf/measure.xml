@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>inject_osm_geometry_into_an_external_idf</name>
   <uid>633cd1c5-5b55-4b50-ab20-cf2d2f7ddff8</uid>
-  <version_id>280b80cc-c941-463b-bfd1-dbc3bd969f25</version_id>
-  <version_modified>20200624T003817Z</version_modified>
+  <version_id>172665e1-0401-4511-a31e-c4f24cf4f99b</version_id>
+  <version_modified>20210423T142510Z</version_modified>
   <xml_checksum>3BE1CF9C</xml_checksum>
   <class_name>InjectOsmGeometryIntoAnExternalIdf</class_name>
   <display_name>InjectOsmGeometryIntoAnExternalIdf</display_name>
@@ -142,12 +142,6 @@ Constructions and other resources won?t be moved back and forth but the surface 
       <checksum>F5FABCCF</checksum>
     </file>
     <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
-    </file>
-    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
@@ -160,6 +154,12 @@ Constructions and other resources won?t be moved back and forth but the surface 
       <checksum>6FF2AF68</checksum>
     </file>
     <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>A21A3ED2</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -168,13 +168,13 @@ Constructions and other resources won?t be moved back and forth but the surface 
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>A76C44E1</checksum>
+      <checksum>466953F1</checksum>
     </file>
     <file>
       <filename>InjectOsmGeometryIntoAnExternalIdf_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>A4070AAC</checksum>
+      <checksum>7B655B56</checksum>
     </file>
   </files>
 </measure>

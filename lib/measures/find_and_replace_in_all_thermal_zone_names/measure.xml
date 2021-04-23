@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>find_and_replace_in_all_thermal_zone_names</name>
   <uid>3573d81e-e7de-4949-be50-8abcd0f95a35</uid>
-  <version_id>8d5cca2d-5455-4180-ad96-3703178c26ef</version_id>
-  <version_modified>20200229T024056Z</version_modified>
+  <version_id>85da1815-b093-45ef-a399-1c8cc9b46956</version_id>
+  <version_modified>20210423T142537Z</version_modified>
   <xml_checksum>057E8D9D</xml_checksum>
   <class_name>FindAndReplaceInAllThermalZoneNames</class_name>
   <display_name>Find And Replace In All Thermal Zone Names</display_name>
@@ -27,8 +28,8 @@
       <default_value></default_value>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Whole Building.Space Types</tag>
   </tags>
@@ -72,19 +73,19 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>E0917739</checksum>
+      <checksum>35235CD3</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
+      <checksum>A21A3ED2</checksum>
     </file>
     <file>
       <filename>find_and_replace_in_all_thermal_zone_names_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>71BBF3D7</checksum>
+      <checksum>5EF10DDA</checksum>
     </file>
   </files>
 </measure>

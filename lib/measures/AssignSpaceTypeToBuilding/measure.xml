@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>assign_space_type_to_building</name>
   <uid>05e20922-6fe4-48a4-bddb-411f8167e757</uid>
-  <version_id>27d55f6d-a2a6-4842-8062-24a15045d1d6</version_id>
-  <version_modified>20200229T024044Z</version_modified>
+  <version_id>0ca1ef7f-22e8-4e62-b013-a4d40186aeb0</version_id>
+  <version_modified>20210423T142509Z</version_modified>
   <xml_checksum>057E8D9D</xml_checksum>
   <class_name>AssignSpaceTypeToBuilding</class_name>
   <display_name>AssignSpaceTypeToBuilding</display_name>
@@ -16,17 +17,17 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>&lt;clear field></default_value>
+      <default_value>{4d195512-5588-4038-a932-f9e242e346a6}</default_value>
       <choices>
         <choice>
-          <value>{fdc29a03-de66-47a1-9874-c307c8fc87dc}</value>
-          <display_name>&lt;clear field></display_name>
+          <value>{4d195512-5588-4038-a932-f9e242e346a6}</value>
+          <display_name>&lt;clear field&gt;</display_name>
         </choice>
       </choices>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Whole Building.Space Types</tag>
   </tags>
@@ -70,19 +71,19 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>4FFBDBB2</checksum>
+      <checksum>C904ACC5</checksum>
     </file>
     <file>
       <filename>AssignSpaceTypeToBuilding_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>11BF4055</checksum>
+      <checksum>0DA553E5</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
+      <checksum>A21A3ED2</checksum>
     </file>
   </files>
 </measure>

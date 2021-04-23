@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>space_type_and_construction_set_wizard</name>
   <uid>7c65af63-4316-47c9-b7a5-68d7a019e533</uid>
-  <version_id>e954e632-3e10-41b3-b7b5-a355a3210ee7</version_id>
-  <version_modified>20200509T155939Z</version_modified>
+  <version_id>a0577cf6-a844-4d90-a7c6-2a3f54e65bfd</version_id>
+  <version_modified>20210423T142525Z</version_modified>
   <xml_checksum>057E8D9D</xml_checksum>
   <class_name>SpaceTypeAndConstructionSetWizard</class_name>
   <display_name>Space Type and Construction Set Wizard</display_name>
@@ -87,6 +87,26 @@
           <value>SuperMarket</value>
           <display_name>SuperMarket</display_name>
         </choice>
+        <choice>
+          <value>Laboratory</value>
+          <display_name>Laboratory</display_name>
+        </choice>
+        <choice>
+          <value>LargeDataCenterLowITE</value>
+          <display_name>LargeDataCenterLowITE</display_name>
+        </choice>
+        <choice>
+          <value>LargeDataCenterHighITE</value>
+          <display_name>LargeDataCenterHighITE</display_name>
+        </choice>
+        <choice>
+          <value>SmallDataCenterLowITE</value>
+          <display_name>SmallDataCenterLowITE</display_name>
+        </choice>
+        <choice>
+          <value>SmallDataCenterHighITE</value>
+          <display_name>SmallDataCenterHighITE</display_name>
+        </choice>
       </choices>
     </argument>
     <argument>
@@ -120,6 +140,38 @@
         <choice>
           <value>90.1-2013</value>
           <display_name>90.1-2013</display_name>
+        </choice>
+        <choice>
+          <value>90.1-2016</value>
+          <display_name>90.1-2016</display_name>
+        </choice>
+        <choice>
+          <value>90.1-2019</value>
+          <display_name>90.1-2019</display_name>
+        </choice>
+        <choice>
+          <value>ComStock DOE Ref Pre-1980</value>
+          <display_name>ComStock DOE Ref Pre-1980</display_name>
+        </choice>
+        <choice>
+          <value>ComStock DOE Ref 1980-2004</value>
+          <display_name>ComStock DOE Ref 1980-2004</display_name>
+        </choice>
+        <choice>
+          <value>ComStock 90.1-2004</value>
+          <display_name>ComStock 90.1-2004</display_name>
+        </choice>
+        <choice>
+          <value>ComStock 90.1-2007</value>
+          <display_name>ComStock 90.1-2007</display_name>
+        </choice>
+        <choice>
+          <value>ComStock 90.1-2010</value>
+          <display_name>ComStock 90.1-2010</display_name>
+        </choice>
+        <choice>
+          <value>ComStock 90.1-2013</value>
+          <display_name>ComStock 90.1-2013</display_name>
         </choice>
       </choices>
     </argument>
@@ -305,22 +357,22 @@
       <checksum>BF3EEE84</checksum>
     </file>
     <file>
+      <filename>design_doc.txt</filename>
+      <filetype>txt</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>86154A1B</checksum>
+    </file>
+    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
+      <checksum>A21A3ED2</checksum>
     </file>
     <file>
       <filename>SpaceTypeAndConstructionSetWizard_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>BC2A5358</checksum>
-    </file>
-    <file>
-      <filename>design_doc.txt</filename>
-      <filetype>txt</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>86154A1B</checksum>
+      <checksum>A33BC44E</checksum>
     </file>
     <file>
       <version>
@@ -331,7 +383,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>06FB7B3C</checksum>
+      <checksum>ECB1C32A</checksum>
     </file>
   </files>
 </measure>

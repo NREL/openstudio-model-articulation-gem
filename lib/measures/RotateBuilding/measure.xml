@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>rotate_building</name>
   <uid>b2742307-bce7-4747-8f94-977718217305</uid>
-  <version_id>49895ac3-da96-498f-b46d-4f54597a0137</version_id>
-  <version_modified>20200229T024052Z</version_modified>
+  <version_id>bdde9591-38c6-47ff-b43d-4e205864b64d</version_id>
+  <version_modified>20210423T142510Z</version_modified>
   <xml_checksum>49BEF039</xml_checksum>
   <class_name>RotateBuilding</class_name>
   <display_name>Rotate Building</display_name>
@@ -20,8 +21,8 @@
       <default_value>90</default_value>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Envelope.Form</tag>
   </tags>
@@ -76,13 +77,13 @@
       <filename>RotateBuilding_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>EF3CE1FE</checksum>
+      <checksum>80D856EC</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
+      <checksum>A21A3ED2</checksum>
     </file>
     <file>
       <version>
@@ -93,7 +94,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>D81D9FE0</checksum>
+      <checksum>7A45B037</checksum>
     </file>
   </files>
 </measure>

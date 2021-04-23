@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>create_typical_deer_building_from_model</name>
   <uid>09cc23db-5e9b-4b11-b167-1852a15ed339</uid>
-  <version_id>8429e1aa-3ac6-4cdf-8d58-b998699579a9</version_id>
-  <version_modified>20200911T195820Z</version_modified>
+  <version_id>94c687a7-9110-4178-bd1f-e7827ef2ff21</version_id>
+  <version_modified>20210423T142534Z</version_modified>
   <xml_checksum>AABAC479</xml_checksum>
   <class_name>CreateTypicalDEERBuildingFromModel</class_name>
   <display_name>Create Typical DEER Building from Model</display_name>
@@ -1391,7 +1391,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
+      <checksum>A21A3ED2</checksum>
     </file>
     <file>
       <version>
@@ -1402,25 +1402,25 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>B6303750</checksum>
+      <checksum>C5AF6A9B</checksum>
     </file>
     <file>
       <filename>measure_test_hvac.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>9185BFA7</checksum>
+      <checksum>B00E4105</checksum>
     </file>
     <file>
       <filename>create_typical_deer_building_from_model_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>6B02F7C5</checksum>
+      <checksum>F3844890</checksum>
     </file>
     <file>
       <filename>Model.hvac.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>D8BF0815</checksum>
+      <checksum>32C64B0B</checksum>
     </file>
   </files>
 </measure>
