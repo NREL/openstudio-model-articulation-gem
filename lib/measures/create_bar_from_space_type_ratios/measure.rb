@@ -1,5 +1,5 @@
 # *******************************************************************************
-# OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
+# OpenStudio(R), Copyright (c) 2008-2021, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -88,7 +88,7 @@ class CreateBarFromSpaceTypeRatios < OpenStudio::Measure::ModelMeasure
     space_type_hash_string = OpenStudio::Measure::OSArgument.makeStringArgument('space_type_hash_string', true)
     space_type_hash_string.setDisplayName('Space Type Ratios String')
     space_type_hash_string.setDescription('Hash of Space Types with Building and Space Type name as Key and Fraction as value. All space types should come from the selected OpenStudio Standards template. Example entry is (BuildingType | SpaceType => 0.25)')
-    space_type_hash_string.setDefaultValue("MediumOffice | Conference => 0.2, PrimarySchool | Corridor => 0.125, PrimarySchool | Classroom => 0.175, Warehouse | Office => 0.5")
+    space_type_hash_string.setDefaultValue('MediumOffice | Conference => 0.2, PrimarySchool | Corridor => 0.125, PrimarySchool | Classroom => 0.175, Warehouse | Office => 0.5')
     args << space_type_hash_string
 
     # Make argument for total_bldg_floor_area

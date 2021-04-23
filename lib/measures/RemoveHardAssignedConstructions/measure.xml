@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>remove_hard_assigned_constructions</name>
   <uid>8fd2557e-907d-46a3-aebf-8cc81c58bc65</uid>
-  <version_id>08479221-f488-4a11-8c58-97dfe88252c0</version_id>
-  <version_modified>20200229T024056Z</version_modified>
+  <version_id>8b5b2fe1-0524-4b24-8f77-de57f98ed544</version_id>
+  <version_modified>20210423T142510Z</version_modified>
   <xml_checksum>1E963D9C</xml_checksum>
   <class_name>RemoveHardAssignedConstructions</class_name>
   <display_name>RemoveHardAssignedConstructions</display_name>
@@ -29,8 +30,8 @@
       </choices>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Envelope.Opaque</tag>
   </tags>
@@ -74,19 +75,19 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>A259558F</checksum>
+      <checksum>F18D020C</checksum>
     </file>
     <file>
       <filename>RemoveHardAssignedConstructions_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>36381DED</checksum>
+      <checksum>D38C492D</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
+      <checksum>A21A3ED2</checksum>
     </file>
   </files>
 </measure>

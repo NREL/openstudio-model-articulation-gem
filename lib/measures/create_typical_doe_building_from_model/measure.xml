@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>create_typical_doe_building_from_model</name>
   <uid>b2c80210-33b3-4dfd-8267-535efd81f552</uid>
-  <version_id>74d2f887-8f7c-4db5-9554-0792dd860679</version_id>
-  <version_modified>20210126T171041Z</version_modified>
+  <version_id>af76adbb-6aea-419e-96ee-81cf11f19ccb</version_id>
+  <version_modified>20210423T142536Z</version_modified>
   <xml_checksum>99E7000D</xml_checksum>
   <class_name>CreateTypicalDOEBuildingFromModel</class_name>
   <display_name>Create Typical DOE Building from Model</display_name>
@@ -42,6 +42,38 @@
         <choice>
           <value>90.1-2013</value>
           <display_name>90.1-2013</display_name>
+        </choice>
+        <choice>
+          <value>90.1-2016</value>
+          <display_name>90.1-2016</display_name>
+        </choice>
+        <choice>
+          <value>90.1-2019</value>
+          <display_name>90.1-2019</display_name>
+        </choice>
+        <choice>
+          <value>ComStock DOE Ref Pre-1980</value>
+          <display_name>ComStock DOE Ref Pre-1980</display_name>
+        </choice>
+        <choice>
+          <value>ComStock DOE Ref 1980-2004</value>
+          <display_name>ComStock DOE Ref 1980-2004</display_name>
+        </choice>
+        <choice>
+          <value>ComStock 90.1-2004</value>
+          <display_name>ComStock 90.1-2004</display_name>
+        </choice>
+        <choice>
+          <value>ComStock 90.1-2007</value>
+          <display_name>ComStock 90.1-2007</display_name>
+        </choice>
+        <choice>
+          <value>ComStock 90.1-2010</value>
+          <display_name>ComStock 90.1-2010</display_name>
+        </choice>
+        <choice>
+          <value>ComStock 90.1-2013</value>
+          <display_name>ComStock 90.1-2013</display_name>
         </choice>
       </choices>
     </argument>
@@ -1347,10 +1379,16 @@
       <checksum>46CFB534</checksum>
     </file>
     <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>1B1C70D8</checksum>
+    </file>
+    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
+      <checksum>A21A3ED2</checksum>
     </file>
     <file>
       <version>
@@ -1361,31 +1399,25 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>57D960DB</checksum>
+      <checksum>1008A2B9</checksum>
     </file>
     <file>
       <filename>create_typical_doe_building_from_model_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>8AC3CE71</checksum>
+      <checksum>59AEB6FD</checksum>
     </file>
     <file>
       <filename>measure_test_hvac.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>2785485F</checksum>
-    </file>
-    <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>1B1C70D8</checksum>
+      <checksum>188F5F6B</checksum>
     </file>
     <file>
       <filename>Model.hvac.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>663488BA</checksum>
+      <checksum>32C64B0B</checksum>
     </file>
   </files>
 </measure>

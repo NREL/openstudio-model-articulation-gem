@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>create_doe_prototype_building</name>
   <uid>be90fd0b-a651-467a-bc8d-29d310b0f937</uid>
-  <version_id>c6124b12-e271-4200-bc95-ff616e5ad2db</version_id>
-  <version_modified>20210420T161905Z</version_modified>
+  <version_id>eac27a3e-658d-493a-8d59-81b9d90118bf</version_id>
+  <version_modified>20210423T142528Z</version_modified>
   <xml_checksum>057E8D9D</xml_checksum>
   <class_name>CreateDOEPrototypeBuilding</class_name>
   <display_name>Create DOE Prototype Building</display_name>
@@ -242,12 +242,8 @@
           <display_name>ARCATA_725945_CZ2010.epw</display_name>
         </choice>
         <choice>
-          <value>ARE_Abu.Dhabi.412170_IWEC.epw</value>
-          <display_name>ARE_Abu.Dhabi.412170_IWEC.epw</display_name>
-        </choice>
-        <choice>
-          <value>ARE_Dubai.Intl.AP.411940_IWEC2.epw</value>
-          <display_name>ARE_Dubai.Intl.AP.411940_IWEC2.epw</display_name>
+          <value>ARE_DU_Dubai.Intl.AP.411940_TMYx.epw</value>
+          <display_name>ARE_DU_Dubai.Intl.AP.411940_TMYx.epw</display_name>
         </choice>
         <choice>
           <value>BAKERSFIELD_723840_CZ2010.epw</value>
@@ -276,6 +272,398 @@
         <choice>
           <value>CAMP-PENDLETON_722926_CZ2010.epw</value>
           <display_name>CAMP-PENDLETON_722926_CZ2010.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_AB_Banff.CS.711220_CWEC2016.epw</value>
+          <display_name>CAN_AB_Banff.CS.711220_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_AB_Calgary.Intl.AP.718770_CWEC2016.epw</value>
+          <display_name>CAN_AB_Calgary.Intl.AP.718770_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_AB_Edmonton.Intl.AP.711230_CWEC2016.epw</value>
+          <display_name>CAN_AB_Edmonton.Intl.AP.711230_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_AB_Edmonton.Stony.Plain.AP.711270_CWEC2016.epw</value>
+          <display_name>CAN_AB_Edmonton.Stony.Plain.AP.711270_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_AB_Fort.McMurray.AP.716890_CWEC2016.epw</value>
+          <display_name>CAN_AB_Fort.McMurray.AP.716890_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_AB_Grande.Prairie.AP.719400_CWEC2016.epw</value>
+          <display_name>CAN_AB_Grande.Prairie.AP.719400_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_AB_Lethbridge.AP.712430_CWEC2016.epw</value>
+          <display_name>CAN_AB_Lethbridge.AP.712430_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_AB_Lloydminster.AP.718710_CWEC2016.epw</value>
+          <display_name>CAN_AB_Lloydminster.AP.718710_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_AB_Medicine.Hat.AP.710260_CWEC2016.epw</value>
+          <display_name>CAN_AB_Medicine.Hat.AP.710260_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_AB_Red.Deer.Regl.AP.718780_CWEC2016.epw</value>
+          <display_name>CAN_AB_Red.Deer.Regl.AP.718780_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_AB_Red.Deer.Rgnl.AP.718780_CWEC2016.epw</value>
+          <display_name>CAN_AB_Red.Deer.Rgnl.AP.718780_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_BC_Abbotsford.Intl.AP.711080_CWEC2016.epw</value>
+          <display_name>CAN_BC_Abbotsford.Intl.AP.711080_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_BC_Comox.Valley.AP.718930_CWEC2016.epw</value>
+          <display_name>CAN_BC_Comox.Valley.AP.718930_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_BC_Crankbrook-Canadian.Rockies.Intl.AP.718800_CWEC2016.epw</value>
+          <display_name>CAN_BC_Crankbrook-Canadian.Rockies.Intl.AP.718800_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_BC_Fort.St.John-North.Peace.Rgnl.AP.719430_CWEC2016.epw</value>
+          <display_name>CAN_BC_Fort.St.John-North.Peace.Rgnl.AP.719430_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_BC_Hope.Rgnl.Airpark.711870_CWEC2016.epw</value>
+          <display_name>CAN_BC_Hope.Rgnl.Airpark.711870_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_BC_Kamloops.AP.718870_CWEC2016.epw</value>
+          <display_name>CAN_BC_Kamloops.AP.718870_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_BC_Kelowna.Intl.AP.712030_CWEC2016.epw</value>
+          <display_name>CAN_BC_Kelowna.Intl.AP.712030_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_BC_Port.Hardy.AP.711090_CWEC2016.epw</value>
+          <display_name>CAN_BC_Port.Hardy.AP.711090_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_BC_Prince.George.Intl.AP.718960_CWEC2016.epw</value>
+          <display_name>CAN_BC_Prince.George.Intl.AP.718960_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_BC_Smithers.Rgnl.AP.719500_CWEC2016.epw</value>
+          <display_name>CAN_BC_Smithers.Rgnl.AP.719500_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_BC_Summerland.717680_CWEC2016.epw</value>
+          <display_name>CAN_BC_Summerland.717680_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_BC_Vancouver.Intl.AP.718920_CWEC2016.epw</value>
+          <display_name>CAN_BC_Vancouver.Intl.AP.718920_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_BC_Victoria.Intl.AP.717990_CWEC2016.epw</value>
+          <display_name>CAN_BC_Victoria.Intl.AP.717990_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_MB_Brandon.Muni.AP.711400_CWEC2016.epw</value>
+          <display_name>CAN_MB_Brandon.Muni.AP.711400_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_MB_Portage-Southport.AP.718510_CWEC2016.epw</value>
+          <display_name>CAN_MB_Portage-Southport.AP.718510_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_MB_The.Pas.AP.718670_CWEC2016.epw</value>
+          <display_name>CAN_MB_The.Pas.AP.718670_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_MB_Winnipeg-Richardson.Intl.AP.718520_CWEC2016.epw</value>
+          <display_name>CAN_MB_Winnipeg-Richardson.Intl.AP.718520_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_NB_Bathurst.Rgnl.AP.715740_CWEC2016.epw</value>
+          <display_name>CAN_NB_Bathurst.Rgnl.AP.715740_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_NB_Fredericton.Intl.AP.717000_CWEC2016.epw</value>
+          <display_name>CAN_NB_Fredericton.Intl.AP.717000_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_NB_Miramichi.AP.717440_CWEC2016.epw</value>
+          <display_name>CAN_NB_Miramichi.AP.717440_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_NB_Moncton-Greater.Moncton.LeBlanc.Intl.AP.717050_CWEC2016.epw</value>
+          <display_name>CAN_NB_Moncton-Greater.Moncton.LeBlanc.Intl.AP.717050_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_NB_Saint.John.AP.716090_CWEC2016.epw</value>
+          <display_name>CAN_NB_Saint.John.AP.716090_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_NL_Corner.Brook.719730_CWEC2016.epw</value>
+          <display_name>CAN_NL_Corner.Brook.719730_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_NL_Gander.Intl.AP-CFB.Gander.718030_CWEC2016.epw</value>
+          <display_name>CAN_NL_Gander.Intl.AP-CFB.Gander.718030_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_NL_Goose.Bay.AP-CFB.Goose.Bay.718160_CWEC2016.epw</value>
+          <display_name>CAN_NL_Goose.Bay.AP-CFB.Goose.Bay.718160_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_NL_St.Johns.Intl.AP.718010_CWEC2016.epw</value>
+          <display_name>CAN_NL_St.Johns.Intl.AP.718010_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_NL_Stephenville.Intl.AP.718150_CWEC2016.epw</value>
+          <display_name>CAN_NL_Stephenville.Intl.AP.718150_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_NS_CFB.Greenwood.713970_CWEC2016.epw</value>
+          <display_name>CAN_NS_CFB.Greenwood.713970_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_NS_CFB.Shearwater.716010_CWEC2016.epw</value>
+          <display_name>CAN_NS_CFB.Shearwater.716010_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_NS_Halifax.Dockyard.713280_CWEC2016.epw</value>
+          <display_name>CAN_NS_Halifax.Dockyard.713280_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_NS_Sable.Island.Natl.Park.716000_CWEC2016.epw</value>
+          <display_name>CAN_NS_Sable.Island.Natl.Park.716000_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_NS_Sydney-McCurdy.AP.717070_8205701_CWEC2016.epw</value>
+          <display_name>CAN_NS_Sydney-McCurdy.AP.717070_8205701_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_NS_Sydney-McCurdy.AP.717070_CWEC2016.epw</value>
+          <display_name>CAN_NS_Sydney-McCurdy.AP.717070_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_NS_Truro.713980_CWEC.epw</value>
+          <display_name>CAN_NS_Truro.713980_CWEC.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_NS_Yarmouth.Intl.AP.716030_CWEC2016.epw</value>
+          <display_name>CAN_NS_Yarmouth.Intl.AP.716030_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_NT_Inuvik-Zubko.AP.719570_CWEC2016.epw</value>
+          <display_name>CAN_NT_Inuvik-Zubko.AP.719570_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_NT_Yellowknife.AP.719360_CWEC2016.epw</value>
+          <display_name>CAN_NT_Yellowknife.AP.719360_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_NU_Resolute.AP.719240_CWEC2016.epw</value>
+          <display_name>CAN_NU_Resolute.AP.719240_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_ON_Armstrong.AP.718410_CWEC2016.epw</value>
+          <display_name>CAN_ON_Armstrong.AP.718410_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_ON_Barrie.Oro.713140_CWEC2016.epw</value>
+          <display_name>CAN_ON_Barrie.Oro.713140_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_ON_CFB.Trenton.716210_CWEC2016.epw</value>
+          <display_name>CAN_ON_CFB.Trenton.716210_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_ON_Dryden.Rgnl.AP.715270_CWEC2016.epw</value>
+          <display_name>CAN_ON_Dryden.Rgnl.AP.715270_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_ON_Hamilton.Intl.AP.712630_CWEC2016.epw</value>
+          <display_name>CAN_ON_Hamilton.Intl.AP.712630_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_ON_Kingston.AP.718200_TMYx.2004-2018.epw</value>
+          <display_name>CAN_ON_Kingston.AP.718200_TMYx.2004-2018.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_ON_London.Intl.AP.716230_CWEC2016.epw</value>
+          <display_name>CAN_ON_London.Intl.AP.716230_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_ON_Moosonee.AP.713980_CWEC2016.epw</value>
+          <display_name>CAN_ON_Moosonee.AP.713980_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_ON_Mount.Forest.716310_CWEC2016.epw</value>
+          <display_name>CAN_ON_Mount.Forest.716310_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_ON_North.Bay-Garland.AP.717310_CWEC2016.epw</value>
+          <display_name>CAN_ON_North.Bay-Garland.AP.717310_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_ON_Ottawa-Macdonald-Cartier.Intl.AP.716280_CWEC2016.epw</value>
+          <display_name>CAN_ON_Ottawa-Macdonald-Cartier.Intl.AP.716280_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_ON_Peterborough.Muni.AP.714360_CWEC2016.epw</value>
+          <display_name>CAN_ON_Peterborough.Muni.AP.714360_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_ON_Region.of.Waterloo.Intl.AP.713680_TMYx.2004-2018.epw</value>
+          <display_name>CAN_ON_Region.of.Waterloo.Intl.AP.713680_TMYx.2004-2018.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_ON_Sarnia-Hadfield.AP.717040_TMYx.2004-2018.epw</value>
+          <display_name>CAN_ON_Sarnia-Hadfield.AP.717040_TMYx.2004-2018.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_ON_Sault.Ste.Marie.AP.712600_CWEC2016.epw</value>
+          <display_name>CAN_ON_Sault.Ste.Marie.AP.712600_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_ON_Sudbury.AP.717300_CWEC2016.epw</value>
+          <display_name>CAN_ON_Sudbury.AP.717300_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_ON_Thunder.Bay.Intl.AP.716670_CWEC2016.epw</value>
+          <display_name>CAN_ON_Thunder.Bay.Intl.AP.716670_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_ON_Timmins.Power.AP.717390_CWEC2016.epw</value>
+          <display_name>CAN_ON_Timmins.Power.AP.717390_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_ON_Toronto.Pearson.Intl.AP.716240_CWEC2016.epw</value>
+          <display_name>CAN_ON_Toronto.Pearson.Intl.AP.716240_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_ON_Windsor.Intl.AP.715380_CWEC2016.epw</value>
+          <display_name>CAN_ON_Windsor.Intl.AP.715380_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_PE_Charlottetown.AP.717060_CWEC2016.epw</value>
+          <display_name>CAN_PE_Charlottetown.AP.717060_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_PE_Summerside.AP.717020_CWEC2016.epw</value>
+          <display_name>CAN_PE_Summerside.AP.717020_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_QC_Cap.Madelaine.714250_CWEC2016.epw</value>
+          <display_name>CAN_QC_Cap.Madelaine.714250_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_QC_Gatineau.AP.716279_TMYx.2004-2018.epw</value>
+          <display_name>CAN_QC_Gatineau.AP.716279_TMYx.2004-2018.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_QC_Granby.710367_TMYx.2004-2018.epw</value>
+          <display_name>CAN_QC_Granby.710367_TMYx.2004-2018.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_QC_Kuujjuaq.AP.719060_CWEC2016.epw</value>
+          <display_name>CAN_QC_Kuujjuaq.AP.719060_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_QC_Kuujuarapik.AP.719050_CWEC2016.epw</value>
+          <display_name>CAN_QC_Kuujuarapik.AP.719050_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_QC_Lac.Eon.AP.714210_CWEC2016.epw</value>
+          <display_name>CAN_QC_Lac.Eon.AP.714210_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_QC_Mont-Joli.AP.717180_CWEC2016.epw</value>
+          <display_name>CAN_QC_Mont-Joli.AP.717180_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_QC_Montreal-Mirabel.Intl.AP.719050_CWEC2016.epw</value>
+          <display_name>CAN_QC_Montreal-Mirabel.Intl.AP.719050_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_QC_Montreal-St-Hubert.Longueuil.AP.713710_CWEC2016.epw</value>
+          <display_name>CAN_QC_Montreal-St-Hubert.Longueuil.AP.713710_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016.epw</value>
+          <display_name>CAN_QC_Montreal-Trudeau.Intl.AP.716270_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_QC_Quebec-Lesage.Intl.AP.717140_CWEC2016.epw</value>
+          <display_name>CAN_QC_Quebec-Lesage.Intl.AP.717140_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_QC_Riviere-du-Loup.717150_CWEC2016.epw</value>
+          <display_name>CAN_QC_Riviere-du-Loup.717150_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_QC_Roberval.AP.717280_CWEC2016.epw</value>
+          <display_name>CAN_QC_Roberval.AP.717280_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_QC_Rouyn-Noranda.AP.717255_CWEC2016.epw</value>
+          <display_name>CAN_QC_Rouyn-Noranda.AP.717255_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_QC_Saguenay-Bagotville.AP-CFB.Bagotville.717270_CWEC2016.epw</value>
+          <display_name>CAN_QC_Saguenay-Bagotville.AP-CFB.Bagotville.717270_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_QC_Schefferville.AP.718280_CWEC2016.epw</value>
+          <display_name>CAN_QC_Schefferville.AP.718280_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_QC_Sept-Iles.AP.718110_CWEC2016.epw</value>
+          <display_name>CAN_QC_Sept-Iles.AP.718110_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_QC_Sherbrooke.AP.716100_TMYx.2004-2018.epw</value>
+          <display_name>CAN_QC_Sherbrooke.AP.716100_TMYx.2004-2018.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_QC_Trois.Rivieres.717240_TMYx.2004-2018.epw</value>
+          <display_name>CAN_QC_Trois.Rivieres.717240_TMYx.2004-2018.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_QC_Val-d-Or.Rgnl.AP.717250_CWEC2016.epw</value>
+          <display_name>CAN_QC_Val-d-Or.Rgnl.AP.717250_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_SK_CFB.Moose.Jaw.715390_CWEC2016.epw</value>
+          <display_name>CAN_SK_CFB.Moose.Jaw.715390_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_SK_Estevan.Rgnl.AP.718620_CWEC2016.epw</value>
+          <display_name>CAN_SK_Estevan.Rgnl.AP.718620_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_SK_North.Battleford.AP.718760_CWEC2016.epw</value>
+          <display_name>CAN_SK_North.Battleford.AP.718760_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_SK_Prince.Albert.AP.718690_CWEC2016.epw</value>
+          <display_name>CAN_SK_Prince.Albert.AP.718690_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_SK_Regina.Intl.AP.715140_CWEC2016.epw</value>
+          <display_name>CAN_SK_Regina.Intl.AP.715140_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_SK_Saskatoon.Intl.AP.718660_CWEC2016.epw</value>
+          <display_name>CAN_SK_Saskatoon.Intl.AP.718660_CWEC2016.epw</display_name>
+        </choice>
+        <choice>
+          <value>CAN_YT_Whitehorse.Intl.AP.719640_CWEC2016.epw</value>
+          <display_name>CAN_YT_Whitehorse.Intl.AP.719640_CWEC2016.epw</display_name>
         </choice>
         <choice>
           <value>CARLSBAD_722927_CZ2010.epw</value>
@@ -342,8 +730,8 @@
           <display_name>IMPERIAL_747185_CZ2010.epw</display_name>
         </choice>
         <choice>
-          <value>IND_Delhi_New.Delhi-Safdarjung.AP.421820_IWEC2.epw</value>
-          <display_name>IND_Delhi_New.Delhi-Safdarjung.AP.421820_IWEC2.epw</display_name>
+          <value>IND_DL_New.Delhi-Safdarjung.AP.421820_TMYx.epw</value>
+          <display_name>IND_DL_New.Delhi-Safdarjung.AP.421820_TMYx.epw</display_name>
         </choice>
         <choice>
           <value>INYOKERN_723826_CZ2010.epw</value>
@@ -550,8 +938,8 @@
           <display_name>SANTA-ROSA_724957_CZ2010.epw</display_name>
         </choice>
         <choice>
-          <value>SAU_Riyadh.404380_IWEC.epw</value>
-          <display_name>SAU_Riyadh.404380_IWEC.epw</display_name>
+          <value>SAU_RI_Riyadh.AB.404380_TMYx.epw</value>
+          <display_name>SAU_RI_Riyadh.AB.404380_TMYx.epw</display_name>
         </choice>
         <choice>
           <value>SOUTH-LAKE-TAHOE_725847_CZ2010.epw</value>
@@ -718,12 +1106,8 @@
           <display_name>VISALIA_723896_CZ2010.epw</display_name>
         </choice>
         <choice>
-          <value>VNM_Hanoi.488200_IWEC.epw</value>
-          <display_name>VNM_Hanoi.488200_IWEC.epw</display_name>
-        </choice>
-        <choice>
-          <value>VNM_Ho.Chi.Minh.City-Tan.Son.Nhat.AP.489000_IWEC2.epw</value>
-          <display_name>VNM_Ho.Chi.Minh.City-Tan.Son.Nhat.AP.489000_IWEC2.epw</display_name>
+          <value>VNM_SVN_Ho.Chi.Minh-Tan.Son.Nhat.Intl.AP.489000_TMYx.epw</value>
+          <display_name>VNM_SVN_Ho.Chi.Minh-Tan.Son.Nhat.Intl.AP.489000_TMYx.epw</display_name>
         </choice>
         <choice>
           <value>YUBA-CO_724838_CZ2010.epw</value>
@@ -772,7 +1156,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
+      <checksum>A21A3ED2</checksum>
     </file>
     <file>
       <version>
@@ -783,13 +1167,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>A6B4485F</checksum>
+      <checksum>0194573E</checksum>
     </file>
     <file>
       <filename>create_DOE_prototype_building_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>322C8A40</checksum>
+      <checksum>1FCC0194</checksum>
     </file>
   </files>
 </measure>
