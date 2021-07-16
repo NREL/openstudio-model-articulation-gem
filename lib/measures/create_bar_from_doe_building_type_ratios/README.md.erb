@@ -12,9 +12,9 @@
 ## Measure Type
 <%= measureType %>
 
-[//]: # (Commenting out until it works in SDK)
-[//]: # (## Taxonomy)
-[//]: # (<%= taxonomy %>)
+[//]: # (Only finds value if taxonomy method is added to measure.rb, won't read out of measure.xml)
+## Taxonomy
+<%= taxonomy %>
 
 ___
 ## Table of Contents
@@ -34,37 +34,31 @@ ___
 
 The intent of this measure is to create basic geometry given a mix of building types and high level characteristics about the building envelope like the number of stories, aspect ratio, orientation etc. This will result in one or more rectangular building elements. The spaces will have stub space type assignments but will not have any internal loads or and the surfaces will not have constructions. The stub space type ratios are based on DOE prototype buildings, depending on the building type you select. The typical workflow is to run other measures after this measure that populate the stub space types and other model elements. This measure has 38 arguments and can look intimidating, but all of them have defaults, so it will run properly without you changing any arguments; however at a minimum you will typically want to at least choose the primary building type, building floor area, and number of stories above grade. Make use of additional arguments as you have a need to.
 
-This is generally meant to run on an empty model, but it does not activily delete any geometry or objects that may already be in the model.
+This is generally meant to run on an empty model, but it does not actively delete any geometry or objects that may already be in the model.
 
 ## DOE Template and Building Type Mapping
 
-- Templates:
-  - DOE Ref Pre-1980
-  - DOE Ref 1980 - 2004
-  - 90.1-2004
-  - 90.1-2007
-  - 90.1-2010
-  - 90.1-2013
-- Building Types:
-  - SecondarySchool
-  - PrimarySchool
-  - SmallOffice
-  - MediumOffice
-  - LargeOffice
-  - SmallHotel
-  - LargeHotel
-  - Warehouse
-  - RetailStandalone
-  - RetailStripmall
-  - QuickServiceRestaurant
-  - FullServiceRestaurant
-  - MidriseApartment
-  - HighriseApartment
-  - Hospital
-  - Outpatient
-  - SuperMarket
+The Templates prefixed with "Comstock have been slightly modified over the template of the same name without the prefix to be more representation of general use inputs."
 
-[//]: # (Would be nice to make these lists dynamic from the measure to they don't become outdated)
+#### Templates:
+<% arguments.each do |argument| %>
+<% if argument[:name] == 'template'%>
+<% argument[:choice_display_names].each do |choice|%>
+  - <%= choice %><br/>
+<% end %>
+<% end %>
+<% end %>
+
+#### Building Types::
+<% arguments.each do |argument| %>
+<% if argument[:name] == 'bldg_type_a'%>
+<% argument[:choice_display_names].each do |choice|%>
+- <%= choice %><br/>
+<% end %>
+<% end %>
+<% end %>
+
+[//]: # (argument values for template and bldg_type_a are dynamically generated from current version of the measure.)
 
 ## Functionality and Input Overview
 
@@ -207,7 +201,7 @@ The ability to model what is essence party floor/ceilings in your model are cont
 
 ## Development Comments
 
-This measure relies on the openstudio-standards gem which is included in the OpenStudio CLI as well as a number of resources files listed below that are contained in the measure's `resources` directory. Other than the arguments almost none of the measure code is in the measure.rb file. The resource files are used by a number of measures and should be udpated from the shared library and not within this measure.
+This measure relies on the openstudio-standards gem which is included in the OpenStudio CLI as well as a number of resources files listed below that are contained in the openstudio-extenstion gem which is also included in the OpenStudio CLI measure's `resources` directory. Other than the arguments almost none of the measure code is in the measure.rb file. The resource files are used by a number of measures and should be updated from the shared library and not within this measure.
  - os_lib_model_generation.rb
  - os_lib_model_simplification.rb
  - os_lib_geometry.rb
@@ -227,6 +221,9 @@ ___
 **Units:** <%= argument[:units] %>,
 **Required:** <%= argument[:required] %>,
 **Model Dependent:** <%= argument[:model_dependent] %>
+<% if argument[:type] == "Choice" && !argument[:model_dependent]%>
+**Choice Display Names** <%= argument[:choice_display_names] %>
+<% end %>
 <% end %>
 
 <% if arguments.size == 0 %>

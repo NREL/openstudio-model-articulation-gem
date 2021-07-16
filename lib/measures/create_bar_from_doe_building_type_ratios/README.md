@@ -12,9 +12,9 @@ The building floor area can be described as a footprint size or as a total build
 ## Measure Type
 ModelMeasure
 
-[//]: # (Commenting out until it works in SDK)
-[//]: # (## Taxonomy)
-[//]: # ()
+[//]: # (Only finds value if taxonomy method is added to measure.rb, won't read out of measure.xml)
+## Taxonomy
+Envelope.Form
 
 ___
 ## Table of Contents
@@ -34,37 +34,227 @@ ___
 
 The intent of this measure is to create basic geometry given a mix of building types and high level characteristics about the building envelope like the number of stories, aspect ratio, orientation etc. This will result in one or more rectangular building elements. The spaces will have stub space type assignments but will not have any internal loads or and the surfaces will not have constructions. The stub space type ratios are based on DOE prototype buildings, depending on the building type you select. The typical workflow is to run other measures after this measure that populate the stub space types and other model elements. This measure has 38 arguments and can look intimidating, but all of them have defaults, so it will run properly without you changing any arguments; however at a minimum you will typically want to at least choose the primary building type, building floor area, and number of stories above grade. Make use of additional arguments as you have a need to.
 
-This is generally meant to run on an empty model, but it does not activily delete any geometry or objects that may already be in the model.
+This is generally meant to run on an empty model, but it does not actively delete any geometry or objects that may already be in the model.
 
 ## DOE Template and Building Type Mapping
 
-- Templates:
-  - DOE Ref Pre-1980
-  - DOE Ref 1980 - 2004
-  - 90.1-2004
-  - 90.1-2007
-  - 90.1-2010
-  - 90.1-2013
-- Building Types:
-  - SecondarySchool
-  - PrimarySchool
-  - SmallOffice
-  - MediumOffice
-  - LargeOffice
-  - SmallHotel
-  - LargeHotel
-  - Warehouse
-  - RetailStandalone
-  - RetailStripmall
-  - QuickServiceRestaurant
-  - FullServiceRestaurant
-  - MidriseApartment
-  - HighriseApartment
-  - Hospital
-  - Outpatient
-  - SuperMarket
+The Templates prefixed with "Comstock have been slightly modified over the template of the same name without the prefix to be more representation of general use inputs."
 
-[//]: # (Would be nice to make these lists dynamic from the measure to they don't become outdated)
+#### Templates:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  - DOE Ref Pre-1980<br/>
+
+  - DOE Ref 1980-2004<br/>
+
+  - 90.1-2004<br/>
+
+  - 90.1-2007<br/>
+
+  - 90.1-2010<br/>
+
+  - 90.1-2013<br/>
+
+  - 90.1-2016<br/>
+
+  - 90.1-2019<br/>
+
+  - ComStock DOE Ref Pre-1980<br/>
+
+  - ComStock DOE Ref 1980-2004<br/>
+
+  - ComStock 90.1-2004<br/>
+
+  - ComStock 90.1-2007<br/>
+
+  - ComStock 90.1-2010<br/>
+
+  - ComStock 90.1-2013<br/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#### Building Types::
+
+
+
+- SecondarySchool<br/>
+
+- PrimarySchool<br/>
+
+- SmallOffice<br/>
+
+- MediumOffice<br/>
+
+- LargeOffice<br/>
+
+- SmallHotel<br/>
+
+- LargeHotel<br/>
+
+- Warehouse<br/>
+
+- RetailStandalone<br/>
+
+- RetailStripmall<br/>
+
+- QuickServiceRestaurant<br/>
+
+- FullServiceRestaurant<br/>
+
+- MidriseApartment<br/>
+
+- HighriseApartment<br/>
+
+- Hospital<br/>
+
+- Outpatient<br/>
+
+- SuperMarket<br/>
+
+- Laboratory<br/>
+
+- LargeDataCenterLowITE<br/>
+
+- LargeDataCenterHighITE<br/>
+
+- SmallDataCenterLowITE<br/>
+
+- SmallDataCenterHighITE<br/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[//]: # (argument values for template and bldg_type_a are dynamically generated from current version of the measure.)
 
 ## Functionality and Input Overview
 
@@ -207,7 +397,7 @@ The ability to model what is essence party floor/ceilings in your model are cont
 
 ## Development Comments
 
-This measure relies on the openstudio-standards gem which is included in the OpenStudio CLI as well as a number of resources files listed below that are contained in the measure's `resources` directory. Other than the arguments almost none of the measure code is in the measure.rb file. The resource files are used by a number of measures and should be udpated from the shared library and not within this measure.
+This measure relies on the openstudio-standards gem which is included in the OpenStudio CLI as well as a number of resources files listed below that are contained in the openstudio-extenstion gem which is also included in the OpenStudio CLI measure's `resources` directory. Other than the arguments almost none of the measure code is in the measure.rb file. The resource files are used by a number of measures and should be updated from the shared library and not within this measure.
  - os_lib_model_generation.rb
  - os_lib_model_simplification.rb
  - os_lib_geometry.rb
@@ -228,6 +418,9 @@ ___
 **Required:** true,
 **Model Dependent:** false
 
+**Choice Display Names** ["SecondarySchool", "PrimarySchool", "SmallOffice", "MediumOffice", "LargeOffice", "SmallHotel", "LargeHotel", "Warehouse", "RetailStandalone", "RetailStripmall", "QuickServiceRestaurant", "FullServiceRestaurant", "MidriseApartment", "HighriseApartment", "Hospital", "Outpatient", "SuperMarket", "Laboratory", "LargeDataCenterLowITE", "LargeDataCenterHighITE", "SmallDataCenterLowITE", "SmallDataCenterHighITE"]
+
+
 ### Building Type B
 
 **Name:** bldg_type_b,
@@ -235,6 +428,9 @@ ___
 **Units:** ,
 **Required:** true,
 **Model Dependent:** false
+
+**Choice Display Names** ["SecondarySchool", "PrimarySchool", "SmallOffice", "MediumOffice", "LargeOffice", "SmallHotel", "LargeHotel", "Warehouse", "RetailStandalone", "RetailStripmall", "QuickServiceRestaurant", "FullServiceRestaurant", "MidriseApartment", "HighriseApartment", "Hospital", "Outpatient", "SuperMarket", "Laboratory", "LargeDataCenterLowITE", "LargeDataCenterHighITE", "SmallDataCenterLowITE", "SmallDataCenterHighITE"]
+
 
 ### Building Type B Fraction of Building Floor Area
 
@@ -244,6 +440,7 @@ ___
 **Required:** true,
 **Model Dependent:** false
 
+
 ### Building Type C
 
 **Name:** bldg_type_c,
@@ -251,6 +448,9 @@ ___
 **Units:** ,
 **Required:** true,
 **Model Dependent:** false
+
+**Choice Display Names** ["SecondarySchool", "PrimarySchool", "SmallOffice", "MediumOffice", "LargeOffice", "SmallHotel", "LargeHotel", "Warehouse", "RetailStandalone", "RetailStripmall", "QuickServiceRestaurant", "FullServiceRestaurant", "MidriseApartment", "HighriseApartment", "Hospital", "Outpatient", "SuperMarket", "Laboratory", "LargeDataCenterLowITE", "LargeDataCenterHighITE", "SmallDataCenterLowITE", "SmallDataCenterHighITE"]
+
 
 ### Building Type C Fraction of Building Floor Area
 
@@ -260,6 +460,7 @@ ___
 **Required:** true,
 **Model Dependent:** false
 
+
 ### Building Type D
 
 **Name:** bldg_type_d,
@@ -267,6 +468,9 @@ ___
 **Units:** ,
 **Required:** true,
 **Model Dependent:** false
+
+**Choice Display Names** ["SecondarySchool", "PrimarySchool", "SmallOffice", "MediumOffice", "LargeOffice", "SmallHotel", "LargeHotel", "Warehouse", "RetailStandalone", "RetailStripmall", "QuickServiceRestaurant", "FullServiceRestaurant", "MidriseApartment", "HighriseApartment", "Hospital", "Outpatient", "SuperMarket", "Laboratory", "LargeDataCenterLowITE", "LargeDataCenterHighITE", "SmallDataCenterLowITE", "SmallDataCenterHighITE"]
+
 
 ### Building Type D Fraction of Building Floor Area
 
@@ -276,6 +480,7 @@ ___
 **Required:** true,
 **Model Dependent:** false
 
+
 ### Total Building Floor Area
 
 **Name:** total_bldg_floor_area,
@@ -283,6 +488,7 @@ ___
 **Units:** ft^2,
 **Required:** true,
 **Model Dependent:** false
+
 
 ### Single Floor Area
 Non-zero value will fix the single floor area, overriding a user entry for Total Building Floor Area
@@ -292,6 +498,7 @@ Non-zero value will fix the single floor area, overriding a user entry for Total
 **Required:** true,
 **Model Dependent:** false
 
+
 ### Typical Floor to FLoor Height
 Selecting a typical floor height of 0 will trigger a smart building type default.
 **Name:** floor_height,
@@ -299,6 +506,7 @@ Selecting a typical floor height of 0 will trigger a smart building type default
 **Units:** ft,
 **Required:** true,
 **Model Dependent:** false
+
 
 ### Enable Custom Height Bar Application
 This is argument value is only relevant when smart default floor to floor height is used for a building type that has spaces with custom heights.
@@ -308,6 +516,7 @@ This is argument value is only relevant when smart default floor to floor height
 **Required:** true,
 **Model Dependent:** false
 
+
 ### Number of Stories Above Grade
 
 **Name:** num_stories_above_grade,
@@ -315,6 +524,7 @@ This is argument value is only relevant when smart default floor to floor height
 **Units:** ,
 **Required:** true,
 **Model Dependent:** false
+
 
 ### Number of Stories Below Grade
 
@@ -324,6 +534,7 @@ This is argument value is only relevant when smart default floor to floor height
 **Required:** true,
 **Model Dependent:** false
 
+
 ### Building Rotation
 Set Building Rotation off of North (positive value is clockwise). Rotation applied after geometry generation. Values greater than +/- 45 will result in aspect ratio and party wall orientations that do not match cardinal directions of the inputs.
 **Name:** building_rotation,
@@ -331,6 +542,7 @@ Set Building Rotation off of North (positive value is clockwise). Rotation appli
 **Units:** Degrees,
 **Required:** true,
 **Model Dependent:** false
+
 
 ### Target Standard
 
@@ -340,6 +552,9 @@ Set Building Rotation off of North (positive value is clockwise). Rotation appli
 **Required:** true,
 **Model Dependent:** false
 
+**Choice Display Names** ["DOE Ref Pre-1980", "DOE Ref 1980-2004", "90.1-2004", "90.1-2007", "90.1-2010", "90.1-2013", "90.1-2016", "90.1-2019", "ComStock DOE Ref Pre-1980", "ComStock DOE Ref 1980-2004", "ComStock 90.1-2004", "ComStock 90.1-2007", "ComStock 90.1-2010", "ComStock 90.1-2013"]
+
+
 ### Ratio of North/South Facade Length Relative to East/West Facade Length
 Selecting an aspect ratio of 0 will trigger a smart building type default. Aspect ratios less than one are not recommended for sliced bar geometry, instead rotate building and use a greater than 1 aspect ratio.
 **Name:** ns_to_ew_ratio,
@@ -347,6 +562,7 @@ Selecting an aspect ratio of 0 will trigger a smart building type default. Aspec
 **Units:** ,
 **Required:** true,
 **Model Dependent:** false
+
 
 ### Perimeter Multiplier
 Selecting a value of 0 will trigger a smart building type default. This represents a multiplier for the building perimeter relative to the perimeter of a rectangular building that meets the area and aspect ratio inputs. Other than the smart default of 0.0 this argument should have a value of 1.0 or higher and is only applicable Multiple Space Types - Individual Stories Sliced division method.
@@ -356,6 +572,7 @@ Selecting a value of 0 will trigger a smart building type default. This represen
 **Required:** true,
 **Model Dependent:** false
 
+
 ### Bar Width
 Non-zero value will fix the building width, overriding user entry for Perimeter Multiplier. NS/EW Aspect Ratio may be limited based on target width.
 **Name:** bar_width,
@@ -363,6 +580,7 @@ Non-zero value will fix the building width, overriding user entry for Perimeter 
 **Units:** ft,
 **Required:** true,
 **Model Dependent:** false
+
 
 ### Bar Separation Distance Multiplier
 Multiplier of separation between bar elements relative to building height.
@@ -372,6 +590,7 @@ Multiplier of separation between bar elements relative to building height.
 **Required:** true,
 **Model Dependent:** false
 
+
 ### Window to Wall Ratio
 Selecting a window to wall ratio of 0 will trigger a smart building type default.
 **Name:** wwr,
@@ -379,6 +598,7 @@ Selecting a window to wall ratio of 0 will trigger a smart building type default
 **Units:** ,
 **Required:** true,
 **Model Dependent:** false
+
 
 ### Fraction of Exterior Wall Area with Adjacent Structure
 This will impact how many above grade exterior walls are modeled with adiabatic boundary condition.
@@ -388,6 +608,7 @@ This will impact how many above grade exterior walls are modeled with adiabatic 
 **Required:** true,
 **Model Dependent:** false
 
+
 ### Number of North facing stories with party wall
 This will impact how many above grade exterior north walls are modeled with adiabatic boundary condition. If this is less than the number of above grade stoes, upper flor will reamin exterior
 **Name:** party_wall_stories_north,
@@ -395,6 +616,7 @@ This will impact how many above grade exterior north walls are modeled with adia
 **Units:** ,
 **Required:** true,
 **Model Dependent:** false
+
 
 ### Number of South facing stories with party wall
 This will impact how many above grade exterior south walls are modeled with adiabatic boundary condition. If this is less than the number of above grade stoes, upper flor will reamin exterior
@@ -404,6 +626,7 @@ This will impact how many above grade exterior south walls are modeled with adia
 **Required:** true,
 **Model Dependent:** false
 
+
 ### Number of East facing stories with party wall
 This will impact how many above grade exterior east walls are modeled with adiabatic boundary condition. If this is less than the number of above grade stoes, upper flor will reamin exterior
 **Name:** party_wall_stories_east,
@@ -411,6 +634,7 @@ This will impact how many above grade exterior east walls are modeled with adiab
 **Units:** ,
 **Required:** true,
 **Model Dependent:** false
+
 
 ### Number of West facing stories with party wall
 This will impact how many above grade exterior west walls are modeled with adiabatic boundary condition. If this is less than the number of above grade stoes, upper flor will reamin exterior
@@ -420,6 +644,7 @@ This will impact how many above grade exterior west walls are modeled with adiab
 **Required:** true,
 **Model Dependent:** false
 
+
 ### Is the Bottom Story Exposed to Ground
 This should be true unless you are modeling a partial building which doesn't include the lowest story. The bottom story floor will have an adiabatic boundary condition when false.
 **Name:** bottom_story_ground_exposed_floor,
@@ -427,6 +652,7 @@ This should be true unless you are modeling a partial building which doesn't inc
 **Units:** ,
 **Required:** true,
 **Model Dependent:** false
+
 
 ### Is the Top Story an Exterior Roof
 This should be true unless you are modeling a partial building which doesn't include the highest story. The top story ceiling will have an adiabatic boundary condition when false.
@@ -436,6 +662,7 @@ This should be true unless you are modeling a partial building which doesn't inc
 **Required:** true,
 **Model Dependent:** false
 
+
 ### Calculation Method for Story Multiplier
 
 **Name:** story_multiplier,
@@ -443,6 +670,9 @@ This should be true unless you are modeling a partial building which doesn't inc
 **Units:** ,
 **Required:** true,
 **Model Dependent:** false
+
+**Choice Display Names** ["None", "Basements Ground Mid Top"]
+
 
 ### Make Mid Story Floor Surfaces Adiabatic
 If set to true, this will skip surface intersection and make mid story floors and celings adiabatic, not just at multiplied gaps.
@@ -452,6 +682,7 @@ If set to true, this will skip surface intersection and make mid story floors an
 **Required:** true,
 **Model Dependent:** false
 
+
 ### Division Method for Bar Space Types
 To use perimeter multiplier greater than 1 selected Multiple Space Types - Individual Stories Sliced.
 **Name:** bar_division_method,
@@ -459,6 +690,9 @@ To use perimeter multiplier greater than 1 selected Multiple Space Types - Indiv
 **Units:** ,
 **Required:** true,
 **Model Dependent:** false
+
+**Choice Display Names** ["Multiple Space Types - Simple Sliced", "Multiple Space Types - Individual Stories Sliced", "Single Space Type - Core and Perimeter"]
+
 
 ### Double Loaded Corridor
 Add double loaded corridor for building types that have a defined circulation space type, to the selected space types.
@@ -468,6 +702,9 @@ Add double loaded corridor for building types that have a defined circulation sp
 **Required:** true,
 **Model Dependent:** false
 
+**Choice Display Names** ["None", "Primary Space Type"]
+
+
 ### Choose Space Type Sorting Method
 
 **Name:** space_type_sort_logic,
@@ -476,6 +713,9 @@ Add double loaded corridor for building types that have a defined circulation sp
 **Required:** true,
 **Model Dependent:** false
 
+**Choice Display Names** ["Size", "Building Type > Size"]
+
+
 ### Use Upstream Argument Values
 When true this will look for arguments or registerValues in upstream measures that match arguments from this measure, and will use the value from the upstream measure in place of what is entered for this measure.
 **Name:** use_upstream_args,
@@ -483,6 +723,7 @@ When true this will look for arguments or registerValues in upstream measures th
 **Units:** ,
 **Required:** true,
 **Model Dependent:** false
+
 
 
 

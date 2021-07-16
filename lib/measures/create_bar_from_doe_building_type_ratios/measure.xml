@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>create_bar_from_doe_building_type_ratios</name>
   <uid>0de3cff9-c805-42c4-964e-18cb43a22c63</uid>
-  <version_id>a977ab66-5e72-4f3f-8fe7-2130b9f2ee3e</version_id>
-  <version_modified>20210423T142530Z</version_modified>
+  <version_id>36041b7c-443b-486a-a87c-d424c75d0542</version_id>
+  <version_modified>20210716T181843Z</version_modified>
   <xml_checksum>5F523097</xml_checksum>
   <class_name>CreateBarFromDOEBuildingTypeRatios</class_name>
   <display_name>Create Bar From DOE Building Type Ratios</display_name>
@@ -565,10 +565,6 @@
           <value>ComStock 90.1-2013</value>
           <display_name>ComStock 90.1-2013</display_name>
         </choice>
-        <choice>
-          <value>NREL ZNE Ready 2017</value>
-          <display_name>NREL ZNE Ready 2017</display_name>
-        </choice>
       </choices>
     </argument>
     <argument>
@@ -993,22 +989,16 @@
       <checksum>D1E7B644</checksum>
     </file>
     <file>
-      <filename>README.md.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>readmeerb</usage_type>
-      <checksum>87CB14B2</checksum>
-    </file>
-    <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>8A37AD01</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
       <checksum>A21A3ED2</checksum>
+    </file>
+    <file>
+      <filename>create_bar_from_doe_building_type_ratios_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>E28A50CE</checksum>
     </file>
     <file>
       <version>
@@ -1019,13 +1009,19 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>9318DF72</checksum>
+      <checksum>F458CCEC</checksum>
     </file>
     <file>
-      <filename>create_bar_from_doe_building_type_ratios_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>E28A50CE</checksum>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>69AEAD23</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>4A00B7C3</checksum>
     </file>
   </files>
 </measure>
