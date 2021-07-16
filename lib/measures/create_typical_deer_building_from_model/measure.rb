@@ -66,6 +66,11 @@ class CreateTypicalDEERBuildingFromModel < OpenStudio::Measure::ModelMeasure
     return 'It is important that the template argument chosen for this measure is in line with the buding types for the stub space types of the model passed in.'
   end
 
+  # used to populate taxonomy in readme.md
+  def taxonomy
+    return 'Whole Building.Space Types'
+  end
+
   # define the arguments that the user will input
   def arguments(model)
     args = OpenStudio::Measure::OSArgumentVector.new
@@ -80,7 +85,7 @@ class CreateTypicalDEERBuildingFromModel < OpenStudio::Measure::ModelMeasure
     end
 
     # Make argument for template
-    template = OpenStudio::Measure::OSArgument.makeChoiceArgument('template', get_deer_templates, true)
+    template = OpenStudio::Measure::OSArgument.makeChoiceArgument('template', get_doe_templates(false), true)
     template.setDisplayName('Target Standard')
     template.setDefaultValue(default_string)
     args << template

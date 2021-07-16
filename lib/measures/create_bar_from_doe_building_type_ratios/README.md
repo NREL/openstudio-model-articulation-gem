@@ -34,7 +34,7 @@ ___
 
 ## Measure Overview
 
-The intent of this measure is to create basic geometry given a mix of building types and high level characteristics about the building envelope like the number of stories, aspect ratio, orientation etc. This will result in one or more rectangular building elements. The spaces will have stub space type assignments but will not have any internal loads or and the surfaces will not have constructions. The stub space type ratios are based on DOE prototype buildings, depending on the building type you select. The typical workflow is to run other measures after this measure that populate the stub space types and other model elements. This measure has 38 arguments and can look intimidating, but all of them have defaults, so it will run properly without you changing any arguments; however at a minimum you will typically want to at least choose the primary building type, building floor area, and number of stories above grade. Make use of additional arguments as you have a need to.
+The intent of this measure is to create basic geometry given a mix of building types and high level characteristics about the building envelope like the number of stories, aspect ratio, orientation etc. This will result in one or more rectangular building elements. The spaces will have stub space type assignments but will not have any internal loads or and the surfaces will not have constructions. The stub space type ratios are based on DOE prototype buildings, depending on the building type you select. The typical workflow is to run other measures after this measure that populate the stub space types and other model elements. This measure has more than 30 arguments and can look intimidating, but all of them have defaults, so it will run properly without you changing any arguments; however at a minimum you will typically want to at least choose the primary building type, building floor area, and number of stories above grade. Make use of additional arguments as you have a need to.
 
 This is generally meant to run on an empty model, but it does not actively delete any geometry or objects that may already be in the model.
 
@@ -355,7 +355,7 @@ There are two approaches for the party walls. One approach is a single fraction 
 
 The second approach is ideal when you know more about the conditions of a specific condition and allows you to enter an integer for reach cardinal direction with arguments named `Number of North facing stories with party wall` etc. You can for example have a 5 story building that has a 1 story building to the west, a 3 story building to the east, a 2 story building to the north, and exterior exposure to the south. If you are using this as part of a parametric study where number of stories is changeling and you want all of a specific facade to be adjacent to a building that is taller, You can enter an large value such as 99 for the value; the overly large value relative to number of stories in the building will not create any issues.
 
-The ability to model what is essence party floor/ceilings in your model are controlled through two bool arguments named `Is the Bottom Story Exposed to Ground` and `Is the Top Story an Exterior Roof`
+The ability to model what is in essence party floor/ceilings in your model are controlled through two bool arguments named `Is the Bottom Story Exposed to Ground` and `Is the Top Story an Exterior Roof`
 
 ![Party Wall](./docs/party.png?raw=true)
 *1 story Party wall on south, 2 story on east, story multipliers not enabled*

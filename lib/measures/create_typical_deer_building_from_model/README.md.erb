@@ -13,9 +13,9 @@
 ## Measure Type
 <%= measureType %>
 
-[//]: # (Commenting out until it works in SDK)
-[//]: # (## Taxonomy)
-[//]: # (<%= taxonomy %>)
+[//]: # (Only finds value if taxonomy method is added to measure.rb, won't read out of measure.xml)
+## Taxonomy
+<%= taxonomy %>
 
 ___
 ## Table of Contents
@@ -36,48 +36,46 @@ While this measure has many arguments, they all have default values so you can s
 
 ## DEER Template and Building Type Mapping
 
-- Templates:
-  - DEER Pre-1975
-  - DEER 1985
-  - DEER 1996
-  - DEER 2003
-  - DEER 2007
-  - DEER 2011
-  - DEER 2014
-  - DEER 2015
-  - DEER 2017
-  - DEER 2020
-- Building Types:
-  - Asm
-  - DMo
-  - ECC
-  - EPr
-  - ERC
-  - ESe
-  - EUn
-  - GHs
-  - Gro
-  - Hsp
-  - Htl
-  - MBT
-  - MFm
-  - MLI
-  - Mtl
-  - Nrs
-  - OfL
-  - OfS
-  - RFF
-  - RSD
-  - Rt3
-  - RtL
-  - RtS
-  - SCn
-  - SFm
-  - SUn
-  - WRf
+#### Templates:
+<% arguments.each do |argument| %>
+<% if argument[:name] == 'template'%>
+<% argument[:choice_display_names].each do |choice|%>
+- <%= choice %><br/>
+<% end %>
+<% end %>
+<% end %>
+
+#### Building Types:
+- Asm
+- DMo
+- ECC
+- EPr
+- ERC
+- ESe
+- EUn
+- GHs
+- Gro
+- Hsp
+- Htl
+- MBT
+- MFm
+- MLI
+- Mtl
+- Nrs
+- OfL
+- OfS
+- RFF
+- RSD
+- Rt3
+- RtL
+- RtS
+- SCn
+- SFm
+- SUn
+- WRf
 
 [//]: # (Provide link to map DEER abbreviation to full building type name)
-[//]: # (Would be nice to make these lists dynamic from the measure to they don't become outdated)
+[//]: # (argument values for template are dynamically generated from current version of the measure. Cannot easily dynamically generate building types since they are not arguments to this measure and are passed in withthe model spaces.)
 
 ## HVAC Configuration Arguments
 
@@ -101,16 +99,16 @@ While this measure has many arguments, they all have default values so you can s
 
 ## Bool Arguments to Enable/Disable Elements of This Measure
 
-The following is a list of aruments for elements of the model that can be enabled or disabled for the measure.
+The following is a list of arguments for elements of the model that can be enabled or disabled for the measure.
 - `Add Constructions to Model`
 - `Add Space Type Loads to Model`
-- `Add Elevators to Model`. This will only be added to buildings with more than one story. Number of floors will be used to determine the elevator type, and the number of occpants can determine both the number of elevators and can impact the schedule. To avoid large jumps in parametric analyses, the number of elevators is a double instead of an integer, but will never be less than 1.0 for multi-story buildings, but can for example be 2.6 or 1.5 elevators, instead of just 1 or 2. The logic used isn't depending on a space or space type existing for elevators. The space laod will be added to the largest space on the first story. Fraciton of heat lost will be set to 1.0 for traction elevators.
+- `Add Elevators to Model`. This will only be added to buildings with more than one story. Number of floors will be used to determine the elevator type, and the number of occupants can determine both the number of elevators and can impact the schedule. To avoid large jumps in parametric analyses, the number of elevators is a double instead of an integer, but will never be less than 1.0 for multi-story buildings, but can for example be 2.6 or 1.5 elevators, instead of just 1 or 2. The logic used isn't depending on a space or space type existing for elevators. The space load will be added to the largest space on the first story. Fraction of heat lost will be set to 1.0 for traction elevators.
 - `Add Internal Mass to Model`
 - `Add Exterior Lights to Model`
 - `Add Exhaust Fans to Model`
 - `Add Service Water Heating to Model`
 - `Add Thermostats`
-- `Add HVAC System to Model`. This may add a secondary system for zones with internal loads or schedules that are dis-similar from the typical zones. For thermal zones on the primary zone, where  multi-zone air loops are added, one air loop will be added for each building story. A sizing run will be performed however the elements in the model will stay autosized. The sizing run is to identify the proper target system efficency.
+- `Add HVAC System to Model`. This may add a secondary system for zones with internal loads or schedules that are dis-similar from the typical zones. For thermal zones on the primary zone, where  multi-zone air loops are added, one air loop will be added for each building story. A sizing run will be performed however the elements in the model will stay autosized. The sizing run is to identify the proper target system efficiency.
 - `Add Refrigeration to Model`
 
 ## Hours of Operation Arguments
@@ -124,19 +122,22 @@ There are three arguments each for weekday and weekend behavior. In each case th
 
 ## Other Arguments
 
-- `Use Upstream Argument Values` can be left at the default value of true for most cases. This argument shows up in a number of measures, and then intent is to enable the synchronization of arguments that may be used as a variable in a parametric study across multiple measures. Generally measure ahve uqniue argument names that don't exist, but some such as `Template` are used frequently. This argument, when set to true, will use the value of `Template` from an earlier measure in the workflow, if found, in place of what is entered as the value for this measure.
+- `Use Upstream Argument Values` can be left at the default value of true for most cases. This argument shows up in a number of measures, and then intent is to enable the synchronization of arguments that may be used as a variable in a parametric study across multiple measures. Generally measures gave unique argument names that don't exist in other measures, but some such as `template` are used frequently. This argument, when set to true, will use the value of `Template` from an earlier measure in the workflow, if found, in place of what is entered as the value for this measure.
 - `Unmet Hours Tolerance` is used to change the tolerance used in EnergyPlus for unmet heating and cooling hours.
-- `Clean Model of non-geometry objects` shoudl be set to false when you have a non-empty model with objects that you want to maintain. If you have split this measure in two the second instance of this should have it set to false or it will overwrite elements made by the earlier measure.
+- `Clean Model of non-geometry objects` should be set to false when you have a non-empty model with objects that you want to maintain. If you have split this measure in two the second instance of this should have it set to false or it will overwrite elements made by the earlier measure.
 - `Enable Daylight Savings` will change daylighting saving to true when enabled.
 
 ## Development Comments
 
-This measure relies on the openstudio-standards gem which is included in the OpenStudio CLI as well as a number of resources files listed below that are contained in the measure's `resources` directory. Other than the arguments almost none of the measure code is in the measure.rb file. The resource files are used by a number of measures and should be udpated from the shared library and not within this measure.
- - os_lib_model_generation.rb
- - os_lib_helper_methods.rb
- - os_lib_helper_methods.rb
+This measure relies on the openstudio-standards gem which is included in the OpenStudio CLI as well as a number of resources files listed below that are contained in the openstudio-extension gem which is also included in the OpenStudio CLI. Other than the arguments almost none of the measure code is in the measure.rb file. The resource files are used by a number of measures and should be updated from the shared library and not within this measure.
+- os_lib_model_generation.rb
+- os_lib_model_simplification.rb
+- os_lib_geometry.rb
+- os_lib_helper_methods.rb
 
-*(Automatically generated argument information follows)*## Arguments
+*(Automatically generated argument information follows)*
+
+## Arguments
 
 <% arguments.each do |argument| %>
 ### <%= argument[:display_name] %>
@@ -146,6 +147,9 @@ This measure relies on the openstudio-standards gem which is included in the Ope
 **Units:** <%= argument[:units] %>,
 **Required:** <%= argument[:required] %>,
 **Model Dependent:** <%= argument[:model_dependent] %>
+<% if argument[:type] == "Choice" && !argument[:model_dependent]%>
+**Choice Display Names** <%= argument[:choice_display_names] %>
+<% end %>
 <% end %>
 
 <% if arguments.size == 0 %>

@@ -13,9 +13,9 @@ It is important that the template argument chosen for this measure is in line wi
 ## Measure Type
 ModelMeasure
 
-[//]: # (Commenting out until it works in SDK)
-[//]: # (## Taxonomy)
-[//]: # ()
+[//]: # (Only finds value if taxonomy method is added to measure.rb, won't read out of measure.xml)
+## Taxonomy
+Whole Building.Space Types
 
 ___
 ## Table of Contents
@@ -36,48 +36,128 @@ While this measure has many arguments, they all have default values so you can s
 
 ## DEER Template and Building Type Mapping
 
-- Templates:
-  - DEER Pre-1975
-  - DEER 1985
-  - DEER 1996
-  - DEER 2003
-  - DEER 2007
-  - DEER 2011
-  - DEER 2014
-  - DEER 2015
-  - DEER 2017
-  - DEER 2020
-- Building Types:
-  - Asm
-  - DMo
-  - ECC
-  - EPr
-  - ERC
-  - ESe
-  - EUn
-  - GHs
-  - Gro
-  - Hsp
-  - Htl
-  - MBT
-  - MFm
-  - MLI
-  - Mtl
-  - Nrs
-  - OfL
-  - OfS
-  - RFF
-  - RSD
-  - Rt3
-  - RtL
-  - RtS
-  - SCn
-  - SFm
-  - SUn
-  - WRf
+#### Templates:
+
+
+
+- DOE Ref Pre-1980<br/>
+
+- DOE Ref 1980-2004<br/>
+
+- 90.1-2004<br/>
+
+- 90.1-2007<br/>
+
+- 90.1-2010<br/>
+
+- 90.1-2013<br/>
+
+- 90.1-2016<br/>
+
+- 90.1-2019<br/>
+
+- ComStock DOE Ref Pre-1980<br/>
+
+- ComStock DOE Ref 1980-2004<br/>
+
+- ComStock 90.1-2004<br/>
+
+- ComStock 90.1-2007<br/>
+
+- ComStock 90.1-2010<br/>
+
+- ComStock 90.1-2013<br/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#### Building Types:
+- Asm
+- DMo
+- ECC
+- EPr
+- ERC
+- ESe
+- EUn
+- GHs
+- Gro
+- Hsp
+- Htl
+- MBT
+- MFm
+- MLI
+- Mtl
+- Nrs
+- OfL
+- OfS
+- RFF
+- RSD
+- Rt3
+- RtL
+- RtS
+- SCn
+- SFm
+- SUn
+- WRf
 
 [//]: # (Provide link to map DEER abbreviation to full building type name)
-[//]: # (Would be nice to make these lists dynamic from the measure to they don't become outdated)
+[//]: # (argument values for template are dynamically generated from current version of the measure. Cannot easily dynamically generate building types since they are not arguments to this measure and are passed in withthe model spaces.)
 
 ## HVAC Configuration Arguments
 
@@ -101,16 +181,16 @@ While this measure has many arguments, they all have default values so you can s
 
 ## Bool Arguments to Enable/Disable Elements of This Measure
 
-The following is a list of aruments for elements of the model that can be enabled or disabled for the measure.
+The following is a list of arguments for elements of the model that can be enabled or disabled for the measure.
 - `Add Constructions to Model`
 - `Add Space Type Loads to Model`
-- `Add Elevators to Model`. This will only be added to buildings with more than one story. Number of floors will be used to determine the elevator type, and the number of occpants can determine both the number of elevators and can impact the schedule. To avoid large jumps in parametric analyses, the number of elevators is a double instead of an integer, but will never be less than 1.0 for multi-story buildings, but can for example be 2.6 or 1.5 elevators, instead of just 1 or 2. The logic used isn't depending on a space or space type existing for elevators. The space laod will be added to the largest space on the first story. Fraciton of heat lost will be set to 1.0 for traction elevators.
+- `Add Elevators to Model`. This will only be added to buildings with more than one story. Number of floors will be used to determine the elevator type, and the number of occupants can determine both the number of elevators and can impact the schedule. To avoid large jumps in parametric analyses, the number of elevators is a double instead of an integer, but will never be less than 1.0 for multi-story buildings, but can for example be 2.6 or 1.5 elevators, instead of just 1 or 2. The logic used isn't depending on a space or space type existing for elevators. The space load will be added to the largest space on the first story. Fraction of heat lost will be set to 1.0 for traction elevators.
 - `Add Internal Mass to Model`
 - `Add Exterior Lights to Model`
 - `Add Exhaust Fans to Model`
 - `Add Service Water Heating to Model`
 - `Add Thermostats`
-- `Add HVAC System to Model`. This may add a secondary system for zones with internal loads or schedules that are dis-similar from the typical zones. For thermal zones on the primary zone, where  multi-zone air loops are added, one air loop will be added for each building story. A sizing run will be performed however the elements in the model will stay autosized. The sizing run is to identify the proper target system efficency.
+- `Add HVAC System to Model`. This may add a secondary system for zones with internal loads or schedules that are dis-similar from the typical zones. For thermal zones on the primary zone, where  multi-zone air loops are added, one air loop will be added for each building story. A sizing run will be performed however the elements in the model will stay autosized. The sizing run is to identify the proper target system efficiency.
 - `Add Refrigeration to Model`
 
 ## Hours of Operation Arguments
@@ -124,19 +204,22 @@ There are three arguments each for weekday and weekend behavior. In each case th
 
 ## Other Arguments
 
-- `Use Upstream Argument Values` can be left at the default value of true for most cases. This argument shows up in a number of measures, and then intent is to enable the synchronization of arguments that may be used as a variable in a parametric study across multiple measures. Generally measure ahve uqniue argument names that don't exist, but some such as `Template` are used frequently. This argument, when set to true, will use the value of `Template` from an earlier measure in the workflow, if found, in place of what is entered as the value for this measure.
+- `Use Upstream Argument Values` can be left at the default value of true for most cases. This argument shows up in a number of measures, and then intent is to enable the synchronization of arguments that may be used as a variable in a parametric study across multiple measures. Generally measures gave unique argument names that don't exist in other measures, but some such as `template` are used frequently. This argument, when set to true, will use the value of `Template` from an earlier measure in the workflow, if found, in place of what is entered as the value for this measure.
 - `Unmet Hours Tolerance` is used to change the tolerance used in EnergyPlus for unmet heating and cooling hours.
-- `Clean Model of non-geometry objects` shoudl be set to false when you have a non-empty model with objects that you want to maintain. If you have split this measure in two the second instance of this should have it set to false or it will overwrite elements made by the earlier measure.
+- `Clean Model of non-geometry objects` should be set to false when you have a non-empty model with objects that you want to maintain. If you have split this measure in two the second instance of this should have it set to false or it will overwrite elements made by the earlier measure.
 - `Enable Daylight Savings` will change daylighting saving to true when enabled.
 
 ## Development Comments
 
-This measure relies on the openstudio-standards gem which is included in the OpenStudio CLI as well as a number of resources files listed below that are contained in the measure's `resources` directory. Other than the arguments almost none of the measure code is in the measure.rb file. The resource files are used by a number of measures and should be udpated from the shared library and not within this measure.
- - os_lib_model_generation.rb
- - os_lib_helper_methods.rb
- - os_lib_helper_methods.rb
+This measure relies on the openstudio-standards gem which is included in the OpenStudio CLI as well as a number of resources files listed below that are contained in the openstudio-extension gem which is also included in the OpenStudio CLI. Other than the arguments almost none of the measure code is in the measure.rb file. The resource files are used by a number of measures and should be updated from the shared library and not within this measure.
+- os_lib_model_generation.rb
+- os_lib_model_simplification.rb
+- os_lib_geometry.rb
+- os_lib_helper_methods.rb
 
-*(Automatically generated argument information follows)*## Arguments
+*(Automatically generated argument information follows)*
+
+## Arguments
 
 
 ### Target Standard
@@ -147,6 +230,9 @@ This measure relies on the openstudio-standards gem which is included in the Ope
 **Required:** true,
 **Model Dependent:** false
 
+**Choice Display Names** ["DOE Ref Pre-1980", "DOE Ref 1980-2004", "90.1-2004", "90.1-2007", "90.1-2010", "90.1-2013", "90.1-2016", "90.1-2019", "ComStock DOE Ref Pre-1980", "ComStock DOE Ref 1980-2004", "ComStock 90.1-2004", "ComStock 90.1-2007", "ComStock 90.1-2010", "ComStock 90.1-2013"]
+
+
 ### HVAC System Type
 
 **Name:** system_type,
@@ -154,6 +240,9 @@ This measure relies on the openstudio-standards gem which is included in the Ope
 **Units:** ,
 **Required:** true,
 **Model Dependent:** false
+
+**Choice Display Names** ["Inferred", "Ideal Air Loads", "Baseboard electric", "Baseboard gas boiler", "Baseboard central air source heat pump", "Baseboard district hot water", "Direct evap coolers with baseboard electric", "Direct evap coolers with baseboard gas boiler", "Direct evap coolers with baseboard central air source heat pump", "Direct evap coolers with baseboard district hot water", "Direct evap coolers with forced air furnace", "Direct evap coolers with gas unit heaters", "Direct evap coolers with no heat", "DOAS with fan coil chiller with boiler", "DOAS with fan coil chiller with central air source heat pump", "DOAS with fan coil chiller with district hot water", "DOAS with fan coil chiller with baseboard electric", "DOAS with fan coil chiller with gas unit heaters", "DOAS with fan coil chiller with no heat", "DOAS with fan coil air-cooled chiller with boiler", "DOAS with fan coil air-cooled chiller with central air source heat pump", "DOAS with fan coil air-cooled chiller with district hot water", "DOAS with fan coil air-cooled chiller with baseboard electric", "DOAS with fan coil air-cooled chiller with gas unit heaters", "DOAS with fan coil air-cooled chiller with no heat", "DOAS with fan coil district chilled water with boiler", "DOAS with fan coil district chilled water with central air source heat pump", "DOAS with fan coil district chilled water with district hot water", "DOAS with fan coil district chilled water with baseboard electric", "DOAS with fan coil district chilled water with gas unit heaters", "DOAS with fan coil district chilled water with no heat", "DOAS with VRF", "DOAS with water source heat pumps fluid cooler with boiler", "DOAS with water source heat pumps cooling tower with boiler", "DOAS with water source heat pumps with ground source heat pump", "DOAS with water source heat pumps district chilled water with district hot water", "Fan coil chiller with boiler", "Fan coil chiller with central air source heat pump", "Fan coil chiller with district hot water", "Fan coil chiller with baseboard electric", "Fan coil chiller with gas unit heaters", "Fan coil chiller with no heat", "Fan coil air-cooled chiller with boiler", "Fan coil air-cooled chiller with central air source heat pump", "Fan coil air-cooled chiller with district hot water", "Fan coil air-cooled chiller with baseboard electric", "Fan coil air-cooled chiller with gas unit heaters", "Fan coil air-cooled chiller with no heat", "Fan coil district chilled water with boiler", "Fan coil district chilled water with central air source heat pump", "Fan coil district chilled water with district hot water", "Fan coil district chilled water with baseboard electric", "Fan coil district chilled water with gas unit heaters", "Fan coil district chilled water with no heat", "Forced air furnace", "Gas unit heaters", "PTAC with baseboard electric", "PTAC with baseboard gas boiler", "PTAC with baseboard district hot water", "PTAC with gas unit heaters", "PTAC with electric coil", "PTAC with gas coil", "PTAC with gas boiler", "PTAC with central air source heat pump", "PTAC with district hot water", "PTAC with no heat", "PTHP", "PSZ-AC with baseboard electric", "PSZ-AC with baseboard gas boiler", "PSZ-AC with baseboard district hot water", "PSZ-AC with gas unit heaters", "PSZ-AC with electric coil", "PSZ-AC with gas coil", "PSZ-AC with gas boiler", "PSZ-AC with central air source heat pump", "PSZ-AC with district hot water", "PSZ-AC with no heat", "PSZ-AC district chilled water with baseboard electric", "PSZ-AC district chilled water with baseboard gas boiler", "PSZ-AC district chilled water with baseboard district hot water", "PSZ-AC district chilled water with gas unit heaters", "PSZ-AC district chilled water with electric coil", "PSZ-AC district chilled water with gas coil", "PSZ-AC district chilled water with gas boiler", "PSZ-AC district chilled water with central air source heat pump", "PSZ-AC district chilled water with district hot water", "PSZ-AC district chilled water with no heat", "PSZ-HP", "PVAV with gas boiler reheat", "PVAV with central air source heat pump reheat", "PVAV with district hot water reheat", "PVAV with PFP boxes", "PVAV with gas heat with electric reheat", "Residential AC with baseboard electric", "Residential AC with baseboard gas boiler", "Residential AC with baseboard central air source heat pump", "Residential AC with baseboard district hot water", "Residential AC with residential forced air furnace", "Residential AC with no heat", "Residential heat pump", "Residential heat pump with no cooling", "Residential forced air furnace", "VAV chiller with gas boiler reheat", "VAV chiller with central air source heat pump reheat", "VAV chiller with district hot water reheat", "VAV chiller with PFP boxes", "VAV chiller with gas coil reheat", "VAV chiller with no reheat with baseboard electric", "VAV chiller with no reheat with gas unit heaters", "VAV chiller with no reheat with zone heat pump", "VAV air-cooled chiller with gas boiler reheat", "VAV air-cooled chiller with central air source heat pump reheat", "VAV air-cooled chiller with district hot water reheat", "VAV air-cooled chiller with PFP boxes", "VAV air-cooled chiller with gas coil reheat", "VAV air-cooled chiller with no reheat with baseboard electric", "VAV air-cooled chiller with no reheat with gas unit heaters", "VAV air-cooled chiller with no reheat with zone heat pump", "VAV district chilled water with gas boiler reheat", "VAV district chilled water with central air source heat pump reheat", "VAV district chilled water with district hot water reheat", "VAV district chilled water with PFP boxes", "VAV district chilled water with gas coil reheat", "VAV district chilled water with no reheat with baseboard electric", "VAV district chilled water with no reheat with gas unit heaters", "VAV district chilled water with no reheat with zone heat pump", "VRF", "Water source heat pumps fluid cooler with boiler", "Water source heat pumps cooling tower with boiler", "Water source heat pumps with ground source heat pump", "Water source heat pumps district chilled water with district hot water", "Window AC with baseboard electric", "Window AC with baseboard gas boiler", "Window AC with baseboard central air source heat pump", "Window AC with baseboard district hot water", "Window AC with forced air furnace", "Window AC with unit heaters", "Window AC with no heat"]
+
 
 ### HVAC System Delivery Type
 How the HVAC system delivers heating or cooling to the zone.
@@ -163,6 +252,9 @@ How the HVAC system delivers heating or cooling to the zone.
 **Required:** true,
 **Model Dependent:** false
 
+**Choice Display Names** ["Forced Air", "Hydronic"]
+
+
 ### HVAC Heating Source
 The primary source of heating used by HVAC systems in the model.
 **Name:** htg_src,
@@ -170,6 +262,9 @@ The primary source of heating used by HVAC systems in the model.
 **Units:** ,
 **Required:** true,
 **Model Dependent:** false
+
+**Choice Display Names** ["Electricity", "NaturalGas", "DistrictHeating", "DistrictAmbient"]
+
 
 ### HVAC Cooling Source
 The primary source of cooling used by HVAC systems in the model.
@@ -179,6 +274,9 @@ The primary source of cooling used by HVAC systems in the model.
 **Required:** true,
 **Model Dependent:** false
 
+**Choice Display Names** ["Electricity", "DistrictCooling", "DistrictAmbient"]
+
+
 ### Service Water Heating Source
 The primary source of heating used by SWH systems in the model.
 **Name:** swh_src,
@@ -186,6 +284,9 @@ The primary source of heating used by SWH systems in the model.
 **Units:** ,
 **Required:** true,
 **Model Dependent:** false
+
+**Choice Display Names** ["Inferred", "NaturalGas", "Electricity", "HeatPump"]
+
 
 ### Kitchen Exhaust MakeUp Air Calculation Method
 Determine logic to identify dining or cafe zones to provide makeup air to kitchen exhaust.
@@ -195,6 +296,9 @@ Determine logic to identify dining or cafe zones to provide makeup air to kitche
 **Required:** true,
 **Model Dependent:** false
 
+**Choice Display Names** ["None", "Largest Zone", "Adjacent"]
+
+
 ### Exterior Lighting Zone
 Identify the Exterior Lighting Zone for the Building Site.
 **Name:** exterior_lighting_zone,
@@ -202,6 +306,9 @@ Identify the Exterior Lighting Zone for the Building Site.
 **Units:** ,
 **Required:** true,
 **Model Dependent:** false
+
+**Choice Display Names** ["0 - Undeveloped Areas Parks", "1 - Developed Areas Parks", "2 - Neighborhood", "3 - All Other Areas", "4 - High Activity"]
+
 
 ### Add Constructions to Model
 Construction Set will be applied to entire building
@@ -211,6 +318,7 @@ Construction Set will be applied to entire building
 **Required:** true,
 **Model Dependent:** false
 
+
 ### Add Space Type Loads to Model
 Populate existing space types in model with internal loads.
 **Name:** add_space_type_loads,
@@ -218,6 +326,7 @@ Populate existing space types in model with internal loads.
 **Units:** ,
 **Required:** true,
 **Model Dependent:** false
+
 
 ### Add Elevators to Model
 Elevators will be add directly to space in model vs. being applied to a space type.
@@ -227,6 +336,7 @@ Elevators will be add directly to space in model vs. being applied to a space ty
 **Required:** true,
 **Model Dependent:** false
 
+
 ### Add Internal Mass to Model
 Adds internal mass to each space.
 **Name:** add_internal_mass,
@@ -234,6 +344,7 @@ Adds internal mass to each space.
 **Units:** ,
 **Required:** true,
 **Model Dependent:** false
+
 
 ### Add Exterior Lights to Model
 Multiple exterior lights objects will be added for different classes of lighting such as parking and facade.
@@ -243,6 +354,7 @@ Multiple exterior lights objects will be added for different classes of lighting
 **Required:** true,
 **Model Dependent:** false
 
+
 ### Onsite Parking Fraction
 If set to 0 no exterior lighting for parking will be added
 **Name:** onsite_parking_fraction,
@@ -250,6 +362,7 @@ If set to 0 no exterior lighting for parking will be added
 **Units:** ,
 **Required:** true,
 **Model Dependent:** false
+
 
 ### Add Exhaust Fans to Model
 Depending upon building type exhaust fans can be in kitchens, restrooms or other space types
@@ -259,6 +372,7 @@ Depending upon building type exhaust fans can be in kitchens, restrooms or other
 **Required:** true,
 **Model Dependent:** false
 
+
 ### Add Service Water Heating to Model
 This will add both the supply and demand side of service water heating.
 **Name:** add_swh,
@@ -266,6 +380,7 @@ This will add both the supply and demand side of service water heating.
 **Units:** ,
 **Required:** true,
 **Model Dependent:** false
+
 
 ### Add Thermostats
 Add Thermostat to model based on Space Type Standards information of spaces assigned to thermal zones.
@@ -275,6 +390,7 @@ Add Thermostat to model based on Space Type Standards information of spaces assi
 **Required:** true,
 **Model Dependent:** false
 
+
 ### Add HVAC System to Model
 Add HVAC System to the model
 **Name:** add_hvac,
@@ -282,6 +398,7 @@ Add HVAC System to the model
 **Units:** ,
 **Required:** true,
 **Model Dependent:** false
+
 
 ### Add Refrigeration to Model
 Add refrigeration cases and walkins model
@@ -291,6 +408,7 @@ Add refrigeration cases and walkins model
 **Required:** true,
 **Model Dependent:** false
 
+
 ### Modify weekday hours of operation
 Modify the weekday hours of operation in the model.
 **Name:** modify_wkdy_op_hrs,
@@ -298,6 +416,7 @@ Modify the weekday hours of operation in the model.
 **Units:** ,
 **Required:** true,
 **Model Dependent:** false
+
 
 ### Weekday Operating Hours Start Time
 Enter 24 hour values with fractional values converted to minutes. e.g. 17.25 = 5:15pm. Only used if Modify weekday hours of operation is true.
@@ -307,6 +426,7 @@ Enter 24 hour values with fractional values converted to minutes. e.g. 17.25 = 5
 **Required:** true,
 **Model Dependent:** false
 
+
 ### Weekday Operating Hours Duration
 Length of weekday operating hours. Enter 24 hour values with fractional values converted to minutes. e.g. 17.25 = 5:15pm. Only used if Modify weekday hours of operation is true.
 **Name:** wkdy_op_hrs_duration,
@@ -314,6 +434,7 @@ Length of weekday operating hours. Enter 24 hour values with fractional values c
 **Units:** Hours,
 **Required:** true,
 **Model Dependent:** false
+
 
 ### Modify weekend hours of operation
 Modify the weekend hours of operation in the model.
@@ -323,6 +444,7 @@ Modify the weekend hours of operation in the model.
 **Required:** true,
 **Model Dependent:** false
 
+
 ### Weekend Operating Hours Start Time
 Enter 24 hour values with fractional values converted to minutes. e.g. 17.25 = 5:15pm.  Only used if Modify weekend hours of operation is true.
 **Name:** wknd_op_hrs_start_time,
@@ -330,6 +452,7 @@ Enter 24 hour values with fractional values converted to minutes. e.g. 17.25 = 5
 **Units:** Hours,
 **Required:** true,
 **Model Dependent:** false
+
 
 ### Weekend Operating Hours Duration
 Length of weekend operating hours. Enter 24 hour values with fractional values converted to minutes. e.g. 17.25 = 5:15pm.  Only used if Modify weekend hours of operation is true.
@@ -339,6 +462,7 @@ Length of weekend operating hours. Enter 24 hour values with fractional values c
 **Required:** true,
 **Model Dependent:** false
 
+
 ### Unmet Hours Tolerance
 Set the thermostat setpoint tolerance for unmet hours in degrees Rankine
 **Name:** unmet_hours_tolerance,
@@ -346,6 +470,7 @@ Set the thermostat setpoint tolerance for unmet hours in degrees Rankine
 **Units:** ,
 **Required:** true,
 **Model Dependent:** false
+
 
 ### Clean Model of non-geometry objects
 Only removes objects of type that are selected to be added.
@@ -355,6 +480,7 @@ Only removes objects of type that are selected to be added.
 **Required:** true,
 **Model Dependent:** false
 
+
 ### Use Upstream Argument Values
 When true this will look for arguments or registerValues in upstream measures that match arguments from this measure, and will use the value from the upstream measure in place of what is entered for this measure.
 **Name:** use_upstream_args,
@@ -363,6 +489,7 @@ When true this will look for arguments or registerValues in upstream measures th
 **Required:** true,
 **Model Dependent:** false
 
+
 ### Enable Daylight Savings
 By default this will force daylight savings to be enabled. Set to false if in a location where DST is not followed, or if needed for specific use case.
 **Name:** enable_dst,
@@ -370,6 +497,7 @@ By default this will force daylight savings to be enabled. Set to false if in a 
 **Units:** ,
 **Required:** true,
 **Model Dependent:** false
+
 
 
 
