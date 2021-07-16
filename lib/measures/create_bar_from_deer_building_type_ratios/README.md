@@ -301,7 +301,7 @@ While the floor area and number of stories arguments determine the size of the b
 *Aspect Ratio of 2.0*
 
 ![Aspect Ratio 1.0](./docs/ar_1.png?raw=true)
-*Aspect Ratio of 2.0*
+*Aspect Ratio of 1.0*
 
 ![Aspect Ratio 0.5](./docs/ar_05.png?raw=true)
 *Aspect Ratio of 0.5*
