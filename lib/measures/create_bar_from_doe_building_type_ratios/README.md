@@ -20,13 +20,15 @@ ___
 ## Table of Contents
 - [Measure Overview](#measure-overview)<br/>
 - [DOE Template and Building Type Mapping](#doe-template-and-building-type-mapping)<br/>
-- [Building Type Mix](#building-type-mix)<br/>
-- [Floor Area](#floor-area)<br/>
-- [Height, Stories, and Orientation](#height-stories-and-orientation)<br/>
-- [Building Shape](#building-shape)<br/>
-- [Window to Wall Ratio](#window-to-wall-ratio)<br/>
-- [Party Walls and Exposure of Top and Bottom Stories](#party-walls-and-exposure-of-top-and-bottom-stories)<br/>
-- [Calculation Methods and Articulation Logic](#calculation-methods-and-articulation-logic)<br/>
+- [Functionality and Input Overview](#functionality-and-input-overview)<br/>
+  - [Building Type Mix](#building-type-mix)<br/>
+  - [Floor Area](#floor-area)<br/>
+  - [Height, Stories, and Orientation](#height-stories-and-orientation)<br/>
+  - [Template](#template)<br/>
+  - [Building Shape](#building-shape)<br/>
+  - [Window to Wall Ratio](#window-to-wall-ratio)<br/>
+  - [Party Walls and Exposure of Top and Bottom Stories](#party-walls-and-exposure-of-top-and-bottom-stories)<br/>
+  - [Calculation Methods and Articulation Logic](#calculation-methods-and-articulation-logic)<br/>
 - [Development Comments](#development-comments)<br/>
 - [Automatically Generated Argument List](#arguments)<br/>
 
@@ -38,7 +40,7 @@ This is generally meant to run on an empty model, but it does not actively delet
 
 ## DOE Template and Building Type Mapping
 
-The Templates prefixed with "Comstock have been slightly modified over the template of the same name without the prefix to be more representation of general use inputs."
+The Templates prefixed with "Comstock"" have been slightly modified over the template of the same name without the prefix to be more representation of general use inputs."
 
 #### Templates:
 
@@ -291,7 +293,7 @@ The `Building Rotation` argument will rotate the building after the geometry is 
 
 #### Template
 
-The `Template` is uesed in OpenStudio measures and the OpenStudio standards gem to refer to a specific target building code standard or vintage. For exampe ASHRAE 90.1 2004 or the DOE Ref Pre-1980 vintage used for the DOE reference buildings. Template is used here along with the building types selected to define the list and ratios of space types in the model. While generally the space type ratio is the same across different templates there are exceptions to this such as the inclusion of data centers in newer LargeOffice buildings.
+The `Template` is used in OpenStudio measures and the OpenStudio standards gem to refer to a specific target building code standard or vintage. For example ASHRAE 90.1 2004 or the DOE Ref Pre-1980 vintage used for the DOE reference buildings. Template is used here along with the building types selected to define the list and ratios of space types in the model. While generally the space type ratio is the same across different templates there are exceptions to this such as the inclusion of data centers in newer LargeOffice buildings.
 
 #### Building Shape
 
