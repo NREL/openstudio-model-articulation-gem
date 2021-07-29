@@ -85,7 +85,7 @@ class CreateTypicalDEERBuildingFromModel < OpenStudio::Measure::ModelMeasure
     end
 
     # Make argument for template
-    template = OpenStudio::Measure::OSArgument.makeChoiceArgument('template', get_doe_templates(false), true)
+    template = OpenStudio::Measure::OSArgument.makeChoiceArgument('template', get_deer_templates(false), true)
     template.setDisplayName('Target Standard')
     template.setDefaultValue(default_string)
     args << template

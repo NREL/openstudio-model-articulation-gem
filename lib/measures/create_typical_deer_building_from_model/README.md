@@ -40,33 +40,25 @@ While this measure has many arguments, they all have default values so you can s
 
 
 
-- DOE Ref Pre-1980<br/>
+- DEER Pre-1975<br/>
 
-- DOE Ref 1980-2004<br/>
+- DEER 1985<br/>
 
-- 90.1-2004<br/>
+- DEER 1996<br/>
 
-- 90.1-2007<br/>
+- DEER 2003<br/>
 
-- 90.1-2010<br/>
+- DEER 2007<br/>
 
-- 90.1-2013<br/>
+- DEER 2011<br/>
 
-- 90.1-2016<br/>
+- DEER 2014<br/>
 
-- 90.1-2019<br/>
+- DEER 2015<br/>
 
-- ComStock DOE Ref Pre-1980<br/>
+- DEER 2017<br/>
 
-- ComStock DOE Ref 1980-2004<br/>
-
-- ComStock 90.1-2004<br/>
-
-- ComStock 90.1-2007<br/>
-
-- ComStock 90.1-2010<br/>
-
-- ComStock 90.1-2013<br/>
+- DEER 2020<br/>
 
 
 
@@ -230,7 +222,7 @@ This measure relies on the openstudio-standards gem which is included in the Ope
 **Required:** true,
 **Model Dependent:** false
 
-**Choice Display Names** ["DOE Ref Pre-1980", "DOE Ref 1980-2004", "90.1-2004", "90.1-2007", "90.1-2010", "90.1-2013", "90.1-2016", "90.1-2019", "ComStock DOE Ref Pre-1980", "ComStock DOE Ref 1980-2004", "ComStock 90.1-2004", "ComStock 90.1-2007", "ComStock 90.1-2010", "ComStock 90.1-2013"]
+**Choice Display Names** ["DEER Pre-1975", "DEER 1985", "DEER 1996", "DEER 2003", "DEER 2007", "DEER 2011", "DEER 2014", "DEER 2015", "DEER 2017", "DEER 2020"]
 
 
 ### HVAC System Type

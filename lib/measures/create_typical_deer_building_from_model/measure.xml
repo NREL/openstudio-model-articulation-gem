@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>create_typical_deer_building_from_model</name>
   <uid>09cc23db-5e9b-4b11-b167-1852a15ed339</uid>
-  <version_id>91b7e9a1-b0ad-443c-a0e1-649ccef3c74f</version_id>
-  <version_modified>20210716T214943Z</version_modified>
+  <version_id>bdfa6001-d655-473d-94bd-02c58b4808a8</version_id>
+  <version_modified>20210729T163235Z</version_modified>
   <xml_checksum>AABAC479</xml_checksum>
   <class_name>CreateTypicalDEERBuildingFromModel</class_name>
   <display_name>Create Typical DEER Building from Model</display_name>
@@ -17,63 +17,46 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>90.1-2010</default_value>
       <choices>
         <choice>
-          <value>DOE Ref Pre-1980</value>
-          <display_name>DOE Ref Pre-1980</display_name>
+          <value>DEER Pre-1975</value>
+          <display_name>DEER Pre-1975</display_name>
         </choice>
         <choice>
-          <value>DOE Ref 1980-2004</value>
-          <display_name>DOE Ref 1980-2004</display_name>
+          <value>DEER 1985</value>
+          <display_name>DEER 1985</display_name>
         </choice>
         <choice>
-          <value>90.1-2004</value>
-          <display_name>90.1-2004</display_name>
+          <value>DEER 1996</value>
+          <display_name>DEER 1996</display_name>
         </choice>
         <choice>
-          <value>90.1-2007</value>
-          <display_name>90.1-2007</display_name>
+          <value>DEER 2003</value>
+          <display_name>DEER 2003</display_name>
         </choice>
         <choice>
-          <value>90.1-2010</value>
-          <display_name>90.1-2010</display_name>
+          <value>DEER 2007</value>
+          <display_name>DEER 2007</display_name>
         </choice>
         <choice>
-          <value>90.1-2013</value>
-          <display_name>90.1-2013</display_name>
+          <value>DEER 2011</value>
+          <display_name>DEER 2011</display_name>
         </choice>
         <choice>
-          <value>90.1-2016</value>
-          <display_name>90.1-2016</display_name>
+          <value>DEER 2014</value>
+          <display_name>DEER 2014</display_name>
         </choice>
         <choice>
-          <value>90.1-2019</value>
-          <display_name>90.1-2019</display_name>
+          <value>DEER 2015</value>
+          <display_name>DEER 2015</display_name>
         </choice>
         <choice>
-          <value>ComStock DOE Ref Pre-1980</value>
-          <display_name>ComStock DOE Ref Pre-1980</display_name>
+          <value>DEER 2017</value>
+          <display_name>DEER 2017</display_name>
         </choice>
         <choice>
-          <value>ComStock DOE Ref 1980-2004</value>
-          <display_name>ComStock DOE Ref 1980-2004</display_name>
-        </choice>
-        <choice>
-          <value>ComStock 90.1-2004</value>
-          <display_name>ComStock 90.1-2004</display_name>
-        </choice>
-        <choice>
-          <value>ComStock 90.1-2007</value>
-          <display_name>ComStock 90.1-2007</display_name>
-        </choice>
-        <choice>
-          <value>ComStock 90.1-2010</value>
-          <display_name>ComStock 90.1-2010</display_name>
-        </choice>
-        <choice>
-          <value>ComStock 90.1-2013</value>
-          <display_name>ComStock 90.1-2013</display_name>
+          <value>DEER 2020</value>
+          <display_name>DEER 2020</display_name>
         </choice>
       </choices>
     </argument>
@@ -1431,13 +1414,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>638EF65B</checksum>
+      <checksum>10822852</checksum>
     </file>
     <file>
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
-      <checksum>DA66A36F</checksum>
+      <checksum>1B2E71EB</checksum>
     </file>
   </files>
 </measure>
