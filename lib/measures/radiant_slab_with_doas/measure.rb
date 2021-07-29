@@ -220,7 +220,11 @@ To reduce unmet hours, use an expanded comfort range as mentioned above, remove 
     # remove existing hvac systems
     if remove_existing_hvac
       runner.registerInfo('Removing existing HVAC systems from the model')
-      std.remove_HVAC(model)
+      if std.respond_to?('remove_HVAC')
+        std.remove_HVAC(model) #OpenStuido 3.2.1 and earlierop use this, future versions will use snake_case method
+      else
+        std.remove_hvac(model)
+      end
     end
 
     # exclude plenum zones, zones without thermostats, and zones with no floor area
