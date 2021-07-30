@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>create_bar_from_space_type_ratios</name>
   <uid>3e988765-9673-46f8-9b65-99d5b86c2b22</uid>
-  <version_id>bd66bd8f-6b3e-4b66-8b23-77f9896ed480</version_id>
-  <version_modified>20210423T142531Z</version_modified>
+  <version_id>fb84a039-2d3a-452d-bdda-a2ced9133628</version_id>
+  <version_modified>20210716T215705Z</version_modified>
   <xml_checksum>49BEF039</xml_checksum>
   <class_name>CreateBarFromSpaceTypeRatios</class_name>
   <display_name>Create Bar From Space Type Ratios</display_name>
@@ -649,22 +649,16 @@
       <checksum>A64E1184</checksum>
     </file>
     <file>
-      <filename>README.md.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>readmeerb</usage_type>
-      <checksum>E339AF5C</checksum>
-    </file>
-    <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>43184976</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
       <checksum>A21A3ED2</checksum>
+    </file>
+    <file>
+      <filename>create_bar_from_space_type_ratios_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>61FDF1C4</checksum>
     </file>
     <file>
       <version>
@@ -675,13 +669,19 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>B4A47395</checksum>
+      <checksum>B33DCF44</checksum>
     </file>
     <file>
-      <filename>create_bar_from_space_type_ratios_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>61FDF1C4</checksum>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>0BC848FD</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>F153B1B9</checksum>
     </file>
   </files>
 </measure>
