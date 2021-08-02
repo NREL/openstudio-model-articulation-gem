@@ -1,5 +1,12 @@
 # OpenStudio Model Articulation Gems
 
+## Version 0.4.1
+
+* Support for OpenStudio 3.2.1 (upgrade to extension gem 0.4.3 and standards gem 0.2.14)
+* update to use rubocop_v4
+* Documentation update to some measures
+* Setting up webhook for https://bcl2.nrel.gov
+
 ## Version 0.4.0
 
 * Support Ruby ~> 2.7
