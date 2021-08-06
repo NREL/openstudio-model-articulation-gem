@@ -57,13 +57,7 @@ class AddEMPDMaterialProperties < OpenStudio::Measure::ModelMeasure
 
   # human readable description of modeling approach
   def modeler_description
-    return %W[
-			Adds the properties for the "MoisturePenetrationDepthConductionTransferFunction" or effective 
-			moisture penetration depth (EMPD) Heat Balance Model with inputs for penetration depths. \n\n
-			Leaving "Change heat balance algorithm?" blank will use the current OpenStudio heat balance algorithm setting. \n\n
-			At least 1 interior material needs to have moisture penetration depth properties set 
-			to use the EMPD heat balance algorithm.
-			].join(' ')
+    return ['Adds', 'the', 'properties', 'for', 'the', 'MoisturePenetrationDepthConductionTransferFunction', 'or', 'effective', 'moisture', 'penetration', 'depth', '(EMPD)', 'Heat', 'Balance', 'Model', 'with', 'inputs', 'for', 'penetration', 'depths.', "\n\n", 'Leaving', 'Change', 'heat', 'balance', 'algorithm?', 'blank', 'will', 'use', 'the', 'current', 'OpenStudio', 'heat', 'balance', 'algorithm', 'setting.', "\n\n", 'At', 'least', '1', 'interior', 'material', 'needs', 'to', 'have', 'moisture', 'penetration', 'depth', 'properties', 'set', 'to', 'use', 'the', 'EMPD', 'heat', 'balance', 'algorithm.'].join(' ')
   end
 
   # define the arguments that the user will input
@@ -72,7 +66,7 @@ class AddEMPDMaterialProperties < OpenStudio::Measure::ModelMeasure
 
     # find the available materials
     list_materials = model.getMaterials
-    mat_names = Array.new()
+    mat_names = []
     list_materials.each do |v|
       mat_names.append(v.name.to_s)
     end
@@ -80,74 +74,74 @@ class AddEMPDMaterialProperties < OpenStudio::Measure::ModelMeasure
 
     # Create arguments for material selection (Choice)
     selected_material = OpenStudio::Measure::OSArgument.makeChoiceArgument('selected_material',
-    				mat_names, true, true)
-    selected_material.setDisplayName("Select Material")
+                                                                           mat_names, true, true)
+    selected_material.setDisplayName('Select Material')
     if !mat_names.empty?
-    	selected_material.setDefaultValue(mat_names[0])
+      selected_material.setDefaultValue(mat_names[0])
     else
-    	selected_material.setDefaultValue("No Materials In Model!")
+      selected_material.setDefaultValue('No Materials In Model!')
     end
     args << selected_material
 
-	  # create argument for Water Vapor Diffusion Resistance Factor
-    waterDiffFact = OpenStudio::Measure::OSArgument.makeDoubleArgument('waterDiffFact', true)
-    waterDiffFact.setDisplayName("Set value for Water Vapor Diffusion Resistance Factor")
-    waterDiffFact.setDefaultValue(0)
-    args << waterDiffFact
+    # create argument for Water Vapor Diffusion Resistance Factor
+    water_diff_fact = OpenStudio::Measure::OSArgument.makeDoubleArgument('water_diff_fact', true)
+    water_diff_fact.setDisplayName('Set value for Water Vapor Diffusion Resistance Factor')
+    water_diff_fact.setDefaultValue(0)
+    args << water_diff_fact
 
-	  # create argument for Coefficient A
-    coefA = OpenStudio::Measure::OSArgument.makeDoubleArgument('coefA', true)
-    coefA.setDisplayName("Set value for Moisture Equation Coefficient A")
-    coefA.setDefaultValue(0)
-    args << coefA
+    # create argument for Coefficient A
+    coef_a = OpenStudio::Measure::OSArgument.makeDoubleArgument('coef_a', true)
+    coef_a.setDisplayName('Set value for Moisture Equation Coefficient A')
+    coef_a.setDefaultValue(0)
+    args << coef_a
 
     # create argument for Coefficient B
-    coefB = OpenStudio::Measure::OSArgument.makeDoubleArgument('coefB', true)
-    coefB.setDisplayName("Set value for Moisture Equation Coefficient B")
-    coefB.setDefaultValue(0)
-    args << coefB
+    coef_b = OpenStudio::Measure::OSArgument.makeDoubleArgument('coef_b', true)
+    coef_b.setDisplayName('Set value for Moisture Equation Coefficient B')
+    coef_b.setDefaultValue(0)
+    args << coef_b
 
     # create argument for Coefficient C
-    coefC = OpenStudio::Measure::OSArgument.makeDoubleArgument('coefC', true)
-    coefC.setDisplayName("Set value for Moisture Equation Coefficient C")
-    coefC.setDefaultValue(0)
-    args << coefC
+    coef_c = OpenStudio::Measure::OSArgument.makeDoubleArgument('coef_c', true)
+    coef_c.setDisplayName('Set value for Moisture Equation Coefficient C')
+    coef_c.setDefaultValue(0)
+    args << coef_c
 
     # create argument for Coefficient D
-    coefD = OpenStudio::Measure::OSArgument.makeDoubleArgument('coefD', true)
-    coefD.setDisplayName("Set value for Moisture Equation Coefficient D")
-    coefD.setDefaultValue(0)
-    args << coefD
+    coef_d = OpenStudio::Measure::OSArgument.makeDoubleArgument('coef_d', true)
+    coef_d.setDisplayName('Set value for Moisture Equation Coefficient D')
+    coef_d.setDefaultValue(0)
+    args << coef_d
 
-  	# create argument for Surface Layer Penetration Depth
-  	surfacePenetration = OpenStudio::Measure::OSArgument.makeStringArgument('surfacePenetration', true)
-  	surfacePenetration.setDisplayName("Set value for Surface Layer Penetration Depth")
-  	surfacePenetration.setDefaultValue("Auto")
-  	args << surfacePenetration
+    # create argument for Surface Layer Penetration Depth
+    surface_penetration = OpenStudio::Measure::OSArgument.makeStringArgument('surface_penetration', true)
+    surface_penetration.setDisplayName('Set value for Surface Layer Penetration Depth')
+    surface_penetration.setDefaultValue('Auto')
+    args << surface_penetration
 
-  	# create argument for Deep Layer Penetration Depth
-  	deepPenetration = OpenStudio::Measure::OSArgument.makeStringArgument('deepPenetration', false)
-  	deepPenetration.setDisplayName("Set value for Deep Layer Penetration Depth")
-  	deepPenetration.setDefaultValue("Auto")
-  	args << deepPenetration
+    # create argument for Deep Layer Penetration Depth
+    deep_penetration = OpenStudio::Measure::OSArgument.makeStringArgument('deep_penetration', false)
+    deep_penetration.setDisplayName('Set value for Deep Layer Penetration Depth')
+    deep_penetration.setDefaultValue('Auto')
+    args << deep_penetration
 
-	  # create argument for Coating layer Thickness
+    # create argument for Coating layer Thickness
     coating = OpenStudio::Measure::OSArgument.makeDoubleArgument('coating', true)
-    coating.setDisplayName("Set value for Coating Layer Thickness")
+    coating.setDisplayName('Set value for Coating Layer Thickness')
     coating.setDefaultValue(0)
     args << coating
 
     # create argument for Coating layer Resistance
-    coatingRes = OpenStudio::Measure::OSArgument.makeDoubleArgument('coatingRes', true)
-    coatingRes.setDisplayName("Set value for Coating Layer Resistance Factor")
-    coatingRes.setDefaultValue(0)
-    args << coatingRes
+    coating_res = OpenStudio::Measure::OSArgument.makeDoubleArgument('coating_res', true)
+    coating_res.setDisplayName('Set value for Coating Layer Resistance Factor')
+    coating_res.setDefaultValue(0)
+    args << coating_res
 
     # create argument for heat balance algorithm
-    algs = ["", "MoisturePenetrationDepthConductionTransferFunction",
-        "ConductionTransferFunction"]
+    algs = ['', 'MoisturePenetrationDepthConductionTransferFunction',
+            'ConductionTransferFunction']
     algorithm = OpenStudio::Measure::OSArgument.makeChoiceArgument('algorithm', algs, false)
-    algorithm.setDisplayName("Change heat balance algorithm?")
+    algorithm.setDisplayName('Change heat balance algorithm?')
     algorithm.setDefaultValue(algs[0])
     args << algorithm
 
@@ -165,46 +159,46 @@ class AddEMPDMaterialProperties < OpenStudio::Measure::ModelMeasure
 
     # assign the user inputs to variables
     selected_material = runner.getStringArgumentValue('selected_material', user_arguments)
-    waterDiffFact = runner.getDoubleArgumentValue('waterDiffFact', user_arguments)
-    coefA = runner.getDoubleArgumentValue('coefA', user_arguments)
-    coefB = runner.getDoubleArgumentValue('coefB', user_arguments)
-    coefC = runner.getDoubleArgumentValue('coefC', user_arguments)
-    coefD = runner.getDoubleArgumentValue('coefD', user_arguments)
-    surfacePenetration = runner.getStringArgumentValue('surfacePenetration', user_arguments)
-    surfacePenetration = surfacePenetration.to_f
-    deepPenetration = runner.getStringArgumentValue('deepPenetration', user_arguments)
-    deepPenetration = deepPenetration.to_f
+    water_diff_fact = runner.getDoubleArgumentValue('water_diff_fact', user_arguments)
+    coef_a = runner.getDoubleArgumentValue('coef_a', user_arguments)
+    coef_b = runner.getDoubleArgumentValue('coef_b', user_arguments)
+    coef_c = runner.getDoubleArgumentValue('coef_c', user_arguments)
+    coef_d = runner.getDoubleArgumentValue('coef_d', user_arguments)
+    surface_penetration = runner.getStringArgumentValue('surface_penetration', user_arguments)
+    surface_penetration = surface_penetration.to_f
+    deep_penetration = runner.getStringArgumentValue('deep_penetration', user_arguments)
+    deep_penetration = deep_penetration.to_f
     coating = runner.getDoubleArgumentValue('coating', user_arguments)
-    coatingRes = runner.getDoubleArgumentValue('coatingRes', user_arguments)
+    coating_res = runner.getDoubleArgumentValue('coating_res', user_arguments)
     algorithm = runner.getStringArgumentValue('algorithm', user_arguments)
 
     #---------------------------------------------------------------------------
     # Validate arguments
-    if waterDiffFact == 0
-      runner.registerError("The Water Vapor Diffusion Resistance Factor needs to be greater than 0.")
+    if water_diff_fact == 0
+      runner.registerError('The Water Vapor Diffusion Resistance Factor needs to be greater than 0.')
       return false
     end
-	if coefA == 0
-      runner.registerWarning("The Moisture Equation Coefficient A has been left as 0. This is usally a non-zero value.")
+    if coef_a == 0
+      runner.registerWarning('The Moisture Equation Coefficient A has been left as 0. This is usally a non-zero value.')
     end
-	if coefB == 0
-      runner.registerWarning("The Moisture Equation Coefficient B has been left as 0. This is usally a non-zero value.")
+    if coef_b == 0
+      runner.registerWarning('The Moisture Equation Coefficient B has been left as 0. This is usally a non-zero value.')
     end
-	if coefC == 0
-      runner.registerWarning("The Moisture Equation Coefficient C has been left as 0. This is usally a non-zero value.")
+    if coef_c == 0
+      runner.registerWarning('The Moisture Equation Coefficient C has been left as 0. This is usally a non-zero value.')
     end
-	if coefD == 0
-      runner.registerWarning("The Moisture Equation Coefficient D has been left as 0. This is usally a non-zero value.")
+    if coef_d == 0
+      runner.registerWarning('The Moisture Equation Coefficient D has been left as 0. This is usally a non-zero value.')
     end
     #---------------------------------------------------------------------------
 
     # Get os object for selected material
     mats = model.getMaterials
-    mat = ""
+    mat = ''
     mats.each do |m|
-    	if m.name.to_s == selected_material
-    		mat = m
-    	end
+      if m.name.to_s == selected_material
+        mat = m
+      end
     end
 
     # report initial condition of model
@@ -212,7 +206,7 @@ class AddEMPDMaterialProperties < OpenStudio::Measure::ModelMeasure
 
     #---------------------------------------------------------------------------
     # Set algorithm and report to users
-    if algorithm != ""
+    if algorithm != ''
       alg = model.getHeatBalanceAlgorithm
       alg.setAlgorithm(algorithm)
       runner.registerInfo("Heat Balance Algorithm Set to : #{algorithm}")
@@ -220,31 +214,30 @@ class AddEMPDMaterialProperties < OpenStudio::Measure::ModelMeasure
     #---------------------------------------------------------------------------
 
     # Add moisture properties object and make changes to model
-      n = OpenStudio::Model::MaterialPropertyMoisturePenetrationDepthSettings.new(
-    				mat, waterDiffFact,coefA,coefB,coefC,coefD,coating,coatingRes)
+    n = OpenStudio::Model::MaterialPropertyMoisturePenetrationDepthSettings.new(
+      mat, water_diff_fact, coef_a, coef_b, coef_c, coef_d, coating, coating_res
+    )
 
     # check if the surface penetration is being autocalculated, and if not set the depth
-    if surfacePenetration > 0
-		n.setSurfaceLayerPenetrationDepth(surfacePenetration)
-		runner.registerInfo("Surface layer penetration depth set to: #{surfacePenetration}")
+    if surface_penetration > 0
+      n.setSurfaceLayerPenetrationDepth(surface_penetration)
+      runner.registerInfo("Surface layer penetration depth set to: #{surface_penetration}")
     else
-    	n.autocalculateSurfaceLayerPenetrationDepth()
-		runner.registerInfo("Surface layer penetration depth set to: AutoCalculate")
+      n.autocalculateSurfaceLayerPenetrationDepth
+      runner.registerInfo('Surface layer penetration depth set to: AutoCalculate')
     end
-
 
     # check if the deep penetration is being autocalculated, and if not set the depth
-    if deepPenetration > 0
-    	n.setDeepLayerPenetrationDepth(deepPenetration)
-		runner.registerInfo("Deep layer penetration depth set to: #{surfacePenetration}")
+    if deep_penetration > 0
+      n.setDeepLayerPenetrationDepth(deep_penetration)
+      runner.registerInfo("Deep layer penetration depth set to: #{surface_penetration}")
     else
-    	n.autocalculateDeepLayerPenetrationDepth()
-		runner.registerInfo("Deep layer penetration depth set to: AutoCalculate")
+      n.autocalculateDeepLayerPenetrationDepth
+      runner.registerInfo('Deep layer penetration depth set to: AutoCalculate')
     end
 
-
-  	# report final condition of model
-  	runner.registerFinalCondition("Moisture properties were added to #{selected_material}.")
+    # report final condition of model
+    runner.registerFinalCondition("Moisture properties were added to #{selected_material}.")
 
     return true
   end

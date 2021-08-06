@@ -38,7 +38,7 @@
 require 'openstudio'
 require 'openstudio/measure/ShowRunnerOutput'
 require 'minitest/autorun'
-require_relative '../measure.rb'
+require_relative '../measure'
 require 'fileutils'
 
 class AddEMPDMaterialPropertiesTest < Minitest::Test
@@ -80,12 +80,12 @@ class AddEMPDMaterialPropertiesTest < Minitest::Test
     # If the argument has a default that you want to use, you don't need it in the hash
     args_hash = {}
     args_hash['selected_material'] = '1/2IN Gypsum'
-    args_hash["waterDiffFact"] = 6.0
-    args_hash["coefA"] = 0.0068
-    args_hash["coefB"] = 0.939
-    args_hash["coefC"] = 0.0202
-    args_hash["coefD"] = 12.2
-    args_hash["surfacePenetration"] = '0.019'
+    args_hash['waterDiffFact'] = 6.0
+    args_hash['coefA'] = 0.0068
+    args_hash['coefB'] = 0.939
+    args_hash['coefC'] = 0.0202
+    args_hash['coefD'] = 12.2
+    args_hash['surfacePenetration'] = '0.019'
     args_hash['deepPenetration'] = '0.073'
     args_hash['coating'] = 0.001
     args_hash['coatingRes'] = 200.0

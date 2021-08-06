@@ -8,9 +8,9 @@
 Adds the properties for the effective moisture penetration depth (EMPD) Heat Balance Model with inputs for penetration depths.
 
 ## Modeler Description
-Adds the properties for the "MoisturePenetrationDepthConductionTransferFunction" or effective moisture penetration depth (EMPD) Heat Balance Model with inputs for penetration depths. 
+Adds the properties for the MoisturePenetrationDepthConductionTransferFunction or effective moisture penetration depth (EMPD) Heat Balance Model with inputs for penetration depths. 
 
- Leaving "Change heat balance algorithm?" blank will use the current OpenStudio heat balance algorithm setting. 
+ Leaving Change heat balance algorithm? blank will use the current OpenStudio heat balance algorithm setting. 
 
  At least 1 interior material needs to have moisture penetration depth properties set to use the EMPD heat balance algorithm.
 
@@ -33,7 +33,7 @@ ModelMeasure
 
 ### Set value for Water Vapor Diffusion Resistance Factor
 
-**Name:** waterDiffFact,
+**Name:** water_diff_fact,
 **Type:** Double,
 **Units:** ,
 **Required:** true,
@@ -41,7 +41,7 @@ ModelMeasure
 
 ### Set value for Moisture Equation Coefficient A
 
-**Name:** coefA,
+**Name:** coef_a,
 **Type:** Double,
 **Units:** ,
 **Required:** true,
@@ -49,7 +49,7 @@ ModelMeasure
 
 ### Set value for Moisture Equation Coefficient B
 
-**Name:** coefB,
+**Name:** coef_b,
 **Type:** Double,
 **Units:** ,
 **Required:** true,
@@ -57,7 +57,7 @@ ModelMeasure
 
 ### Set value for Moisture Equation Coefficient C
 
-**Name:** coefC,
+**Name:** coef_c,
 **Type:** Double,
 **Units:** ,
 **Required:** true,
@@ -65,7 +65,7 @@ ModelMeasure
 
 ### Set value for Moisture Equation Coefficient D
 
-**Name:** coefD,
+**Name:** coef_d,
 **Type:** Double,
 **Units:** ,
 **Required:** true,
@@ -73,7 +73,7 @@ ModelMeasure
 
 ### Set value for Surface Layer Penetration Depth
 
-**Name:** surfacePenetration,
+**Name:** surface_penetration,
 **Type:** String,
 **Units:** ,
 **Required:** true,
@@ -81,7 +81,7 @@ ModelMeasure
 
 ### Set value for Deep Layer Penetration Depth
 
-**Name:** deepPenetration,
+**Name:** deep_penetration,
 **Type:** String,
 **Units:** ,
 **Required:** false,
@@ -97,7 +97,7 @@ ModelMeasure
 
 ### Set value for Coating Layer Resistance Factor
 
-**Name:** coatingRes,
+**Name:** coating_res,
 **Type:** Double,
 **Units:** ,
 **Required:** true,
