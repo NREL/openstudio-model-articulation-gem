@@ -1,0 +1,201 @@
+<?xml version="1.0"?>
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>add_empd_material_properties</name>
+  <uid>91799c24-d81e-42eb-a458-f2b3a0ee1ff3</uid>
+  <version_id>dc1bc4ee-dd74-49c5-8d5b-83b75c848dbb</version_id>
+  <version_modified>20210806T162708Z</version_modified>
+  <xml_checksum>9EF0A36D</xml_checksum>
+  <class_name>AddEMPDMaterialProperties</class_name>
+  <display_name>Add EMPD Material Properties</display_name>
+  <description>Adds the properties for the effective moisture penetration depth (EMPD) Heat Balance Model with inputs for penetration depths.</description>
+  <modeler_description>Adds the properties for the MoisturePenetrationDepthConductionTransferFunction or effective moisture penetration depth (EMPD) Heat Balance Model with inputs for penetration depths. 
+
+ Leaving Change heat balance algorithm? blank will use the current OpenStudio heat balance algorithm setting. 
+
+ At least 1 interior material needs to have moisture penetration depth properties set to use the EMPD heat balance algorithm.</modeler_description>
+  <arguments>
+    <argument>
+      <name>selected_material</name>
+      <display_name>Select Material</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>true</model_dependent>
+    </argument>
+    <argument>
+      <name>water_diff_fact</name>
+      <display_name>Set value for Water Vapor Diffusion Resistance Factor</display_name>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>coef_a</name>
+      <display_name>Set value for Moisture Equation Coefficient A</display_name>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>coef_b</name>
+      <display_name>Set value for Moisture Equation Coefficient B</display_name>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>coef_c</name>
+      <display_name>Set value for Moisture Equation Coefficient C</display_name>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>coef_d</name>
+      <display_name>Set value for Moisture Equation Coefficient D</display_name>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>surface_penetration</name>
+      <display_name>Set value for Surface Layer Penetration Depth</display_name>
+      <type>String</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>Auto</default_value>
+    </argument>
+    <argument>
+      <name>deep_penetration</name>
+      <display_name>Set value for Deep Layer Penetration Depth</display_name>
+      <type>String</type>
+      <required>false</required>
+      <model_dependent>false</model_dependent>
+      <default_value>Auto</default_value>
+    </argument>
+    <argument>
+      <name>coating</name>
+      <display_name>Set value for Coating Layer Thickness</display_name>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>coating_res</name>
+      <display_name>Set value for Coating Layer Resistance Factor</display_name>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0</default_value>
+    </argument>
+    <argument>
+      <name>algorithm</name>
+      <display_name>Change heat balance algorithm?</display_name>
+      <type>Choice</type>
+      <required>false</required>
+      <model_dependent>false</model_dependent>
+      <default_value></default_value>
+      <choices>
+        <choice>
+          <value></value>
+          <display_name></display_name>
+        </choice>
+        <choice>
+          <value>MoisturePenetrationDepthConductionTransferFunction</value>
+          <display_name>MoisturePenetrationDepthConductionTransferFunction</display_name>
+        </choice>
+        <choice>
+          <value>ConductionTransferFunction</value>
+          <display_name>ConductionTransferFunction</display_name>
+        </choice>
+      </choices>
+    </argument>
+  </arguments>
+  <outputs />
+  <provenances />
+  <tags>
+    <tag>Envelope.Opaque</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Apply Measure Now</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>OpenStudio Application</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Parametric Analysis Tool</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Use Case</name>
+      <value>Model Articulation</value>
+      <datatype>string</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
+    </file>
+    <file>
+      <filename>.gitkeep</filename>
+      <filetype>gitkeep</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>00000000</checksum>
+    </file>
+    <file>
+      <filename>example_model.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>53D14E69</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>A21A3ED2</checksum>
+    </file>
+    <file>
+      <filename>add_empd_material_properties_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>C065B5ED</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>3.0.0</identifier>
+        <min_compatible>3.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>96F39314</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>D2460F20</checksum>
+    </file>
+  </files>
+</measure>
