@@ -80,15 +80,15 @@ class AddEMPDMaterialPropertiesTest < Minitest::Test
     # If the argument has a default that you want to use, you don't need it in the hash
     args_hash = {}
     args_hash['selected_material'] = '1/2IN Gypsum'
-    args_hash['waterDiffFact'] = 6.0
-    args_hash['coefA'] = 0.0068
-    args_hash['coefB'] = 0.939
-    args_hash['coefC'] = 0.0202
-    args_hash['coefD'] = 12.2
-    args_hash['surfacePenetration'] = '0.019'
-    args_hash['deepPenetration'] = '0.073'
+    args_hash['water_diff_fact'] = 6.0
+    args_hash['coef_a'] = 0.0068
+    args_hash['coef_b'] = 0.939
+    args_hash['coef_c'] = 0.0202
+    args_hash['coef_d'] = 12.2
+    args_hash['surface_penetration'] = '0.019'
+    args_hash['deep_penetration'] = '0.073'
     args_hash['coating'] = 0.001
-    args_hash['coatingRes'] = 200.0
+    args_hash['coating_res'] = 200.0
     args_hash['algorithm'] = 'MoisturePenetrationDepthConductionTransferFunction'
     # using defaults values from measure.rb for other arguments
 
