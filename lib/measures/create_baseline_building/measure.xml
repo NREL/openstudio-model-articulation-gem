@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>create_baseline_building</name>
   <uid>4de56e21-b6cd-45d9-8466-862507d228b2</uid>
-  <version_id>03d1dccc-4a3a-40e5-a3da-79468ee7944c</version_id>
-  <version_modified>20210708T221546Z</version_modified>
+  <version_id>f28d8b88-4892-4645-bbf0-21f21d0f7ad1</version_id>
+  <version_modified>20210806T162711Z</version_modified>
   <xml_checksum>A514F332</xml_checksum>
   <class_name>CreateBaselineBuilding</class_name>
   <display_name>Create Baseline Building</display_name>
