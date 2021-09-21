@@ -47,6 +47,19 @@ bundle exec rake openstudio:test_with_openstudio
 /usr/local/openstudio-3.0.0-beta/bin/openstudio-3.0.0-beta --verbose --bundle '/var/simdata/openstudio/Gemfile' --bundle_path '/var/simdata/openstudio/.bundle/install/' measure -r '/var/simdata/openstudio/lib/measures/radiance_measure/'
 ```
 
+# Compatibility Matrix
+
+|OpenStudio Model Articulation Gem|OpenStudio|Ruby|
+|:--------------:|:----------:|:--------:|
+| 0.4.0 - 0.4.2  | 3.2      | 2.7    |
+| 0.3.0 - 0.3.1  | 3.1      | 2.5    |
+| 0.2.0 - 0.2.1  | 3.0      | 2.5    |
+| 0.1.1 and below | 2.9 and below      | 2.2.4    |
+
+# Contributing 
+
+Please review the [OpenStudio Contribution Policy](https://openstudio.net/openstudio-contribution-policy) if you would like to contribute code to this gem.
+
 ## TODO
 
 - [ ] Move articulation measures from openstudio-measures
