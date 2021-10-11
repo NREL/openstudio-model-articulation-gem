@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>set_window_to_wall_ratio_by_facade</name>
   <uid>c567a0bf-a7d9-4a06-afe9-bf7df79e6bf8</uid>
-  <version_id>aff8deeb-a011-4ad8-8c0d-22e736faa347</version_id>
-  <version_modified>20210423T142511Z</version_modified>
+  <version_id>a02e024d-a1ca-413a-90e2-372cfc217228</version_id>
+  <version_modified>20210929T221458Z</version_modified>
   <xml_checksum>6DE831F7</xml_checksum>
   <class_name>SetWindowToWallRatioByFacade</class_name>
   <display_name>Set Window to Wall Ratio by Facade</display_name>
@@ -233,13 +233,19 @@ The measure doesn?t have any cost or lifecycle arguments, however If lifecycle o
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>DC3FE3CF</checksum>
+      <checksum>6631CF18</checksum>
     </file>
     <file>
       <filename>SetWindowToWallRatioByFacade_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>23972ACF</checksum>
+      <checksum>0F626DE3</checksum>
+    </file>
+    <file>
+      <filename>prototype_sec_sch.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>581DA01B</checksum>
     </file>
   </files>
 </measure>
