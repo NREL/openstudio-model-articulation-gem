@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>create_bar_from_building_type_ratios</name>
   <uid>6e3a14f8-c3c7-4e03-bc51-bef8a52e1a05</uid>
-  <version_id>71b66d7d-6355-4f9b-a1af-5342928775c9</version_id>
-  <version_modified>20210716T215717Z</version_modified>
+  <version_id>48c0bf21-b4c0-4755-83ae-a192dd5201cf</version_id>
+  <version_modified>20211029T200900Z</version_modified>
   <xml_checksum>2AF3A68E</xml_checksum>
   <class_name>CreateBarFromBuildingTypeRatios</class_name>
   <display_name>Create Bar From Building Type Ratios</display_name>
@@ -1683,12 +1683,6 @@
       <checksum>A21A3ED2</checksum>
     </file>
     <file>
-      <filename>create_bar_from_building_type_ratios_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>E910D662</checksum>
-    </file>
-    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -1710,6 +1704,12 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>831A2956</checksum>
+    </file>
+    <file>
+      <filename>create_bar_from_building_type_ratios_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>1E066661</checksum>
     </file>
   </files>
 </measure>
