@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>create_typical_building_from_model</name>
   <uid>339a2e3a-273c-4494-bb50-bfe586a0647c</uid>
-  <version_id>e3107c46-fbd4-40af-aad5-352759b547ec</version_id>
-  <version_modified>20210423T142533Z</version_modified>
+  <version_id>97112603-b027-4802-9310-d0e02b78200d</version_id>
+  <version_modified>20210716T214830Z</version_modified>
   <xml_checksum>EE13F09F</xml_checksum>
   <class_name>CreateTypicalBuildingFromModel</class_name>
   <display_name>Create Typical Building from Model</display_name>
@@ -1539,18 +1539,6 @@
       <checksum>F22DEFBC</checksum>
     </file>
     <file>
-      <filename>README.md.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>readmeerb</usage_type>
-      <checksum>9CCCA1AC</checksum>
-    </file>
-    <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>EC286BBD</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
@@ -1569,6 +1557,18 @@
       <checksum>1C2C0385</checksum>
     </file>
     <file>
+      <filename>Model.hvac.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>32C64B0B</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>6A400402</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -1577,13 +1577,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>D9B1DE15</checksum>
+      <checksum>D98EF78A</checksum>
     </file>
     <file>
-      <filename>Model.hvac.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>32C64B0B</checksum>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>AC908059</checksum>
     </file>
   </files>
 </measure>

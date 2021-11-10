@@ -317,6 +317,13 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
 
       all_surfaces = [s]
       if split_at_doors == 'Split Walls at Doors' && has_doors
+
+        # remove windows before split at doors
+        s.subSurfaces.each do |sub_surface|
+          next if ['Door','OverheadDoor'].include? sub_surface.subSurfaceType
+          sub_surface.remove
+        end
+
         # split base surfaces at doors to create  multiple base surfaces
         split_surfaces = s.splitSurfaceForSubSurfaces.to_a # frozen array
 
@@ -341,9 +348,9 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
           vertices.each do |vertex|
             # initialize new vertex to old vertex
             # rounding values to address tolerance issue 10 digits digits in
-            x_vals << vertex.x.round(8)
-            y_vals << vertex.y.round(8)
-            z_vals << vertex.z.round(8)
+            x_vals << vertex.x.round(4)
+            y_vals << vertex.y.round(4)
+            z_vals << vertex.z.round(4)
           end
           if x_vals.uniq.size <= 2 && y_vals.uniq.size <= 2 && z_vals.uniq.size <= 2
             rect_tri = true

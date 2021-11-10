@@ -68,6 +68,11 @@ class CreateBarFromDEERBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     return 'The building floor area can be described as a footprint size or as a total building area. The shape can be described by its aspect ratio or can be defined as a set width.'
   end
 
+  # used to populate taxonomy in readme.md
+  def taxonomy
+    return 'Envelope.Form'
+  end
+
   # define the arguments that the user will input
   def arguments(model)
     args = OpenStudio::Measure::OSArgumentVector.new
@@ -165,7 +170,7 @@ class CreateBarFromDEERBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     args << building_rotation
 
     # Make argument for template
-    template = OpenStudio::Measure::OSArgument.makeChoiceArgument('template', get_deer_templates(true), true)
+    template = OpenStudio::Measure::OSArgument.makeChoiceArgument('template', get_deer_templates(false), true)
     template.setDisplayName('Target Standard')
     template.setDefaultValue('DEER 2017')
     args << template

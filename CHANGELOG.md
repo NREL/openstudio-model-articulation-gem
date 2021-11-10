@@ -1,5 +1,18 @@
 # OpenStudio Model Articulation Gems
 
+## Version 0.5.0
+* Support for OpenStudio 3.3 (upgrade to extension gem 0.5.1 and standards gem 0.2.15)
+* Fixed [#73]( https://github.com/NREL/openstudio-model-articulation-gem/pull/73 ), added add_empd_material_properties measure contributed by GFlechas
+* Fixed [#83]( https://github.com/NREL/openstudio-model-articulation-gem/pull/83 ), adding compatibility matrix and contribution policy
+* Fixed [#85]( https://github.com/NREL/openstudio-model-articulation-gem/pull/85 ), For SetWindowToWallRatioByFacade fixed rectangle tol and pre-split at door remove windows
+
+## Version 0.4.1
+
+* Support for OpenStudio 3.2.1 (upgrade to extension gem 0.4.3 and standards gem 0.2.14)
+* update to use rubocop_v4
+* Documentation update to some measures
+* Setting up webhook for https://bcl2.nrel.gov
+
 ## Version 0.4.0
 
 * Support Ruby ~> 2.7

@@ -63,6 +63,11 @@ class CreateTypicalBuildingFromModel < OpenStudio::Measure::ModelMeasure
     return 'It is important that the template argument chosen for this measure is in line with the building types for the stub space types of the model passed in.'
   end
 
+  # used to populate taxonomy in readme.md
+  def taxonomy
+    return 'Whole Building.Space Types'
+  end
+
   # define the arguments that the user will input
   def arguments(model)
     args = OpenStudio::Measure::OSArgumentVector.new

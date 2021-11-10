@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>create_doe_prototype_building</name>
   <uid>be90fd0b-a651-467a-bc8d-29d310b0f937</uid>
-  <version_id>eac27a3e-658d-493a-8d59-81b9d90118bf</version_id>
-  <version_modified>20210423T142528Z</version_modified>
+  <version_id>9232ffc7-5ae7-44b9-bf8a-111df77e6585</version_id>
+  <version_modified>20210806T162711Z</version_modified>
   <xml_checksum>057E8D9D</xml_checksum>
   <class_name>CreateDOEPrototypeBuilding</class_name>
   <display_name>Create DOE Prototype Building</display_name>
