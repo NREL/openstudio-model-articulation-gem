@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>create_bar_from_doe_building_type_ratios</name>
   <uid>0de3cff9-c805-42c4-964e-18cb43a22c63</uid>
-  <version_id>5e9da766-06e0-42e4-b006-8d9be5b6d6db</version_id>
-  <version_modified>20210716T215744Z</version_modified>
+  <version_id>b22052fe-59c2-43ce-b4eb-9685a9469847</version_id>
+  <version_modified>20211029T201024Z</version_modified>
   <xml_checksum>5F523097</xml_checksum>
   <class_name>CreateBarFromDOEBuildingTypeRatios</class_name>
   <display_name>Create Bar From DOE Building Type Ratios</display_name>
@@ -995,12 +995,6 @@
       <checksum>A21A3ED2</checksum>
     </file>
     <file>
-      <filename>create_bar_from_doe_building_type_ratios_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>E28A50CE</checksum>
-    </file>
-    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -1022,6 +1016,12 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>7D3973D6</checksum>
+    </file>
+    <file>
+      <filename>create_bar_from_doe_building_type_ratios_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>A5886CCE</checksum>
     </file>
   </files>
 </measure>

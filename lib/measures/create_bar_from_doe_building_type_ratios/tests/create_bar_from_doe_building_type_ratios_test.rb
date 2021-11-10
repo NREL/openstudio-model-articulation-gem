@@ -166,7 +166,7 @@ class CreateBarFromDOEBuildingTypeRatios_Test < Minitest::Test
     args['building_rotation'] = -90
     args['party_wall_stories_east'] = 2
 
-    apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, 1)
+    apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
   end
 
   def test_large_hotel_restaurant
