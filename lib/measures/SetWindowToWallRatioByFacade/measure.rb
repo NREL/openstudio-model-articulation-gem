@@ -97,6 +97,13 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
     triangulate.setDefaultValue(true)
     args << triangulate
 
+    # triangulation minimum area
+    triangulation_min_area = OpenStudio::Measure::OSArgument.makeDoubleArgument('triangulation_min_area', true)
+    triangulation_min_area.setDisplayName('Triangulation Minimum Area (m^2)')
+    triangulation_min_area.setDescription('Triangulated surfaces less than this will not be created.')
+    triangulation_min_area.setDefaultValue(0.001) # Two vertices < 0.01 meters apart are coincident in EnergyPlus (SurfaceGeometry.cc).
+    args << triangulation_min_area
+
     return args
   end
 
@@ -117,6 +124,7 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
     split_at_doors = runner.getStringArgumentValue('split_at_doors', user_arguments)
     inset_tri_sub = runner.getBoolArgumentValue('inset_tri_sub', user_arguments)
     triangulate = runner.getBoolArgumentValue('triangulate', user_arguments)
+    triangulation_min_area = runner.getDoubleArgumentValue('triangulation_min_area', user_arguments)
 
     # check reasonableness of fraction
     if wwr == 0
@@ -384,8 +392,13 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
             subSurface.remove
           end
 
+          # triangulate surface
           ss.triangulation.each do |tri|
             new_surface = OpenStudio::Model::Surface.new(tri, model)
+            if new_surface.grossArea < triangulation_min_area
+              new_surface.remove
+              next
+            end
             new_surface.setSpace(ss.space.get)
             if ss.construction.is_initialized && !ss.isConstructionDefaulted
               new_surface.setConstruction(ss.construction.get)
@@ -397,7 +410,7 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
           end
 
           # remove orig surface
-          ss.remove
+          ss.remove 
         end
 
       else
