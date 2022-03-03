@@ -59,7 +59,7 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
 
     # get arguments and test that they are what we are expecting
     arguments = measure.arguments(model)
-    assert_equal(7, arguments.size)
+    assert_equal(8, arguments.size)
     assert_equal('wwr', arguments[0].name)
     assert_equal('sillHeight', arguments[1].name)
     assert_equal('facade', arguments[2].name)
@@ -67,6 +67,7 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
     assert_equal('split_at_doors', arguments[4].name)
     assert_equal('inset_tri_sub', arguments[5].name)
     assert_equal('triangulate', arguments[6].name)
+    assert_equal('triangulation_min_area', arguments[7].name)
 
     # set argument values to bad values and run the measure
     argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
