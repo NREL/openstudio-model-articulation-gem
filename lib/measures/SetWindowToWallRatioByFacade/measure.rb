@@ -352,7 +352,6 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
           y_vals = []
           z_vals = []
           vertices = ss.vertices
-          flag = false
           vertices.each do |vertex|
             # initialize new vertex to old vertex
             # rounding values to address tolerance issue 10 digits digits in
