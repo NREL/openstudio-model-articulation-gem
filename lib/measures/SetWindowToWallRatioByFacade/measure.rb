@@ -408,10 +408,6 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
       # add windows
       all_surfaces2.sort.each do |ss|
 
-        rectangular = false
-        triangular = false
-        sillHeight_too_high = false
-
         orig_sub_surf_constructions = {}
         ss.subSurfaces.sort.each do |sub_surf|
           next if sub_surf.subSurfaceType == 'Door' || sub_surf.subSurfaceType == 'OverheadDoor'
@@ -433,12 +429,6 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
         else
           new_window = ss.setWindowToWallRatio(wwr, sillHeight_si.value, true)
           window_confirmed = false
-          # if the setWindowToWallRatio method was successful, then the surface is a rectangle
-          rectangular = true if !new_window.empty?
-          # check for cases where the WWR is too large for the sill height.
-          # won't catch cases where the existing WWR = measure's WWR
-          wwr_calc = (ss.grossArea - ss.netArea) / ss.grossArea
-          sillHeight_too_high = true if wwr.round(4) != wwr_calc.round(4)
         end
 
         if wwr > 0 && new_window.empty?
@@ -448,8 +438,6 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
 
             # skip of surface already has sub-surfaces or if not triangle
             if ss.subSurfaces.empty? && ss.vertices.size <= 3
-              triangular = true
-
               # get centroid
               vertices = ss.vertices
               centroid = OpenStudio.getCentroid(vertices).get
@@ -486,14 +474,24 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
         end
 
         if !window_confirmed
-          if !inset_tri_sub && triangular
-            runner.registerWarning("window could not be added because the inset_tri_sub argument is false and the surface is triangular = #{ss.name}")
-          elsif !rectangular && !sillHeight_too_high
-            runner.registerWarning("window could not be added because surface is not rectangular = #{ss.name}")
-          elsif sillHeight_too_high
-            runner.registerWarning("window could not be added because the sill height is too high for surface = #{ss.name}")
-          else # shouldn't get here
-            runner.registerWarning("Fenestration could not be added for #{ss.name}. Surface may not be rectangular or triangular, may have a door, or the requested WWR may be too large.")
+          case ss.vertices.size
+          when 3
+            if !inset_tri_sub
+              runner.registerWarning("window could not be added because the surface has 3 sides, but the inset_tri_sub argument is false = #{ss.name}")
+            end
+          when 4
+            case Functions.rectangle?(ss)
+            when true
+              runner.registerWarning("window could not be added because the surface has 4 sides and is rectangular, but the WWR exceeds the maximum = #{ss.name}")
+            when false
+              if !triangulate
+                runner.registerWarning("window could not be added because the surface has 4 sides, but is not rectangular and the triangulate argument is false = #{ss.name}")
+              end
+            end
+          else
+            if !triangulate
+              runner.registerWarning("window could not be added because the surface has more than 4 sides and the triangulate argument is false = #{ss.name}")
+            end
           end
         end
 
