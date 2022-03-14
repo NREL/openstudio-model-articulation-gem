@@ -8,7 +8,7 @@ module Functions
     x_vals = []
     y_vals = []
     z_vals = []
-    vertices = ss.vertices
+    vertices = surface.vertices
     vertices.each do |vertex|
       # initialize new vertex to old vertex
       # rounding values to address tolerance issue 10 digits digits in
