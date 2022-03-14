@@ -33,6 +33,8 @@
 # OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # *******************************************************************************
 
+require_relative 'resources/functions.rb'
+
 class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
   # override name to return the name of your script
   def name

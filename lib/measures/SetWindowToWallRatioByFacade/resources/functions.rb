@@ -4,7 +4,7 @@ module Functions
 
   # see if surface is rectangular (only checking non rotated on vertical wall)
   # todo - add in more robust rectangle check that can look for rotate and tilted rectangles
-  def self.rectangle(surface)
+  def self.rectangle?(surface)
     x_vals = []
     y_vals = []
     z_vals = []
