@@ -482,7 +482,9 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
           when 4
             case Functions.rectangle?(ss)
             when true
-              runner.registerWarning("window could not be added because the surface has 4 sides and is rectangular, but the WWR exceeds the maximum = #{ss.name}")
+              if Functions.requested_window_area_greater_than_max?(ss, wwr)
+                runner.registerWarning("window could not be added because the surface has 4 sides and is rectangular, but the WWR exceeds the maximum = #{ss.name}")
+              end
             when false
               if !triangulate
                 runner.registerWarning("window could not be added because the surface has 4 sides, but is not rectangular and the triangulate argument is false = #{ss.name}")
