@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>set_window_to_wall_ratio_by_facade</name>
   <uid>c567a0bf-a7d9-4a06-afe9-bf7df79e6bf8</uid>
-  <version_id>518c5be8-b109-4e18-b0fb-63e460ac82cc</version_id>
-  <version_modified>20220226T150940Z</version_modified>
+  <version_id>a09bb8ca-0336-4852-900d-2c6ea38f6dd0</version_id>
+  <version_modified>20220315T180427Z</version_modified>
   <xml_checksum>6DE831F7</xml_checksum>
   <class_name>SetWindowToWallRatioByFacade</class_name>
   <display_name>Set Window to Wall Ratio by Facade</display_name>
@@ -234,17 +234,6 @@ The measure doesn?t have any cost or lifecycle arguments, however If lifecycle o
       <checksum>581DA01B</checksum>
     </file>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>A8258A30</checksum>
-    </file>
-    <file>
       <filename>SetWindowToWallRatioByFacade_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
@@ -255,6 +244,23 @@ The measure doesn?t have any cost or lifecycle arguments, however If lifecycle o
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>7FCCDC8E</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>F544FCEE</checksum>
+    </file>
+    <file>
+      <filename>functions.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>63495E18</checksum>
     </file>
   </files>
 </measure>
