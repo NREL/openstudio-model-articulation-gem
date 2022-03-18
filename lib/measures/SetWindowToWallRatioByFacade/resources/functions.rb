@@ -2,6 +2,70 @@ require 'openstudio'
 
 module Functions
 
+  # return an array of surfaces or subsurfaces from a specific facade.
+  def self.get_surfaces_or_subsurfaces_by_facade(surfaces_or_subsurfaces, facade)
+    surfaces_or_subsurfaces_by_facade = []
+  
+    surfaces_or_subsurfaces.each do |surface_or_subsurface|
+  
+      case surface_or_subsurface.class.to_s.gsub('OpenStudio::Model::', '')
+      when 'Surface'
+        next if surface_or_subsurface.surfaceType != 'Wall' 
+        next if surface_or_subsurface.outsideBoundaryCondition != 'Outdoors'
+        if surface_or_subsurface.space.empty?
+          runner.registerWarning("#{surface_or_subsurface.name} doesn't have a parent space and won't be included in the measure reporting or modifications.")
+          next
+        end
+        direction_of_relative_north = surface_or_subsurface.space.get.directionofRelativeNorth
+      when 'SubSurface'
+        next if surface_or_subsurface.subSurfaceType == 'Door' || surface_or_subsurface.subSurfaceType == 'OverheadDoor'
+        direction_of_relative_north = surface_or_subsurface.surface.get.space.get.directionofRelativeNorth
+      end
+  
+      # get the absoluteAzimuth for the surface so we can categorize it
+      absoluteAzimuth = OpenStudio.convert(surface_or_subsurface.azimuth, 'rad', 'deg').get + direction_of_relative_north + surface_or_subsurface.model.getBuilding.northAxis
+      absoluteAzimuth -= 360.0 until absoluteAzimuth < 360.0
+  
+      if facade == 'North'
+        next if !((absoluteAzimuth >= 315.0) || (absoluteAzimuth < 45.0))
+      elsif facade == 'East'
+        next if !((absoluteAzimuth >= 45.0) && (absoluteAzimuth < 135.0))
+      elsif facade == 'South'
+        next if !((absoluteAzimuth >= 135.0) && (absoluteAzimuth < 225.0))
+      elsif facade == 'West'
+        next if !((absoluteAzimuth >= 225.0) && (absoluteAzimuth < 315.0))
+      elsif facade == 'All'
+        # no next needed
+      else
+        runner.registerError('Unexpected value of facade: ' + facade + '.')
+        return false
+      end
+
+      surfaces_or_subsurfaces_by_facade << surface_or_subsurface
+  
+    end
+
+    return surfaces_or_subsurfaces_by_facade
+  end
+
+  # return a hash of subsurface constructions.
+  def self.get_orig_sub_surf_const_for_target(subsurfaces)
+    orig_sub_surf_const_for_target = {}
+
+    subsurfaces.each do |subsurface|
+      next if subsurface.subSurfaceType == "Door" || subsurface.subSurfaceType == "OverheadDoor"
+      if subsurface.construction.is_initialized
+        if orig_sub_surf_const_for_target.key?(subsurface.construction.get)
+          orig_sub_surf_const_for_target[subsurface.construction.get] += 1
+        else
+          orig_sub_surf_const_for_target[subsurface.construction.get] = 1
+        end
+      end
+    end
+
+    return orig_sub_surf_const_for_target
+  end
+
   # see if surface is rectangular (only checking non rotated on vertical wall)
   # todo - add in more robust rectangle check that can look for rotate and tilted rectangles
   def self.rectangle?(surface)
