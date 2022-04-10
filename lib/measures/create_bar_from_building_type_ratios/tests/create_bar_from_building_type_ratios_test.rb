@@ -1,5 +1,5 @@
 # *******************************************************************************
-# OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
+# OpenStudio(R), Copyright (c) 2008-2021, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -174,7 +174,7 @@ class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
     # Initial area of other surface 'Surface 365' 535.72 does not equal post intersection area 593.326
     # should still fail with check of ground exposed floor or outdoor exposed roof
 
-    apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, 1)
+    apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
   end
 
   def test_non_zero_rotation_primary_school_adiabatic # to test intersection of just walls but not floors
@@ -188,7 +188,7 @@ class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
     args['make_mid_story_surfaces_adiabatic'] = true
     args['bar_division_method'] = 'Multiple Space Types - Individual Stories Sliced'
 
-    apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, 1)
+    apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
   end
 
   def test_large_hotel_restaurant

@@ -1,5 +1,5 @@
 # *******************************************************************************
-# OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
+# OpenStudio(R), Copyright (c) 2008-2021, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -66,6 +66,11 @@ class CreateBarFromBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
   # human readable description of modeling approach
   def modeler_description
     return 'The building floor area can be described as a footprint size or as a total building area. The shape can be described by its aspect ratio or can be defined as a set width. Because this measure contains both DOE and DEER inputs, care needs to be taken to choose a template compatable with the selected building types. See readme document for additional guidance.'
+  end
+
+  # used to populate taxonomy in readme.md
+  def taxonomy
+    return 'Envelope.Form'
   end
 
   # define the arguments that the user will input

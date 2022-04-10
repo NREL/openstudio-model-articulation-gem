@@ -1,5 +1,5 @@
 # *******************************************************************************
-# OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
+# OpenStudio(R), Copyright (c) 2008-2021, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -93,6 +93,7 @@ class CreateDOEPrototypeBuilding < OpenStudio::Measure::ModelMeasure
     # template_chs << '189.1-2009'
     template_chs << '90.1-2010'
     template_chs << '90.1-2013'
+    template_chs << '90.1-2016'
     template_chs << 'NECB 2011'
     template = OpenStudio::Measure::OSArgument.makeChoiceArgument('template', template_chs, true)
     template.setDisplayName('Template.')

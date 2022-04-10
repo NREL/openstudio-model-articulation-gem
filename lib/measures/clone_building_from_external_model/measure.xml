@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>clone_building_from_external_model</name>
   <uid>09711168-01a7-4abc-b710-b49d59d927d8</uid>
-  <version_id>af2dd889-f383-410d-8ed2-8ff7a01aa086</version_id>
-  <version_modified>20200624T003819Z</version_modified>
+  <version_id>c5085191-28b7-4dec-a425-d5af83949797</version_id>
+  <version_modified>20210423T142527Z</version_modified>
   <xml_checksum>AFECFDDF</xml_checksum>
   <class_name>CloneBuildingFromExternalModel</class_name>
   <display_name>Clone Building From External Model</display_name>
@@ -102,19 +102,19 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>921D909C</checksum>
+      <checksum>6B3BD27E</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
+      <checksum>A21A3ED2</checksum>
     </file>
     <file>
       <filename>clone_building_from_external_model_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>C1BA8CCE</checksum>
+      <checksum>C4490998</checksum>
     </file>
   </files>
 </measure>

@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>bar_aspect_ratio_study</name>
   <uid>3dcac94d-8a2e-43b6-8698-a3a4e8f3903f</uid>
-  <version_id>bc5cc57e-c161-4c4f-a411-d0719e883a45</version_id>
-  <version_modified>20200229T024052Z</version_modified>
+  <version_id>fe5839ff-2dfe-4053-be2d-603a439ce7f9</version_id>
+  <version_modified>20210423T142509Z</version_modified>
   <xml_checksum>49BEF039</xml_checksum>
   <class_name>BarAspectRatioStudy</class_name>
   <display_name>Bar Aspect Ratio Study</display_name>
@@ -81,8 +82,8 @@
       </choices>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Envelope.Form</tag>
   </tags>
@@ -125,7 +126,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
+      <checksum>A21A3ED2</checksum>
     </file>
     <file>
       <version>
@@ -136,13 +137,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>741408BD</checksum>
+      <checksum>68A31043</checksum>
     </file>
     <file>
       <filename>BarAspectRatioStudy_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>3311CA6D</checksum>
+      <checksum>B1DFBF18</checksum>
     </file>
   </files>
 </measure>

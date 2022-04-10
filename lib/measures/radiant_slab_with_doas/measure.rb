@@ -1,5 +1,5 @@
 # *******************************************************************************
-# OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
+# OpenStudio(R), Copyright (c) 2008-2021, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -220,7 +220,11 @@ To reduce unmet hours, use an expanded comfort range as mentioned above, remove 
     # remove existing hvac systems
     if remove_existing_hvac
       runner.registerInfo('Removing existing HVAC systems from the model')
-      std.remove_HVAC(model)
+      if std.respond_to?('remove_HVAC')
+        std.remove_HVAC(model) #OpenStuido 3.2.1 and earlierop use this, future versions will use snake_case method
+      else
+        std.remove_hvac(model)
+      end
     end
 
     # exclude plenum zones, zones without thermostats, and zones with no floor area

@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>radiance_measure</name>
   <uid>1e3cfef8-b051-4e60-8bb0-ed2d29d4f45f</uid>
-  <version_id>77b56312-1bff-49a4-91e8-64db8264357c</version_id>
-  <version_modified>20200624T011257Z</version_modified>
+  <version_id>8f5a752a-5020-460d-b6b8-5cb7fe90e688</version_id>
+  <version_modified>20210423T142538Z</version_modified>
   <xml_checksum>381B7733</xml_checksum>
   <class_name>RadianceMeasure</class_name>
   <display_name>Radiance Daylighting Measure</display_name>
@@ -173,10 +173,16 @@
       <checksum>4255EB94</checksum>
     </file>
     <file>
+      <filename>measure_test_model.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>909929E9</checksum>
+    </file>
+    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
+      <checksum>A21A3ED2</checksum>
     </file>
     <file>
       <version>
@@ -187,19 +193,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>609FCC24</checksum>
+      <checksum>6EB721A1</checksum>
     </file>
     <file>
       <filename>radiance_measure_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>DD169097</checksum>
-    </file>
-    <file>
-      <filename>measure_test_model.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>909929E9</checksum>
+      <checksum>7CDD7A50</checksum>
     </file>
   </files>
 </measure>

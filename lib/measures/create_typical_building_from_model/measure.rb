@@ -1,5 +1,5 @@
 # *******************************************************************************
-# OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
+# OpenStudio(R), Copyright (c) 2008-2021, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -61,6 +61,11 @@ class CreateTypicalBuildingFromModel < OpenStudio::Measure::ModelMeasure
   # human readable description of modeling approach
   def modeler_description
     return 'It is important that the template argument chosen for this measure is in line with the building types for the stub space types of the model passed in.'
+  end
+
+  # used to populate taxonomy in readme.md
+  def taxonomy
+    return 'Whole Building.Space Types'
   end
 
   # define the arguments that the user will input

@@ -1,5 +1,5 @@
 # *******************************************************************************
-# OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
+# OpenStudio(R), Copyright (c) 2008-2021, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -59,7 +59,7 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
 
     # get arguments and test that they are what we are expecting
     arguments = measure.arguments(model)
-    assert_equal(7, arguments.size)
+    assert_equal(8, arguments.size)
     assert_equal('wwr', arguments[0].name)
     assert_equal('sillHeight', arguments[1].name)
     assert_equal('facade', arguments[2].name)
@@ -67,6 +67,7 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
     assert_equal('split_at_doors', arguments[4].name)
     assert_equal('inset_tri_sub', arguments[5].name)
     assert_equal('triangulate', arguments[6].name)
+    assert_equal('triangulation_min_area', arguments[7].name)
 
     # set argument values to bad values and run the measure
     argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
@@ -735,6 +736,51 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
 
     # save the model
     output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/all_orientations.osm')
+    model.save(output_file_path, true)
+  end
+
+  # this has multiple sub-surafces in base surfaes, including more than 1 door and more than one window
+    def test_SetWindowToWallRatioByFacade_sec_school
+    # create an instance of the measure
+    measure = SetWindowToWallRatioByFacade.new
+
+    # create an instance of a runner
+    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new)
+
+    # load the test model
+    translator = OpenStudio::OSVersion::VersionTranslator.new
+    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/prototype_sec_sch.osm')
+    model = translator.loadModel(path)
+    assert(!model.empty?)
+    model = model.get
+
+    # get arguments
+    arguments = measure.arguments(model)
+
+    # set argument values to good values and run the measure on model with spaces
+    argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
+
+    wwr = arguments[0].clone
+    assert(wwr.setValue(0.7))
+    argument_map['wwr'] = wwr
+
+    sillHeight = arguments[1].clone
+    assert(sillHeight.setValue(30.0))
+    argument_map['sillHeight'] = sillHeight
+
+    facade = arguments[2].clone
+    assert(facade.setValue('All'))
+    argument_map['facade'] = facade
+
+    measure.run(model, runner, argument_map)
+    result = runner.result
+    show_output(result)
+    assert(result.value.valueName == 'Success')
+    # assert(result.warnings.size == 2)
+    # assert(result.info.size == 2)
+
+    # save the model
+    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/sec_school.osm')
     model.save(output_file_path, true)
   end
 end

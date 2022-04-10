@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>create_and_assign_thermal_zones_for_unassigned_spaces</name>
   <uid>ddaa752e-5d40-49b2-88de-62e71697e614</uid>
-  <version_id>586d5447-8517-4960-a3c8-bacce43f147e</version_id>
-  <version_modified>20200509T155938Z</version_modified>
+  <version_id>e04b7726-cf35-4a49-90d4-0fefc662349d</version_id>
+  <version_modified>20210423T142528Z</version_modified>
   <xml_checksum>2AF3A68E</xml_checksum>
   <class_name>CreateAndAssignThermalZonesForUnassignedSpaces</class_name>
   <display_name>Create and Assign Thermal Zones for Unassigned Spaces</display_name>
@@ -66,19 +66,19 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>529B8AC7</checksum>
+      <checksum>1DA0867E</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>E0468DD6</checksum>
+      <checksum>A21A3ED2</checksum>
     </file>
     <file>
       <filename>create_and_assign_thermal_zones_for_unassigned_spaces_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>E1A0DFAB</checksum>
+      <checksum>CEA966EB</checksum>
     </file>
   </files>
 </measure>

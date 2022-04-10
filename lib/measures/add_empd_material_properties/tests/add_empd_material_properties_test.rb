@@ -1,5 +1,5 @@
 # *******************************************************************************
-# OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
+# OpenStudio(R), Copyright (c) 2008-2021, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -33,68 +33,91 @@
 # OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # *******************************************************************************
 
+# insert your copyright here
+
 require 'openstudio'
 require 'openstudio/measure/ShowRunnerOutput'
 require 'minitest/autorun'
-require_relative '../measure.rb'
+require_relative '../measure'
+require 'fileutils'
 
-class BarAspectRatioSlicedBySpaceType_Test < MiniTest::Test
-  def test_BarAspectRatioSlicedBySpaceType
+class AddEMPDMaterialPropertiesTest < Minitest::Test
+  # def setup
+  # end
+
+  # def teardown
+  # end
+
+  # def test_number_of_arguments_and_argument_names
+  # end
+
+  # def test_bad_argument_values
+  # end
+
+  def test_good_argument_values
     # create an instance of the measure
-    measure = BarAspectRatioSlicedBySpaceType.new
+    measure = AddEMPDMaterialProperties.new
 
-    # create an instance of a runner
-    runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new)
+    # create runner with empty OSW
+    osw = OpenStudio::WorkflowJSON.new
+    runner = OpenStudio::Measure::OSRunner.new(osw)
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/Untitled.osm')
+    path = "#{File.dirname(__FILE__)}/example_model.osm"
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
 
-    # get arguments and test that they are what we are expecting
+    # store the number of spaces in the seed model
+    # num_spaces_seed = model.getSpaces.size
+
+    # get arguments
     arguments = measure.arguments(model)
-    assert_equal(5, arguments.size)
-    assert_equal('total_bldg_area_ip', arguments[0].name)
-    assert_equal('ns_to_ew_ratio', arguments[1].name)
-    assert_equal('num_floors', arguments[2].name)
-    assert_equal('floor_to_floor_height_ip', arguments[3].name)
-    assert_equal('spaceTypeHashString', arguments[4].name)
+    argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
 
-    # set argument values to good values and run the measure on model with spaces
-    argument_map = OpenStudio::Measure::OSArgumentMap.new
+    # create hash of argument values.
+    # If the argument has a default that you want to use, you don't need it in the hash
+    args_hash = {}
+    args_hash['selected_material'] = '1/2IN Gypsum'
+    args_hash['water_diff_fact'] = 6.0
+    args_hash['coef_a'] = 0.0068
+    args_hash['coef_b'] = 0.939
+    args_hash['coef_c'] = 0.0202
+    args_hash['coef_d'] = 12.2
+    args_hash['surface_penetration'] = '0.019'
+    args_hash['deep_penetration'] = '0.073'
+    args_hash['coating'] = 0.001
+    args_hash['coating_res'] = 200.0
+    args_hash['algorithm'] = 'MoisturePenetrationDepthConductionTransferFunction'
+    # using defaults values from measure.rb for other arguments
 
-    total_bldg_area_ip = arguments[0].clone
-    assert(total_bldg_area_ip.setValue(50000.0))
-    argument_map['total_bldg_area_ip'] = total_bldg_area_ip
+    # populate argument with specified hash value if specified
+    arguments.each do |arg|
+      temp_arg_var = arg.clone
+      if args_hash.key?(arg.name)
+        assert(temp_arg_var.setValue(args_hash[arg.name]))
+      end
+      argument_map[arg.name] = temp_arg_var
+    end
 
-    ns_to_ew_ratio = arguments[1].clone
-    assert(ns_to_ew_ratio.setValue(2.0))
-    argument_map['ns_to_ew_ratio'] = ns_to_ew_ratio
-
-    num_floors = arguments[2].clone
-    assert(num_floors.setValue(5))
-    argument_map['num_floors'] = num_floors
-
-    floor_to_floor_height_ip = arguments[3].clone
-    assert(floor_to_floor_height_ip.setValue(10.0))
-    argument_map['floor_to_floor_height_ip'] = floor_to_floor_height_ip
-
-    spaceTypeHashString = arguments[4].clone
-    assert(spaceTypeHashString.setValue("{:189.1-2009 - Office - Corridor - CZ1-3 => '0.3', :189.1-2009 - Office - Conference - CZ1-3 => '0.2', :189.1-2009 - Office - ClosedOffice - CZ1-3 => '0.5' }"))
-    argument_map['spaceTypeHashString'] = spaceTypeHashString
-
+    # run the measure
     measure.run(model, runner, argument_map)
     result = runner.result
-    show_output(result)
-    assert(result.value.valueName == 'Success')
-    assert(result.warnings.empty?)
-    assert(result.info.empty?)
 
-    # save the model in an output directory
-    output_dir = File.expand_path('output', File.dirname(__FILE__))
-    FileUtils.mkdir output_dir unless Dir.exist? output_dir
-    model.save("#{output_dir}/test.osm", true)
+    # show the output
+    show_output(result)
+
+    # assert that it ran correctly
+    assert_equal('Success', result.value.valueName)
+    assert(result.info.size == 3)
+    assert(result.warnings.empty?)
+
+    # check that there is now 1 material with moisture settings
+    assert_equal(true, model.getMaterialPropertyMoisturePenetrationDepthSettingss.size == 1)
+
+    # save the model to test output directory
+    output_file_path = "#{File.dirname(__FILE__)}//output/test_output.osm"
+    model.save(output_file_path, true)
   end
 end

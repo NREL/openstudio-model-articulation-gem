@@ -1,5 +1,5 @@
 # *******************************************************************************
-# OpenStudio(R), Copyright (c) 2008-2020, Alliance for Sustainable Energy, LLC.
+# OpenStudio(R), Copyright (c) 2008-2021, Alliance for Sustainable Energy, LLC.
 # All rights reserved.
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -97,6 +97,13 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
     triangulate.setDefaultValue(true)
     args << triangulate
 
+    # triangulation minimum area
+    triangulation_min_area = OpenStudio::Measure::OSArgument.makeDoubleArgument('triangulation_min_area', true)
+    triangulation_min_area.setDisplayName('Triangulation Minimum Area (m^2)')
+    triangulation_min_area.setDescription('Triangulated surfaces less than this will not be created.')
+    triangulation_min_area.setDefaultValue(0.001) # Two vertices < 0.01 meters apart are coincident in EnergyPlus (SurfaceGeometry.cc).
+    args << triangulation_min_area
+
     return args
   end
 
@@ -117,6 +124,7 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
     split_at_doors = runner.getStringArgumentValue('split_at_doors', user_arguments)
     inset_tri_sub = runner.getBoolArgumentValue('inset_tri_sub', user_arguments)
     triangulate = runner.getBoolArgumentValue('triangulate', user_arguments)
+    triangulation_min_area = runner.getDoubleArgumentValue('triangulation_min_area', user_arguments)
 
     # check reasonableness of fraction
     if wwr == 0
@@ -317,6 +325,13 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
 
       all_surfaces = [s]
       if split_at_doors == 'Split Walls at Doors' && has_doors
+
+        # remove windows before split at doors
+        s.subSurfaces.each do |sub_surface|
+          next if ['Door','OverheadDoor'].include? sub_surface.subSurfaceType
+          sub_surface.remove
+        end
+
         # split base surfaces at doors to create  multiple base surfaces
         split_surfaces = s.splitSurfaceForSubSurfaces.to_a # frozen array
 
@@ -341,9 +356,9 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
           vertices.each do |vertex|
             # initialize new vertex to old vertex
             # rounding values to address tolerance issue 10 digits digits in
-            x_vals << vertex.x.round(8)
-            y_vals << vertex.y.round(8)
-            z_vals << vertex.z.round(8)
+            x_vals << vertex.x.round(4)
+            y_vals << vertex.y.round(4)
+            z_vals << vertex.z.round(4)
           end
           if x_vals.uniq.size <= 2 && y_vals.uniq.size <= 2 && z_vals.uniq.size <= 2
             rect_tri = true
@@ -377,8 +392,13 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
             subSurface.remove
           end
 
+          # triangulate surface
           ss.triangulation.each do |tri|
             new_surface = OpenStudio::Model::Surface.new(tri, model)
+            if new_surface.grossArea < triangulation_min_area
+              new_surface.remove
+              next
+            end
             new_surface.setSpace(ss.space.get)
             if ss.construction.is_initialized && !ss.isConstructionDefaulted
               new_surface.setConstruction(ss.construction.get)
@@ -390,7 +410,7 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
           end
 
           # remove orig surface
-          ss.remove
+          ss.remove 
         end
 
       else
