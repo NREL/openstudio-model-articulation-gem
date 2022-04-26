@@ -90,25 +90,36 @@ module Functions
   # return true if the requested window-to-wall area exceeds the maximum allowed area, false if not.
   # implements the following part of the applyViewAndDaylightingGlassRatios method, which is what setWindowToWallRatio uses.
   # https://github.com/NREL/OpenStudio/blob/760613c7ac9c2093f7dbd65f947a6853356c558d/src/utilities/geometry/Geometry.cpp#L605-L695
-  def self.requested_window_area_greater_than_max?(surface, wwr)
+  def self.requested_window_area_greater_than_max?(surface, viewGlassToWallRatio)
     
-    viewGlassToWallRatio = wwr
     daylightingGlassToWallRatio = 0
     totalWWR = viewGlassToWallRatio + daylightingGlassToWallRatio
 
-    xvals = []
-    yvals = []
-    surface.vertices.each do |vertex|
-      xvals << vertex.x
-      yvals << vertex.y
+    vertices = surface.vertices
+    transformation = OpenStudio::Transformation.alignFace(vertices)
+    faceVertices = transformation.inverse * vertices
+
+    # // new coordinate system has z' in direction of outward normal, y' is up
+    xmin = 0
+    xmax = 0
+    ymin = 0
+    ymax = 0
+    faceVertices.each do |faceVertex|
+      xmin = [xmin, faceVertex.x].min
+      xmax = [xmax, faceVertex.x].max
+      ymin = [ymin, faceVertex.y].min
+      ymax = [ymax, faceVertex.y].max
     end
 
     oneInch = 0.0254 # meters
+
+    # // DLM: preserve a 1" gap between window and edge to keep SketchUp happy
     minGlassToEdgeDistance = oneInch
     minViewToDaylightDistance = 0
 
-    wallWidth = xvals.max - xvals.min
-    wallHeight = yvals.max - yvals.min
+    # // wall parameters
+    wallWidth = xmax - xmin
+    wallHeight = ymax - ymin
     wallArea = wallWidth * wallHeight
 
     # return false if wallWidth < 2 * minGlassToEdgeDistance
@@ -116,15 +127,15 @@ module Functions
     # return false if wallHeight < 2 * minGlassToEdgeDistance + minViewToDaylightDistance
 
     maxWindowArea = wallArea - 2 * wallHeight * minGlassToEdgeDistance
-                          - (wallWidth - 2 * minGlassToEdgeDistance) * (2 * minGlassToEdgeDistance + minViewToDaylightDistance)
-    requestedViewArea = viewGlassToWallRatio * wallArea;
-    requestedDaylightingArea = daylightingGlassToWallRatio * wallArea;
-    requestedTotalWindowArea = totalWWR * wallArea;
+                    - (wallWidth - 2 * minGlassToEdgeDistance) * (2 * minGlassToEdgeDistance + minViewToDaylightDistance)
+    requestedViewArea = viewGlassToWallRatio * wallArea
+    requestedDaylightingArea = daylightingGlassToWallRatio * wallArea
+    requestedTotalWindowArea = totalWWR * wallArea
 
     if requestedTotalWindowArea > maxWindowArea 
-      return false
-    else
       return true
+    else
+      return false
     end
 
   end
