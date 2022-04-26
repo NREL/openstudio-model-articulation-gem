@@ -318,7 +318,7 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
           ss.triangulation.each do |tri|
             new_surface = OpenStudio::Model::Surface.new(tri, model)
             if new_surface.grossArea < triangulation_min_area
-              runner.registerWarning("triangulation produced a surface with area less than the minimum for surface = #{ss.name}")
+              runner.registerWarning("triangulation produced a surface with area less than minimum for surface = #{ss.name}")
               new_surface.remove
               next
             end
@@ -417,8 +417,19 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
           when 4
             case Functions.rectangle?(ss)
             when true
-              if Functions.requested_window_area_greater_than_max?(ss, wwr)
-                runner.registerWarning("window could not be added because the surface has 4 sides and is rectangular, but the WWR exceeds the maximum = #{ss.name}")
+              # if Functions.requested_window_area_greater_than_max?(ss, wwr)
+              #   runner.registerWarning("window could not be added because the surface has 4 sides and is rectangular, but the WWR exceeds the maximum = #{ss.name}")
+              # end
+              # HACK until requested_window_area_greater_than_max? works. reduce by 0.01 to find the "maximum".
+              (1..(wwr / 0.1).floor).each do |i|
+                wwr_adj = wwr - (i / 100.0)
+                new_window = ss.setWindowToWallRatio(wwr_adj, sillHeight_si.value, true)
+                unless new_window.empty?
+                  new_window = new_window.get
+                  window_confirmed = true
+                  runner.registerWarning("window-to-wall ratio exceeds maximum and was reduced to #{wwr_adj.round(3)} for surface = #{ss.name}")
+                  break
+                end
               end
             when false
               if !triangulate
