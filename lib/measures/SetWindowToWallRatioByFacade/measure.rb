@@ -33,6 +33,8 @@
 # OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # *******************************************************************************
 
+require_relative 'resources/functions'
+
 class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
   # override name to return the name of your script
   def name
@@ -209,79 +211,14 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
     end
 
     # used for new sub surfaces to find target construction
-    orig_sub_surf_const_for_target_facade = {}
-    orig_sub_surf_const_for_target_all_ext = {}
-
-    # pre-loop through sub-surfaces to store constructions
-    model.getSubSurfaces.sort.each do |sub_surf|
-      # store constructions for entire building
-      next if sub_surf.subSurfaceType == 'Door' || sub_surf.subSurfaceType == 'OverheadDoor'
-      if sub_surf.construction.is_initialized
-        if orig_sub_surf_const_for_target_all_ext.key?(sub_surf.construction.get)
-          orig_sub_surf_const_for_target_all_ext[sub_surf.construction.get] += 1
-        else
-          orig_sub_surf_const_for_target_all_ext[sub_surf.construction.get] = 1
-        end
-      end
-
-      # get the absoluteAzimuth for the surface so we can categorize it
-      absoluteAzimuth = OpenStudio.convert(sub_surf.azimuth, 'rad', 'deg').get + sub_surf.surface.get.space.get.directionofRelativeNorth + model.getBuilding.northAxis
-      absoluteAzimuth -= 360.0 until absoluteAzimuth < 360.0
-
-      if facade == 'North'
-        next if !((absoluteAzimuth >= 315.0) || (absoluteAzimuth < 45.0))
-      elsif facade == 'East'
-        next if !((absoluteAzimuth >= 45.0) && (absoluteAzimuth < 135.0))
-      elsif facade == 'South'
-        next if !((absoluteAzimuth >= 135.0) && (absoluteAzimuth < 225.0))
-      elsif facade == 'West'
-        next if !((absoluteAzimuth >= 225.0) && (absoluteAzimuth < 315.0))
-      elsif facade == 'All'
-        # no next needed
-      else
-        runner.registerError('Unexpected value of facade: ' + facade + '.')
-        return false
-      end
-
-      # store constructions for this facade
-      if sub_surf.construction.is_initialized
-        if orig_sub_surf_const_for_target_facade.key?(sub_surf.construction.get)
-          orig_sub_surf_const_for_target_facade[sub_surf.construction.get] += 1
-        else
-          orig_sub_surf_const_for_target_facade[sub_surf.construction.get] = 1
-        end
-      end
-    end
+    subsurfaces_by_facade = Functions.get_surfaces_or_subsurfaces_by_facade(model.getSubSurfaces, facade)
+    orig_sub_surf_const_for_target_facade = Functions.get_orig_sub_surf_const_for_target(subsurfaces_by_facade)
+    orig_sub_surf_const_for_target_all_ext = Functions.get_orig_sub_surf_const_for_target(model.getSubSurfaces)
 
     # hash for sub surfaces removed from non rectangular surfaces
     non_rect_parent = {}
 
-    surfaces.sort.each do |s|
-      next if s.surfaceType != 'Wall'
-      next if s.outsideBoundaryCondition != 'Outdoors'
-      if s.space.empty?
-        runner.registerWarning("#{s.name} doesn't have a parent space and won't be included in the measure reporting or modifications.")
-        next
-      end
-
-      # get the absoluteAzimuth for the surface so we can categorize it
-      absoluteAzimuth = OpenStudio.convert(s.azimuth, 'rad', 'deg').get + s.space.get.directionofRelativeNorth + model.getBuilding.northAxis
-      absoluteAzimuth -= 360.0 until absoluteAzimuth < 360.0
-
-      if facade == 'North'
-        next if !((absoluteAzimuth >= 315.0) || (absoluteAzimuth < 45.0))
-      elsif facade == 'East'
-        next if !((absoluteAzimuth >= 45.0) && (absoluteAzimuth < 135.0))
-      elsif facade == 'South'
-        next if !((absoluteAzimuth >= 135.0) && (absoluteAzimuth < 225.0))
-      elsif facade == 'West'
-        next if !((absoluteAzimuth >= 225.0) && (absoluteAzimuth < 315.0))
-      elsif facade == 'All'
-        # no next needed
-      else
-        runner.registerError('Unexpected value of facade: ' + facade + '.')
-        return false
-      end
+    Functions.get_surfaces_or_subsurfaces_by_facade(model.getSurfaces, facade).sort.each do |s|
       exterior_walls = true
 
       # get surface area adjusting for zone multiplier
@@ -347,22 +284,7 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
         all_surfaces.sort.each do |ss|
           # see if surface is rectangular (only checking non rotated on vertical wall)
           # todo - add in more robust rectangle check that can look for rotate and tilted rectangles
-          rect_tri = false
-          x_vals = []
-          y_vals = []
-          z_vals = []
-          vertices = ss.vertices
-          flag = false
-          vertices.each do |vertex|
-            # initialize new vertex to old vertex
-            # rounding values to address tolerance issue 10 digits digits in
-            x_vals << vertex.x.round(4)
-            y_vals << vertex.y.round(4)
-            z_vals << vertex.z.round(4)
-          end
-          if x_vals.uniq.size <= 2 && y_vals.uniq.size <= 2 && z_vals.uniq.size <= 2
-            rect_tri = true
-          end
+          rect_tri = Functions.rectangle?(ss)
 
           has_doors = false
           ss.subSurfaces.sort.each do |subSurface|
@@ -396,6 +318,7 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
           ss.triangulation.each do |tri|
             new_surface = OpenStudio::Model::Surface.new(tri, model)
             if new_surface.grossArea < triangulation_min_area
+              runner.registerWarning("triangulation produced a surface with area less than minimum for surface = #{ss.name}")
               new_surface.remove
               next
             end
@@ -419,6 +342,7 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
 
       # add windows
       all_surfaces2.sort.each do |ss|
+
         orig_sub_surf_constructions = {}
         ss.subSurfaces.sort.each do |sub_surf|
           next if sub_surf.subSurfaceType == 'Door' || sub_surf.subSurfaceType == 'OverheadDoor'
@@ -485,7 +409,38 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
         end
 
         if !window_confirmed
-          runner.registerWarning("Fenestration could not be added for #{ss.name}. Surface may not be rectangular or triangular, may have a door, or the requested WWR may be too large.")
+          case ss.vertices.size
+          when 3
+            if !inset_tri_sub
+              runner.registerWarning("window could not be added because the surface has 3 sides, but the inset_tri_sub argument is false = #{ss.name}")
+            end
+          when 4
+            case Functions.rectangle?(ss)
+            when true
+              # if Functions.requested_window_area_greater_than_max?(ss, wwr)
+              #   runner.registerWarning("window could not be added because the surface has 4 sides and is rectangular, but the WWR exceeds the maximum = #{ss.name}")
+              # end
+              # HACK until requested_window_area_greater_than_max? works. reduce by 0.01 to find the "maximum".
+              (1..(wwr / 0.1).floor).each do |i|
+                wwr_adj = wwr - (i / 100.0)
+                new_window = ss.setWindowToWallRatio(wwr_adj, sillHeight_si.value, true)
+                unless new_window.empty?
+                  new_window = new_window.get
+                  window_confirmed = true
+                  runner.registerWarning("window-to-wall ratio exceeds maximum and was reduced to #{wwr_adj.round(3)} for surface = #{ss.name}")
+                  break
+                end
+              end
+            when false
+              if !triangulate
+                runner.registerWarning("window could not be added because the surface has 4 sides, but is not rectangular and the triangulate argument is false = #{ss.name}")
+              end
+            end
+          else
+            if !triangulate
+              runner.registerWarning("window could not be added because the surface has more than 4 sides and the triangulate argument is false = #{ss.name}")
+            end
+          end
         end
 
         # warn user if resulting window doesn't have a construction, as it will result in failed simulation. In the future may use logic from starting windows to apply construction to new window.
@@ -542,33 +497,7 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
     end
 
     # data for final condition wwr
-    surfaces.sort.each do |s|
-      next if s.surfaceType != 'Wall'
-      next if s.outsideBoundaryCondition != 'Outdoors'
-      if s.space.empty?
-        runner.registerWarning("#{s.name} doesn't have a parent space and won't be included in the measure reporting or modifications.")
-        next
-      end
-
-      # get the absoluteAzimuth for the surface so we can categorize it
-      absoluteAzimuth = OpenStudio.convert(s.azimuth, 'rad', 'deg').get + s.space.get.directionofRelativeNorth + model.getBuilding.northAxis
-      absoluteAzimuth -= 360.0 until absoluteAzimuth < 360.0
-
-      if facade == 'North'
-        next if !((absoluteAzimuth >= 315.0) || (absoluteAzimuth < 45.0))
-      elsif facade == 'East'
-        next if !((absoluteAzimuth >= 45.0) && (absoluteAzimuth < 135.0))
-      elsif facade == 'South'
-        next if !((absoluteAzimuth >= 135.0) && (absoluteAzimuth < 225.0))
-      elsif facade == 'West'
-        next if !((absoluteAzimuth >= 225.0) && (absoluteAzimuth < 315.0))
-      elsif facade == 'All'
-        # no next needed
-      else
-        runner.registerError('Unexpected value of facade: ' + facade + '.')
-        return false
-      end
-
+    Functions.get_surfaces_or_subsurfaces_by_facade(model.getSurfaces, facade).sort.each do |s|
       # get surface area adjusting for zone multiplier
       space = s.space
       if !space.empty?
