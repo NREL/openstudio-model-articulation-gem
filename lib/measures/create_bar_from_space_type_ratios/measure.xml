@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>create_bar_from_space_type_ratios</name>
   <uid>3e988765-9673-46f8-9b65-99d5b86c2b22</uid>
-  <version_id>fb84a039-2d3a-452d-bdda-a2ced9133628</version_id>
-  <version_modified>20210716T215705Z</version_modified>
+  <version_id>29ef75fa-0a73-4a08-85bb-a421d8aebbf2</version_id>
+  <version_modified>20220505T182936Z</version_modified>
   <xml_checksum>49BEF039</xml_checksum>
   <class_name>CreateBarFromSpaceTypeRatios</class_name>
   <display_name>Create Bar From Space Type Ratios</display_name>
@@ -655,23 +655,6 @@
       <checksum>A21A3ED2</checksum>
     </file>
     <file>
-      <filename>create_bar_from_space_type_ratios_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>61FDF1C4</checksum>
-    </file>
-    <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.8.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>B33DCF44</checksum>
-    </file>
-    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
@@ -682,6 +665,23 @@
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>F153B1B9</checksum>
+    </file>
+    <file>
+      <filename>create_bar_from_space_type_ratios_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>5A8700A0</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.8.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>CA930408</checksum>
     </file>
   </files>
 </measure>

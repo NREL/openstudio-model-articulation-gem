@@ -36,7 +36,7 @@
 require 'openstudio'
 require 'openstudio/measure/ShowRunnerOutput'
 require 'minitest/autorun'
-require_relative '../measure.rb'
+require_relative '../measure'
 require 'fileutils'
 
 class RadiantSlabWithDoasTest < Minitest::Test
@@ -189,8 +189,8 @@ class RadiantSlabWithDoasTest < Minitest::Test
     # this tests adding a fancoils with doas system to the model
     test_name = 'test_single_zone_office_5A_floor'
     puts "\n######\nTEST: #{test_name}\n######\n"
-    osm_path = File.dirname(__FILE__) + '/single_zone_office_5A.osm'
-    epw_path = File.dirname(__FILE__) + '/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.epw'
+    osm_path = "#{File.dirname(__FILE__)}/single_zone_office_5A.osm"
+    epw_path = "#{File.dirname(__FILE__)}/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.epw"
 
     # create an instance of the measure
     measure = RadiantSlabWithDoas.new
@@ -213,8 +213,8 @@ class RadiantSlabWithDoasTest < Minitest::Test
     # this tests adding a fancoils with doas system to the model
     test_name = 'test_single_zone_office_5A_ceiling'
     puts "\n######\nTEST: #{test_name}\n######\n"
-    osm_path = File.dirname(__FILE__) + '/single_zone_office_5A.osm'
-    epw_path = File.dirname(__FILE__) + '/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.epw'
+    osm_path = "#{File.dirname(__FILE__)}/single_zone_office_5A.osm"
+    epw_path = "#{File.dirname(__FILE__)}/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.epw"
 
     # create an instance of the measure
     measure = RadiantSlabWithDoas.new
@@ -242,8 +242,8 @@ class RadiantSlabWithDoasTest < Minitest::Test
     # this tests adding a fancoils with doas system to the model
     test_name = 'test_multi_zone_office_3C_floor'
     puts "\n######\nTEST: #{test_name}\n######\n"
-    osm_path = File.dirname(__FILE__) + '/multi_zone_office_3C.osm'
-    epw_path = File.dirname(__FILE__) + '/USA_CA_San.Francisco.Intl.AP.724940_TMY3.epw'
+    osm_path = "#{File.dirname(__FILE__)}/multi_zone_office_3C.osm"
+    epw_path = "#{File.dirname(__FILE__)}/USA_CA_San.Francisco.Intl.AP.724940_TMY3.epw"
 
     # create an instance of the measure
     measure = RadiantSlabWithDoas.new
@@ -266,8 +266,8 @@ class RadiantSlabWithDoasTest < Minitest::Test
     # this tests adding a fancoils with doas system to the model
     test_name = 'test_multi_zone_office_3C_ceiling'
     puts "\n######\nTEST: #{test_name}\n######\n"
-    osm_path = File.dirname(__FILE__) + '/multi_zone_office_3C.osm'
-    epw_path = File.dirname(__FILE__) + '/USA_CA_San.Francisco.Intl.AP.724940_TMY3.epw'
+    osm_path = "#{File.dirname(__FILE__)}/multi_zone_office_3C.osm"
+    epw_path = "#{File.dirname(__FILE__)}/USA_CA_San.Francisco.Intl.AP.724940_TMY3.epw"
 
     # create an instance of the measure
     measure = RadiantSlabWithDoas.new

@@ -36,7 +36,7 @@
 require 'openstudio'
 require 'openstudio/measure/ShowRunnerOutput'
 require 'minitest/autorun'
-require_relative '../measure.rb'
+require_relative '../measure'
 require 'fileutils'
 
 class CreateTypicalDOEBuildingFromModel_Test < Minitest::Test
@@ -58,7 +58,7 @@ class CreateTypicalDOEBuildingFromModel_Test < Minitest::Test
     measure = CreateTypicalDOEBuildingFromModel.new
 
     # create an instance of a runner with OSW
-    osw_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/measure_test.osw')
+    osw_path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/measure_test.osw")
     osw = OpenStudio::WorkflowJSON.load(osw_path).get
     runner = OpenStudio::Measure::OSRunner.new(osw)
 
@@ -68,7 +68,7 @@ class CreateTypicalDOEBuildingFromModel_Test < Minitest::Test
     else
       # load the test model
       translator = OpenStudio::OSVersion::VersionTranslator.new
-      path = OpenStudio::Path.new(File.dirname(__FILE__) + '/' + model_name)
+      path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/#{model_name}")
       model = translator.loadModel(path)
       assert(!model.empty?)
       model = model.get

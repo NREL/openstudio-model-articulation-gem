@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>make_shading_surfaces_based_on_zone_multipliers</name>
   <uid>57d7314d-2ff0-4c13-bf07-b63380bfdea6</uid>
-  <version_id>280fcc05-b5d1-4f95-9bc3-f0a426fa1a1f</version_id>
-  <version_modified>20210423T142537Z</version_modified>
+  <version_id>b6f2e9fb-355d-4e3d-acee-3ec908d95ef3</version_id>
+  <version_modified>20220505T182926Z</version_modified>
   <xml_checksum>2AF3A68E</xml_checksum>
   <class_name>MakeShadingSurfacesBasedOnZoneMultipliers</class_name>
   <display_name>Make Shading Surfaces Based on Zone Multipliers</display_name>
@@ -97,13 +97,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>2A4A98D5</checksum>
+      <checksum>5DEA693D</checksum>
     </file>
     <file>
       <filename>make_shading_surfaces_based_on_zone_multipliers_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>E7C200C9</checksum>
+      <checksum>E4A4E702</checksum>
     </file>
   </files>
 </measure>

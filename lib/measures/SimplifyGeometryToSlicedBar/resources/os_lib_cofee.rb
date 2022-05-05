@@ -46,8 +46,9 @@ module OsLib_Cofee
     # create an array to control sort order of spaces in bar
     customSpaceTypeBar = []
     counter = 0
-    spaceTypeHash.sort_by { |key, value| value }.reverse.each do |k, v|
+    spaceTypeHash.sort_by { |key, value| value }.reverse_each do |k, v|
       next if v == 0 # this line adds support for fractional values of 0
+
       if counter == 1
         if (lengthXTarget * (v / totalFloorArea) > perimeterDepth * perimeterBufferFactor) && endZones
           customSpaceTypeBar << [k, totalFloorArea * (perimeterDepth / lengthXTarget)]
@@ -63,7 +64,7 @@ module OsLib_Cofee
 
     # add the largest space type to the end
     counter = 0
-    spaceTypeHash.sort_by { |key, value| value }.reverse.each do |k, v|
+    spaceTypeHash.sort_by { |key, value| value }.reverse_each do |k, v|
       if counter == 0
         # if width is greater than 1.5x perimeter depth then split in half
         if (lengthXTarget * (v / totalFloorArea) > perimeterDepth * perimeterBufferFactor) && endZones
@@ -201,9 +202,10 @@ module OsLib_Cofee
       else
         z += floor_to_floor_height * midFloorMultiplier - floor_to_floor_height
 
-        if storyCounter == 0
+        case storyCounter
+        when 0
           ceilingAdiabatic = true
-        elsif storyCounter == 1
+        when 1
           floorAdiabatic = true
           ceilingAdiabatic = true
         else

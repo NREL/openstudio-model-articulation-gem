@@ -36,7 +36,7 @@
 require 'openstudio'
 require 'openstudio/measure/ShowRunnerOutput'
 require 'minitest/autorun'
-require_relative '../measure.rb'
+require_relative '../measure'
 require 'fileutils'
 
 class BlendedSpaceTypeFromModelTest < MiniTest::Test
@@ -54,7 +54,7 @@ class BlendedSpaceTypeFromModelTest < MiniTest::Test
     else
       # load the test model
       translator = OpenStudio::OSVersion::VersionTranslator.new
-      path = OpenStudio::Path.new(File.dirname(__FILE__) + '/' + model_name)
+      path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/#{model_name}")
       model = translator.loadModel(path)
       assert(!model.empty?)
       model = model.get

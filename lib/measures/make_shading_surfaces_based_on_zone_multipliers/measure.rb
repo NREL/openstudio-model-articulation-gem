@@ -132,6 +132,7 @@ class MakeShadingSurfacesBasedOnZoneMultipliers < OpenStudio::Measure::ModelMeas
 
           space.surfaces.each do |surface|
             next if surface.outsideBoundaryCondition != 'Outdoors'
+
             surfaces_to_copy[surface] = multiplier
 
             # store  vertices
@@ -157,6 +158,7 @@ class MakeShadingSurfacesBasedOnZoneMultipliers < OpenStudio::Measure::ModelMeas
 
           space.surfaces.each do |surface|
             next if surface.outsideBoundaryCondition != 'Outdoors'
+
             surfaces_to_copy[surface] = multiplier
 
             # store  vertices

@@ -204,7 +204,7 @@ class CreateDOEPrototypeBuilding < OpenStudio::Measure::ModelMeasure
     reset_log
 
     return true
-  end # end the run method
+  end
 
   # Get all the log messages and put into output
   # for users to see.
@@ -233,7 +233,7 @@ class CreateDOEPrototypeBuilding < OpenStudio::Measure::ModelMeasure
     end
     @runner.registerInfo("Total Time = #{(Time.new - @start_time).round}sec.")
   end
-end # end the measure
+end
 
 # this allows the measure to be use by the application
 CreateDOEPrototypeBuilding.new.registerWithApplication

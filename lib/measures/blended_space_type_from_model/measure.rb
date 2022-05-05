@@ -38,7 +38,7 @@
 
 # load OpenStudio measure libraries from openstudio-extension gem
 require 'openstudio-extension'
-require 'openstudio/extension/core/os_lib_model_simplification.rb'
+require 'openstudio/extension/core/os_lib_model_simplification'
 
 # start the measure
 class BlendedSpaceTypeFromModel < OpenStudio::Measure::ModelMeasure
@@ -96,7 +96,8 @@ class BlendedSpaceTypeFromModel < OpenStudio::Measure::ModelMeasure
 
     # divide the building up based on blend method
     space_type_hash = {}
-    if blend_method == 'Building Type'
+    case blend_method
+    when 'Building Type'
 
       # loop through spaces and organize by building type
       model.getSpaceTypes.each do |space_type|
@@ -117,7 +118,7 @@ class BlendedSpaceTypeFromModel < OpenStudio::Measure::ModelMeasure
         space_type_hash[building_type] << space_type
       end
 
-    elsif blend_method == 'Building Story'
+    when 'Building Story'
 
       # loop through building stories
       model.getBuildingStorys.sort.each do |story|
@@ -165,6 +166,7 @@ class BlendedSpaceTypeFromModel < OpenStudio::Measure::ModelMeasure
       # warn if spaces in model that are not on building story (re-assign to cloned space type)
       model.getSpaces.each do |space|
         next if space.buildingStory.is_initialized
+
         runner.registerWarning("#{space.name} is not assigned to a building story. It will be ignored.")
       end
 
@@ -176,13 +178,16 @@ class BlendedSpaceTypeFromModel < OpenStudio::Measure::ModelMeasure
     initial_cond_space_type_hash = {}
     model.getSpaceTypes.sort.each do |space_type|
       next if space_type.floorArea == 0
+
       floor_area_si = 0
       # loop through spaces so I can skip if not included in floor area
       space_type.spaces.each do |space|
         next if !space.partofTotalFloorArea
+
         floor_area_si += space.floorArea * space.multiplier
       end
       next if floor_area_si == 0
+
       initial_cond_space_type_hash[space_type] = floor_area_si
     end
     runner.registerInitialCondition("The initial building uses #{initial_cond_space_type_hash.size} spaces types.")
@@ -204,9 +209,11 @@ class BlendedSpaceTypeFromModel < OpenStudio::Measure::ModelMeasure
       # loop through spaces so I can skip if not included in floor area
       space_type.spaces.each do |space|
         next if !space.partofTotalFloorArea
+
         floor_area_si += space.floorArea * space.multiplier
       end
       next if floor_area_si == 0
+
       final_cond_space_type_hash[space_type] = floor_area_si
     end
     runner.registerFinalCondition("The final building uses #{final_cond_space_type_hash.size} spaces types.")

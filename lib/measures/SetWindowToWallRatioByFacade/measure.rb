@@ -202,6 +202,7 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
       surfaces = []
       model.getSpaces.sort.each do |space|
         next if !space.partofTotalFloorArea
+
         space.surfaces.sort.each do |surface|
           surfaces << surface
         end
@@ -265,7 +266,8 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
 
         # remove windows before split at doors
         s.subSurfaces.each do |sub_surface|
-          next if ['Door','OverheadDoor'].include? sub_surface.subSurfaceType
+          next if ['Door', 'OverheadDoor'].include? sub_surface.subSurfaceType
+
           sub_surface.remove
         end
 
@@ -333,7 +335,7 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
           end
 
           # remove orig surface
-          ss.remove 
+          ss.remove
         end
 
       else
@@ -342,10 +344,10 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
 
       # add windows
       all_surfaces2.sort.each do |ss|
-
         orig_sub_surf_constructions = {}
         ss.subSurfaces.sort.each do |sub_surf|
           next if sub_surf.subSurfaceType == 'Door' || sub_surf.subSurfaceType == 'OverheadDoor'
+
           if sub_surf.construction.is_initialized
             if orig_sub_surf_constructions.key?(sub_surf.construction.get)
               orig_sub_surf_constructions[sub_surf.construction.get] += 1
@@ -369,38 +371,35 @@ class SetWindowToWallRatioByFacade < OpenStudio::Measure::ModelMeasure
         if wwr > 0 && new_window.empty?
 
           # if new window is empty then inset base surface to add window (check may need to skip on base surfaces with doors)
-          if inset_tri_sub
+          # skip of surface already has sub-surfaces or if not triangle
+          if inset_tri_sub && (ss.subSurfaces.empty? && ss.vertices.size <= 3)
+            # get centroid
+            vertices = ss.vertices
+            centroid = OpenStudio.getCentroid(vertices).get
+            x_cent = centroid.x
+            y_cent = centroid.y
+            z_cent = centroid.z
 
-            # skip of surface already has sub-surfaces or if not triangle
-            if ss.subSurfaces.empty? && ss.vertices.size <= 3
-              # get centroid
-              vertices = ss.vertices
-              centroid = OpenStudio.getCentroid(vertices).get
-              x_cent = centroid.x
-              y_cent = centroid.y
-              z_cent = centroid.z
-
-              # reduce vertices towards centroid
-              scale = Math.sqrt(wwr)
-              new_vertices = OpenStudio::Point3dVector.new
-              vertices.each do |vertex|
-                x = (vertex.x * scale + x_cent * (1.0 - scale))
-                y = (vertex.y * scale + y_cent * (1.0 - scale))
-                z = (vertex.z * scale + z_cent * (1.0 - scale))
-                new_vertices << OpenStudio::Point3d.new(x, y, z)
-              end
-
-              # create inset window
-              new_window = OpenStudio::Model::SubSurface.new(new_vertices, model)
-              new_window.setSurface(ss)
-              new_window.setSubSurfaceType('FixedWindow')
-              if non_rect_parent.key?(ss)
-                new_window.setConstruction(non_rect_parent[ss])
-              end
-              window_confirmed = true
+            # reduce vertices towards centroid
+            scale = Math.sqrt(wwr)
+            new_vertices = OpenStudio::Point3dVector.new
+            vertices.each do |vertex|
+              x = (vertex.x * scale + x_cent * (1.0 - scale))
+              y = (vertex.y * scale + y_cent * (1.0 - scale))
+              z = (vertex.z * scale + z_cent * (1.0 - scale))
+              new_vertices << OpenStudio::Point3d.new(x, y, z)
             end
 
+            # create inset window
+            new_window = OpenStudio::Model::SubSurface.new(new_vertices, model)
+            new_window.setSurface(ss)
+            new_window.setSubSurfaceType('FixedWindow')
+            if non_rect_parent.key?(ss)
+              new_window.setConstruction(non_rect_parent[ss])
+            end
+            window_confirmed = true
           end
+
         else
           if wwr > 0
             new_window = new_window.get

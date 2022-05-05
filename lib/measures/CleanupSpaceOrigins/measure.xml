@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>cleanup_space_origins</name>
   <uid>d81f8791-081d-4346-9f27-1b721d27ea86</uid>
-  <version_id>2adda00f-77ef-4a17-a6cd-f4284f7e8ea2</version_id>
-  <version_modified>20210423T142509Z</version_modified>
+  <version_id>74e7a69c-75df-45b7-85f1-bcfed9cd6aeb</version_id>
+  <version_modified>20220505T182929Z</version_modified>
   <xml_checksum>45097B60</xml_checksum>
   <class_name>CleanupSpaceOrigins</class_name>
   <display_name>CleanupSpaceOrigins</display_name>
@@ -48,6 +48,12 @@
       <checksum>6B7F3F48</checksum>
     </file>
     <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>A21A3ED2</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -56,19 +62,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>AE1DED78</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>A21A3ED2</checksum>
+      <checksum>692EC173</checksum>
     </file>
     <file>
       <filename>CleanupSpaceOrigins_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>A470A74C</checksum>
+      <checksum>61DA00EE</checksum>
     </file>
   </files>
 </measure>

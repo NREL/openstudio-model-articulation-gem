@@ -233,7 +233,7 @@ class CreateBaselineBuilding < OpenStudio::Measure::ModelMeasure
 
     log_msgs(debug)
     return success
-  end # end the run method
+  end
 
   # Get all the log messages and put into output
   # for users to see.
@@ -253,6 +253,7 @@ class CreateBaselineBuilding < OpenStudio::Measure::ModelMeasure
                 msg.logChannel.include?('Translator') || # Forward translator and geometry translator
                 msg.logMessage.include?('UseWeatherFile') || # 'UseWeatherFile' is not yet a supported option for YearDescription
                 msg.logMessage.include?('has multiple parents') # Object of type 'OS:Curve:Cubic' and named 'VSD-TWR-FAN-FPLR' has multiple parents. Returning the first.
+
         # Report the message in the correct way
         if msg.logLevel == OpenStudio::Info
           @runner.registerInfo(msg.logMessage)
@@ -267,7 +268,7 @@ class CreateBaselineBuilding < OpenStudio::Measure::ModelMeasure
     end
     @runner.registerInfo("Total Time = #{(Time.new - @start_time).round}sec.")
   end
-end # end the measure
+end
 
 # this allows the measure to be use by the application
 CreateBaselineBuilding.new.registerWithApplication

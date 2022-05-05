@@ -36,7 +36,7 @@
 require 'openstudio'
 require 'openstudio/measure/ShowRunnerOutput'
 require 'minitest/autorun'
-require_relative '../measure.rb'
+require_relative '../measure'
 require 'fileutils'
 
 class CreateAndAssignThermalZonesForUnassignedSpaces_Test < MiniTest::Test
@@ -49,7 +49,7 @@ class CreateAndAssignThermalZonesForUnassignedSpaces_Test < MiniTest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/example_model.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/example_model.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -86,7 +86,7 @@ class CreateAndAssignThermalZonesForUnassignedSpaces_Test < MiniTest::Test
     # assert(result.warnings.size == 0)
 
     # save the model to test output directory
-    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/test_output.osm')
+    output_file_path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/output/test_output.osm")
     model.save(output_file_path, true)
   end
 end

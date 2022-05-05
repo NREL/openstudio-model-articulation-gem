@@ -64,14 +64,18 @@ Please review the [OpenStudio Contribution Policy](https://openstudio.net/openst
 
 ## TODO
 
-- [ ] Move articulation measures from openstudio-measures
-- [ ] Move articulation measure lib files to openstudio-extension lib
+- [x] Move articulation measures from openstudio-measures
+- [x] Move articulation measure lib files to openstudio-extension lib
 - [ ] Update measures to correct naming conventions 
 
 # Releasing
 
 * Update CHANGELOG.md
-* Run `rake rubocop:auto_correct`
+* Run `rake openstudio:rubocop:auto_correct`
+* Run `rake openstudio:update_copyright`
+* Run `rake openstudio:update_measures` (this has to be done last since prior tasks alter measure files)
+* Update version in `readme.md`
+* Update version in `openstudio-model-articulation.gemspec`
 * Update version in `/lib/openstudio/model_articulation/version.rb`
 * Create PR to master, after tests and reviews complete, then merge
 * Locally - from the master branch, run `rake release`
