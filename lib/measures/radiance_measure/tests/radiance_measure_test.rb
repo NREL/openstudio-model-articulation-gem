@@ -37,7 +37,7 @@ require 'openstudio'
 require 'openstudio/measure/ShowRunnerOutput'
 require 'fileutils'
 
-require_relative '../measure.rb'
+require_relative '../measure'
 require 'minitest/autorun'
 
 class RadianceMeasureTest < Minitest::Test
@@ -49,25 +49,26 @@ class RadianceMeasureTest < Minitest::Test
 
   def get_test_model(shade_type)
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/measure_test_model.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/measure_test_model.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
 
     model = model.get
 
     new_shade_control = nil
-    if shade_type == 'Default'
+    case shade_type
+    when 'Default'
       # do nothing, use model as is
-    elsif shade_type == 'None'
+    when 'None'
       # remove shading controls
       model.getShadingControls.each(&:remove)
-    elsif shade_type == 'Blind'
+    when 'Blind'
       new_shade_control = OpenStudio::Model::ShadingControl.new(OpenStudio::Model::Blind.new(model))
-    elsif shade_type == 'DaylightRedirectionDevice'
+    when 'DaylightRedirectionDevice'
       new_shade_control = OpenStudio::Model::ShadingControl.new(OpenStudio::Model::DaylightRedirectionDevice.new(model))
-    elsif shade_type == 'Screen'
+    when 'Screen'
       new_shade_control = OpenStudio::Model::ShadingControl.new(OpenStudio::Model::Screen.new(model))
-    elsif shade_type == 'Shade'
+    when 'Shade'
       new_shade_control = OpenStudio::Model::ShadingControl.new(OpenStudio::Model::Shade.new(model))
     end
 
@@ -95,7 +96,7 @@ class RadianceMeasureTest < Minitest::Test
 
     # set up runner, this will happen automatically when measure is run in PAT
 
-    runner.setLastEpwFilePath(File.dirname(__FILE__) + '/USA_CO_Golden-NREL.724666_TMY3.epw')
+    runner.setLastEpwFilePath("#{File.dirname(__FILE__)}/USA_CO_Golden-NREL.724666_TMY3.epw")
 
     # load the test model
     model = get_test_model(shade_type)

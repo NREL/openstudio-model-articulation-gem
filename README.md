@@ -51,6 +51,7 @@ bundle exec rake openstudio:test_with_openstudio
 
 |OpenStudio Model Articulation Gem|OpenStudio|Ruby|
 |:--------------:|:----------:|:--------:|
+| 0.6.0          | 3.4      | 2.7    |
 | 0.5.0          | 3.3      | 2.7    |
 | 0.4.0 - 0.4.2  | 3.2      | 2.7    |
 | 0.3.0 - 0.3.1  | 3.1      | 2.5    |
@@ -63,14 +64,18 @@ Please review the [OpenStudio Contribution Policy](https://openstudio.net/openst
 
 ## TODO
 
-- [ ] Move articulation measures from openstudio-measures
-- [ ] Move articulation measure lib files to openstudio-extension lib
+- [x] Move articulation measures from openstudio-measures
+- [x] Move articulation measure lib files to openstudio-extension lib
 - [ ] Update measures to correct naming conventions 
 
 # Releasing
 
 * Update CHANGELOG.md
-* Run `rake rubocop:auto_correct`
+* Run `rake openstudio:rubocop:auto_correct`
+* Run `rake openstudio:update_copyright`
+* Run `rake openstudio:update_measures` (this has to be done last since prior tasks alter measure files)
+* Update version in `readme.md`
+* Update version in `openstudio-model-articulation.gemspec`
 * Update version in `/lib/openstudio/model_articulation/version.rb`
 * Create PR to master, after tests and reviews complete, then merge
 * Locally - from the master branch, run `rake release`

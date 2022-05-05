@@ -72,10 +72,8 @@ class AssignSpacesToStories < OpenStudio::Measure::ModelMeasure
     def getStoryForNominalZCoordinate(model, minz)
       model.getBuildingStorys.each do |story|
         z = story.nominalZCoordinate
-        if !z.empty?
-          if minz.round(2) == z.get.round(2)
-            return story
-          end
+        if !z.empty? && (minz.round(2) == z.get.round(2))
+          return story
         end
       end
 

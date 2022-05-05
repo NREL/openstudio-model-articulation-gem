@@ -37,7 +37,7 @@ require 'openstudio'
 require 'openstudio/measure/ShowRunnerOutput'
 require 'fileutils'
 
-require_relative '../measure.rb'
+require_relative '../measure'
 require 'minitest/autorun'
 
 class FindAndReplaceInAllThermalZoneNamesTest < Minitest::Test
@@ -90,7 +90,7 @@ class FindAndReplaceInAllThermalZoneNamesTest < Minitest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/ImportedIdf_RefFsr.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/ImportedIdf_RefFsr.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get

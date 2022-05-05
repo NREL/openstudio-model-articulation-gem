@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>create_typical_deer_building_from_model</name>
   <uid>09cc23db-5e9b-4b11-b167-1852a15ed339</uid>
-  <version_id>bdfa6001-d655-473d-94bd-02c58b4808a8</version_id>
-  <version_modified>20210729T163235Z</version_modified>
+  <version_id>f8a8e7e4-350b-4b0f-a27a-18e1ddf170fd</version_id>
+  <version_modified>20220505T182935Z</version_modified>
   <xml_checksum>AABAC479</xml_checksum>
   <class_name>CreateTypicalDEERBuildingFromModel</class_name>
   <display_name>Create Typical DEER Building from Model</display_name>
@@ -1382,18 +1382,6 @@
       <checksum>A21A3ED2</checksum>
     </file>
     <file>
-      <filename>measure_test_hvac.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>B00E4105</checksum>
-    </file>
-    <file>
-      <filename>create_typical_deer_building_from_model_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>F3844890</checksum>
-    </file>
-    <file>
       <filename>Model.hvac.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
@@ -1406,6 +1394,24 @@
       <checksum>DD4698D3</checksum>
     </file>
     <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>1B2E71EB</checksum>
+    </file>
+    <file>
+      <filename>measure_test_hvac.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>3FE8544B</checksum>
+    </file>
+    <file>
+      <filename>create_typical_deer_building_from_model_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>B3C5409D</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -1414,13 +1420,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>10822852</checksum>
-    </file>
-    <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>1B2E71EB</checksum>
+      <checksum>088F9AFB</checksum>
     </file>
   </files>
 </measure>

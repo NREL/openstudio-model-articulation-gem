@@ -69,7 +69,7 @@ class SetInteriorWallsAndFloorsToAdiabatic < OpenStudio::Measure::ModelMeasure
     end
 
     # looping through sorted hash of storys
-    construction_args_hash.sort.map do |key, value| # todo - could filter this so only constructions that are valid on opaque surfaces will show up.
+    construction_args_hash.sort.map do |key, value| # TODO: - could filter this so only constructions that are valid on opaque surfaces will show up.
       construction_handles << value.handle.to_s
       construction_display_names << key
     end

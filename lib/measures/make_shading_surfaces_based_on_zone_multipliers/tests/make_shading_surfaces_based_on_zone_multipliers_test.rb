@@ -36,7 +36,7 @@
 require 'openstudio'
 require 'openstudio/measure/ShowRunnerOutput'
 require 'minitest/autorun'
-require_relative '../measure.rb'
+require_relative '../measure'
 require 'fileutils'
 
 class MakeShadingSurfacesBasedOnZoneMultipliersTest < MiniTest::Test
@@ -55,7 +55,7 @@ class MakeShadingSurfacesBasedOnZoneMultipliersTest < MiniTest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/1003_LargeOffice_5b_Pre 1980.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/1003_LargeOffice_5b_Pre 1980.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -93,7 +93,7 @@ class MakeShadingSurfacesBasedOnZoneMultipliersTest < MiniTest::Test
     # assert(result.warnings.size == 0)
 
     # save the model to test output directory
-    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/test_output.osm')
+    output_file_path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/output/test_output.osm")
     model.save(output_file_path, true)
   end
 end

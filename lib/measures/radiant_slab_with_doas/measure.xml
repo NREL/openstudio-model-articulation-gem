@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>radiant_slab_with_doas</name>
   <uid>8091a0c3-7760-4da6-adf4-133d55872816</uid>
-  <version_id>04a7b943-a909-4dc9-a06a-d6f28b819be0</version_id>
-  <version_modified>20210723T213422Z</version_modified>
+  <version_id>764afd7f-f6e7-4e73-bc92-1230e49b2145</version_id>
+  <version_modified>20220505T182927Z</version_modified>
   <xml_checksum>C49A7DAB</xml_checksum>
   <class_name>RadiantSlabWithDoas</class_name>
   <display_name>Radiant Slab with DOAS</display_name>
@@ -329,7 +329,7 @@ To reduce unmet hours, use an expanded comfort range as mentioned above, remove 
       <filename>radiant_slab_with_doas_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>7C1AC4AE</checksum>
+      <checksum>2317B466</checksum>
     </file>
     <file>
       <version>
@@ -340,7 +340,7 @@ To reduce unmet hours, use an expanded comfort range as mentioned above, remove 
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>41F3702A</checksum>
+      <checksum>12177EE8</checksum>
     </file>
   </files>
 </measure>

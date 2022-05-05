@@ -36,7 +36,7 @@
 require 'openstudio'
 require 'openstudio/measure/ShowRunnerOutput'
 require 'minitest/autorun'
-require_relative '../measure.rb'
+require_relative '../measure'
 require 'fileutils'
 
 class InjectOsmGeometryIntoAnExternalIdf_Test < MiniTest::Test
@@ -61,13 +61,13 @@ class InjectOsmGeometryIntoAnExternalIdf_Test < MiniTest::Test
     measure = InjectOsmGeometryIntoAnExternalIdf.new
 
     # create an instance of a runner with OSW
-    osw_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/measure_test.osw')
+    osw_path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/measure_test.osw")
     osw = OpenStudio::WorkflowJSON.load(osw_path).get
     runner = OpenStudio::Measure::OSRunner.new(osw)
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/RefBldgMediumOfficeNew2004_Chicago_AlteredGeo_b.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/RefBldgMediumOfficeNew2004_Chicago_AlteredGeo_b.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -83,7 +83,7 @@ class InjectOsmGeometryIntoAnExternalIdf_Test < MiniTest::Test
     count = -1
 
     source_idf_path = arguments[count += 1].clone
-    assert(source_idf_path.setValue(File.dirname(__FILE__) + '/RefBldgMediumOfficeNew2004_Chicago.idf'))
+    assert(source_idf_path.setValue("#{File.dirname(__FILE__)}/RefBldgMediumOfficeNew2004_Chicago.idf"))
     argument_map['source_idf_path'] = source_idf_path
 
     merge_geometry_from_osm = arguments[count += 1].clone
@@ -101,13 +101,13 @@ class InjectOsmGeometryIntoAnExternalIdf_Test < MiniTest::Test
     measure = InjectOsmGeometryIntoAnExternalIdf.new
 
     # create an instance of a runner with OSW
-    osw_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/measure_test.osw')
+    osw_path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/measure_test.osw")
     osw = OpenStudio::WorkflowJSON.load(osw_path).get
     runner = OpenStudio::Measure::OSRunner.new(osw)
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/RefBldgMediumOfficeNew2004_Chicago_AlteredGeo_b.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/RefBldgMediumOfficeNew2004_Chicago_AlteredGeo_b.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -123,7 +123,7 @@ class InjectOsmGeometryIntoAnExternalIdf_Test < MiniTest::Test
     count = -1
 
     source_idf_path = arguments[count += 1].clone
-    assert(source_idf_path.setValue(File.dirname(__FILE__) + '/RefBldgMediumOfficeNew2004_Chicago.idf'))
+    assert(source_idf_path.setValue("#{File.dirname(__FILE__)}/RefBldgMediumOfficeNew2004_Chicago.idf"))
     argument_map['source_idf_path'] = source_idf_path
 
     merge_geometry_from_osm = arguments[count += 1].clone
@@ -145,13 +145,13 @@ class InjectOsmGeometryIntoAnExternalIdf_Test < MiniTest::Test
     measure = InjectOsmGeometryIntoAnExternalIdf.new
 
     # create an instance of a runner with OSW
-    osw_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/measure_test.osw')
+    osw_path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/measure_test.osw")
     osw = OpenStudio::WorkflowJSON.load(osw_path).get
     runner = OpenStudio::Measure::OSRunner.new(osw)
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/4ZoneWithShading_Simple_1_AlteredGeo.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/4ZoneWithShading_Simple_1_AlteredGeo.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -167,7 +167,7 @@ class InjectOsmGeometryIntoAnExternalIdf_Test < MiniTest::Test
     count = -1
 
     source_idf_path = arguments[count += 1].clone
-    assert(source_idf_path.setValue(File.dirname(__FILE__) + '/4ZoneWithShading_Simple_1.idf'))
+    assert(source_idf_path.setValue("#{File.dirname(__FILE__)}/4ZoneWithShading_Simple_1.idf"))
     argument_map['source_idf_path'] = source_idf_path
 
     merge_geometry_from_osm = arguments[count += 1].clone
@@ -185,13 +185,13 @@ class InjectOsmGeometryIntoAnExternalIdf_Test < MiniTest::Test
     measure = InjectOsmGeometryIntoAnExternalIdf.new
 
     # create an instance of a runner with OSW
-    osw_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/measure_test.osw')
+    osw_path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/measure_test.osw")
     osw = OpenStudio::WorkflowJSON.load(osw_path).get
     runner = OpenStudio::Measure::OSRunner.new(osw)
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/B10_Crawlspace_1Story_50_RibbonWindows_altered.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/B10_Crawlspace_1Story_50_RibbonWindows_altered.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -207,7 +207,7 @@ class InjectOsmGeometryIntoAnExternalIdf_Test < MiniTest::Test
     count = -1
 
     source_idf_path = arguments[count += 1].clone
-    assert(source_idf_path.setValue(File.dirname(__FILE__) + '/B10_Crawlspace_1Story_50_RibbonWindows.idf'))
+    assert(source_idf_path.setValue("#{File.dirname(__FILE__)}/B10_Crawlspace_1Story_50_RibbonWindows.idf"))
     argument_map['source_idf_path'] = source_idf_path
 
     merge_geometry_from_osm = arguments[count += 1].clone

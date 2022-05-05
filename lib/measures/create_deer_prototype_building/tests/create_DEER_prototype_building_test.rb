@@ -37,7 +37,7 @@ require 'openstudio'
 require 'openstudio/measure/ShowRunnerOutput'
 require 'minitest/autorun'
 require 'json'
-require_relative '../measure.rb'
+require_relative '../measure'
 require 'fileutils'
 require 'socket'
 

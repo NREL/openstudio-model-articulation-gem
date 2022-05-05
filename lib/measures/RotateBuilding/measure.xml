@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>rotate_building</name>
   <uid>b2742307-bce7-4747-8f94-977718217305</uid>
-  <version_id>bdde9591-38c6-47ff-b43d-4e205864b64d</version_id>
-  <version_modified>20210423T142510Z</version_modified>
+  <version_id>6d681308-f06a-49a4-b29c-85e02c940245</version_id>
+  <version_modified>20220505T182928Z</version_modified>
   <xml_checksum>49BEF039</xml_checksum>
   <class_name>RotateBuilding</class_name>
   <display_name>Rotate Building</display_name>
@@ -74,12 +74,6 @@
       <checksum>7E721F8C</checksum>
     </file>
     <file>
-      <filename>RotateBuilding_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>80D856EC</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
@@ -95,6 +89,12 @@
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
       <checksum>7A45B037</checksum>
+    </file>
+    <file>
+      <filename>RotateBuilding_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>7844502E</checksum>
     </file>
   </files>
 </measure>

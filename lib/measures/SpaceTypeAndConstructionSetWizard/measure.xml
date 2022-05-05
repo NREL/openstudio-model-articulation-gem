@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>space_type_and_construction_set_wizard</name>
   <uid>7c65af63-4316-47c9-b7a5-68d7a019e533</uid>
-  <version_id>a0577cf6-a844-4d90-a7c6-2a3f54e65bfd</version_id>
-  <version_modified>20210423T142525Z</version_modified>
+  <version_id>c10f0999-8ad9-46fa-8caa-953db92a07e6</version_id>
+  <version_modified>20220505T182932Z</version_modified>
   <xml_checksum>057E8D9D</xml_checksum>
   <class_name>SpaceTypeAndConstructionSetWizard</class_name>
   <display_name>Space Type and Construction Set Wizard</display_name>
@@ -372,7 +372,7 @@
       <filename>SpaceTypeAndConstructionSetWizard_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>A33BC44E</checksum>
+      <checksum>6904B5F3</checksum>
     </file>
     <file>
       <version>
@@ -383,7 +383,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>ECB1C32A</checksum>
+      <checksum>729BA750</checksum>
     </file>
   </files>
 </measure>

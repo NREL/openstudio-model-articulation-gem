@@ -63,7 +63,7 @@ module OsLib_Geometry
       end
 
       # set vertices to new vertices
-      surface.setVertices(newVertices) # todo check if this was made, and issue warning if it was not. Could happen if resulting surface not planer.
+      surface.setVertices(newVertices) # TODO: check if this was made, and issue warning if it was not. Could happen if resulting surface not planer.
 
       if flag then counter += 1 end
     end
@@ -95,6 +95,7 @@ module OsLib_Geometry
     floors = []
     space.surfaces.each do |surface|
       next if surface.surfaceType != 'Floor'
+
       floors << surface
     end
 
@@ -407,6 +408,7 @@ module OsLib_Geometry
           # adjustments running counter for space type being removed from this story
           space_types_running_count.each do |k2, v2|
             next if k2 != first_space[0]
+
             v2[:floor_area] += first_space[1][:floor_area] * v[:multiplier]
           end
 
@@ -504,10 +506,8 @@ module OsLib_Geometry
           re_apply_largest_space_type_at_end = true
         end
       end
-      if space_type == space_types.last[0]
-        if [length, width].max * space_type_hash[:floor_area] / total_floor_area > max_bar_end_multiplier * perimeter_zone_depth
-          end_perimeter_width_deduction = perimeter_zone_depth
-        end
+      if space_type == space_types.last[0] && ([length, width].max * space_type_hash[:floor_area] / total_floor_area > max_bar_end_multiplier * perimeter_zone_depth)
+        end_perimeter_width_deduction = perimeter_zone_depth
       end
       non_end_adjusted_width = ([length, width].max * space_type_hash[:floor_area] / total_floor_area) - start_perimeter_width_deduction - end_perimeter_width_deduction
 
@@ -772,7 +772,7 @@ module OsLib_Geometry
       if story.nil?
         story = OpenStudio::Model::BuildingStory.new(model)
         story.setNominalFloortoFloorHeight(story_data[:space_height]) # not used for anything
-        story.setNominalZCoordinate (story_data[:space_origin_z]) # not used for anything
+        story.setNominalZCoordinate(story_data[:space_origin_z]) # not used for anything
         story.setName("Story #{story_name}")
       end
 
@@ -780,11 +780,12 @@ module OsLib_Geometry
       multiplier_story_above = 1
       multiplier_story_below = 1
 
-      if index == 0 # bottom floor, only check above
+      case index
+      when 0 # bottom floor, only check above
         if story_hash.size > 1
           multiplier_story_above = story_hash.values[index + 1][:multiplier]
         end
-      elsif index == story_hash.size - 1 # top floor, check only below
+      when story_hash.size - 1 # top floor, check only below
         multiplier_story_below = story_hash.values[index + -1][:multiplier]
       else # mid floor, check above and below
         multiplier_story_above = story_hash.values[index + 1][:multiplier]
@@ -997,9 +998,11 @@ module OsLib_Geometry
     perim_story.spaces.each do |space|
       space.surfaces.each do |surface|
         next if (surface.outsideBoundaryCondition != 'Outdoors') || (surface.surfaceType != 'Wall')
+
         area = surface.grossArea
         z_value_array = OsLib_Geometry.getSurfaceZValues([surface])
         next if z_value_array.max == z_value_array.min # shouldn't see this unless wall is horizontal
+
         perimeter += area / (z_value_array.max - z_value_array.min)
       end
     end
@@ -1044,6 +1047,7 @@ module OsLib_Geometry
       edge_hash.each do |k1, v1|
         # apply to any floor boundary condition. This supports used in floors above basements
         next if v1[4] != 'Floor'
+
         edge_hash.each do |k2, v2|
           test_boundary_cond = false
           next if !tested_wall_boundary_condition.include?(v2[3]) # method arg takes multiple conditions
@@ -1161,6 +1165,7 @@ module OsLib_Geometry
       edge_hash.each do |k1, v1|
         next if v1[3] != 'Ground' # skip if not ground exposed floor
         next if v1[4] != 'Floor'
+
         edge_hash.each do |k2, v2|
           next if v2[3] != 'Outdoors' # skip if not exterior exposed wall (todo - update to handle basement)
           next if v2[4] != 'Wall'

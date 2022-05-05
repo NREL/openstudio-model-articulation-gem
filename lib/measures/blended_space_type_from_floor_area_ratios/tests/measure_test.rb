@@ -36,7 +36,7 @@
 require 'openstudio'
 require 'openstudio/measure/ShowRunnerOutput'
 require 'minitest/autorun'
-require_relative '../measure.rb'
+require_relative '../measure'
 require 'fileutils'
 
 class BlendedSpaceTypeFromFloorAreaRatiosTest < MiniTest::Test
@@ -58,7 +58,7 @@ class BlendedSpaceTypeFromFloorAreaRatiosTest < MiniTest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/example_model.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/example_model.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -111,7 +111,7 @@ class BlendedSpaceTypeFromFloorAreaRatiosTest < MiniTest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/1002_SmallOffice_2010_2a.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/1002_SmallOffice_2010_2a.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -164,7 +164,7 @@ class BlendedSpaceTypeFromFloorAreaRatiosTest < MiniTest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/1002_RetailStandalone2013.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/1002_RetailStandalone2013.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get

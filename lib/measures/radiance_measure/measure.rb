@@ -50,6 +50,7 @@ require 'open3'
 class Array
   def average
     raise 'Cannot average 0 items' if empty?
+
     sum = inject(:+)
 
     (sum / size).to_f
@@ -126,6 +127,7 @@ class RadianceMeasure < OpenStudio::Measure::ModelMeasure
 
     print_statement("Reading '#{filename}'", runner)
     raise "Could not find illuminance file #{filename}" unless File.exist?(filename)
+
     File.read(filename).each_line do |line|
       data_section = true if line =~ /^\s?\d/
       if data_section
@@ -360,9 +362,10 @@ class RadianceMeasure < OpenStudio::Measure::ModelMeasure
     coreCount = OpenStudio::System.numberOfProcessors
     sim_cores = '1'
 
-    if use_cores == 'Max'
+    case use_cores
+    when 'Max'
       sim_cores = coreCount
-    elsif use_cores == 'Min'
+    when 'Min'
       sim_cores = 1
     else
       sim_cores = coreCount - 1
@@ -422,12 +425,12 @@ class RadianceMeasure < OpenStudio::Measure::ModelMeasure
           perlpath = OpenStudio.getApplicationRunDirectory.parent_path /
                      OpenStudio::Path.new('strawberry-perl-5.16.2.1-32bit-portable-reduced/perl/bin')
         end
-        print_statement('Adding path for local perl: ' + perlpath.to_s, runner)
-        ENV['PATH'] = path + ';' + ENV['PATH'] + ';' + perlpath.to_s
-        ENV['RAYPATH'] = path + ';' + raypath + ';.'
+        print_statement("Adding path for local perl: #{perlpath}", runner)
+        ENV['PATH'] = "#{path};#{ENV['PATH']};#{perlpath}"
+        ENV['RAYPATH'] = "#{path};#{raypath};."
       else
-        ENV['PATH'] = path + ':' + ENV['PATH']
-        ENV['RAYPATH'] = path + ':' + raypath + ':.'
+        ENV['PATH'] = "#{path}:#{ENV['PATH']}"
+        ENV['RAYPATH'] = "#{path}:#{raypath}:."
       end
 
     end
@@ -512,14 +515,10 @@ class RadianceMeasure < OpenStudio::Measure::ModelMeasure
     print_statement('Running on Windows (sorry)', runner) if OS.windows && debug_mode
     print_statement('Running on unix', runner) if OS.unix && debug_mode
 
-    if !got_2x
+    if !got_2x && Dir.glob(epw2weapath + programExtension).empty?
 
-      if Dir.glob(epw2weapath + programExtension).empty?
-
-        runner.registerError("Cannot find epw2wea tool in radiance installation at '#{radiancePath}'. You may need to install a newer version of Radiance.")
-        exit false
-
-      end
+      runner.registerError("Cannot find epw2wea tool in radiance installation at '#{radiancePath}'. You may need to install a newer version of Radiance.")
+      exit false
 
     end
 
@@ -738,7 +737,7 @@ class RadianceMeasure < OpenStudio::Measure::ModelMeasure
         tempSettings = tempIO.split(' ')
         options_klemsDensity = "#{tempSettings[0]} #{tempSettings[1]}"
         options_skyvecDensity = tempSettings[3].split(':')[1]
-        options_tregVars = tempSettings[2..-1].join(' ')
+        options_tregVars = tempSettings[2..].join(' ')
       end
 
       File.open("#{radPath}/options/dmx.opt", 'r') do |file|
@@ -777,11 +776,13 @@ class RadianceMeasure < OpenStudio::Measure::ModelMeasure
       windowGroupCheck = File.open('bsdf/mapping.rad')
       windowGroupCheck.each do |row|
         next if row[0] == '#'
+
         wg = row.split(',')[0]
 
-        if wg == 'WG0'
+        case wg
+        when 'WG0'
           haveWG0 = 'True'
-        elsif wg == 'WG1'
+        when 'WG1'
           haveWG1 = 'True'
         end
       end
@@ -804,6 +805,7 @@ class RadianceMeasure < OpenStudio::Measure::ModelMeasure
 
       windowMaps.each do |row|
         next if row[0] == '#'
+
         wg = row.split(',')[0]
 
         rad_command = ''
@@ -968,11 +970,13 @@ class RadianceMeasure < OpenStudio::Measure::ModelMeasure
       windowGroupCheck = File.open('bsdf/mapping.rad')
       windowGroupCheck.each do |row|
         next if row[0] == '#'
+
         wg = row.split(',')[0]
 
-        if wg == 'WG0'
+        case wg
+        when 'WG0'
           haveWG0 = 'True'
-        elsif wg == 'WG1'
+        when 'WG1'
           haveWG1 = 'True'
         end
       end
@@ -992,6 +996,7 @@ class RadianceMeasure < OpenStudio::Measure::ModelMeasure
       windowMaps.each do |row|
         # skip header
         next if row[0] == '#'
+
         wg = row.split(',')[0]
 
         # do uncontrolled windows (WG0)
@@ -1027,7 +1032,7 @@ class RadianceMeasure < OpenStudio::Measure::ModelMeasure
 
           else
 
-            wgXMLs = row.split(',')[4..-1]
+            wgXMLs = row.split(',')[4..]
             if wgXMLs.size > 2
               print_statement("WARN: Window Group #{wg} has #{wgXMLs.size} BSDFs (2 max supported by OpenStudio application).", runner)
             end
@@ -1071,6 +1076,7 @@ class RadianceMeasure < OpenStudio::Measure::ModelMeasure
         windowGroups = File.open('bsdf/mapping.rad')
         windowGroups.each do |wg|
           next if wg[0] == '#'              # skip header
+
           windowGroup = wg.split(',')[0]
           next if windowGroup == 'WG0'      # skip unshaded windows
 
@@ -1087,10 +1093,10 @@ class RadianceMeasure < OpenStudio::Measure::ModelMeasure
           wg_normal_z = wg_normal.split(' ')[2].to_f
 
           # DLM: hacktastic way to implement these options for now
-          if shadeControlType == 'AlwaysOn'
+          case shadeControlType
+          when 'AlwaysOn'
             shadeControlSetpoint = -1000
-          elsif
-            shadeControlType == 'AlwaysOff'
+          when 'AlwaysOff'
             shadeControlSetpoint = 10000000000
           end
 
@@ -1129,7 +1135,7 @@ class RadianceMeasure < OpenStudio::Measure::ModelMeasure
           wgIllum = File.open("output/ts/m_#{windowGroup}.ill", 'w')
           wgShade = File.open("output/ts/#{windowGroup}.shd", 'w')
           header.each { |head| wgIllum.print head.to_s }
-          wgMerge.to_a.each { |array_ts| wgIllum.print " #{array_ts.join(' ')}\n" } # note leading space, for compatibility with default rfluxmtx output
+          wgMerge.to_a.each { |array_ts| wgIllum.print " #{array_ts.join(' ')}\n" } # NOTE: leading space, for compatibility with default rfluxmtx output
           wgShadeSchedule.each { |sh| wgShade.print sh.to_s }
           wgIllum.close
           wgShade.close
@@ -1177,7 +1183,7 @@ class RadianceMeasure < OpenStudio::Measure::ModelMeasure
         print_statement("Starting final building illumimance file with #{mergeWindows[0]}...", runner)
         exec_statement("rmtxop -fa #{mergeWindows[0]} -t > output/final_merge.tmp", runner)
         # add remaining groups, one at a time
-        mergeWindows[1..-1].each do |merge|
+        mergeWindows[1..].each do |merge|
           print_statement("adding #{merge}...", runner)
           temp_fname = rand(36**15).to_s(36)
           while merge_count > 1
@@ -1416,7 +1422,7 @@ class RadianceMeasure < OpenStudio::Measure::ModelMeasure
       illum.length.times do |n|
         data[n] = illum[n].to_f
       rescue Exception => e
-        print_statement('Error inserting data: ' + illum[n] + ' inserting 0 instead', runner)
+        print_statement("Error inserting data: #{illum[n]} inserting 0 instead", runner)
         data[n] = 0
       end
 
@@ -1438,7 +1444,7 @@ class RadianceMeasure < OpenStudio::Measure::ModelMeasure
 
       # for each environment period (design days, annual, or arbitrary) you will create a directory for results
       t_sqlFile.availableEnvPeriods.each do |envPeriod|
-        print_statement("envPeriod = '" + envPeriod.to_s + "'", runner)
+        print_statement("envPeriod = '#{envPeriod}'", runner)
 
         diffHorizIllumAll, dirNormIllumAll, diffEfficacyAll, dirNormEfficacyAll, solarAltitudeAll, solarAzimuthAll, diffHorizUnits, dirNormUnits = getTimeSeries(t_sqlFile, envPeriod)
 
@@ -1493,16 +1499,14 @@ class RadianceMeasure < OpenStudio::Measure::ModelMeasure
             # Debug
             # File.open('glareSensorValues.out', 'w') { |f| f.write(glareSensorValues.to_s) }
 
-            timeSeriesIllum[i] = tsDateTime.to_s.tr(' ', ',') + ',' + "#{dirNormIllum[i]},#{diffHorizIllum[i]}," + illumSensorValues.join(',') + ',' + illumValues.join(',')
+            timeSeriesIllum[i] = "#{tsDateTime.to_s.tr(' ', ',')},#{dirNormIllum[i]},#{diffHorizIllum[i]},#{illumSensorValues.join(',')},#{illumValues.join(',')}"
 
             # add glare sensor values
-            if t_radGlareSensorViews[space_name]
-              if !glareSensorValues.nil?
-                timeSeriesGlare[i] = tsDateTime.to_s.tr(' ', ',')
-                glareSensorValues.each_key do |key|
-                  glare_values = glareSensorValues[key].map { |_, v| v['dgp'] }
-                  timeSeriesGlare[i] += ",#{key},#{glare_values.average.round(2)},#{glare_values.min.round(2)},#{glare_values.max.round(2)},raw,#{glare_values.join(',')}"
-                end
+            if t_radGlareSensorViews[space_name] && !glareSensorValues.nil?
+              timeSeriesGlare[i] = tsDateTime.to_s.tr(' ', ',')
+              glareSensorValues.each_key do |key|
+                glare_values = glareSensorValues[key].map { |_, v| v['dgp'] }
+                timeSeriesGlare[i] += ",#{key},#{glare_values.average.round(2)},#{glare_values.min.round(2)},#{glare_values.max.round(2)},raw,#{glare_values.join(',')}"
               end
             end
 
@@ -1634,7 +1638,7 @@ class RadianceMeasure < OpenStudio::Measure::ModelMeasure
               ys << ymin + (n * ySpacing)
             end
 
-            sqlOutFile.insertIlluminanceMap(space_name, space_name + ' DAYLIGHT MAP', t_epwFile.wmoNumber,
+            sqlOutFile.insertIlluminanceMap(space_name, "#{space_name} DAYLIGHT MAP", t_epwFile.wmoNumber,
                                             simDateTimes, xs, ys, map.originZCoordinate,
                                             illuminanceMatrixMaps)
 
@@ -1755,8 +1759,8 @@ class RadianceMeasure < OpenStudio::Measure::ModelMeasure
             daylightSetpoint = secondaryDaylightingControl.get.illuminanceSetpoint
           else
             print_statement("Ignoring secondary daylighting control in ThermalZone '#{thermalZone.name}'", runner)
+          end
         end
-      end
 
         if daylightSetpoint == 0.0
           space.daylightingControls.each do |i|
@@ -1809,7 +1813,7 @@ class RadianceMeasure < OpenStudio::Measure::ModelMeasure
 
         schedule = schedule.get
 
-        schedule.setName(thermalZone.name.get + ' Lights Schedule')
+        schedule.setName("#{thermalZone.name.get} Lights Schedule")
 
         # remove all lights in this zone
         spaces.each do |space|
@@ -1872,6 +1876,7 @@ class RadianceMeasure < OpenStudio::Measure::ModelMeasure
 
         thermalZone = space.thermalZone
         next if thermalZone.empty?
+
         thermalZone = thermalZone.get
 
         map_name = "#{space_name} DAYLIGHT MAP"
@@ -1949,7 +1954,8 @@ class RadianceMeasure < OpenStudio::Measure::ModelMeasure
 
           da = 0
 
-          if $METHOD == 0
+          case $METHOD
+          when 0
 
             # get map values
             map_values = radoutFile.illuminanceMap(hourly_report_index)
@@ -1968,9 +1974,9 @@ class RadianceMeasure < OpenStudio::Measure::ModelMeasure
               end
             end
 
-            da = num_da.to_f / num.to_f
+            da = num_da.to_f / num
 
-          elsif $METHOD == 1
+          when 1
 
             x = OpenStudio::DoubleVector.new
             y = OpenStudio::DoubleVector.new
@@ -2000,10 +2006,10 @@ class RadianceMeasure < OpenStudio::Measure::ModelMeasure
               end
             end
 
-            da = num_da.to_f / num.to_f
-            cda = num_cda.to_f / num.to_f
-            udi = num_udi.to_f / num.to_f
-            sda = num_sda.to_f / num.to_f
+            da = num_da.to_f / num
+            cda = num_cda.to_f / num
+            udi = num_udi.to_f / num
+            sda = num_sda.to_f / num
 
           end
 
@@ -2042,7 +2048,7 @@ class RadianceMeasure < OpenStudio::Measure::ModelMeasure
             da_daylit_num += 1
           end
         end
-        annual_da_daylit = da_daylit_sum.to_f / da_daylit_num.to_f
+        annual_da_daylit = da_daylit_sum.to_f / da_daylit_num
         summary_report += "#{space_name},DA(#{daylightSetpoint.round(0)}),Daylit Hours,#{annual_da_daylit.round(2)},#{da_daylit_sum.round(0)},#{da_daylit_num}\n"
         if !peopleTimeseries.empty?
           da_occupied_sum = 0
@@ -2054,7 +2060,7 @@ class RadianceMeasure < OpenStudio::Measure::ModelMeasure
             end
           end
           # annual_da_occupied = (da_occupied_num == 0.0 || da_occupied_sum == 0.0) ? 0.0 : da_occupied_sum.to_f / da_occupied_num.to_f
-          annual_da_occupied = da_occupied_sum.to_f / da_occupied_num.to_f
+          annual_da_occupied = da_occupied_sum.to_f / da_occupied_num
           summary_report += "#{space_name},DA(#{daylightSetpoint.round(0)}),Occupied Hours,#{annual_da_occupied.round(2)},#{da_occupied_sum.round(0)},#{da_occupied_num}\n"
 
           da_daylit_occupied_sum = 0
@@ -2066,7 +2072,7 @@ class RadianceMeasure < OpenStudio::Measure::ModelMeasure
             end
           end
           # annual_da_daylit_occupied = (da_daylit_occupied_num == 0.0 || da_daylit_occupied_sum == 0.0) ? 0.0 : da_daylit_occupied_sum.to_f / da_daylit_occupied_num.to_f
-          annual_da_daylit_occupied = da_daylit_occupied_sum.to_f / da_daylit_occupied_num.to_f
+          annual_da_daylit_occupied = da_daylit_occupied_sum.to_f / da_daylit_occupied_num
           summary_report += "#{space_name},DA(#{daylightSetpoint.round(0)}),Daylit and Occupied Hours,#{annual_da_daylit_occupied.round(2)},#{da_daylit_occupied_sum.round(0)},#{da_daylit_occupied_num}\n"
         end
 
@@ -2079,7 +2085,7 @@ class RadianceMeasure < OpenStudio::Measure::ModelMeasure
             cda_daylit_num += 1
           end
         end
-        annual_cda_daylit = cda_daylit_sum.to_f / cda_daylit_num.to_f
+        annual_cda_daylit = cda_daylit_sum.to_f / cda_daylit_num
         summary_report += "#{space_name},conDA(#{daylightSetpoint.round(0)}),Daylit Hours,#{annual_cda_daylit.round(2)},#{cda_daylit_sum.round(0)},#{cda_daylit_num}\n"
 
         if !peopleTimeseries.empty?
@@ -2091,7 +2097,7 @@ class RadianceMeasure < OpenStudio::Measure::ModelMeasure
               cda_occupied_num += 1
             end
           end
-          annual_cda_occupied = cda_occupied_sum.to_f / cda_occupied_num.to_f
+          annual_cda_occupied = cda_occupied_sum.to_f / cda_occupied_num
           summary_report += "#{space_name},conDA(#{daylightSetpoint.round(0)}),Occupied Hours,#{annual_cda_occupied.round(2)},#{cda_occupied_sum.round(0)},#{cda_occupied_num}\n"
 
           cda_daylit_occupied_sum = 0
@@ -2102,7 +2108,7 @@ class RadianceMeasure < OpenStudio::Measure::ModelMeasure
               cda_daylit_occupied_num += 1
             end
           end
-          annual_cda_daylit_occupied = cda_daylit_occupied_sum.to_f / cda_daylit_occupied_num.to_f
+          annual_cda_daylit_occupied = cda_daylit_occupied_sum.to_f / cda_daylit_occupied_num
           summary_report += "#{space_name},conDA(#{daylightSetpoint.round(0)}),Daylit and Occupied Hours,#{annual_cda_daylit_occupied.round(2)},#{cda_daylit_occupied_sum.round(0)},#{cda_daylit_occupied_num}\n"
         end
 
@@ -2115,7 +2121,7 @@ class RadianceMeasure < OpenStudio::Measure::ModelMeasure
             udi_daylit_num += 1
           end
         end
-        annual_udi_daylit = udi_daylit_sum.to_f / udi_daylit_num.to_f
+        annual_udi_daylit = udi_daylit_sum.to_f / udi_daylit_num
         summary_report += "#{space_name},UDI(100-3000),Daylit Hours,#{annual_udi_daylit.round(2)},#{udi_daylit_sum.round(0)},#{udi_daylit_num}\n"
         if !peopleTimeseries.empty?
           udi_occupied_sum = 0
@@ -2126,7 +2132,7 @@ class RadianceMeasure < OpenStudio::Measure::ModelMeasure
               udi_occupied_num += 1
             end
           end
-          annual_udi_occupied = udi_occupied_sum.to_f / udi_occupied_num.to_f
+          annual_udi_occupied = udi_occupied_sum.to_f / udi_occupied_num
           summary_report += "#{space_name},UDI(100-3000),Occupied Hours,#{annual_udi_occupied.round(2)},#{udi_occupied_sum.round(0)},#{udi_occupied_num}\n"
 
           udi_daylit_occupied_sum = 0
@@ -2137,7 +2143,7 @@ class RadianceMeasure < OpenStudio::Measure::ModelMeasure
               udi_daylit_occupied_num += 1
             end
           end
-          annual_udi_daylit_occupied = udi_daylit_occupied_sum.to_f / udi_daylit_occupied_num.to_f
+          annual_udi_daylit_occupied = udi_daylit_occupied_sum.to_f / udi_daylit_occupied_num
           summary_report += "#{space_name},UDI(100-3000),Daylit and Occupied Hours,#{annual_udi_daylit_occupied.round(2)},#{cda_daylit_occupied_sum.round(0)},#{cda_daylit_occupied_num}\n"
         end
 
@@ -2150,7 +2156,7 @@ class RadianceMeasure < OpenStudio::Measure::ModelMeasure
             sda_num += 1
           end
         end
-        annual_sda = sda_sum.to_f / sda_num.to_f
+        annual_sda = sda_sum.to_f / sda_num
         summary_report += "#{space_name},sDA(300),8AM-5PM (10 hours/day per IESNA LM-83-12),#{annual_sda.round(2)},#{sda_sum.round(0)},#{sda_num}\n"
 
         # Make building average metrics

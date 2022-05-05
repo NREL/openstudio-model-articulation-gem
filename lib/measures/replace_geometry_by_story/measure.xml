@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>replace_geometry_by_story</name>
   <uid>03b18912-0ceb-47e9-8f8b-417a3008e189</uid>
-  <version_id>00a0fde1-875a-470c-9754-7dac5123f162</version_id>
-  <version_modified>20210423T142539Z</version_modified>
+  <version_id>0c043052-fbe4-4cb6-809b-4659f265a0dd</version_id>
+  <version_modified>20220505T182928Z</version_modified>
   <xml_checksum>2AF3A68E</xml_checksum>
   <class_name>ReplaceGeometryByStory</class_name>
   <display_name>Replace Geometry By Story</display_name>
@@ -72,13 +72,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>41CF21B6</checksum>
+      <checksum>7478785A</checksum>
     </file>
     <file>
       <filename>replace_geometry_by_story_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>5724D925</checksum>
+      <checksum>DC2F0000</checksum>
     </file>
   </files>
 </measure>

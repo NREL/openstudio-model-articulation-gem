@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>deer_space_type_and_construction_set_wizard</name>
   <uid>d8effcbd-52b2-4e5c-866c-e85091142aa6</uid>
-  <version_id>745737d5-1816-4dc6-8a95-0059b881b88a</version_id>
-  <version_modified>20210423T142536Z</version_modified>
+  <version_id>ef3a2767-2503-4ef7-97aa-ad2e64a859a4</version_id>
+  <version_modified>20220505T182929Z</version_modified>
   <xml_checksum>A514F332</xml_checksum>
   <class_name>DEERSpaceTypeAndConstructionSetWizard</class_name>
   <display_name>DEER Space Type and Construction Set Wizard</display_name>
@@ -363,7 +363,7 @@
       <filename>deer_space_type_and_construction_set_wizard_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>854655C1</checksum>
+      <checksum>8B39BFC0</checksum>
     </file>
     <file>
       <version>
@@ -374,7 +374,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>D6961EE1</checksum>
+      <checksum>B9BC7D57</checksum>
     </file>
   </files>
 </measure>

@@ -36,7 +36,7 @@
 require 'openstudio'
 require 'openstudio/measure/ShowRunnerOutput'
 require 'minitest/autorun'
-require_relative '../measure.rb'
+require_relative '../measure'
 
 class SimplifyGeometryToSlicedBar_Test < MiniTest::Test
   def test_SimplifyGeometryToSlicedBar
@@ -48,7 +48,7 @@ class SimplifyGeometryToSlicedBar_Test < MiniTest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/UShapedHotelExample.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/UShapedHotelExample.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get

@@ -37,7 +37,7 @@ require 'openstudio'
 require 'openstudio/measure/ShowRunnerOutput'
 require 'fileutils'
 
-require_relative '../measure.rb'
+require_relative '../measure'
 require 'minitest/autorun'
 
 class SpaceTypeAndConstructionSetWizard_Test < Minitest::Test
@@ -52,7 +52,7 @@ class SpaceTypeAndConstructionSetWizard_Test < Minitest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/EmptySeedModel.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/EmptySeedModel.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -123,7 +123,7 @@ class SpaceTypeAndConstructionSetWizard_Test < Minitest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/EmptySeedModel.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/EmptySeedModel.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -192,7 +192,7 @@ class SpaceTypeAndConstructionSetWizard_Test < Minitest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/two_story_bar.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/two_story_bar.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -263,7 +263,7 @@ class SpaceTypeAndConstructionSetWizard_Test < Minitest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/two_story_bar.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/two_story_bar.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -334,7 +334,7 @@ class SpaceTypeAndConstructionSetWizard_Test < Minitest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/two_story_bar.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/two_story_bar.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -405,7 +405,7 @@ class SpaceTypeAndConstructionSetWizard_Test < Minitest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/two_story_bar.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/two_story_bar.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -474,7 +474,7 @@ class SpaceTypeAndConstructionSetWizard_Test < Minitest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/EmptySeedModel.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/EmptySeedModel.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -535,7 +535,7 @@ class SpaceTypeAndConstructionSetWizard_Test < Minitest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/EmptySeedModel.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/EmptySeedModel.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get

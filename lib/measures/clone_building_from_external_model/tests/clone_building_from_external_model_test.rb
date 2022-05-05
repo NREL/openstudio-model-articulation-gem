@@ -36,7 +36,7 @@
 require 'openstudio'
 require 'openstudio/measure/ShowRunnerOutput'
 require 'minitest/autorun'
-require_relative '../measure.rb'
+require_relative '../measure'
 require 'fileutils'
 
 class CloneBuildingFromExternalModelTest < MiniTest::Test
@@ -55,7 +55,7 @@ class CloneBuildingFromExternalModelTest < MiniTest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/example_model.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/example_model.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -67,7 +67,7 @@ class CloneBuildingFromExternalModelTest < MiniTest::Test
     # create hash of argument values.
     # If the argument has a default that you want to use, you don't need it in the hash
     args_hash = {}
-    args_hash['external_model_name'] = File.dirname(__FILE__) + '/AedgK12HvacDualDuctDoas_ASHRAE 169-2006-5B.osm'
+    args_hash['external_model_name'] = "#{File.dirname(__FILE__)}/AedgK12HvacDualDuctDoas_ASHRAE 169-2006-5B.osm"
 
     # populate argument with specified hash value if specified
     arguments.each do |arg|
@@ -91,7 +91,7 @@ class CloneBuildingFromExternalModelTest < MiniTest::Test
     # assert(result.warnings.size == 0)
 
     # save the model to test output directory
-    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/test_output.osm')
+    output_file_path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/output/test_output.osm")
     model.save(output_file_path, true)
   end
 
@@ -100,13 +100,13 @@ class CloneBuildingFromExternalModelTest < MiniTest::Test
     measure = CloneBuildingFromExternalModel.new
 
     # create an instance of a runner with OSW
-    osw_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/measure_test.osw')
+    osw_path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/measure_test.osw")
     osw = OpenStudio::WorkflowJSON.load(osw_path).get
     runner = OpenStudio::Measure::OSRunner.new(osw)
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/example_model.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/example_model.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -142,7 +142,7 @@ class CloneBuildingFromExternalModelTest < MiniTest::Test
     # assert(result.warnings.size == 0)
 
     # save the model to test output directory
-    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/test_output.osm')
+    output_file_path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/output/test_output.osm")
     model.save(output_file_path, true)
   end
 end

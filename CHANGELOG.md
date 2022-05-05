@@ -1,5 +1,13 @@
 # OpenStudio Model Articulation Gems
 
+## Version 0.6.0
+* Support for OpenStudio 3.4 (upgrade to standards gem 0.2.16, no extension gem upgrade)
+* Fixed [#92]( https://github.com/NREL/openstudio-model-articulation-gem/issues/92 ), SetWindowToWallRatio triangulation can produce non-planar surfaces
+* Fixed [#94]( https://github.com/NREL/openstudio-model-articulation-gem/pull/94 ), fix SetWindowToWallRatio triangulation
+* Fixed [#95]( https://github.com/NREL/openstudio-model-articulation-gem/pull/95 ), add warnings to SetWindowToWallRatio to categorize cases when WWR can't be applied
+* Fixed [#98]( https://github.com/NREL/openstudio-model-articulation-gem/pull/98 ), Radiance Daylighting Measure - Update measure.rb
+* Fixed [#101]( https://github.com/NREL/openstudio-model-articulation-gem/pull/101 ), setting building and space type standard to Blend
+
 ## Version 0.5.0
 * Support for OpenStudio 3.3 (upgrade to extension gem 0.5.1 and standards gem 0.2.15)
 * Fixed [#73]( https://github.com/NREL/openstudio-model-articulation-gem/pull/73 ), added add_empd_material_properties measure contributed by GFlechas
