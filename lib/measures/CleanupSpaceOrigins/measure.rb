@@ -94,6 +94,7 @@ class CleanupSpaceOrigins < OpenStudio::Measure::ModelMeasure
     # do spaces first as these may contain other groups
     model.getSpaces.each do |space|
       next if !runner.inSelection(space)
+
       cleanup_group(space)
 
       space.shadingSurfaceGroups.each do |group|
@@ -108,12 +109,14 @@ class CleanupSpaceOrigins < OpenStudio::Measure::ModelMeasure
     # now do shading surfaces
     model.getShadingSurfaceGroups.each do |group|
       next if !runner.inSelection(group)
+
       cleanup_group(group)
     end
 
     # now do interior partition surface groups
     model.getInteriorPartitionSurfaceGroups.each do |group|
       next if !runner.inSelection(group)
+
       cleanup_group(group)
     end
 

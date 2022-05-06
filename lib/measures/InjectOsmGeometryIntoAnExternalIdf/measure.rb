@@ -291,7 +291,7 @@ class InjectOsmGeometryIntoAnExternalIdf < OpenStudio::Measure::EnergyPlusMeasur
 
       # create a list of objects to add
       objects = OpenStudio::IdfObjectVector.new
-      objectsToAdd.values.each do |object|
+      objectsToAdd.each_value do |object|
         idfObject = object.idfObject()
         objects << idfObject
       end
@@ -322,7 +322,7 @@ class InjectOsmGeometryIntoAnExternalIdf < OpenStudio::Measure::EnergyPlusMeasur
 
     # create a list of objects to add
     objects = OpenStudio::IdfObjectVector.new
-    objectsToAddFromSourceIDF.values.each do |idfObject|
+    objectsToAddFromSourceIDF.each_value do |idfObject|
       # idfObject = object.idfObject()
       objects << idfObject
     end

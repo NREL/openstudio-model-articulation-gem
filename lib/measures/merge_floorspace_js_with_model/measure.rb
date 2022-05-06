@@ -143,12 +143,14 @@ class MergeFloorspaceJsWithModel < OpenStudio::Measure::ModelMeasure
       fixed = false
       vertices.each do |vertex|
         next if fixed
+
         if array.include?(vertex)
           # create a new set of vertices
           new_vertices = OpenStudio::Point3dVector.new
           array_b = []
           surface.vertices.each do |vertex_b|
             next if array_b.include?(vertex_b)
+
             new_vertices << vertex_b
             array_b << vertex_b
           end
@@ -184,6 +186,7 @@ class MergeFloorspaceJsWithModel < OpenStudio::Measure::ModelMeasure
 
         surfaces_b.each do |surface_b|
           next if surface_a == surface_b # dont' test against same surface
+
           if surface_a.equalVertices(surface_b)
             runner.registerWarning("#{surface_a.name} and #{surface_b.name} in #{space.name} have duplicate geometry, removing #{surface_b.name}.")
             surface_b.remove
@@ -221,7 +224,7 @@ class MergeFloorspaceJsWithModel < OpenStudio::Measure::ModelMeasure
     json = JSON.parse(File.read(path.get.to_s))
 
     # error checking
-    unless !json['space_types'].empty?
+    if json['space_types'].empty?
       runner.registerInfo('No space types were created.')
     end
 

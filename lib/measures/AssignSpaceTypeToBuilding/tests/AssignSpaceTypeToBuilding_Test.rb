@@ -37,7 +37,7 @@ require 'openstudio'
 require 'openstudio/measure/ShowRunnerOutput'
 require 'fileutils'
 
-require_relative '../measure.rb'
+require_relative '../measure'
 require 'minitest/autorun'
 
 class AssignSpaceTypeToBuilding_Test < Minitest::Test
@@ -50,7 +50,7 @@ class AssignSpaceTypeToBuilding_Test < Minitest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/LargeHotel.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/LargeHotel.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -87,7 +87,7 @@ class AssignSpaceTypeToBuilding_Test < Minitest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/LargeHotel.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/LargeHotel.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get

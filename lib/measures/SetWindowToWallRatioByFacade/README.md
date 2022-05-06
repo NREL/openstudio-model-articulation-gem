@@ -100,6 +100,17 @@ This will only impact exterior surfaces with specified orientation
 
 
 
+### Triangulation Minimum Area (m^2)
+Triangulated surfaces less than this will not be created.
+**Name:** triangulation_min_area,
+**Type:** Double,
+**Units:** ,
+**Required:** true,
+**Model Dependent:** false
+
+
+
+
 
 
 

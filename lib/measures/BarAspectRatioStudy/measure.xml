@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>bar_aspect_ratio_study</name>
   <uid>3dcac94d-8a2e-43b6-8698-a3a4e8f3903f</uid>
-  <version_id>fe5839ff-2dfe-4053-be2d-603a439ce7f9</version_id>
-  <version_modified>20210423T142509Z</version_modified>
+  <version_id>360834b1-c338-4e27-a2f8-f22268563f3d</version_id>
+  <version_modified>20220505T182927Z</version_modified>
   <xml_checksum>49BEF039</xml_checksum>
   <class_name>BarAspectRatioStudy</class_name>
   <display_name>Bar Aspect Ratio Study</display_name>
@@ -137,13 +137,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>68A31043</checksum>
+      <checksum>1B314685</checksum>
     </file>
     <file>
       <filename>BarAspectRatioStudy_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>B1DFBF18</checksum>
+      <checksum>92B6A007</checksum>
     </file>
   </files>
 </measure>

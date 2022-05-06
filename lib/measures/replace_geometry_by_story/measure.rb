@@ -83,6 +83,7 @@ class ReplaceGeometryByStory < OpenStudio::Measure::ModelMeasure
     story_hash = {}
     model.getBuildingStorys.each do |story|
       next if !story.spaces.first.spaceType.is_initialized
+
       story_hash[story] = {}
       story_hash[story][:space_type] = story.spaces.first.spaceType.get
 
@@ -198,6 +199,7 @@ class ReplaceGeometryByStory < OpenStudio::Measure::ModelMeasure
       if hash[:basement]
         space.surfaces.each do |surface|
           next if surface.surfaceType != 'Wall'
+
           surface.setOutsideBoundaryCondition('Ground')
         end
       end
@@ -214,6 +216,7 @@ class ReplaceGeometryByStory < OpenStudio::Measure::ModelMeasure
       space.surfaces.each do |surface|
         next if surface.outsideBoundaryCondition != 'Outdoors'
         next if surface.surfaceType != 'Wall'
+
         surface.setWindowToWallRatio(target_wwr)
       end
     end
@@ -222,6 +225,7 @@ class ReplaceGeometryByStory < OpenStudio::Measure::ModelMeasure
     zone_hash = {} # key is zone value is floor area. It excludes zones with non 1 multiplier
     model.getThermalZones.each do |thermal_zone|
       next if thermal_zone.multiplier > 1
+
       zone_hash[thermal_zone] = thermal_zone.floorArea
     end
     target_zone = zone_hash.key(zone_hash.values.max)

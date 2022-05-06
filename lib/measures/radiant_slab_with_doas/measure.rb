@@ -221,7 +221,7 @@ To reduce unmet hours, use an expanded comfort range as mentioned above, remove 
     if remove_existing_hvac
       runner.registerInfo('Removing existing HVAC systems from the model')
       if std.respond_to?('remove_HVAC')
-        std.remove_HVAC(model) #OpenStuido 3.2.1 and earlierop use this, future versions will use snake_case method
+        std.remove_HVAC(model) # OpenStuido 3.2.1 and earlierop use this, future versions will use snake_case method
       else
         std.remove_hvac(model)
       end
@@ -232,6 +232,7 @@ To reduce unmet hours, use an expanded comfort range as mentioned above, remove 
     model.getThermalZones.each do |zone|
       next if std.thermal_zone_plenum?(zone)
       next if !std.thermal_zone_heated?(zone) && !std.thermal_zone_cooled?(zone)
+
       conditioned_zones << zone
     end
 
@@ -386,8 +387,10 @@ To reduce unmet hours, use an expanded comfort range as mentioned above, remove 
         next if radiant_type == 'floor' && surface.surfaceType != 'Floor'
         next if radiant_type == 'ceiling' && surface.surfaceType != 'RoofCeiling'
         next unless surface.space.is_initialized
+
         surface_space_name = surface.space.get.name.to_s
         next unless conditioned_space_names.include? surface_space_name
+
         var = OpenStudio::Model::OutputVariable.new('Surface Inside Face Temperature', model)
         var.setKeyValue(surface.name.to_s)
         vars << var

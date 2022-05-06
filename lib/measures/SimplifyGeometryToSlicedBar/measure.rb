@@ -45,7 +45,7 @@
 # load OpenStudio measure libraries from openstudio-extension gem
 require 'openstudio-extension'
 require 'openstudio/extension/core/os_lib_helper_methods'
-require 'openstudio/extension/core/os_lib_geometry.rb'
+require 'openstudio/extension/core/os_lib_geometry'
 
 # load OpenStudio measure libraries
 require "#{File.dirname(__FILE__)}/resources/os_lib_cofee"
@@ -137,6 +137,7 @@ class SimplifyGeometryToSlicedBar < OpenStudio::Measure::ModelMeasure
     spaceTypes = model.getSpaceTypes
     spaceTypes.each do |spaceType|
       next if spaceType.spaces.empty?
+
       result = OsLib_HelperMethods.getAreaOfSpacesInArray(model, spaceType.spaces, areaType = 'floorArea')
       spaceTypeHash[spaceType] = result['totalArea']
       totalSpaceTypeArea += result['totalArea']
@@ -144,7 +145,7 @@ class SimplifyGeometryToSlicedBar < OpenStudio::Measure::ModelMeasure
 
     runner.registerInfo("Initial Space Type Total Floor Area is #{OsLib_HelperMethods.neatConvertWithUnitDisplay(totalSpaceTypeArea, 'm^2', 'ft^2', 0, unitBefore = false, unitAfter = true, space = true, parentheses = true)}.")
 
-    spaceTypeHash.sort_by { |key, value| value }.reverse.each do |k, v|
+    spaceTypeHash.sort_by { |key, value| value }.reverse_each do |k, v|
       runner.registerInfo("Floor Area for #{k.name} is  #{OsLib_HelperMethods.neatConvertWithUnitDisplay(v, 'm^2', 'ft^2', 0, unitBefore = false, unitAfter = true, space = true, parentheses = true)}.")
     end
 
@@ -194,7 +195,8 @@ class SimplifyGeometryToSlicedBar < OpenStudio::Measure::ModelMeasure
     runner.registerInfo("Bounding box area is #{areaBounding_display}. #{lengthX_display} by #{lengthY_display}.")
 
     # get target footprint size
-    if logic == 'Maintain Bounding Box Aspect Ratio'
+    case logic
+    when 'Maintain Bounding Box Aspect Ratio'
       areaTarget = totalFloorArea / numStories
       areaMultiplier = areaTarget / areaBounding
       edgeMultiplier = Math.sqrt(areaMultiplier)
@@ -204,7 +206,7 @@ class SimplifyGeometryToSlicedBar < OpenStudio::Measure::ModelMeasure
       # run def to create bar
       bar_AspectRatio = OsLib_Cofee.createBar(model, spaceTypeHash, lengthXTarget, lengthYTarget, totalFloorArea, numStories, midFloorMultiplier, xmin, ymin, lengthX, lengthY, zmin, zmax, true)
 
-    elsif logic == 'Maintain Total Exterior Wall Area'
+    when 'Maintain Total Exterior Wall Area'
       areaTarget = totalFloorArea / numStories
       perim = exteriorArea_si / (zmax - zmin)
       lengthYTarget = 0.25 * perim - 0.25 * Math.sqrt(perim**2 - 16 * areaTarget)
@@ -229,6 +231,7 @@ class SimplifyGeometryToSlicedBar < OpenStudio::Measure::ModelMeasure
           relativeAzimuth = OpenStudio.convert(surface.azimuth, 'rad', 'deg').get
           next if surface.outsideBoundaryCondition != 'Outdoors'
           next if surface.surfaceType != 'Wall'
+
           if (relativeAzimuth.round == 90) || (relativeAzimuth.round == 270)
             construction = surface.construction # TODO: - this isn't really the construction I want since it wasn't an interior one, but will work for now
             surface.setOutsideBoundaryCondition('Adiabatic')
@@ -257,6 +260,7 @@ class SimplifyGeometryToSlicedBar < OpenStudio::Measure::ModelMeasure
           relativeAzimuth = OpenStudio.convert(surface.azimuth, 'rad', 'deg').get
           next if surface.outsideBoundaryCondition != 'Outdoors'
           next if surface.surfaceType != 'Wall'
+
           if (relativeAzimuth.round == 90) || (relativeAzimuth.round == 270)
             construction = surface.construction # TODO: - this isn't really the construction I want since it wasn't an interior one, but will work for now
             surface.setOutsideBoundaryCondition('Adiabatic')

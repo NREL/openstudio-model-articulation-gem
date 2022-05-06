@@ -36,7 +36,7 @@
 require 'openstudio'
 require 'openstudio/measure/ShowRunnerOutput'
 require 'minitest/autorun'
-require_relative '../measure.rb'
+require_relative '../measure'
 require 'fileutils'
 
 class ScaleGeometryTest < MiniTest::Test
@@ -70,7 +70,7 @@ class ScaleGeometryTest < MiniTest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/example_model.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/example_model.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -127,7 +127,7 @@ class ScaleGeometryTest < MiniTest::Test
     assert_equal((1.0 * 1.0 * 1.0 * original_volume).round(4), volume.round(4))
 
     # save the model to test output directory
-    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/test_unit_scale.osm')
+    output_file_path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/output/test_unit_scale.osm")
     model.save(output_file_path, true)
   end
 
@@ -140,7 +140,7 @@ class ScaleGeometryTest < MiniTest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/example_model.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/example_model.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -197,7 +197,7 @@ class ScaleGeometryTest < MiniTest::Test
     assert_equal((1.1 * 1.1 * 1.1 * original_volume).round(4), volume.round(4))
 
     # save the model to test output directory
-    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/test_1_1_scale.osm')
+    output_file_path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/output/test_1_1_scale.osm")
     model.save(output_file_path, true)
   end
 
@@ -210,7 +210,7 @@ class ScaleGeometryTest < MiniTest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/example_model.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/example_model.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -267,7 +267,7 @@ class ScaleGeometryTest < MiniTest::Test
     assert_equal((0.9 * 0.9 * 0.9 * original_volume).round(4), volume.round(4))
 
     # save the model to test output directory
-    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/test_0_9_scale.osm')
+    output_file_path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/output/test_0_9_scale.osm")
     model.save(output_file_path, true)
   end
 end

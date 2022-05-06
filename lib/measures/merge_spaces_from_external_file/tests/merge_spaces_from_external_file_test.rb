@@ -36,7 +36,7 @@
 require 'openstudio'
 require 'openstudio/measure/ShowRunnerOutput'
 require 'minitest/autorun'
-require_relative '../measure.rb'
+require_relative '../measure'
 require 'fileutils'
 
 class MergeSpacesFromExternalFile_Test < MiniTest::Test
@@ -47,13 +47,13 @@ class MergeSpacesFromExternalFile_Test < MiniTest::Test
     measure = MergeSpacesFromExternalFile.new
 
     # create an instance of a runner with OSW
-    osw_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/measure_test.osw')
+    osw_path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/measure_test.osw")
     osw = OpenStudio::WorkflowJSON.load(osw_path).get
     runner = OpenStudio::Measure::OSRunner.new(osw)
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/current_model_test.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/current_model_test.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -104,13 +104,13 @@ class MergeSpacesFromExternalFile_Test < MiniTest::Test
     measure = MergeSpacesFromExternalFile.new
 
     # create an instance of a runner with OSW
-    osw_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/measure_test.osw')
+    osw_path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/measure_test.osw")
     osw = OpenStudio::WorkflowJSON.load(osw_path).get
     runner = OpenStudio::Measure::OSRunner.new(osw)
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/current_model_test.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/current_model_test.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -159,13 +159,13 @@ class MergeSpacesFromExternalFile_Test < MiniTest::Test
     measure = MergeSpacesFromExternalFile.new
 
     # create an instance of a runner with OSW
-    osw_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/measure_test.osw')
+    osw_path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/measure_test.osw")
     osw = OpenStudio::WorkflowJSON.load(osw_path).get
     runner = OpenStudio::Measure::OSRunner.new(osw)
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/current_model_test.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/current_model_test.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -214,13 +214,13 @@ class MergeSpacesFromExternalFile_Test < MiniTest::Test
     measure = MergeSpacesFromExternalFile.new
 
     # create an instance of a runner with OSW
-    osw_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/measure_test.osw')
+    osw_path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/measure_test.osw")
     osw = OpenStudio::WorkflowJSON.load(osw_path).get
     runner = OpenStudio::Measure::OSRunner.new(osw)
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/current_model_test.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/current_model_test.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get

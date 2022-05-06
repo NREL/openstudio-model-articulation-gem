@@ -41,8 +41,8 @@ require 'openstudio-standards'
 # load OpenStudio measure libraries from openstudio-extension gem
 require 'openstudio-extension'
 require 'openstudio/extension/core/os_lib_helper_methods'
-require 'openstudio/extension/core/os_lib_model_generation.rb'
-require 'openstudio/extension/core/os_lib_model_simplification.rb'
+require 'openstudio/extension/core/os_lib_model_generation'
+require 'openstudio/extension/core/os_lib_model_simplification'
 
 # start the measure
 class BlendedSpaceTypeFromFloorAreaRatios < OpenStudio::Measure::ModelMeasure
@@ -188,7 +188,7 @@ class BlendedSpaceTypeFromFloorAreaRatios < OpenStudio::Measure::ModelMeasure
     # make hash of out string arguemnt in eval. Rescue if can't be made into hash
     begin
       space_type_ratio_hash = eval("{#{space_type_ratio_string}}")
-    rescue SyntaxError => se
+    rescue SyntaxError => e
       runner.registerError("{#{space_type_ratio_string}} could not be converted to a hash.")
       return false
     end
@@ -217,6 +217,7 @@ class BlendedSpaceTypeFromFloorAreaRatios < OpenStudio::Measure::ModelMeasure
       # remove all space type assignments, except for spaces not included in building area.
       model.getSpaces.each do |space|
         next if !space.partofTotalFloorArea
+
         space.resetSpaceType
       end
     end

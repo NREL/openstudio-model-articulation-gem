@@ -39,9 +39,9 @@
 # load OpenStudio measure libraries from openstudio-extension gem
 require 'openstudio-extension'
 require 'openstudio/extension/core/os_lib_helper_methods'
-require 'openstudio/extension/core/os_lib_geometry.rb'
-require 'openstudio/extension/core/os_lib_model_generation.rb'
-require 'openstudio/extension/core/os_lib_model_simplification.rb'
+require 'openstudio/extension/core/os_lib_geometry'
+require 'openstudio/extension/core/os_lib_model_generation'
+require 'openstudio/extension/core/os_lib_model_simplification'
 
 # start the measure
 class CreateBarFromModel < OpenStudio::Measure::ModelMeasure
@@ -302,11 +302,12 @@ class CreateBarFromModel < OpenStudio::Measure::ModelMeasure
     #  end
 
     # define length and with of bar
-    if bar_calc_method == 'Bar - Reduced Bounding Box'
+    case bar_calc_method
+    when 'Bar - Reduced Bounding Box'
       bar_calc = calc_bar_reduced_bounding_box(envelope_data_hash)
-    elsif bar_calc_method == 'Bar - Reduced Width'
+    when 'Bar - Reduced Width'
       bar_calc = calc_bar_reduced_width(envelope_data_hash)
-    elsif bar_calc_method == 'Bar - Stretched'
+    when 'Bar - Stretched'
       bar_calc = calc_bar_stretched(envelope_data_hash)
     end
 
@@ -345,6 +346,7 @@ class CreateBarFromModel < OpenStudio::Measure::ModelMeasure
     zone_hash = {} # key is zone value is floor area. It excludes zones with non 1 multiplier
     model.getThermalZones.each do |thermal_zone|
       next if thermal_zone.multiplier > 1
+
       zone_hash[thermal_zone] = thermal_zone.floorArea
     end
     target_zone = zone_hash.key(zone_hash.values.max)
@@ -372,6 +374,7 @@ class CreateBarFromModel < OpenStudio::Measure::ModelMeasure
         # restore thermostats for space type saved from old geometry
         model.getThermalZones.each do |thermal_zone|
           next if !thermal_zone.spaces.first.spaceType.is_initialized
+
           space_type = thermal_zone.spaces.first.spaceType.get
           new_thermostat = OpenStudio::Model::ThermostatSetpointDualSetpoint.new(model)
           new_thermostat.setHeatingSetpointTemperatureSchedule(htg_setpoints[space_type])
@@ -388,6 +391,7 @@ class CreateBarFromModel < OpenStudio::Measure::ModelMeasure
     final_ratios = {}
     model.getSpaceTypes.each do |space_type|
       next if space_type.floorArea == 0.0
+
       final_ratios[space_type] = space_type.floorArea / final_floor_area
     end
     Hash[final_ratios.sort_by { |k, v| v }.reverse].each do |k, v|

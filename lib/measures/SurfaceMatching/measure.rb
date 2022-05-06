@@ -81,6 +81,7 @@ class SurfaceMatching < OpenStudio::Measure::ModelMeasure
     surfaces.each do |surface|
       if surface.outsideBoundaryCondition == 'Surface'
         next if !surface.adjacentSurface.is_initialized # don't count as matched if boundary condition is right but no matched object
+
         initialMatchedSurfaceCounter += 1
       end
     end

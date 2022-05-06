@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>assign_construction_set_to_building</name>
   <uid>6e68ddea-2cff-47a3-9daf-f2189e4cf132</uid>
-  <version_id>44de5d16-ee07-4122-bfd2-9b488da700f9</version_id>
-  <version_modified>20210423T142509Z</version_modified>
+  <version_id>497da6f8-f10e-4c93-b5de-6d46027f0119</version_id>
+  <version_modified>20220505T182919Z</version_modified>
   <xml_checksum>1E963D9C</xml_checksum>
   <class_name>AssignConstructionSetToBuilding</class_name>
   <display_name>AssignConstructionSetToBuilding</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{27349627-8827-46b4-80f7-4f0731404a8c}</default_value>
+      <default_value>{366b719d-cdcd-403e-82f2-1ff5eb23d1b8}</default_value>
       <choices>
         <choice>
-          <value>{27349627-8827-46b4-80f7-4f0731404a8c}</value>
+          <value>{366b719d-cdcd-403e-82f2-1ff5eb23d1b8}</value>
           <display_name>&lt;clear field&gt;</display_name>
         </choice>
       </choices>
@@ -74,16 +74,16 @@
       <checksum>40E5CA19</checksum>
     </file>
     <file>
-      <filename>AssignConstructionSetToBuilding_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>51FB4344</checksum>
-    </file>
-    <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
       <checksum>A21A3ED2</checksum>
+    </file>
+    <file>
+      <filename>AssignConstructionSetToBuilding_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>EAEB5017</checksum>
     </file>
   </files>
 </measure>

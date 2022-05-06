@@ -37,7 +37,7 @@ require 'openstudio'
 require 'openstudio/measure/ShowRunnerOutput'
 require 'fileutils'
 
-require_relative '../measure.rb'
+require_relative '../measure'
 require 'minitest/autorun'
 
 class SetWindowToWallRatioByFacade_Test < Minitest::Test
@@ -59,7 +59,7 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
 
     # get arguments and test that they are what we are expecting
     arguments = measure.arguments(model)
-    assert_equal(7, arguments.size)
+    assert_equal(8, arguments.size)
     assert_equal('wwr', arguments[0].name)
     assert_equal('sillHeight', arguments[1].name)
     assert_equal('facade', arguments[2].name)
@@ -67,6 +67,7 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
     assert_equal('split_at_doors', arguments[4].name)
     assert_equal('inset_tri_sub', arguments[5].name)
     assert_equal('triangulate', arguments[6].name)
+    assert_equal('triangulation_min_area', arguments[7].name)
 
     # set argument values to bad values and run the measure
     argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
@@ -87,7 +88,7 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/EnvelopeAndLoadTestModel_01.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/EnvelopeAndLoadTestModel_01.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -118,7 +119,7 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
     # assert(result.info.size == 2)
 
     # save the model
-    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/south.osm')
+    output_file_path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/output/south.osm")
     model.save(output_file_path, true)
   end
 
@@ -131,7 +132,7 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/EnvelopeAndLoadTestModel_02_RotatedSpaceAndBuilding.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/EnvelopeAndLoadTestModel_02_RotatedSpaceAndBuilding.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -162,7 +163,7 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
     # assert(result.info.size == 2)
 
     # save the model
-    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/rotation.osm')
+    output_file_path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/output/rotation.osm")
     model.save(output_file_path, true)
   end
 
@@ -175,7 +176,7 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/EnvelopeAndLoadTestModel_01.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/EnvelopeAndLoadTestModel_01.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -215,7 +216,7 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/EnvelopeAndLoadTestModel_01.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/EnvelopeAndLoadTestModel_01.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -255,7 +256,7 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/ReverseTranslatedModel.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/ReverseTranslatedModel.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -334,7 +335,7 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/Triangles.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/Triangles.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -366,7 +367,7 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
     assert(result.value.valueName == 'Success')
 
     # save the model
-    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/triangle.osm')
+    output_file_path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/output/triangle.osm")
     model.save(output_file_path, true)
   end
 
@@ -379,7 +380,7 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/Triangles.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/Triangles.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -411,7 +412,7 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
     # assert(result.value.valueName == 'Success')
 
     # save the model
-    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/pentagon.osm')
+    output_file_path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/output/pentagon.osm")
     model.save(output_file_path, true)
   end
 
@@ -424,7 +425,7 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/Triangles.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/Triangles.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -456,7 +457,7 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
     assert(result.value.valueName == 'Success')
 
     # save the model
-    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/sloped.osm')
+    output_file_path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/output/sloped.osm")
     model.save(output_file_path, true)
   end
 
@@ -469,7 +470,7 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/Triangles.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/Triangles.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -501,7 +502,7 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
     assert(result.value.valueName == 'Success')
 
     # save the model
-    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/door_split.osm')
+    output_file_path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/output/door_split.osm")
     model.save(output_file_path, true)
   end
 
@@ -514,7 +515,7 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/Triangles.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/Triangles.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -550,7 +551,7 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
     assert(result.value.valueName == 'Success')
 
     # save the model
-    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/door_remove.osm')
+    output_file_path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/output/door_remove.osm")
     model.save(output_file_path, true)
   end
 
@@ -563,7 +564,7 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/Triangles.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/Triangles.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -600,7 +601,7 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
     assert(result.value.valueName == 'Success')
 
     # save the model
-    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/door_nothing.osm')
+    output_file_path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/output/door_nothing.osm")
     model.save(output_file_path, true)
   end
 
@@ -613,7 +614,7 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/EnvelopeAndLoadTestModel_01.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/EnvelopeAndLoadTestModel_01.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -646,7 +647,7 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
     assert(result.value.valueName == 'Success')
 
     # save the model
-    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/not_in_floor_area.osm')
+    output_file_path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/output/not_in_floor_area.osm")
     model.save(output_file_path, true)
   end
 
@@ -659,7 +660,7 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/EnvelopeAndLoadTestModel_01.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/EnvelopeAndLoadTestModel_01.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -690,7 +691,7 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
     # assert(result.info.size == 2)
 
     # save the model
-    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/zero.osm')
+    output_file_path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/output/zero.osm")
     model.save(output_file_path, true)
   end
 
@@ -703,7 +704,7 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/EnvelopeAndLoadTestModel_01.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/EnvelopeAndLoadTestModel_01.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -734,12 +735,12 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
     # assert(result.info.size == 2)
 
     # save the model
-    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/all_orientations.osm')
+    output_file_path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/output/all_orientations.osm")
     model.save(output_file_path, true)
   end
 
   # this has multiple sub-surafces in base surfaes, including more than 1 door and more than one window
-    def test_SetWindowToWallRatioByFacade_sec_school
+  def test_SetWindowToWallRatioByFacade_sec_school
     # create an instance of the measure
     measure = SetWindowToWallRatioByFacade.new
 
@@ -748,7 +749,7 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/prototype_sec_sch.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/prototype_sec_sch.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -779,7 +780,7 @@ class SetWindowToWallRatioByFacade_Test < Minitest::Test
     # assert(result.info.size == 2)
 
     # save the model
-    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/sec_school.osm')
+    output_file_path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/output/sec_school.osm")
     model.save(output_file_path, true)
   end
 end

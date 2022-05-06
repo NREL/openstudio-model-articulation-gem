@@ -37,7 +37,7 @@ require 'openstudio'
 require 'openstudio/measure/ShowRunnerOutput'
 require 'fileutils'
 
-require_relative '../measure.rb'
+require_relative '../measure'
 require 'minitest/autorun'
 
 class DEERSpaceTypeAndConstructionSetWizard_Test < Minitest::Test
@@ -52,7 +52,7 @@ class DEERSpaceTypeAndConstructionSetWizard_Test < Minitest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/EmptySeedModel.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/EmptySeedModel.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get

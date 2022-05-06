@@ -36,7 +36,7 @@
 require 'openstudio'
 require 'openstudio/measure/ShowRunnerOutput'
 require 'minitest/autorun'
-require_relative '../measure.rb'
+require_relative '../measure'
 require 'fileutils'
 
 class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
@@ -54,7 +54,7 @@ class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
     else
       # load the test model
       translator = OpenStudio::OSVersion::VersionTranslator.new
-      path = OpenStudio::Path.new(File.dirname(__FILE__) + '/' + model_name)
+      path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/#{model_name}")
       model = translator.loadModel(path)
       assert(!model.empty?)
       model = model.get
@@ -177,7 +177,8 @@ class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
   end
 
-  def test_non_zero_rotation_primary_school_adiabatic # to test intersection of just walls but not floors
+  # to test intersection of just walls but not floors
+  def test_non_zero_rotation_primary_school_adiabatic
     args = {}
     args['total_bldg_floor_area'] = 100000.0
     args['num_stories_above_grade'] = 3

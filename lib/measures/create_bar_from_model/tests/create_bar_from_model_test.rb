@@ -36,7 +36,7 @@
 require 'openstudio'
 require 'openstudio/measure/ShowRunnerOutput'
 require 'minitest/autorun'
-require_relative '../measure.rb'
+require_relative '../measure'
 require 'fileutils'
 
 class CreateBarFromModel_Test < MiniTest::Test
@@ -49,7 +49,7 @@ class CreateBarFromModel_Test < MiniTest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/example_model.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/example_model.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -87,7 +87,7 @@ class CreateBarFromModel_Test < MiniTest::Test
     # assert(result.warnings.size == 0)
 
     # save the model to test output directory
-    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/test_output.osm')
+    output_file_path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/output/test_output.osm")
     model.save(output_file_path, true)
   end
 
@@ -100,7 +100,7 @@ class CreateBarFromModel_Test < MiniTest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/example_model.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/example_model.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -138,7 +138,7 @@ class CreateBarFromModel_Test < MiniTest::Test
     # assert(result.warnings.size == 0)
 
     # save the model to test output directory
-    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/test_single_space_type.osm')
+    output_file_path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/output/test_single_space_type.osm")
     model.save(output_file_path, true)
   end
 
@@ -151,7 +151,7 @@ class CreateBarFromModel_Test < MiniTest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/example_model_multipliers.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/example_model_multipliers.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -189,7 +189,7 @@ class CreateBarFromModel_Test < MiniTest::Test
     # assert(result.warnings.size == 0)
 
     # save the model to test output directory
-    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/multiplier_simple_slice_test_output.osm')
+    output_file_path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/output/multiplier_simple_slice_test_output.osm")
     model.save(output_file_path, true)
   end
 
@@ -202,7 +202,7 @@ class CreateBarFromModel_Test < MiniTest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/example_model_multipliers.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/example_model_multipliers.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -240,7 +240,7 @@ class CreateBarFromModel_Test < MiniTest::Test
     # assert(result.warnings.size == 0)
 
     # save the model to test output directory
-    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/multiplier_multi_slice_test_output.osm')
+    output_file_path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/output/multiplier_multi_slice_test_output.osm")
     model.save(output_file_path, true)
   end
 
@@ -253,7 +253,7 @@ class CreateBarFromModel_Test < MiniTest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/med_office.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/med_office.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -291,7 +291,7 @@ class CreateBarFromModel_Test < MiniTest::Test
     # assert(result.warnings.size == 0)
 
     # save the model to test output directory
-    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/plenum_test_output.osm')
+    output_file_path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/output/plenum_test_output.osm")
     model.save(output_file_path, true)
   end
 
@@ -305,7 +305,7 @@ class CreateBarFromModel_Test < MiniTest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/secondary_school.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/secondary_school.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -346,7 +346,7 @@ class CreateBarFromModel_Test < MiniTest::Test
     # assert(result.warnings.size == 0)
 
     # save the model to test output directory
-    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/secondary_school_test_output.osm')
+    output_file_path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/output/secondary_school_test_output.osm")
     model.save(output_file_path, true)
   end
 
@@ -360,7 +360,7 @@ class CreateBarFromModel_Test < MiniTest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/sliver_start.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/sliver_start.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -401,7 +401,7 @@ class CreateBarFromModel_Test < MiniTest::Test
     # assert(result.warnings.size == 0)
 
     # save the model to test output directory
-    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/sliver_start_test_output.osm')
+    output_file_path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/output/sliver_start_test_output.osm")
     model.save(output_file_path, true)
   end
 
@@ -415,7 +415,7 @@ class CreateBarFromModel_Test < MiniTest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/sliver_end.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/sliver_end.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -456,7 +456,7 @@ class CreateBarFromModel_Test < MiniTest::Test
     # assert(result.warnings.size == 0)
 
     # save the model to test output directory
-    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/sliver_end_test_output.osm')
+    output_file_path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/output/sliver_end_test_output.osm")
     model.save(output_file_path, true)
   end
 
@@ -470,7 +470,7 @@ class CreateBarFromModel_Test < MiniTest::Test
 
     # load the test model
     translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/sliver_multiplier.osm')
+    path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/sliver_multiplier.osm")
     model = translator.loadModel(path)
     assert(!model.empty?)
     model = model.get
@@ -511,7 +511,7 @@ class CreateBarFromModel_Test < MiniTest::Test
     # assert(result.warnings.size == 0)
 
     # save the model to test output directory
-    output_file_path = OpenStudio::Path.new(File.dirname(__FILE__) + '/output/sliver_multiplier_test_output.osm')
+    output_file_path = OpenStudio::Path.new("#{File.dirname(__FILE__)}/output/sliver_multiplier_test_output.osm")
     model.save(output_file_path, true)
   end
 end

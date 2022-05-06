@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>inject_osm_geometry_into_an_external_idf</name>
   <uid>633cd1c5-5b55-4b50-ab20-cf2d2f7ddff8</uid>
-  <version_id>172665e1-0401-4511-a31e-c4f24cf4f99b</version_id>
-  <version_modified>20210423T142510Z</version_modified>
+  <version_id>adf510ba-1aac-4f89-8e7f-b0c1720ebf4a</version_id>
+  <version_modified>20220505T182928Z</version_modified>
   <xml_checksum>3BE1CF9C</xml_checksum>
   <class_name>InjectOsmGeometryIntoAnExternalIdf</class_name>
   <display_name>InjectOsmGeometryIntoAnExternalIdf</display_name>
@@ -168,13 +168,31 @@ Constructions and other resources won?t be moved back and forth but the surface 
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>466953F1</checksum>
+      <checksum>D5B1BE30</checksum>
     </file>
     <file>
       <filename>InjectOsmGeometryIntoAnExternalIdf_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>7B655B56</checksum>
+      <checksum>0097ECFF</checksum>
+    </file>
+    <file>
+      <filename>4ZoneWithShading_Simple_1_AlteredGeo/run.db</filename>
+      <filetype>db</filetype>
+      <usage_type>test</usage_type>
+      <checksum>D307F08F</checksum>
+    </file>
+    <file>
+      <filename>RefBldgMediumOfficeNew2004_Chicago_AlteredGeo/run.db</filename>
+      <filetype>db</filetype>
+      <usage_type>test</usage_type>
+      <checksum>1387DFF3</checksum>
+    </file>
+    <file>
+      <filename>RefBldgMediumOfficeNew2004_Chicago_AlteredGeo_b/run.db</filename>
+      <filetype>db</filetype>
+      <usage_type>test</usage_type>
+      <checksum>BF7FFB65</checksum>
     </file>
   </files>
 </measure>

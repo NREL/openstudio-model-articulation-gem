@@ -41,7 +41,7 @@ require 'json'
 # load OpenStudio measure libraries from openstudio-extension gem
 require 'openstudio-extension'
 require 'openstudio/extension/core/os_lib_helper_methods'
-require 'openstudio/extension/core/os_lib_schedules.rb'
+require 'openstudio/extension/core/os_lib_schedules'
 
 # start the measure
 class CreateParametricSchedules < OpenStudio::Measure::ModelMeasure
@@ -206,7 +206,7 @@ class CreateParametricSchedules < OpenStudio::Measure::ModelMeasure
     occupancy_profiles.setDefaultValue(string.join(', '))
     args << occupancy_profiles
 
-    # note: infiltration, setpoints, and hvac availability follow the same time parameters but use different values
+    # NOTE: infiltration, setpoints, and hvac availability follow the same time parameters but use different values
 
     # Make argument for infiltration_profiles
     string = []
@@ -336,13 +336,14 @@ class CreateParametricSchedules < OpenStudio::Measure::ModelMeasure
       # day_type specific gsub
       temp_array.each_with_index do |string, i|
         day_type = string.split('=>').first.delete(':')
-        if day_type == 'default'
+        case day_type
+        when 'default'
           hoo_start = args['hoo_start_wkdy']
           hoo_end = args['hoo_end_wkdy']
-        elsif day_type == 'saturday'
+        when 'saturday'
           hoo_start = args['hoo_start_sat']
           hoo_end = args['hoo_end_sat']
-        elsif day_type == 'sunday'
+        when 'sunday'
           hoo_start = args['hoo_start_sun']
           hoo_end = args['hoo_end_sun']
         end
@@ -364,7 +365,7 @@ class CreateParametricSchedules < OpenStudio::Measure::ModelMeasure
       final_string = temp_array.join(']], :')
 
       hash = eval("{#{final_string}}").to_hash
-    rescue SyntaxError => se
+    rescue SyntaxError => e
       runner.registerError("{#{final_string}} could not be converted to a hash.")
       return false
     end
@@ -478,7 +479,7 @@ class CreateParametricSchedules < OpenStudio::Measure::ModelMeasure
           time_values_used << time_value_pair[0]
         end
       end
-      items_to_remove.reverse.each do |i|
+      items_to_remove.reverse_each do |i|
         time_value_pairs.delete_at(i)
       end
 
@@ -500,11 +501,12 @@ class CreateParametricSchedules < OpenStudio::Measure::ModelMeasure
       end
 
       # add on text needed for createComplexSchedule
-      if day_type == :saturday
+      case day_type
+      when :saturday
         time_value_pairs.insert(0, 'Sat')
         time_value_pairs.insert(0, '1/1-12/31')
         time_value_pairs.insert(0, 'Saturday')
-      elsif day_type == :sunday
+      when :sunday
         time_value_pairs.insert(0, 'Sun')
         time_value_pairs.insert(0, '1/1-12/31')
         time_value_pairs.insert(0, 'Sunday')
@@ -623,6 +625,7 @@ class CreateParametricSchedules < OpenStudio::Measure::ModelMeasure
         next if space_type.standardsSpaceType.get != args['standards_space_type']
       end
       next if space_type.spaces.empty?
+
       space_types_to_alter << space_type
     end
 
@@ -646,6 +649,7 @@ class CreateParametricSchedules < OpenStudio::Measure::ModelMeasure
       # remove schedule sets.
       model.getDefaultScheduleSets.each do |sch_set|
         next if sch_set == default_schedule_set
+
         sch_set.remove
       end
 
@@ -703,6 +707,7 @@ class CreateParametricSchedules < OpenStudio::Measure::ModelMeasure
       if args['alter_swh_wo_space']
         model.getWaterUseEquipments.each do |water_use_equipment|
           next if water_use_equipment.space.is_initialized
+
           water_use_equipment_to_alter << water_use_equipment
         end
       end
@@ -860,7 +865,7 @@ class CreateParametricSchedules < OpenStudio::Measure::ModelMeasure
     hash = process_hash(runner, args['hvac_availability_profiles'], args, profile_override, ruleset_name)
     if !hash then runner.registerError("Failed to generate #{ruleset_name}"); return false end
     winter_design_day = [[24, 1]] # TODO: - confirm proper value
-    summer_design_day = [[24, 1]] # todo - confirm proper value
+    summer_design_day = [[24, 1]] # TODO: - confirm proper value
     default_day = hash[:default]
     rules = []
     rules << hash[:saturday]
