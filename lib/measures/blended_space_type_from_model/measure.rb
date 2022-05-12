@@ -201,10 +201,6 @@ class BlendedSpaceTypeFromModel < OpenStudio::Measure::ModelMeasure
     model.getSpaceTypes.sort.each do |space_type|
       next if space_type.floorArea == 0
 
-      # assign blend out building and space type standards (after update in ext gem can be removed here)
-      space_type.setStandardsBuildingType('Blend')
-      space_type.setStandardsSpaceType('Blend')
-
       floor_area_si = 0
       # loop through spaces so I can skip if not included in floor area
       space_type.spaces.each do |space|
