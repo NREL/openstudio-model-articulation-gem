@@ -1,5 +1,8 @@
 # OpenStudio Model Articulation Gems
 
+## Version 0.6.1
+* Removed recent changes made to `blended_space_type_from_model` to remove standards space type and building type assignment from resulting blended space type. `blend_space_type_collections` method in extension gem `os_lib_model_simplification.rb` already picks the most prevenant space type. The space type name still indicates that it is blended.
+
 ## Version 0.6.0
 * Support for OpenStudio 3.4 (upgrade to standards gem 0.2.16, no extension gem upgrade)
 * Fixed [#92]( https://github.com/NREL/openstudio-model-articulation-gem/issues/92 ), SetWindowToWallRatio triangulation can produce non-planar surfaces
