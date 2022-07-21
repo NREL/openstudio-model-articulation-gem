@@ -68,6 +68,8 @@ class MergeFloorspaceJsWithModel < OpenStudio::Measure::ModelMeasure
     floorplan_path.setDescription('Path to the floorplan JSON.')
     args << floorplan_path
 
+    # todo - add argument for diagnostic, whech when true uses slower but more robust intersection and matching witih cleanup.
+
     return args
   end
 
