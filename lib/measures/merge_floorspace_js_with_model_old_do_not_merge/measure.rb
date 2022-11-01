@@ -68,6 +68,8 @@ class MergeFloorspaceJsWithModel < OpenStudio::Measure::ModelMeasure
     floorplan_path.setDescription('Path to the floorplan JSON.')
     args << floorplan_path
 
+    # todo - add argument for diagnostic, whech when true uses slower but more robust intersection and matching witih cleanup.
+
     return args
   end
 
@@ -106,21 +108,15 @@ class MergeFloorspaceJsWithModel < OpenStudio::Measure::ModelMeasure
       return false
     end
 
-    # scene = floorplan.get.toThreeScene(true)
-    # rt = OpenStudio::Model::ThreeJSReverseTranslator.new
-    # new_model = rt.modelFromThreeJS(scene
-
-    rt = OpenStudio::Model::FloorspaceReverseTranslator.new
-    new_model = rt.modelFromFloorspace(json)
+    scene = floorplan.get.toThreeScene(true)
+    rt = OpenStudio::Model::ThreeJSReverseTranslator.new
+    new_model = rt.modelFromThreeJS(scene)
 
     unless new_model.is_initialized
       runner.registerError('Cannot convert floorplan to model.')
       return false
     end
     new_model = new_model.get
-    runner.registerInfo("Model from FloorSpaceJS has #{new_model.getPlanarSurfaceGroups.size} planar surface groups.")
-    puts "hello"
-    puts new_model
 
     runner.registerInitialCondition("Initial model has #{model.getPlanarSurfaceGroups.size} planar surface groups.")
 
