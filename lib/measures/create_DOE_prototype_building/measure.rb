@@ -94,6 +94,7 @@ class CreateDOEPrototypeBuilding < OpenStudio::Measure::ModelMeasure
     template_chs << '90.1-2010'
     template_chs << '90.1-2013'
     template_chs << '90.1-2016'
+    template_chs << '90.1-2019'
     template_chs << 'NECB 2011'
     template = OpenStudio::Measure::OSArgument.makeChoiceArgument('template', template_chs, true)
     template.setDisplayName('Template.')
