@@ -79,6 +79,8 @@ class CreateDOEPrototypeBuilding < OpenStudio::Measure::ModelMeasure
     building_type_chs << 'LargeDataCenterLowITE'
     building_type_chs << 'SmallDataCenterHighITE'
     building_type_chs << 'SmallDataCenterLowITE'
+    building_type_chs << 'Courthouse'
+    building_type_chs << 'College'
     building_type = OpenStudio::Measure::OSArgument.makeChoiceArgument('building_type', building_type_chs, true)
     building_type.setDisplayName('Building Type.')
     building_type.setDefaultValue('SmallOffice')
@@ -94,6 +96,7 @@ class CreateDOEPrototypeBuilding < OpenStudio::Measure::ModelMeasure
     template_chs << '90.1-2010'
     template_chs << '90.1-2013'
     template_chs << '90.1-2016'
+    template_chs << '90.1-2019'
     template_chs << 'NECB 2011'
     template = OpenStudio::Measure::OSArgument.makeChoiceArgument('template', template_chs, true)
     template.setDisplayName('Template.')
