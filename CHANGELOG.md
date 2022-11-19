@@ -1,5 +1,11 @@
 # OpenStudio Model Articulation Gems
 
+## Version 0.7.0
+* Support for OpenStudio 3.5 (upgrade to standards gem 0.3.0, extension gem 0.6.0)
+* Adding Courthouse and College buidling type argument values to `create_DOE_prototype_building` measure
+* Adding 90.1-2019 to templlate argument values for `create_DOE_prototype_building` measure
+* Fixed [#109]( https://github.com/NREL/openstudio-model-articulation-gem/pull/109 ), Floorspace js translation
+
 ## Version 0.6.1
 * Removed recent changes made to `blended_space_type_from_model` to remove standards space type and building type assignment from resulting blended space type. `blend_space_type_collections` method in extension gem `os_lib_model_simplification.rb` already picks the most prevenant space type. The space type name still indicates that it is blended.
 
