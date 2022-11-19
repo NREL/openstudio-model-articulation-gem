@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>create_doe_prototype_building</name>
   <uid>be90fd0b-a651-467a-bc8d-29d310b0f937</uid>
-  <version_id>c354ff6f-b1ec-4dda-9cb9-7b185fce00e2</version_id>
-  <version_modified>20221115T214157Z</version_modified>
+  <version_id>ced05af3-8f82-4810-9ffc-4d91535a20a2</version_id>
+  <version_modified>20221119T001458Z</version_modified>
   <xml_checksum>057E8D9D</xml_checksum>
   <class_name>CreateDOEPrototypeBuilding</class_name>
   <display_name>Create DOE Prototype Building</display_name>
@@ -779,12 +779,6 @@
       <checksum>A21A3ED2</checksum>
     </file>
     <file>
-      <filename>create_DOE_prototype_building_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>40B8E8A4</checksum>
-    </file>
-    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -794,6 +788,12 @@
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
       <checksum>634197A6</checksum>
+    </file>
+    <file>
+      <filename>create_DOE_prototype_building_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>DEC69AB8</checksum>
     </file>
   </files>
 </measure>
