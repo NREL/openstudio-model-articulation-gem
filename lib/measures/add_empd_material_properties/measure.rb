@@ -65,7 +65,7 @@ class AddEMPDMaterialProperties < OpenStudio::Measure::ModelMeasure
     args = OpenStudio::Measure::OSArgumentVector.new
 
     # find the available materials
-    list_materials = model.getMaterials
+    list_materials = model.getStandardOpaqueMaterials
     mat_names = []
     list_materials.each do |v|
       mat_names.append(v.name.to_s)
@@ -193,7 +193,7 @@ class AddEMPDMaterialProperties < OpenStudio::Measure::ModelMeasure
     #---------------------------------------------------------------------------
 
     # Get os object for selected material
-    mats = model.getMaterials
+    mats = model.getStandardOpaqueMaterials
     mat = ''
     mats.each do |m|
       if m.name.to_s == selected_material
