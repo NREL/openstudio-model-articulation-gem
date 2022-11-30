@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>add_empd_material_properties</name>
   <uid>91799c24-d81e-42eb-a458-f2b3a0ee1ff3</uid>
-  <version_id>74e7a9c8-62dd-4f8b-ad26-f28fa0408982</version_id>
-  <version_modified>20210814T063318Z</version_modified>
+  <version_id>6f4bf017-c022-4174-8eca-acf979f14354</version_id>
+  <version_modified>20221129T234556Z</version_modified>
   <xml_checksum>9EF0A36D</xml_checksum>
   <class_name>AddEMPDMaterialProperties</class_name>
   <display_name>Add EMPD Material Properties</display_name>
@@ -175,17 +175,6 @@
       <checksum>A21A3ED2</checksum>
     </file>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>3.0.0</identifier>
-        <min_compatible>3.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>96F39314</checksum>
-    </file>
-    <file>
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
@@ -196,6 +185,17 @@
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
       <checksum>360B75F1</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>3.0.0</identifier>
+        <min_compatible>3.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>DF9BE58D</checksum>
     </file>
   </files>
 </measure>
