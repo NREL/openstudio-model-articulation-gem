@@ -64,7 +64,7 @@ class SetInteriorWallsToSelectedConstruction_Test < Minitest::Test
     # set argument values to good values and run the measure on model with spaces
     argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
     construction = arguments[0].clone
-    assert(construction.setValue('Air Wall'))
+    assert(construction.setValue('000_Exterior Wall'))
     argument_map['construction'] = construction
     measure.run(model, runner, argument_map)
     result = runner.result
