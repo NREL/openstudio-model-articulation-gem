@@ -275,6 +275,33 @@ class SetNISTInfiltrationCorrelationsTest < Minitest::Test
     model.save(output_file_path, true)
   end
 
+  def test_bldg31_quick_service_restaurant_pthp_air_barrier
+    test_name = 'test_bldg31_quick_service_restaurant_pthp_air_barrier'
+    puts "\n######\nTEST:#{test_name}\n######\n"
+
+    # load the test model
+    translator = OpenStudio::OSVersion::VersionTranslator.new
+    path = "#{File.dirname(__FILE__)}/bldg0000031.osm"
+    model = translator.loadModel(path)
+    assert(!model.empty?)
+    model = model.get
+    args_hash = {}
+    args_hash['air_barrier'] = true
+
+    result = run_test(model, args_hash)
+
+    # show the output
+    show_output(result)
+
+    # assert that it ran correctly
+    assert_equal('Success', result.value.valueName)
+    assert(result.warnings.size == 1)
+
+    # save the model to test output directory
+    output_file_path = "#{File.dirname(__FILE__)}//output/bldg0000031_infil_adj.osm"
+    model.save(output_file_path, true)
+  end
+
   def test_bldg43_warehouse_baseboardelec
     test_name = 'test_bldg43_warehouse_baseboardelec'
     puts "\n######\nTEST:#{test_name}\n######\n"
@@ -337,6 +364,34 @@ class SetNISTInfiltrationCorrelationsTest < Minitest::Test
     assert(!model.empty?)
     model = model.get
     args_hash = {}
+    args_hash['airtightness_area'] = '6-sided'
+
+    result = run_test(model, args_hash)
+
+    # show the output
+    show_output(result)
+
+    # assert that it ran correctly
+    assert_equal('Success', result.value.valueName)
+
+    # save the model to test output directory
+    output_file_path = "#{File.dirname(__FILE__)}//output/bldg0000053_infil_adj.osm"
+    model.save(output_file_path, true)
+  end
+
+  def test_bldg53_smallhotel_pszac_air_barrier
+    test_name = 'test_bldg53_smallhotel_pszac_air_barrier'
+    puts "\n######\nTEST:#{test_name}\n######\n"
+
+    # load the test model
+    translator = OpenStudio::OSVersion::VersionTranslator.new
+    path = "#{File.dirname(__FILE__)}/bldg0000053.osm"
+    model = translator.loadModel(path)
+    assert(!model.empty?)
+    model = model.get
+    args_hash = {}
+    args_hash['airtightness_area'] = '6-sided'
+    args_hash['air_barrier'] = true
 
     result = run_test(model, args_hash)
 

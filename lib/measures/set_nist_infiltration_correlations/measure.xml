@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>set_nist_infiltration_correlations</name>
   <uid>b74a4a45-8553-4e94-860f-35b217a04879</uid>
-  <version_id>fbb0953c-087b-4d42-9485-281ef9abfdf3</version_id>
-  <version_modified>20230321T223706Z</version_modified>
+  <version_id>1298baec-ed5e-461c-b4a8-0f548eff84ff</version_id>
+  <version_modified>20230329T203522Z</version_modified>
   <xml_checksum>A54BB41C</xml_checksum>
   <class_name>SetNISTInfiltrationCorrelations</class_name>
   <display_name>SetNISTInfiltrationCorrelations</display_name>
@@ -347,10 +347,10 @@
       <checksum>2174B2C9</checksum>
     </file>
     <file>
-      <filename>nist_infiltration_correlations_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>4151E0E1</checksum>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>8DF60FD9</checksum>
     </file>
     <file>
       <version>
@@ -361,13 +361,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>DBE97485</checksum>
+      <checksum>2AB2FC22</checksum>
     </file>
     <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>8DF60FD9</checksum>
+      <filename>nist_infiltration_correlations_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>39653F52</checksum>
     </file>
   </files>
 </measure>

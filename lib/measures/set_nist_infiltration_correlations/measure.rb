@@ -329,20 +329,23 @@ class SetNISTInfiltrationCorrelations < OpenStudio::Measure::ModelMeasure
       ground_floor_area += area if bc == 'Ground' && type == 'Floor'
     end
     four_sided_area = exterior_wall_area + ground_wall_area
-    five_sided_area = four_sided_area + exterior_roof_area + ground_roof_area
-    six_sided_area = five_sided_area + exterior_floor_area + ground_floor_area
+    five_sided_area = exterior_wall_area + ground_wall_area + exterior_roof_area + ground_roof_area
+    six_sided_area = exterior_wall_area + ground_wall_area + exterior_roof_area + ground_roof_area + exterior_floor_area + ground_floor_area
     energy_plus_area = exterior_wall_area + exterior_roof_area
+    runner.registerInfo("4-sided area = #{four_sided_area.round(2)} m^2, 5-sided area = #{five_sided_area.round(2)} m^2, 6-sided area = #{six_sided_area.round(2)} m^2.")
 
     # The SpaceInfiltrationDesignFlowRate object FlowperExteriorSurfaceArea method only counts surfaces with the 'Outdoors' boundary conditions towards exterior surface area, not surfaces with the 'Ground' boundary conditions.  That means all values need to be normalized to exterior wall and roof area.
     case airtightness_area
     when '4-sided'
       design_infiltration_4pa = airtightness_value_4pa_per_s * (four_sided_area / energy_plus_area)
+      runner.registerInfo("#{airtightness_area} infiltration design value #{airtightness_value_4pa_per_s.round(7)} (m^3/s-m^2) converted to #{design_infiltration_4pa.round(7)} (m^3/s-m^2) based on 4-sided area #{four_sided_area.round(2)} m^2 and 5-sided area #{energy_plus_area.round(2)} m^2 excluding ground boundary surfaces for energyplus.")
     when '5-sided'
       design_infiltration_4pa = airtightness_value_4pa_per_s * (five_sided_area / energy_plus_area)
+      runner.registerInfo("#{airtightness_area} infiltration design value #{airtightness_value_4pa_per_s.round(7)} (m^3/s-m^2) converted to #{design_infiltration_4pa.round(7)} (m^3/s-m^2) based on 5-sided area #{five_sided_area.round(2)} m^2 and 5-sided area #{energy_plus_area.round(2)} m^2 excluding ground boundary surfaces for energyplus.")
     when '6-sided'
       design_infiltration_4pa = airtightness_value_4pa_per_s * (six_sided_area / energy_plus_area)
+      runner.registerInfo("#{airtightness_area} infiltration design value #{airtightness_value_4pa_per_s.round(7)} (m^3/s-m^2) converted to #{design_infiltration_4pa.round(7)} (m^3/s-m^2) based on 6-sided area #{six_sided_area.round(2)} m^2 and 5-sided area #{energy_plus_area.round(2)} m^2 excluding ground boundary surfaces for energyplus.")
     end
-    runner.registerInfo("#{airtightness_area} infiltration design value at 4 Pa is #{design_infiltration_4pa.round(7)} (m^3/s-m^2).")
     runner.registerValue('design_infiltration_4pa', design_infiltration_4pa, 'm/s')
 
     # validate hvac schedule
