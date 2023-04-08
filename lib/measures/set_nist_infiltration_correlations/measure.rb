@@ -145,12 +145,30 @@ class SetNISTInfiltrationCorrelations < OpenStudio::Measure::ModelMeasure
   end
 
   # method to invert a schedule ruleset
-  def invert_schedule_ruleset(schedule_ruleset)
+  def invert_schedule_ruleset(schedule_ruleset, new_schedule_name)
     model = schedule_ruleset.model
-    new_schedule = OpenStudio::Model::ScheduleRuleset.new(model, 1.0)
-    schedule_ruleset.scheduleRules.each do |rule|
+    new_schedule = OpenStudio::Model::ScheduleRuleset.new(model, 0.0)
+    new_schedule.setName(new_schedule_name)
+
+    # change the default day values
+    default_day_schedule = schedule_ruleset.defaultDaySchedule
+    new_default_day_schedule = new_schedule.defaultDaySchedule
+    new_default_day_schedule.setName("#{new_schedule_name} Default Day Schedule")
+    for index in 0..default_day_schedule.times.size-1
+      old_value = default_day_schedule.values[index]
+      if old_value == 0
+        new_value = 1
+      else
+        new_value = 0
+      end
+      new_default_day_schedule.addValue(default_day_schedule.times[index], new_value)
+    end
+
+    # change for schedule rules
+    schedule_ruleset.scheduleRules.each_with_index do |rule, i|
       old_day_schedule = rule.daySchedule
       new_day_schedule = OpenStudio::Model::ScheduleDay.new(model)
+      new_day_schedule.setName("#{new_schedule_name} Schedule Day #{i}")
       index = 0
       for index in 0..old_day_schedule.times.size-1
         old_value = old_day_schedule.values[index]
@@ -161,7 +179,9 @@ class SetNISTInfiltrationCorrelations < OpenStudio::Measure::ModelMeasure
         end
         new_day_schedule.addValue(old_day_schedule.times[index], new_value)
       end
+  
       new_rule = OpenStudio::Model::ScheduleRule.new(new_schedule, new_day_schedule)
+      new_rule.setName("#{new_day_schedule.name} Rule")
       new_rule.setApplySunday(rule.applySunday)
       new_rule.setApplyMonday(rule.applyMonday)
       new_rule.setApplyTuesday(rule.applyTuesday)
@@ -229,7 +249,7 @@ class SetNISTInfiltrationCorrelations < OpenStudio::Measure::ModelMeasure
     hvac_schedule = OpenStudio::Measure::OSArgument::makeChoiceArgument('hvac_schedule', schedule_names, false, true)
     hvac_schedule.setDefaultValue('Lookup From Model')
     hvac_schedule.setDisplayName('HVAC Operating Schedule')
-    hvac_schedule.setDescription('Choose the HVAC Operating Schedule for the building. The schedule must be a Schedule Constant or Schedule Ruleset object. Lookup From Model will use the operating schedule from the largest airloop by floor area served.')
+    hvac_schedule.setDescription('Choose the HVAC Operating Schedule for the building. The schedule must be a Schedule Constant or Schedule Ruleset object. Lookup From Model will use the operating schedule from the largest airloop by floor area served. If the largest airloop serves less than 5% of the building, the measure will attempt to use the Building Hours of Operation schedule instead.')
     args << hvac_schedule
 
     # climate zone options
@@ -411,6 +431,31 @@ class SetNISTInfiltrationCorrelations < OpenStudio::Measure::ModelMeasure
           largest_area = air_loop_area
         end
       end
+
+      building_area = model.getBuilding.floorArea
+      if largest_area < 0.05*building_area
+        runner.registerWarning("The largest airloop or HVAC system serves #{largest_area.round(1)} m^2, which is less than 5% of the building area #{building_area.round(1)} m^2. Attempting to use building hours of operation schedule instead.")
+        default_schedule_set = model.getBuilding.defaultScheduleSet
+        if default_schedule_set.is_initialized
+          default_schedule_set = default_schedule_set.get
+          hoo = default_schedule_set.hoursofOperationSchedule
+          if hoo.is_initialized
+            hvac_schedule = hoo.get
+            largest_area = building_area
+          else
+            runner.registerWarning("Unable to determine building hours of operation schedule. Treating the building as if there is no HVAC system schedule.")
+            hvac_schedule = nil
+          end
+        else
+          runner.registerWarning("Unable to determine building hours of operation schedule. Treating the building as if there is no HVAC system schedule.")
+          hvac_schedule = nil
+        end
+      end
+
+      unless hvac_schedule.nil?
+        area_fraction = 100.0 * largest_area / building_area
+        runner.registerInfo("Using schedule #{hvac_schedule.name} serving area #{largest_area.round(1)} m^2, #{area_fraction.round(0)}% of building area #{building_area.round(1)} m^2 to determine infiltration on/off schedule.")
+      end
     else
       hvac_schedule = model.getScheduleByName(hvac_schedule)
       unless schedule_object.is_initialized
@@ -426,12 +471,14 @@ class SetNISTInfiltrationCorrelations < OpenStudio::Measure::ModelMeasure
         runner.registerError("HVAC schedule argument #{hvac_schedule} is not a Schedule Constant or Schedule Ruleset object.")
         return false
       end
+
+      runner.registerInfo("Using HVAC schedule #{hvac_schedule.name} from user arguments to determine infiltration on/off schedule.")
     end
 
     # creating infiltration schedules based on hvac schedule
     if hvac_schedule.nil?
-      runner.registerWarning('Unable to determine the HVAC schedule. Assuming there is no HVAC system with outdoor air.  If this is not the case, input a schedule argument, or assign one to an air loop in the model.')
-       on_schedule = OpenStudio::Model::ScheduleConstant.new(model)
+      runner.registerWarning('Unable to determine the HVAC schedule. Treating the building as if there is no HVAC system with outdoor air.  If this is not the case, input a schedule argument, or assign one to an air loop in the model.')
+      on_schedule = OpenStudio::Model::ScheduleConstant.new(model)
       on_schedule.setName("Infiltration HVAC On Schedule")
       on_schedule.setValue(0.0)
       off_schedule = OpenStudio::Model::ScheduleConstant.new(model)
@@ -453,8 +500,7 @@ class SetNISTInfiltrationCorrelations < OpenStudio::Measure::ModelMeasure
       hvac_schedule = hvac_schedule.to_ScheduleRuleset.get
       on_schedule = hvac_schedule.clone.to_ScheduleRuleset.get
       on_schedule.setName("Infiltration HVAC On Schedule")
-      off_schedule = invert_schedule_ruleset(hvac_schedule)
-      off_schedule.setName("Infiltration HVAC Off Schedule")
+      off_schedule = invert_schedule_ruleset(hvac_schedule, 'Infiltration HVAC Off Schedule')
     end
 
     # validate climate zone
@@ -576,7 +622,7 @@ class SetNISTInfiltrationCorrelations < OpenStudio::Measure::ModelMeasure
       hvac_on_infiltration.setSchedule(on_schedule)
 
       hvac_off_infiltration = OpenStudio::Model::SpaceInfiltrationDesignFlowRate.new(model)
-      hvac_on_infiltration.setName("#{space.name.get} HVAC Off Infiltration")
+      hvac_off_infiltration.setName("#{space.name.get} HVAC Off Infiltration")
       hvac_off_infiltration.setFlowperExteriorSurfaceArea(design_infiltration_4pa)
       hvac_off_infiltration.setConstantTermCoefficient(a_off)
       hvac_off_infiltration.setTemperatureTermCoefficient(b_off)
@@ -584,6 +630,7 @@ class SetNISTInfiltrationCorrelations < OpenStudio::Measure::ModelMeasure
       hvac_off_infiltration.setVelocitySquaredTermCoefficient(d_off)
       hvac_off_infiltration.setSpace(space)
       hvac_off_infiltration.setSchedule(off_schedule)
+
     end
 
     runner.registerFinalCondition("The modeled finished with #{model.getSpaceInfiltrationDesignFlowRates.size} infiltration objects.")

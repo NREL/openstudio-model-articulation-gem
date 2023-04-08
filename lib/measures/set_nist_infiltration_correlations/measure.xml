@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>set_nist_infiltration_correlations</name>
   <uid>b74a4a45-8553-4e94-860f-35b217a04879</uid>
-  <version_id>ea0f72b8-eb2b-40b9-be52-9aeddd899623</version_id>
-  <version_modified>20230329T205914Z</version_modified>
+  <version_id>d7dc095e-b6b5-40cc-97d4-95ab216cff3b</version_id>
+  <version_modified>20230408T053637Z</version_modified>
   <xml_checksum>A54BB41C</xml_checksum>
   <class_name>SetNISTInfiltrationCorrelations</class_name>
   <display_name>SetNISTInfiltrationCorrelations</display_name>
@@ -74,7 +74,7 @@
     <argument>
       <name>hvac_schedule</name>
       <display_name>HVAC Operating Schedule</display_name>
-      <description>Choose the HVAC Operating Schedule for the building. The schedule must be a Schedule Constant or Schedule Ruleset object. Lookup From Model will use the operating schedule from the largest airloop by floor area served.</description>
+      <description>Choose the HVAC Operating Schedule for the building. The schedule must be a Schedule Constant or Schedule Ruleset object. Lookup From Model will use the operating schedule from the largest airloop by floor area served. If the largest airloop serves less than 5% of the building, the measure will attempt to use the Building Hours of Operation schedule instead.</description>
       <type>Choice</type>
       <required>false</required>
       <model_dependent>true</model_dependent>
@@ -350,7 +350,7 @@
       <filename>nist_infiltration_correlations_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>39653F52</checksum>
+      <checksum>E2AA7EF4</checksum>
     </file>
     <file>
       <version>
@@ -361,13 +361,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>21350D7A</checksum>
+      <checksum>C9F5E527</checksum>
     </file>
     <file>
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
-      <checksum>75CC0FB8</checksum>
+      <checksum>7B4E3347</checksum>
     </file>
   </files>
 </measure>

@@ -58,7 +58,7 @@ Buildings with air barriers use a different set of coefficients.
 
 
 ### HVAC Operating Schedule
-Choose the HVAC Operating Schedule for the building. The schedule must be a Schedule Constant or Schedule Ruleset object. Lookup From Model will use the operating schedule from the largest airloop by floor area served.
+Choose the HVAC Operating Schedule for the building. The schedule must be a Schedule Constant or Schedule Ruleset object. Lookup From Model will use the operating schedule from the largest airloop by floor area served. If the largest airloop serves less than 5% of the building, the measure will attempt to use the Building Hours of Operation schedule instead.
 **Name:** hvac_schedule,
 **Type:** Choice,
 **Units:** ,
