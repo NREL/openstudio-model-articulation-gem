@@ -131,6 +131,13 @@ class SetNISTInfiltrationCorrelationsTest < Minitest::Test
     # assert that it ran correctly
     assert_equal('Success', result.value.valueName)
 
+    # check that the infiltration schedules sum to 1
+    infil_on_schedule = model.getScheduleByName('Infiltration HVAC On Schedule').get
+    infil_off_schedule = model.getScheduleByName('Infiltration HVAC Off Schedule').get
+    on_day_value = infil_on_schedule.to_ScheduleConstant.get.value
+    off_day_value = infil_off_schedule.to_ScheduleConstant.get.value
+    assert((on_day_value + off_day_value - 1.0) < 0.001)
+
     # save the model to test output directory
     output_file_path = "#{File.dirname(__FILE__)}//output/bldg0000003_infil_adj.osm"
     model.save(output_file_path, true)
@@ -158,6 +165,15 @@ class SetNISTInfiltrationCorrelationsTest < Minitest::Test
     # assert that it ran correctly
     assert_equal('Success', result.value.valueName)
 
+    # check that the infiltration schedules sum to 1
+    infil_on_schedule = model.getScheduleByName('Infiltration HVAC On Schedule').get
+    infil_off_schedule = model.getScheduleByName('Infiltration HVAC Off Schedule').get
+    on_day = infil_on_schedule.to_ScheduleRuleset.get.defaultDaySchedule
+    off_day = infil_off_schedule.to_ScheduleRuleset.get.defaultDaySchedule
+    sum_arr = on_day.values + off_day.values
+    assert((sum_arr.min - 1.0) < 0.001)
+    assert((sum_arr.max - 1.0) < 0.001)
+
     # save the model to test output directory
     output_file_path = "#{File.dirname(__FILE__)}//output/bldg0000004_infil_adj.osm"
     model.save(output_file_path, true)
@@ -182,6 +198,13 @@ class SetNISTInfiltrationCorrelationsTest < Minitest::Test
 
     # assert that it ran correctly
     assert_equal('Success', result.value.valueName)
+
+    # check that the infiltration schedules sum to 1
+    infil_on_schedule = model.getScheduleByName('Infiltration HVAC On Schedule').get
+    infil_off_schedule = model.getScheduleByName('Infiltration HVAC Off Schedule').get
+    on_day_value = infil_on_schedule.to_ScheduleConstant.get.value
+    off_day_value = infil_off_schedule.to_ScheduleConstant.get.value
+    assert((on_day_value + off_day_value - 1.0) < 0.001)
 
     # save the model to test output directory
     output_file_path = "#{File.dirname(__FILE__)}//output/bldg0000005_infil_adj.osm"
@@ -212,6 +235,15 @@ class SetNISTInfiltrationCorrelationsTest < Minitest::Test
 
     # assert that it ran correctly
     assert_equal('Success', result.value.valueName)
+
+    # check that the infiltration schedules sum to 1
+    infil_on_schedule = model.getScheduleByName('Infiltration HVAC On Schedule').get
+    infil_off_schedule = model.getScheduleByName('Infiltration HVAC Off Schedule').get
+    on_day = infil_on_schedule.to_ScheduleRuleset.get.defaultDaySchedule
+    off_day = infil_off_schedule.to_ScheduleRuleset.get.defaultDaySchedule
+    sum_arr = on_day.values + off_day.values
+    assert((sum_arr.min - 1.0) < 0.001)
+    assert((sum_arr.max - 1.0) < 0.001)
 
     # save the model to test output directory
     output_file_path = "#{File.dirname(__FILE__)}//output/bldg0000025_infil_adj.osm"
@@ -244,6 +276,15 @@ class SetNISTInfiltrationCorrelationsTest < Minitest::Test
     # assert that it ran correctly
     assert_equal('Success', result.value.valueName)
 
+    # check that the infiltration schedules sum to 1
+    infil_on_schedule = model.getScheduleByName('Infiltration HVAC On Schedule').get
+    infil_off_schedule = model.getScheduleByName('Infiltration HVAC Off Schedule').get
+    on_day = infil_on_schedule.to_ScheduleRuleset.get.defaultDaySchedule
+    off_day = infil_off_schedule.to_ScheduleRuleset.get.defaultDaySchedule
+    sum_arr = on_day.values + off_day.values
+    assert((sum_arr.min - 1.0) < 0.001)
+    assert((sum_arr.max - 1.0) < 0.001)
+
     # save the model to test output directory
     output_file_path = "#{File.dirname(__FILE__)}//output/bldg0000025_infil_adj.osm"
     model.save(output_file_path, true)
@@ -269,6 +310,51 @@ class SetNISTInfiltrationCorrelationsTest < Minitest::Test
     # assert that it ran correctly
     assert_equal('Success', result.value.valueName)
     assert(result.warnings.size == 1)
+
+    # check that the infiltration schedules sum to 1
+    infil_on_schedule = model.getScheduleByName('Infiltration HVAC On Schedule').get
+    infil_off_schedule = model.getScheduleByName('Infiltration HVAC Off Schedule').get
+    on_day = infil_on_schedule.to_ScheduleRuleset.get.defaultDaySchedule
+    off_day = infil_off_schedule.to_ScheduleRuleset.get.defaultDaySchedule
+    sum_arr = on_day.values + off_day.values
+    assert((sum_arr.min - 1.0) < 0.001)
+    assert((sum_arr.max - 1.0) < 0.001)
+
+    # save the model to test output directory
+    output_file_path = "#{File.dirname(__FILE__)}//output/bldg0000031_infil_adj.osm"
+    model.save(output_file_path, true)
+  end
+
+  def test_bldg31_quick_service_restaurant_pthp_air_barrier
+    test_name = 'test_bldg31_quick_service_restaurant_pthp_air_barrier'
+    puts "\n######\nTEST:#{test_name}\n######\n"
+
+    # load the test model
+    translator = OpenStudio::OSVersion::VersionTranslator.new
+    path = "#{File.dirname(__FILE__)}/bldg0000031.osm"
+    model = translator.loadModel(path)
+    assert(!model.empty?)
+    model = model.get
+    args_hash = {}
+    args_hash['air_barrier'] = true
+
+    result = run_test(model, args_hash)
+
+    # show the output
+    show_output(result)
+
+    # assert that it ran correctly
+    assert_equal('Success', result.value.valueName)
+    assert(result.warnings.size == 1)
+
+    # check that the infiltration schedules sum to 1
+    infil_on_schedule = model.getScheduleByName('Infiltration HVAC On Schedule').get
+    infil_off_schedule = model.getScheduleByName('Infiltration HVAC Off Schedule').get
+    on_day = infil_on_schedule.to_ScheduleRuleset.get.defaultDaySchedule
+    off_day = infil_off_schedule.to_ScheduleRuleset.get.defaultDaySchedule
+    sum_arr = on_day.values + off_day.values
+    assert((sum_arr.min - 1.0) < 0.001)
+    assert((sum_arr.max - 1.0) < 0.001)
 
     # save the model to test output directory
     output_file_path = "#{File.dirname(__FILE__)}//output/bldg0000031_infil_adj.osm"
@@ -296,6 +382,15 @@ class SetNISTInfiltrationCorrelationsTest < Minitest::Test
     assert_equal('Success', result.value.valueName)
     assert(result.warnings.size == 2)
 
+    # check that the infiltration schedules sum to 1
+    infil_on_schedule = model.getScheduleByName('Infiltration HVAC On Schedule').get
+    infil_off_schedule = model.getScheduleByName('Infiltration HVAC Off Schedule').get
+    on_day = infil_on_schedule.to_ScheduleRuleset.get.defaultDaySchedule
+    off_day = infil_off_schedule.to_ScheduleRuleset.get.defaultDaySchedule
+    sum_arr = on_day.values + off_day.values
+    assert((sum_arr.min - 1.0) < 0.001)
+    assert((sum_arr.max - 1.0) < 0.001)
+
     # save the model to test output directory
     output_file_path = "#{File.dirname(__FILE__)}//output/bldg0000043_infil_adj.osm"
     model.save(output_file_path, true)
@@ -321,6 +416,15 @@ class SetNISTInfiltrationCorrelationsTest < Minitest::Test
     # assert that it ran correctly
     assert_equal('Success', result.value.valueName)
 
+    # check that the infiltration schedules sum to 1
+    infil_on_schedule = model.getScheduleByName('Infiltration HVAC On Schedule').get
+    infil_off_schedule = model.getScheduleByName('Infiltration HVAC Off Schedule').get
+    on_day = infil_on_schedule.to_ScheduleRuleset.get.defaultDaySchedule
+    off_day = infil_off_schedule.to_ScheduleRuleset.get.defaultDaySchedule
+    sum_arr = on_day.values + off_day.values
+    assert((sum_arr.min - 1.0) < 0.001)
+    assert((sum_arr.max - 1.0) < 0.001)
+
     # save the model to test output directory
     output_file_path = "#{File.dirname(__FILE__)}//output/bldg0000045_infil_adj.osm"
     model.save(output_file_path, true)
@@ -337,6 +441,7 @@ class SetNISTInfiltrationCorrelationsTest < Minitest::Test
     assert(!model.empty?)
     model = model.get
     args_hash = {}
+    args_hash['airtightness_area'] = '6-sided'
 
     result = run_test(model, args_hash)
 
@@ -345,6 +450,51 @@ class SetNISTInfiltrationCorrelationsTest < Minitest::Test
 
     # assert that it ran correctly
     assert_equal('Success', result.value.valueName)
+
+    # check that the infiltration schedules sum to 1
+    infil_on_schedule = model.getScheduleByName('Infiltration HVAC On Schedule').get
+    infil_off_schedule = model.getScheduleByName('Infiltration HVAC Off Schedule').get
+    on_day = infil_on_schedule.to_ScheduleRuleset.get.defaultDaySchedule
+    off_day = infil_off_schedule.to_ScheduleRuleset.get.defaultDaySchedule
+    sum_arr = on_day.values + off_day.values
+    assert((sum_arr.min - 1.0) < 0.001)
+    assert((sum_arr.max - 1.0) < 0.001)
+
+    # save the model to test output directory
+    output_file_path = "#{File.dirname(__FILE__)}//output/bldg0000053_infil_adj.osm"
+    model.save(output_file_path, true)
+  end
+
+  def test_bldg53_smallhotel_pszac_air_barrier
+    test_name = 'test_bldg53_smallhotel_pszac_air_barrier'
+    puts "\n######\nTEST:#{test_name}\n######\n"
+
+    # load the test model
+    translator = OpenStudio::OSVersion::VersionTranslator.new
+    path = "#{File.dirname(__FILE__)}/bldg0000053.osm"
+    model = translator.loadModel(path)
+    assert(!model.empty?)
+    model = model.get
+    args_hash = {}
+    args_hash['airtightness_area'] = '6-sided'
+    args_hash['air_barrier'] = true
+
+    result = run_test(model, args_hash)
+
+    # show the output
+    show_output(result)
+
+    # assert that it ran correctly
+    assert_equal('Success', result.value.valueName)
+
+    # check that the infiltration schedules sum to 1
+    infil_on_schedule = model.getScheduleByName('Infiltration HVAC On Schedule').get
+    infil_off_schedule = model.getScheduleByName('Infiltration HVAC Off Schedule').get
+    on_day = infil_on_schedule.to_ScheduleRuleset.get.defaultDaySchedule
+    off_day = infil_off_schedule.to_ScheduleRuleset.get.defaultDaySchedule
+    sum_arr = on_day.values + off_day.values
+    assert((sum_arr.min - 1.0) < 0.001)
+    assert((sum_arr.max - 1.0) < 0.001)
 
     # save the model to test output directory
     output_file_path = "#{File.dirname(__FILE__)}//output/bldg0000053_infil_adj.osm"
@@ -370,6 +520,15 @@ class SetNISTInfiltrationCorrelationsTest < Minitest::Test
 
     # assert that it ran correctly
     assert_equal('Success', result.value.valueName)
+
+    # check that the infiltration schedules sum to 1
+    infil_on_schedule = model.getScheduleByName('Infiltration HVAC On Schedule').get
+    infil_off_schedule = model.getScheduleByName('Infiltration HVAC Off Schedule').get
+    on_day = infil_on_schedule.to_ScheduleRuleset.get.defaultDaySchedule
+    off_day = infil_off_schedule.to_ScheduleRuleset.get.defaultDaySchedule
+    sum_arr = on_day.values + off_day.values
+    assert((sum_arr.min - 1.0) < 0.001)
+    assert((sum_arr.max - 1.0) < 0.001)
 
     # save the model to test output directory
     output_file_path = "#{File.dirname(__FILE__)}//output/bldg0000082_infil_adj.osm"
