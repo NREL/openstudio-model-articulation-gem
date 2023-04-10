@@ -3,12 +3,12 @@
   <schema_version>3.0</schema_version>
   <name>set_nist_infiltration_correlations</name>
   <uid>b74a4a45-8553-4e94-860f-35b217a04879</uid>
-  <version_id>fbb0953c-087b-4d42-9485-281ef9abfdf3</version_id>
-  <version_modified>20230321T223706Z</version_modified>
+  <version_id>d7dc095e-b6b5-40cc-97d4-95ab216cff3b</version_id>
+  <version_modified>20230408T053637Z</version_modified>
   <xml_checksum>A54BB41C</xml_checksum>
   <class_name>SetNISTInfiltrationCorrelations</class_name>
   <display_name>SetNISTInfiltrationCorrelations</display_name>
-  <description>This measure incorporates infiltration that varies with weather and HVAC operation, and takes into account building geometry (height, above-ground exterior surface area, and volume). It is based on work published by Ng et al. (2018) &lt;a href='https://doi.org/10.1016/j.buildenv.2017.10.029'&gt;'Weather correlations to calculate infiltration rates for U.S. commercial building energy models'&lt;/a&gt; and Ng et al. (2021) &lt;a href='https://doi.org/10.1016/j.buildenv.2021.107783'&gt;'Evaluating potential benefits of air barriers in commercial buildings using NIST infiltration correlations in EnergyPlus'&lt;/a&gt;. This method of calculating infiltration was developed using eleven of the DOE commercial prototype building models (&lt;a href='https://www.energycodes.gov/development/commercial/prototype_models'&gt;Goel et al. 2014&lt;/a&gt;) and TMY3 weather files for eight climate zones (CZ). Guidance on implementing the infiltration correlations are explained in the NIST technical report &lt;a href='https://doi.org/10.6028/NIST.TN.2221'&gt;'Implementing NIST Infiltration Correlations'&lt;/a&gt;. Ng et al. (2018) shows that when analyzing the benefits of building envelope airtightening, greater HVAC energy savings were predicted using the infiltration inputs included in this Measure compared with using the default inputs that are included in the prototype building models. To provide feedback on the NIST infiltration correlations, please email infiltration@list.nist.gov or lisa.ng@nist.gov. For measure implementation questions or issues, contact matthew.dahlhausen@nrel.gov.</description>
+  <description>This measure incorporates infiltration that varies with weather and HVAC operation, and takes into account building geometry (height, above-ground exterior surface area, and volume). It is based on work published by Ng et al. (2018) &lt;a href='https://doi.org/10.1016/j.buildenv.2017.10.029'&gt;'Weather correlations to calculate infiltration rates for U.S. commercial building energy models'&lt;/a&gt; and Ng et al. (2021) &lt;a href='https://doi.org/10.1016/j.buildenv.2021.107783'&gt;'Evaluating potential benefits of air barriers in commercial buildings using NIST infiltration correlations in EnergyPlus'&lt;/a&gt;. This method of calculating infiltration was developed using eleven of the DOE commercial prototype building models (&lt;a href='https://www.energycodes.gov/development/commercial/prototype_models'&gt;Goel et al. 2014&lt;/a&gt;) and TMY3 weather files for eight climate zones (CZ). Guidance on implementing the infiltration correlations are explained in the NIST technical report &lt;a href='https://doi.org/10.6028/NIST.TN.2221'&gt;'Implementing NIST Infiltration Correlations'&lt;/a&gt;. Ng et al. (2018) shows that when analyzing the benefits of building envelope airtightening, greater HVAC energy savings were predicted using the infiltration inputs included in this Measure compared with using the default inputs that are included in the prototype building models. Brian Polidoro (NIST) first developed this Measure in 2015 and updated it in 2018 and 2019. Matthew Dahlhausen (NREL) updated the 2019 Measure and published this current version in 2023. To provide feedback on the NIST infiltration correlations, please email infiltration@list.nist.gov or lisa.ng@nist.gov. For measure implementation questions or issues, contact matthew.dahlhausen@nrel.gov.</description>
   <modeler_description>This measure will remove any existing infiltration objects (OS:SpaceInfiltration:DesignFlowRate and OS:SpaceInfiltration:EffectiveLeakageArea). Every zone will then get two OS:SpaceInfiltration:DesignFlowRate objects that add infiltration using the 'Flow per Exterior Surface Area' input option, one infiltration object when the HVAC system is on and one object when the HVAC system is off. The method assumes that HVAC operation is set by a schedule, though it may not reflect actual simulation/operation when fan operation may depend on internal loads and temperature setpoints. By default, interior zones will receive no infiltration. The user may enter a design building envelope airtightness at a specific design pressure, and whether the design value represents a 4-sided, 5-sided, or 6-sided normalization.  By default, the measure assumes an airtightness design value of 13.8 (m^3/h-m^2) at 75 Pa. The measure assumes that infiltration is evenly distributed across the entire building envelope, including the roof. The user may select the HVAC system operating schedule in the model, or infer it based on the availability schedule of the air loop that serves the largest amount of floor area. The measure will make a copy of the HVAC operating schedule, 'Infiltration HVAC On Schedule', which is used with the HVAC on infiltration correlations.  The measure will also make an 'Infiltration HVAC Off Schedule' with inverse operation, used with the HVAC off infiltration correlations. OS:SpaceInfiltration:DesignFlowRate object coefficients (A, B, C, and D) come from Ng et al. (2018). The user may select the Building Type and Climate Zone, or the measure will infer them from the model.</modeler_description>
   <arguments>
     <argument>
@@ -74,7 +74,7 @@
     <argument>
       <name>hvac_schedule</name>
       <display_name>HVAC Operating Schedule</display_name>
-      <description>Choose the HVAC Operating Schedule for the building. The schedule must be a Schedule Constant or Schedule Ruleset object. Lookup From Model will use the operating schedule from the largest airloop by floor area served.</description>
+      <description>Choose the HVAC Operating Schedule for the building. The schedule must be a Schedule Constant or Schedule Ruleset object. Lookup From Model will use the operating schedule from the largest airloop by floor area served. If the largest airloop serves less than 5% of the building, the measure will attempt to use the Building Hours of Operation schedule instead.</description>
       <type>Choice</type>
       <required>false</required>
       <model_dependent>true</model_dependent>
@@ -350,7 +350,7 @@
       <filename>nist_infiltration_correlations_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>4151E0E1</checksum>
+      <checksum>E2AA7EF4</checksum>
     </file>
     <file>
       <version>
@@ -361,13 +361,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>DBE97485</checksum>
+      <checksum>C9F5E527</checksum>
     </file>
     <file>
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
-      <checksum>8DF60FD9</checksum>
+      <checksum>7B4E3347</checksum>
     </file>
   </files>
 </measure>
