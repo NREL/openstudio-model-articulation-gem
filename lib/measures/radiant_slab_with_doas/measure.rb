@@ -341,7 +341,7 @@ To reduce unmet hours, use an expanded comfort range as mentioned above, remove 
     end
 
     # Apply the HVAC efficiency standard
-    building_data = std.model_get_building_climate_zone_and_building_type(model)
+    building_data = std.model_get_building_properties(model)
     std.model_apply_hvac_efficiency_standard(model, building_data['climate_zone'])
 
     # add output variables

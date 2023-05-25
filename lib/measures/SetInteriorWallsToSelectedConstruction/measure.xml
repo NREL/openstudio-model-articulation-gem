@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>set_interior_walls_to_selected_construction</name>
   <uid>e3d59d0d-1ce8-4cb2-ae59-001f0fa2ac46</uid>
-  <version_id>bb0dd052-2f62-49ef-8e20-2e9c39786802</version_id>
-  <version_modified>20220505T182927Z</version_modified>
+  <version_id>4c76d2a5-e9f2-45d5-bfa9-3676cb4e3afe</version_id>
+  <version_modified>20221129T233202Z</version_modified>
   <xml_checksum>1E963D9C</xml_checksum>
   <class_name>SetInteriorWallsToSelectedConstruction</class_name>
   <display_name>SetInteriorWallsToSelectedConstruction</display_name>
@@ -76,7 +76,7 @@
       <filename>SetInteriorWallstoSelectedConstruction_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>17B7EFF1</checksum>
+      <checksum>6031E729</checksum>
     </file>
   </files>
 </measure>
