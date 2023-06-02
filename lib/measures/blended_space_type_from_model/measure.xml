@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>blended_space_type_from_model</name>
   <uid>667c2f1f-0927-4dbd-a7be-1087b5c15181</uid>
-  <version_id>68180f3a-0d37-4921-8eea-baab050bb62b</version_id>
-  <version_modified>20220512T054947Z</version_modified>
+  <version_id>23be7ce9-31dd-42f6-a4a4-ba8f6265e6a7</version_id>
+  <version_modified>20230602T160045Z</version_modified>
   <xml_checksum>28AD5222</xml_checksum>
   <class_name>BlendedSpaceTypeFromModel</class_name>
   <display_name>Blended Space Type from Model</display_name>
@@ -127,22 +127,22 @@
       <checksum>703C9964</checksum>
     </file>
     <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>A21A3ED2</checksum>
-    </file>
-    <file>
       <filename>replace_occupied_spaces_with_blended_space_type_design_doc.txt</filename>
       <filetype>txt</filetype>
       <usage_type>doc</usage_type>
       <checksum>C2673B6F</checksum>
     </file>
     <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>BFFB1AA6</checksum>
+    </file>
+    <file>
       <filename>measure_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>60597097</checksum>
+      <checksum>75D48CAC</checksum>
     </file>
     <file>
       <version>
@@ -153,7 +153,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>556BD210</checksum>
+      <checksum>4A8C4B2E</checksum>
     </file>
   </files>
 </measure>

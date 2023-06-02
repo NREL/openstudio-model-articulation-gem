@@ -1,5 +1,8 @@
 # OpenStudio Model Articulation Gems
 
+## Version 0.8.0
+* Support for Openstudio 3.6 (upgrade to standards gem 0.3.0, extension gem 0.6.1)
+
 ## Version 0.7.0
 * Support for OpenStudio 3.5 (upgrade to standards gem 0.3.0, extension gem 0.6.0)
 * Adding Courthouse and College buidling type argument values to `create_DOE_prototype_building` measure
