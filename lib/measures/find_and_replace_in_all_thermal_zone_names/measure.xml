@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>find_and_replace_in_all_thermal_zone_names</name>
   <uid>3573d81e-e7de-4949-be50-8abcd0f95a35</uid>
-  <version_id>aa8dce36-46c8-4bd1-a755-e5368218a0c1</version_id>
-  <version_modified>20220505T182935Z</version_modified>
+  <version_id>e761160f-c143-448d-aacf-bd711ba6d025</version_id>
+  <version_modified>20230602T160046Z</version_modified>
   <xml_checksum>057E8D9D</xml_checksum>
   <class_name>FindAndReplaceInAllThermalZoneNames</class_name>
   <display_name>Find And Replace In All Thermal Zone Names</display_name>
@@ -73,19 +73,19 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>35235CD3</checksum>
+      <checksum>D9A03E8B</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>A21A3ED2</checksum>
+      <checksum>BFFB1AA6</checksum>
     </file>
     <file>
       <filename>find_and_replace_in_all_thermal_zone_names_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>1ACD900C</checksum>
+      <checksum>4FBABCCF</checksum>
     </file>
   </files>
 </measure>

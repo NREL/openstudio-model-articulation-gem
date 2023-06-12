@@ -102,6 +102,10 @@ The Templates prefixed with "Comstock"" have been slightly modified over the tem
 
   - ComStock 90.1-2013<br/>
 
+  - ComStock 90.1-2016<br/>
+
+  - ComStock 90.1-2019<br/>
+
 
 
 
@@ -188,6 +192,10 @@ The Templates prefixed with "Comstock"" have been slightly modified over the tem
 - SmallDataCenterLowITE<br/>
 
 - SmallDataCenterHighITE<br/>
+
+- Courthouse<br/>
+
+- College<br/>
 
 
 
@@ -418,7 +426,7 @@ ___
 **Required:** true,
 **Model Dependent:** false
 
-**Choice Display Names** ["SecondarySchool", "PrimarySchool", "SmallOffice", "MediumOffice", "LargeOffice", "SmallHotel", "LargeHotel", "Warehouse", "RetailStandalone", "RetailStripmall", "QuickServiceRestaurant", "FullServiceRestaurant", "MidriseApartment", "HighriseApartment", "Hospital", "Outpatient", "SuperMarket", "Laboratory", "LargeDataCenterLowITE", "LargeDataCenterHighITE", "SmallDataCenterLowITE", "SmallDataCenterHighITE"]
+**Choice Display Names** ["SecondarySchool", "PrimarySchool", "SmallOffice", "MediumOffice", "LargeOffice", "SmallHotel", "LargeHotel", "Warehouse", "RetailStandalone", "RetailStripmall", "QuickServiceRestaurant", "FullServiceRestaurant", "MidriseApartment", "HighriseApartment", "Hospital", "Outpatient", "SuperMarket", "Laboratory", "LargeDataCenterLowITE", "LargeDataCenterHighITE", "SmallDataCenterLowITE", "SmallDataCenterHighITE", "Courthouse", "College"]
 
 
 ### Building Type B
@@ -429,7 +437,7 @@ ___
 **Required:** true,
 **Model Dependent:** false
 
-**Choice Display Names** ["SecondarySchool", "PrimarySchool", "SmallOffice", "MediumOffice", "LargeOffice", "SmallHotel", "LargeHotel", "Warehouse", "RetailStandalone", "RetailStripmall", "QuickServiceRestaurant", "FullServiceRestaurant", "MidriseApartment", "HighriseApartment", "Hospital", "Outpatient", "SuperMarket", "Laboratory", "LargeDataCenterLowITE", "LargeDataCenterHighITE", "SmallDataCenterLowITE", "SmallDataCenterHighITE"]
+**Choice Display Names** ["SecondarySchool", "PrimarySchool", "SmallOffice", "MediumOffice", "LargeOffice", "SmallHotel", "LargeHotel", "Warehouse", "RetailStandalone", "RetailStripmall", "QuickServiceRestaurant", "FullServiceRestaurant", "MidriseApartment", "HighriseApartment", "Hospital", "Outpatient", "SuperMarket", "Laboratory", "LargeDataCenterLowITE", "LargeDataCenterHighITE", "SmallDataCenterLowITE", "SmallDataCenterHighITE", "Courthouse", "College"]
 
 
 ### Building Type B Fraction of Building Floor Area
@@ -449,7 +457,7 @@ ___
 **Required:** true,
 **Model Dependent:** false
 
-**Choice Display Names** ["SecondarySchool", "PrimarySchool", "SmallOffice", "MediumOffice", "LargeOffice", "SmallHotel", "LargeHotel", "Warehouse", "RetailStandalone", "RetailStripmall", "QuickServiceRestaurant", "FullServiceRestaurant", "MidriseApartment", "HighriseApartment", "Hospital", "Outpatient", "SuperMarket", "Laboratory", "LargeDataCenterLowITE", "LargeDataCenterHighITE", "SmallDataCenterLowITE", "SmallDataCenterHighITE"]
+**Choice Display Names** ["SecondarySchool", "PrimarySchool", "SmallOffice", "MediumOffice", "LargeOffice", "SmallHotel", "LargeHotel", "Warehouse", "RetailStandalone", "RetailStripmall", "QuickServiceRestaurant", "FullServiceRestaurant", "MidriseApartment", "HighriseApartment", "Hospital", "Outpatient", "SuperMarket", "Laboratory", "LargeDataCenterLowITE", "LargeDataCenterHighITE", "SmallDataCenterLowITE", "SmallDataCenterHighITE", "Courthouse", "College"]
 
 
 ### Building Type C Fraction of Building Floor Area
@@ -469,7 +477,7 @@ ___
 **Required:** true,
 **Model Dependent:** false
 
-**Choice Display Names** ["SecondarySchool", "PrimarySchool", "SmallOffice", "MediumOffice", "LargeOffice", "SmallHotel", "LargeHotel", "Warehouse", "RetailStandalone", "RetailStripmall", "QuickServiceRestaurant", "FullServiceRestaurant", "MidriseApartment", "HighriseApartment", "Hospital", "Outpatient", "SuperMarket", "Laboratory", "LargeDataCenterLowITE", "LargeDataCenterHighITE", "SmallDataCenterLowITE", "SmallDataCenterHighITE"]
+**Choice Display Names** ["SecondarySchool", "PrimarySchool", "SmallOffice", "MediumOffice", "LargeOffice", "SmallHotel", "LargeHotel", "Warehouse", "RetailStandalone", "RetailStripmall", "QuickServiceRestaurant", "FullServiceRestaurant", "MidriseApartment", "HighriseApartment", "Hospital", "Outpatient", "SuperMarket", "Laboratory", "LargeDataCenterLowITE", "LargeDataCenterHighITE", "SmallDataCenterLowITE", "SmallDataCenterHighITE", "Courthouse", "College"]
 
 
 ### Building Type D Fraction of Building Floor Area
@@ -552,7 +560,7 @@ Set Building Rotation off of North (positive value is clockwise). Rotation appli
 **Required:** true,
 **Model Dependent:** false
 
-**Choice Display Names** ["DOE Ref Pre-1980", "DOE Ref 1980-2004", "90.1-2004", "90.1-2007", "90.1-2010", "90.1-2013", "90.1-2016", "90.1-2019", "ComStock DOE Ref Pre-1980", "ComStock DOE Ref 1980-2004", "ComStock 90.1-2004", "ComStock 90.1-2007", "ComStock 90.1-2010", "ComStock 90.1-2013"]
+**Choice Display Names** ["DOE Ref Pre-1980", "DOE Ref 1980-2004", "90.1-2004", "90.1-2007", "90.1-2010", "90.1-2013", "90.1-2016", "90.1-2019", "ComStock DOE Ref Pre-1980", "ComStock DOE Ref 1980-2004", "ComStock 90.1-2004", "ComStock 90.1-2007", "ComStock 90.1-2010", "ComStock 90.1-2013", "ComStock 90.1-2016", "ComStock 90.1-2019"]
 
 
 ### Ratio of North/South Facade Length Relative to East/West Facade Length
