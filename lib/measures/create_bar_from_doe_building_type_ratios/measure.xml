@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>create_bar_from_doe_building_type_ratios</name>
   <uid>0de3cff9-c805-42c4-964e-18cb43a22c63</uid>
-  <version_id>f5f51bc7-16a3-4829-82fb-3bcbb773a33a</version_id>
-  <version_modified>20220505T182934Z</version_modified>
+  <version_id>3e2454d3-911f-429e-9e9a-5d0503f70728</version_id>
+  <version_modified>20230602T160046Z</version_modified>
   <xml_checksum>5F523097</xml_checksum>
   <class_name>CreateBarFromDOEBuildingTypeRatios</class_name>
   <display_name>Create Bar From DOE Building Type Ratios</display_name>
@@ -107,6 +107,14 @@
           <value>SmallDataCenterHighITE</value>
           <display_name>SmallDataCenterHighITE</display_name>
         </choice>
+        <choice>
+          <value>Courthouse</value>
+          <display_name>Courthouse</display_name>
+        </choice>
+        <choice>
+          <value>College</value>
+          <display_name>College</display_name>
+        </choice>
       </choices>
     </argument>
     <argument>
@@ -204,6 +212,14 @@
         <choice>
           <value>SmallDataCenterHighITE</value>
           <display_name>SmallDataCenterHighITE</display_name>
+        </choice>
+        <choice>
+          <value>Courthouse</value>
+          <display_name>Courthouse</display_name>
+        </choice>
+        <choice>
+          <value>College</value>
+          <display_name>College</display_name>
         </choice>
       </choices>
     </argument>
@@ -311,6 +327,14 @@
           <value>SmallDataCenterHighITE</value>
           <display_name>SmallDataCenterHighITE</display_name>
         </choice>
+        <choice>
+          <value>Courthouse</value>
+          <display_name>Courthouse</display_name>
+        </choice>
+        <choice>
+          <value>College</value>
+          <display_name>College</display_name>
+        </choice>
       </choices>
     </argument>
     <argument>
@@ -416,6 +440,14 @@
         <choice>
           <value>SmallDataCenterHighITE</value>
           <display_name>SmallDataCenterHighITE</display_name>
+        </choice>
+        <choice>
+          <value>Courthouse</value>
+          <display_name>Courthouse</display_name>
+        </choice>
+        <choice>
+          <value>College</value>
+          <display_name>College</display_name>
         </choice>
       </choices>
     </argument>
@@ -564,6 +596,14 @@
         <choice>
           <value>ComStock 90.1-2013</value>
           <display_name>ComStock 90.1-2013</display_name>
+        </choice>
+        <choice>
+          <value>ComStock 90.1-2016</value>
+          <display_name>ComStock 90.1-2016</display_name>
+        </choice>
+        <choice>
+          <value>ComStock 90.1-2019</value>
+          <display_name>ComStock 90.1-2019</display_name>
         </choice>
       </choices>
     </argument>
@@ -989,22 +1029,16 @@
       <checksum>D1E7B644</checksum>
     </file>
     <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>A21A3ED2</checksum>
-    </file>
-    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
       <checksum>764EC4D9</checksum>
     </file>
     <file>
-      <filename>README.md</filename>
+      <filename>LICENSE.md</filename>
       <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>7D3973D6</checksum>
+      <usage_type>license</usage_type>
+      <checksum>BFFB1AA6</checksum>
     </file>
     <file>
       <version>
@@ -1015,13 +1049,19 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>415570D1</checksum>
+      <checksum>02329948</checksum>
     </file>
     <file>
       <filename>create_bar_from_doe_building_type_ratios_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>0CABBDFA</checksum>
+      <checksum>436246F7</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>B96F2633</checksum>
     </file>
   </files>
 </measure>

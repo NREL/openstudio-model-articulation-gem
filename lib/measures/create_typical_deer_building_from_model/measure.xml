@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>create_typical_deer_building_from_model</name>
   <uid>09cc23db-5e9b-4b11-b167-1852a15ed339</uid>
-  <version_id>f8a8e7e4-350b-4b0f-a27a-18e1ddf170fd</version_id>
-  <version_modified>20220505T182935Z</version_modified>
+  <version_id>d435a7df-5a7e-43a5-9df0-bbb02ee4444d</version_id>
+  <version_modified>20230602T160047Z</version_modified>
   <xml_checksum>AABAC479</xml_checksum>
   <class_name>CreateTypicalDEERBuildingFromModel</class_name>
   <display_name>Create Typical DEER Building from Model</display_name>
@@ -1376,18 +1376,6 @@
       <checksum>F22DEFBC</checksum>
     </file>
     <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>A21A3ED2</checksum>
-    </file>
-    <file>
-      <filename>Model.hvac.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>32C64B0B</checksum>
-    </file>
-    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
@@ -1400,16 +1388,28 @@
       <checksum>1B2E71EB</checksum>
     </file>
     <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>BFFB1AA6</checksum>
+    </file>
+    <file>
+      <filename>Model.hvac.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>3F3371D0</checksum>
+    </file>
+    <file>
       <filename>measure_test_hvac.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>3FE8544B</checksum>
+      <checksum>D40828BD</checksum>
     </file>
     <file>
       <filename>create_typical_deer_building_from_model_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>B3C5409D</checksum>
+      <checksum>FEB80CDC</checksum>
     </file>
     <file>
       <version>
@@ -1420,7 +1420,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>088F9AFB</checksum>
+      <checksum>BD2B1BAA</checksum>
     </file>
   </files>
 </measure>

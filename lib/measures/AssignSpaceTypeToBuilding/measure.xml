@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>assign_space_type_to_building</name>
   <uid>05e20922-6fe4-48a4-bddb-411f8167e757</uid>
-  <version_id>affc7390-ec3e-41fb-a814-adc09ac4ab80</version_id>
-  <version_modified>20220505T182919Z</version_modified>
+  <version_id>5e4a6367-96be-477e-ad0a-b4ca2d24e718</version_id>
+  <version_modified>20230602T160037Z</version_modified>
   <xml_checksum>057E8D9D</xml_checksum>
   <class_name>AssignSpaceTypeToBuilding</class_name>
   <display_name>AssignSpaceTypeToBuilding</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{045b3260-33ad-451f-9c68-f8e75c422740}</default_value>
+      <default_value>{ded28763-628f-49a5-893a-fbf32ce1a20f}</default_value>
       <choices>
         <choice>
-          <value>{045b3260-33ad-451f-9c68-f8e75c422740}</value>
+          <value>{ded28763-628f-49a5-893a-fbf32ce1a20f}</value>
           <display_name>&lt;clear field&gt;</display_name>
         </choice>
       </choices>
@@ -71,19 +71,19 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>C904ACC5</checksum>
+      <checksum>6A3E0C08</checksum>
     </file>
     <file>
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>A21A3ED2</checksum>
+      <checksum>BFFB1AA6</checksum>
     </file>
     <file>
       <filename>AssignSpaceTypeToBuilding_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>E998ED20</checksum>
+      <checksum>534F6844</checksum>
     </file>
   </files>
 </measure>

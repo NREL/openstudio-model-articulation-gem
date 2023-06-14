@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>create_deer_prototype_building</name>
   <uid>752055bd-10d9-4ede-8a35-18487fedf579</uid>
-  <version_id>8b85f282-639e-4a80-af9d-cdfefeb38c47</version_id>
-  <version_modified>20220505T182926Z</version_modified>
+  <version_id>4cf31429-009e-4fbd-95bc-2edf0d325f0a</version_id>
+  <version_modified>20230602T160041Z</version_modified>
   <xml_checksum>A514F332</xml_checksum>
   <class_name>CreateDEERPrototypeBuilding</class_name>
   <display_name>Create DEER Prototype Building ALPHA Version</display_name>
@@ -816,13 +816,13 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>A21A3ED2</checksum>
+      <checksum>BFFB1AA6</checksum>
     </file>
     <file>
       <filename>deer_building_types.rb</filename>
       <filetype>rb</filetype>
       <usage_type>resource</usage_type>
-      <checksum>1811336C</checksum>
+      <checksum>26AEAF70</checksum>
     </file>
     <file>
       <version>
@@ -833,13 +833,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>9D69B5B2</checksum>
+      <checksum>7F717C97</checksum>
     </file>
     <file>
       <filename>create_DEER_prototype_building_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>94E3EAF7</checksum>
+      <checksum>D8A98000</checksum>
     </file>
   </files>
 </measure>

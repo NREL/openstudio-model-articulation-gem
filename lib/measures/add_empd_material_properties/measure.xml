@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>add_empd_material_properties</name>
   <uid>91799c24-d81e-42eb-a458-f2b3a0ee1ff3</uid>
-  <version_id>6f4bf017-c022-4174-8eca-acf979f14354</version_id>
-  <version_modified>20221129T234556Z</version_modified>
+  <version_id>38444120-5da2-4143-ac53-a68abc8c8bf3</version_id>
+  <version_modified>20230602T160044Z</version_modified>
   <xml_checksum>9EF0A36D</xml_checksum>
   <class_name>AddEMPDMaterialProperties</class_name>
   <display_name>Add EMPD Material Properties</display_name>
@@ -169,22 +169,22 @@
       <checksum>53D14E69</checksum>
     </file>
     <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>A21A3ED2</checksum>
-    </file>
-    <file>
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>D2460F20</checksum>
     </file>
     <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>BFFB1AA6</checksum>
+    </file>
+    <file>
       <filename>add_empd_material_properties_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>360B75F1</checksum>
+      <checksum>04FDFEA6</checksum>
     </file>
     <file>
       <version>
@@ -195,7 +195,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>DF9BE58D</checksum>
+      <checksum>46947C54</checksum>
     </file>
   </files>
 </measure>

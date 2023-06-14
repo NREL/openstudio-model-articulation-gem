@@ -1,5 +1,10 @@
 # OpenStudio Model Articulation Gems
 
+## Version 0.8.0
+* Fixed [#120]( https://github.com/NREL/openstudio-model-articulation-gem/pull/120 ), add set_nist_infiltration_correlations
+* Fixed [#121]( https://github.com/NREL/openstudio-model-articulation-gem/pull/121 ), added better infiltration area logging
+* Support for Openstudio 3.6 (upgrade to standards gem 0.3.0, extension gem 0.6.1)
+
 ## Version 0.7.0
 * Support for OpenStudio 3.5 (upgrade to standards gem 0.3.0, extension gem 0.6.0)
 * Adding Courthouse and College buidling type argument values to `create_DOE_prototype_building` measure

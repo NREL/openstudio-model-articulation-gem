@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>assign_space_type_by_space_name</name>
   <uid>69ad41bb-cdfe-4a4c-a385-9efaf35b7c27</uid>
-  <version_id>e60a2200-a654-4e1c-95fb-b19533ffb96b</version_id>
-  <version_modified>20220505T182934Z</version_modified>
+  <version_id>1ab2b6a7-7d3d-4dd0-bd16-2d21864e6967</version_id>
+  <version_modified>20230602T160046Z</version_modified>
   <xml_checksum>057E8D9D</xml_checksum>
   <class_name>AssignSpaceTypeBySpaceName</class_name>
   <display_name>AssignSpaceTypeBySpaceName</display_name>
@@ -24,10 +24,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{ef3c55b4-9cb7-451d-8c82-00a6d685c59f}</default_value>
+      <default_value>{6fea194a-2fda-494b-9afe-b86ca41812fe}</default_value>
       <choices>
         <choice>
-          <value>{ef3c55b4-9cb7-451d-8c82-00a6d685c59f}</value>
+          <value>{6fea194a-2fda-494b-9afe-b86ca41812fe}</value>
           <display_name>&lt;clear field&gt;</display_name>
         </choice>
       </choices>
@@ -88,29 +88,6 @@
       <checksum>5ABADE01</checksum>
     </file>
     <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>6A6F122F</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>A21A3ED2</checksum>
-    </file>
-    <file>
-      <filename>AssignSpaceTypeBySpaceName_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>4302B4E5</checksum>
-    </file>
-    <file>
       <filename>ImportedIdf_TestModel/project.log</filename>
       <filetype>log</filetype>
       <usage_type>test</usage_type>
@@ -127,6 +104,29 @@
       <filetype>osp</filetype>
       <usage_type>test</usage_type>
       <checksum>19B74631</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>10A9E671</checksum>
+    </file>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>BFFB1AA6</checksum>
+    </file>
+    <file>
+      <filename>AssignSpaceTypeBySpaceName_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>15E55F41</checksum>
     </file>
   </files>
 </measure>

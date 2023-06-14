@@ -3,8 +3,8 @@
   <schema_version>3.0</schema_version>
   <name>create_bar_from_space_type_ratios</name>
   <uid>3e988765-9673-46f8-9b65-99d5b86c2b22</uid>
-  <version_id>29ef75fa-0a73-4a08-85bb-a421d8aebbf2</version_id>
-  <version_modified>20220505T182936Z</version_modified>
+  <version_id>6fb5acb9-3669-4eca-ad02-cc1eacd619c5</version_id>
+  <version_modified>20230602T160047Z</version_modified>
   <xml_checksum>49BEF039</xml_checksum>
   <class_name>CreateBarFromSpaceTypeRatios</class_name>
   <display_name>Create Bar From Space Type Ratios</display_name>
@@ -74,6 +74,14 @@
         <choice>
           <value>ComStock 90.1-2013</value>
           <display_name>ComStock 90.1-2013</display_name>
+        </choice>
+        <choice>
+          <value>ComStock 90.1-2016</value>
+          <display_name>ComStock 90.1-2016</display_name>
+        </choice>
+        <choice>
+          <value>ComStock 90.1-2019</value>
+          <display_name>ComStock 90.1-2019</display_name>
         </choice>
         <choice>
           <value>NREL ZNE Ready 2017</value>
@@ -649,28 +657,22 @@
       <checksum>A64E1184</checksum>
     </file>
     <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>A21A3ED2</checksum>
-    </file>
-    <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
       <checksum>0BC848FD</checksum>
     </file>
     <file>
-      <filename>README.md</filename>
+      <filename>LICENSE.md</filename>
       <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>F153B1B9</checksum>
+      <usage_type>license</usage_type>
+      <checksum>BFFB1AA6</checksum>
     </file>
     <file>
       <filename>create_bar_from_space_type_ratios_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>5A8700A0</checksum>
+      <checksum>0A68D7F4</checksum>
     </file>
     <file>
       <version>
@@ -681,7 +683,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>CA930408</checksum>
+      <checksum>50E9C4CF</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>2D2741A8</checksum>
     </file>
   </files>
 </measure>
