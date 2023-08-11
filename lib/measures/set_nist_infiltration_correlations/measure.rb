@@ -1,6 +1,36 @@
 # *******************************************************************************
-# OpenStudio(R), Copyright (c) Alliance for Sustainable Energy, LLC.
-# See also https://openstudio.net/license
+# OpenStudio(R), Copyright (c) 2008-2023, Alliance for Sustainable Energy, LLC.
+# All rights reserved.
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#
+# (1) Redistributions of source code must retain the above copyright notice,
+# this list of conditions and the following disclaimer.
+#
+# (2) Redistributions in binary form must reproduce the above copyright notice,
+# this list of conditions and the following disclaimer in the documentation
+# and/or other materials provided with the distribution.
+#
+# (3) Neither the name of the copyright holder nor the names of any contributors
+# may be used to endorse or promote products derived from this software without
+# specific prior written permission from the respective party.
+#
+# (4) Other than as required in clauses (1) and (2), distributions in any form
+# of modifications or other derivative works may not use the "OpenStudio"
+# trademark, "OS", "os", or any other confusingly similar designation without
+# specific prior written permission from Alliance for Sustainable Energy, LLC.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDER(S) AND ANY CONTRIBUTORS
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+# THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER(S), ANY CONTRIBUTORS, THE
+# UNITED STATES GOVERNMENT, OR THE UNITED STATES DEPARTMENT OF ENERGY, NOR ANY OF
+# THEIR EMPLOYEES, BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+# EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
+# OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+# STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+# OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # *******************************************************************************
 
 require 'csv'
@@ -114,44 +144,53 @@ class SetNISTInfiltrationCorrelations < OpenStudio::Measure::ModelMeasure
     return results
   end
 
+  # method to invert a schedule day
+  def invert_schedule_day(old_schedule_day, new_schedule_day, new_schedule_name)
+    new_schedule_day.setName("#{new_schedule_name}")
+    for index in 0..old_schedule_day.times.size-1
+      old_value = old_schedule_day.values[index]
+      if old_value == 0
+        new_value = 1
+      else
+        new_value = 0
+      end
+      new_schedule_day.addValue(old_schedule_day.times[index], new_value)
+    end
+
+    return new_schedule_day
+  end
+
   # method to invert a schedule ruleset
   def invert_schedule_ruleset(schedule_ruleset, new_schedule_name)
     model = schedule_ruleset.model
     new_schedule = OpenStudio::Model::ScheduleRuleset.new(model, 0.0)
     new_schedule.setName(new_schedule_name)
 
+    # change summer design day
+    summer_design_day_schedule = schedule_ruleset.summerDesignDaySchedule
+    new_summer_design_day_schedule = OpenStudio::Model::ScheduleDay.new(model)
+    invert_schedule_day(summer_design_day_schedule, new_summer_design_day_schedule, "#{new_schedule_name} Summer Design Day Schedule")
+    new_schedule.setSummerDesignDaySchedule(new_summer_design_day_schedule)
+
+    # change winter design day
+    winter_design_day_schedule = schedule_ruleset.winterDesignDaySchedule
+    new_winter_design_day_schedule = OpenStudio::Model::ScheduleDay.new(model)
+    invert_schedule_day(winter_design_day_schedule, new_winter_design_day_schedule, "#{new_schedule_name} Winter Design Day Schedule")
+    new_schedule.setWinterDesignDaySchedule(new_winter_design_day_schedule)
+
     # change the default day values
     default_day_schedule = schedule_ruleset.defaultDaySchedule
     new_default_day_schedule = new_schedule.defaultDaySchedule
-    new_default_day_schedule.setName("#{new_schedule_name} Default Day Schedule")
-    for index in 0..default_day_schedule.times.size-1
-      old_value = default_day_schedule.values[index]
-      if old_value == 0
-        new_value = 1
-      else
-        new_value = 0
-      end
-      new_default_day_schedule.addValue(default_day_schedule.times[index], new_value)
-    end
+    invert_schedule_day(default_day_schedule, new_default_day_schedule, "#{new_schedule_name} Default Day Schedule")
 
     # change for schedule rules
     schedule_ruleset.scheduleRules.each_with_index do |rule, i|
-      old_day_schedule = rule.daySchedule
-      new_day_schedule = OpenStudio::Model::ScheduleDay.new(model)
-      new_day_schedule.setName("#{new_schedule_name} Schedule Day #{i}")
-      index = 0
-      for index in 0..old_day_schedule.times.size-1
-        old_value = old_day_schedule.values[index]
-        if old_value == 0
-          new_value = 1
-        else
-          new_value = 0
-        end
-        new_day_schedule.addValue(old_day_schedule.times[index], new_value)
-      end
+      old_schedule_day = rule.daySchedule
+      new_schedule_day = OpenStudio::Model::ScheduleDay.new(model)
+      invert_schedule_day(old_schedule_day, new_schedule_day, "#{new_schedule_name} Schedule Day #{i}")
   
-      new_rule = OpenStudio::Model::ScheduleRule.new(new_schedule, new_day_schedule)
-      new_rule.setName("#{new_day_schedule.name} Rule")
+      new_rule = OpenStudio::Model::ScheduleRule.new(new_schedule, new_schedule_day)
+      new_rule.setName("#{new_schedule_day.name} Rule")
       new_rule.setApplySunday(rule.applySunday)
       new_rule.setApplyMonday(rule.applyMonday)
       new_rule.setApplyTuesday(rule.applyTuesday)
