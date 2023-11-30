@@ -137,7 +137,7 @@ class RadiantSlabWithDoasTest < Minitest::Test
 
     # get arguments and test that they are what we are expecting
     arguments = measure.arguments(model)
-    assert_equal(15, arguments.size)
+    assert_equal(14, arguments.size)
     assert_equal('remove_existing_hvac', arguments[0].name)
     assert_equal('heating_plant_type', arguments[1].name)
     assert_equal('cooling_plant_type', arguments[2].name)
@@ -146,13 +146,12 @@ class RadiantSlabWithDoasTest < Minitest::Test
     assert_equal('include_carpet', arguments[5].name)
     assert_equal('control_strategy', arguments[6].name)
     assert_equal('proportional_gain', arguments[7].name)
-    assert_equal('minimum_operation', arguments[8].name)
-    assert_equal('switch_over_time', arguments[9].name)
-    assert_equal('radiant_lockout', arguments[10].name)
-    assert_equal('lockout_start_time', arguments[11].name)
-    assert_equal('lockout_end_time', arguments[12].name)
-    assert_equal('add_output_variables', arguments[13].name)
-    assert_equal('standards_template', arguments[14].name)
+    assert_equal('switch_over_time', arguments[8].name)
+    assert_equal('radiant_lockout', arguments[9].name)
+    assert_equal('lockout_start_time', arguments[10].name)
+    assert_equal('lockout_end_time', arguments[11].name)
+    assert_equal('add_output_variables', arguments[12].name)
+    assert_equal('standards_template', arguments[13].name)
   end
 
   def test_single_zone_office_5A_floor
