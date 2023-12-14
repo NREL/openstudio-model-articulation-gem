@@ -1,5 +1,10 @@
 # OpenStudio Model Articulation Gems
 
+## Version 0.9.0
+* Support for OpenStudio 3.7 (upgrade to standards gem 0.5.0, extension gem 0.6.0)
+* Fixed [#128]( https://github.com/NREL/openstudio-model-articulation-gem/pull/128 ), fix infiltration design day schedule inversion
+* Fixed [#133]( https://github.com/NREL/openstudio-model-articulation-gem/pull/133 ), remove minimum_operation argument
+
 ## Version 0.8.0
 * Fixed [#120]( https://github.com/NREL/openstudio-model-articulation-gem/pull/120 ), add set_nist_infiltration_correlations
 * Fixed [#121]( https://github.com/NREL/openstudio-model-articulation-gem/pull/121 ), added better infiltration area logging
