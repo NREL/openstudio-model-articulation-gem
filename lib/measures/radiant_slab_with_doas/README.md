@@ -95,14 +95,6 @@ Only applicable in radiant floor systems. This will greatly reduce system effect
 **Required:** true,
 **Model Dependent:** false
 
-### Minimum Operating Hours
-Fractional Hours Allowed, e.g. 30 min = 0.5
-**Name:** minimum_operation,
-**Type:** Double,
-**Units:** ,
-**Required:** true,
-**Model Dependent:** false
-
 ### Switch Over Time
 Minimum time limitation for when the system can switch between heating and cooling.  Fractional hours allowed, e.g. 30 min = 0.5.
 **Name:** switch_over_time,

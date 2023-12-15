@@ -103,13 +103,6 @@ To reduce unmet hours, use an expanded comfort range as mentioned above, remove 
     proportional_gain.setDefaultValue(0.3)
     args << proportional_gain
 
-    # make an argument for minimum operating hours
-    minimum_operation = OpenStudio::Measure::OSArgument.makeDoubleArgument('minimum_operation', true)
-    minimum_operation.setDisplayName('Minimum Operating Hours')
-    minimum_operation.setDescription('Fractional Hours Allowed, e.g. 30 min = 0.5')
-    minimum_operation.setDefaultValue(1.0)
-    args << minimum_operation
-
     # make an argument for switch over time
     switch_over_time = OpenStudio::Measure::OSArgument.makeDoubleArgument('switch_over_time', true)
     switch_over_time.setDisplayName('Switch Over Time')
@@ -176,7 +169,6 @@ To reduce unmet hours, use an expanded comfort range as mentioned above, remove 
     include_carpet = runner.getBoolArgumentValue('include_carpet', user_arguments)
     control_strategy = runner.getStringArgumentValue('control_strategy', user_arguments)
     proportional_gain = runner.getDoubleArgumentValue('proportional_gain', user_arguments)
-    minimum_operation = runner.getDoubleArgumentValue('minimum_operation', user_arguments)
     switch_over_time = runner.getDoubleArgumentValue('switch_over_time', user_arguments)
     radiant_lockout = runner.getBoolArgumentValue('radiant_lockout', user_arguments)
     lockout_start_time = runner.getDoubleArgumentValue('lockout_start_time', user_arguments)
@@ -289,7 +281,6 @@ To reduce unmet hours, use an expanded comfort range as mentioned above, remove 
                                                    include_carpet: include_carpet,
                                                    control_strategy: control_strategy,
                                                    proportional_gain: proportional_gain,
-                                                   minimum_operation: minimum_operation,
                                                    switch_over_time: switch_over_time,
                                                    radiant_lockout: radiant_lockout,
                                                    radiant_lockout_start_time: lockout_start_time,
