@@ -65,7 +65,8 @@ class MakeShadingSurfacesBasedOnZoneMultipliers < OpenStudio::Measure::ModelMeas
     super(model, runner, user_arguments)
 
     # assign the user inputs to variables
-    args = OsLib_HelperMethods.createRunVariables(runner, model, user_arguments, arguments(model))
+    args = runner.getArgumentValues(arguments(model), user_arguments)
+    args = Hash[args.collect{ |k, v| [k.to_s, v] }]
     if !args then return false end
 
     # report initial condition of model

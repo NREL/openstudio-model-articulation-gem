@@ -496,7 +496,8 @@ class CreateParametricSchedules < OpenStudio::Measure::ModelMeasure
     super(model, runner, user_arguments)
 
     # assign the user inputs to variables
-    args = OsLib_HelperMethods.createRunVariables(runner, model, user_arguments, arguments(model))
+    args = runner.getArgumentValues(arguments(model), user_arguments)
+    args = Hash[args.collect{ |k, v| [k.to_s, v] }]
     if !args then return false end
 
     # create array from argument, clean up and check if measure should alter model
@@ -510,7 +511,8 @@ class CreateParametricSchedules < OpenStudio::Measure::ModelMeasure
     end
 
     # look at upstream measure for 'hoo_per_week' argument
-    hoo_per_week_from_osw = OsLib_HelperMethods.check_upstream_measure_for_arg(runner, 'hoo_per_week')
+    hoo_per_week_from_osw = runner.getPastStepValuesForName('hoo_per_week')
+    hoo_per_week_from_osw = hoo_per_week_from_osw.collect{ |k, v| Hash[:measure_name => k, :value => v] }.first if !hoo_per_week_from_osw.empty?
     if !hoo_per_week_from_osw.empty?
       runner.registerInfo("Replacing argument named 'hoo_per_week' from current measure with a value of #{hoo_per_week_from_osw[:value]} from #{hoo_per_week_from_osw[:measure_name]}.")
       args['hoo_per_week'] = hoo_per_week_from_osw[:value].to_f
