@@ -208,7 +208,8 @@ class MergeSpacesFromExternalFile < OpenStudio::Measure::ModelMeasure
     end
 
     # assign the user inputs to variables
-    args = OsLib_HelperMethods.createRunVariables(runner, model, user_arguments, arguments(model))
+    args = runner.getArgumentValues(arguments(model), user_arguments)
+    args = Hash[args.collect{ |k, v| [k.to_s, v] }]
     if !args then return false end
 
     # initial condition
