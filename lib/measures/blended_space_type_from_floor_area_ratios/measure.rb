@@ -8,18 +8,8 @@
 
 require 'openstudio-standards'
 
-# load OpenStudio measure libraries from openstudio-extension gem
-require 'openstudio-extension'
-require 'openstudio/extension/core/os_lib_helper_methods'
-require 'openstudio/extension/core/os_lib_model_generation'
-require 'openstudio/extension/core/os_lib_model_simplification'
-
 # start the measure
 class BlendedSpaceTypeFromFloorAreaRatios < OpenStudio::Measure::ModelMeasure
-  # resource file modules
-  include OsLib_HelperMethods
-  include OsLib_ModelGeneration
-  include OsLib_ModelSimplification
 
   # human readable name
   def name

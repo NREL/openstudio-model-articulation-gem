@@ -6,20 +6,11 @@
 # see the URL below for information on how to write OpenStudio measures
 # http://nrel.github.io/OpenStudio-user-documentation/reference/measure_writing_guide/
 
-# load OpenStudio measure libraries from openstudio-extension gem
-require 'openstudio-extension'
-require 'openstudio/extension/core/os_lib_helper_methods'
-require 'openstudio/extension/core/os_lib_geometry'
-require 'openstudio/extension/core/os_lib_model_generation'
-require 'openstudio/extension/core/os_lib_model_simplification'
+# load openstudio-standards gem
+require 'openstudio-standards'
 
 # start the measure
 class CreateBarFromModel < OpenStudio::Measure::ModelMeasure
-  # resource file modules
-  include OsLib_HelperMethods
-  include OsLib_Geometry
-  include OsLib_ModelGeneration
-  include OsLib_ModelSimplification
 
   # human readable name
   def name

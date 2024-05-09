@@ -7,13 +7,10 @@
 # http://nrel.github.io/OpenStudio-user-documentation/reference/measure_writing_guide/
 
 # load OpenStudio measure libraries from openstudio-extension gem
-require 'openstudio-extension'
-require 'openstudio/extension/core/os_lib_model_simplification'
+require 'openstudio-standards'
 
 # start the measure
 class BlendedSpaceTypeFromModel < OpenStudio::Measure::ModelMeasure
-  # contains code to blend space types
-  include OsLib_ModelSimplification
 
   # human readable name
   def name

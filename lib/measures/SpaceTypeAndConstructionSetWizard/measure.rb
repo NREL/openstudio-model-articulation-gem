@@ -16,15 +16,6 @@
 class SpaceTypeAndConstructionSetWizard < OpenStudio::Measure::ModelMeasure
   require 'openstudio-standards'
 
-  # load OpenStudio measure libraries from openstudio-extension gem
-  require 'openstudio-extension'
-  require 'openstudio/extension/core/os_lib_helper_methods'
-  require 'openstudio/extension/core/os_lib_model_generation'
-
-  # resource files used by measure
-  include OsLib_HelperMethods
-  include OsLib_ModelGeneration
-
   # define the name that a user will see, this method may be deprecated as
   # the display name in PAT comes from the name field in measure.xml
   def name

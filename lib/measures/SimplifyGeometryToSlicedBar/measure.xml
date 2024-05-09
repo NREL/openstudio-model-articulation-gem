@@ -11,40 +11,6 @@
   <description>This is an experimental measure looking at ways to simply the geometry, or to create geometry when you only no percentage of space types number of floors and total area. This technique will match the building floor area but will sacrifice the exterior exposure. So it will produce better results on more boxy buildings than a building with many wings. I may try to come up with solution that also tries to maintain exterior exposure in another version.</description>
   <modeler_description>I'm going to extract space type area breakdown and number of floors from the source model. I'll also keep track of exterior exposure. I won't directly use exterior exposure but can report the change in this as a kind of confidence metric. I'll then create a bar building using the bounding box aspect ratio, but shrunk to fit the building area. I will slice the building across the shorter axis by space type. The two most prevalent space types will go on the outside of the building. Instead of core and perimeter zoning the building will have a variation with square corners. I will create one zone per space, and will use a zone multiplier for any building more than 3 stories tall.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 In a future version I may try to identify similar spaces types and blend them together before slicing, although I expect that will be a separate measure, so it is more modular.</modeler_description>
   <arguments>
     <argument>
@@ -146,7 +112,7 @@ In a future version I may try to identify similar spaces types and blend them to
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
-        <min_compatible>2.8.0</min_compatible>
+        <min_compatible>3.8.0</min_compatible>
       </version>
       <filename>measure.rb</filename>
       <filetype>rb</filetype>

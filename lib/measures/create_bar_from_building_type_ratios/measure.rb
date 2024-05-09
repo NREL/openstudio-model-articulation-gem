@@ -8,20 +8,8 @@
 
 require 'openstudio-standards'
 
-# load OpenStudio measure libraries fro m openstudio-extension gem
-require 'openstudio-extension'
-require 'openstudio/extension/core/os_lib_helper_methods'
-require 'openstudio/extension/core/os_lib_geometry'
-require 'openstudio/extension/core/os_lib_model_generation'
-require 'openstudio/extension/core/os_lib_model_simplification'
-
 # start the measure
 class CreateBarFromBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
-  # resource file modules
-  include OsLib_HelperMethods
-  include OsLib_Geometry
-  include OsLib_ModelGeneration
-  include OsLib_ModelSimplification
 
   # human readable name
   def name
@@ -333,9 +321,6 @@ class CreateBarFromBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
   # define what happens when the measure is run
   def run(model, runner, user_arguments)
     super(model, runner, user_arguments)
-
-    # require 'openstudio-extension'
-    # puts OpenStudio::Extension::VERSION
 
     # temporary bypass of openstudio surface intersection to avoid problematic behavior
     # can be removed after fixes to core OS geometry methods are made. # aka, force argument false

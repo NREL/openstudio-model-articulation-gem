@@ -8,16 +8,11 @@
 
 require 'json'
 
-# load OpenStudio measure libraries from openstudio-extension gem
-require 'openstudio-extension'
-require 'openstudio/extension/core/os_lib_helper_methods'
-require 'openstudio/extension/core/os_lib_schedules'
+# load openstudio-standards gem
+require 'openstudio-standards'
 
 # start the measure
 class CreateParametricSchedules < OpenStudio::Measure::ModelMeasure
-  # resource file modules
-  include OsLib_HelperMethods
-  include OsLib_Schedules
 
   # human readable name
   def name
