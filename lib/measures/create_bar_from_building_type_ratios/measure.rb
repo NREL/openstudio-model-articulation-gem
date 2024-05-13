@@ -156,7 +156,7 @@ class CreateBarFromBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     args << building_rotation
 
     # Make argument for template
-    template = OpenStudio::Measure::OSArgument.makeChoiceArgument('template', get_templates(true), true)
+    template = OpenStudio::Measure::OSArgument.makeChoiceArgument('template', OpenstudioStandards::CreateTypical.get_templates(false), true)
     template.setDisplayName('Target Standard')
     template.setDefaultValue('90.1-2004')
     args << template
