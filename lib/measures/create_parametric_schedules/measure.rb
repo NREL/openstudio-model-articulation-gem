@@ -713,7 +713,7 @@ class CreateParametricSchedules < OpenStudio::Measure::ModelMeasure
                 'summer_design_day' => summer_design_day,
                 'default_day' => default_day,
                 'rules' => rules }
-    hoo_sch = OpenstudioStandards::Schedules.model_create_complex_schedule(model, options)
+    hoo_sch = OpenstudioStandards::Schedules.create_complex_schedule(model, options)
     default_schedule_set.setHoursofOperationSchedule(hoo_sch)
 
     # create activity schedule
@@ -728,7 +728,7 @@ class CreateParametricSchedules < OpenStudio::Measure::ModelMeasure
                 'summer_design_day' => summer_design_day,
                 'default_day' => default_day,
                 'rules' => rules }
-    activity_sch = OpenstudioStandards::Schedules.model_create_complex_schedule(model, options)
+    activity_sch = OpenstudioStandards::Schedules.create_complex_schedule(model, options)
     default_schedule_set.setPeopleActivityLevelSchedule(activity_sch)
 
     # generate and apply lighting schedule using hours of operation schedule and parametric inputs
@@ -747,7 +747,7 @@ class CreateParametricSchedules < OpenStudio::Measure::ModelMeasure
                 'default_day' => default_day,
                 'rules' => rules }
 
-    lighting_sch = OpenstudioStandards::Schedules.model_create_complex_schedule(model, options)
+    lighting_sch = OpenstudioStandards::Schedules.create_complex_schedule(model, options)
     lighting_sch.setComment(args['lighting_profiles'])
     default_schedule_set.setLightingSchedule(lighting_sch)
 
@@ -766,7 +766,7 @@ class CreateParametricSchedules < OpenStudio::Measure::ModelMeasure
                 'summer_design_day' => summer_design_day,
                 'default_day' => default_day,
                 'rules' => rules }
-    electric_equipment_sch = OpenstudioStandards::Schedules.model_create_complex_schedule(model, options)
+    electric_equipment_sch = OpenstudioStandards::Schedules.create_complex_schedule(model, options)
     electric_equipment_sch.setComment(args['electric_equipment_profiles'])
     default_schedule_set.setElectricEquipmentSchedule(electric_equipment_sch)
 
@@ -785,7 +785,7 @@ class CreateParametricSchedules < OpenStudio::Measure::ModelMeasure
                 'summer_design_day' => summer_design_day,
                 'default_day' => default_day,
                 'rules' => rules }
-    gas_equipment_sch = OpenstudioStandards::Schedules.model_create_complex_schedule(model, options)
+    gas_equipment_sch = OpenstudioStandards::Schedules.create_complex_schedule(model, options)
     gas_equipment_sch.setComment(args['gas_equipment_profiles'])
     default_schedule_set.setGasEquipmentSchedule(gas_equipment_sch)
 
@@ -804,7 +804,7 @@ class CreateParametricSchedules < OpenStudio::Measure::ModelMeasure
                 'summer_design_day' => summer_design_day,
                 'default_day' => default_day,
                 'rules' => rules }
-    occupancy_sch = OpenstudioStandards::Schedules.model_create_complex_schedule(model, options)
+    occupancy_sch = OpenstudioStandards::Schedules.create_complex_schedule(model, options)
     occupancy_sch.setComment(args['occupancy_profiles'])
     default_schedule_set.setNumberofPeopleSchedule(occupancy_sch)
 
@@ -823,7 +823,7 @@ class CreateParametricSchedules < OpenStudio::Measure::ModelMeasure
                 'summer_design_day' => summer_design_day,
                 'default_day' => default_day,
                 'rules' => rules }
-    infiltration_sch = OpenstudioStandards::Schedules.model_create_complex_schedule(model, options)
+    infiltration_sch = OpenstudioStandards::Schedules.create_complex_schedule(model, options)
     infiltration_sch.setComment(args['infiltration_profiles'])
     default_schedule_set.setInfiltrationSchedule(infiltration_sch)
 
@@ -842,7 +842,7 @@ class CreateParametricSchedules < OpenStudio::Measure::ModelMeasure
                 'summer_design_day' => summer_design_day,
                 'default_day' => default_day,
                 'rules' => rules }
-    hvac_availability_sch = OpenstudioStandards::Schedules.model_create_complex_schedule(model, options)
+    hvac_availability_sch = OpenstudioStandards::Schedules.create_complex_schedule(model, options)
     hvac_availability_sch.setComment(args['hvac_availability_profiles'])
 
     # apply HVAC schedules
@@ -877,7 +877,7 @@ class CreateParametricSchedules < OpenStudio::Measure::ModelMeasure
                 'summer_design_day' => summer_design_day,
                 'default_day' => default_day,
                 'rules' => rules }
-    heating_setpoint_sch = OpenstudioStandards::Schedules.model_create_complex_schedule(model, options)
+    heating_setpoint_sch = OpenstudioStandards::Schedules.create_complex_schedule(model, options)
 
     # generate and apply cooling_setpoint schedule using hours of operation schedule and parametric inputs
     ruleset_name = 'Parametric Cooling Setpoint Schedule'
@@ -905,7 +905,7 @@ class CreateParametricSchedules < OpenStudio::Measure::ModelMeasure
                 'summer_design_day' => summer_design_day,
                 'default_day' => default_day,
                 'rules' => rules }
-    cooling_setpoint_sch = OpenstudioStandards::Schedules.model_create_complex_schedule(model, options)
+    cooling_setpoint_sch = OpenstudioStandards::Schedules.create_complex_schedule(model, options)
 
     # apply heating and cooling setpoint schedules
     thermostats_to_alter.each do |thermostat|
@@ -928,7 +928,7 @@ class CreateParametricSchedules < OpenStudio::Measure::ModelMeasure
                 'summer_design_day' => summer_design_day,
                 'default_day' => default_day,
                 'rules' => rules }
-    swh_sch = OpenstudioStandards::Schedules.model_create_complex_schedule(model, options)
+    swh_sch = OpenstudioStandards::Schedules.create_complex_schedule(model, options)
     swh_sch.setComment(args['swh_profiles'])
     water_use_equipment_to_alter.each do |water_use_equipment|
       water_use_equipment.setFlowRateFractionSchedule(swh_sch)
