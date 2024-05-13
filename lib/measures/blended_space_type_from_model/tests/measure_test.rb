@@ -79,6 +79,7 @@ class BlendedSpaceTypeFromModelTest < MiniTest::Test
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, '0916_lrg_htl_1_12_0.osm')
   end
 
+  # todo - confirm if issue that no longer any warnings
   def test_medium_office_2010
     args = {}
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, '0922_md_off_1_12_0.osm', 'Success', 12)
@@ -89,6 +90,7 @@ class BlendedSpaceTypeFromModelTest < MiniTest::Test
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, '0923_med_off_2004_1_13_0.osm')
   end
 
+  # todo - confirm if issue that no longer any warnings
   def test_full_service_rest_2004
     args = {}
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, '0926_full_rest_1_12_0.osm', 'Success', 1)

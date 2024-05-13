@@ -160,7 +160,7 @@ class BlendedSpaceTypeFromModel < OpenStudio::Measure::ModelMeasure
     runner.registerInitialCondition("The initial building uses #{initial_cond_space_type_hash.size} spaces types.")
 
     # blend space types
-    blend_space_type_collections(runner, model, space_type_hash)
+    OpenstudioStandards::CreateTypical.blend_space_type_collections(model, space_type_hash)
 
     # report final condition of model
     # re-run same same code used for initial condition
