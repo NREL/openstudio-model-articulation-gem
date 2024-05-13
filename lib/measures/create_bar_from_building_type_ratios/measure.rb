@@ -309,11 +309,12 @@ class CreateBarFromBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     # TODO: - expose perimeter depth as an argument
 
     # Argument used to make ComStock tsv workflow run correctly
-    climate_zone = OpenStudio::Measure::OSArgument.makeChoiceArgument('climate_zone', get_climate_zones(false, 'Lookup From Stat File'), true)
-    climate_zone.setDisplayName('Climate Zone')
-    climate_zone.setDefaultValue('Lookup From Stat File')
-    climate_zone.setDescription('Climate Zone argument is not used by this measure')
-    args << climate_zone
+    # DFG - commented out because it is creating issues now and there is no reason for climate zone argument in this measure
+    #climate_zone = OpenStudio::Measure::OSArgument.makeChoiceArgument('climate_zone', OpenstudioStandards::CreateTypical.get_climate_zones(false, true)
+    #climate_zone.setDisplayName('Climate Zone')
+    #climate_zone.setDefaultValue('Lookup From Stat File')
+    #climate_zone.setDescription('Climate Zone argument is not used by this measure')
+    #args << climate_zone
 
     return args
   end
