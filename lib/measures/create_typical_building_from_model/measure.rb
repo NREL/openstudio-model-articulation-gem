@@ -427,7 +427,7 @@ class CreateTypicalBuildingFromModel < OpenStudio::Measure::ModelMeasure
     args << enable_dst
 
     # Argument used to make ComStock tsv workflow run correctly
-    climate_zone = OpenStudio::Measure::OSArgument.makeChoiceArgument('climate_zone', get_climate_zones(false, 'Lookup From Model'), true)
+    climate_zone = OpenStudio::Measure::OSArgument.makeChoiceArgument('climate_zone', OpenstudioStandards::CreateTypical.get_climate_zones(false, 'Lookup From Model'), true)
     climate_zone.setDisplayName('Climate Zone.')
     climate_zone.setDefaultValue('Lookup From Model')
     args << climate_zone

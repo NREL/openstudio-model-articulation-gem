@@ -36,7 +36,7 @@ class CreateBarFromBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     args = OpenStudio::Measure::OSArgumentVector.new
 
     # Make an argument for the bldg_type_a
-    bldg_type_a = OpenStudio::Measure::OSArgument.makeChoiceArgument('bldg_type_a', get_building_types, true)
+    bldg_type_a = OpenStudio::Measure::OSArgument.makeChoiceArgument('bldg_type_a', OpenstudioStandards::CreateTypical.get_building_types, true)
     bldg_type_a.setDisplayName('Primary Building Type')
     bldg_type_a.setDefaultValue('SmallOffice')
     args << bldg_type_a
@@ -49,7 +49,7 @@ class CreateBarFromBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     args << bldg_type_a_num_units
 
     # Make an argument for the bldg_type_b
-    bldg_type_b = OpenStudio::Measure::OSArgument.makeChoiceArgument('bldg_type_b', get_building_types, true)
+    bldg_type_b = OpenStudio::Measure::OSArgument.makeChoiceArgument('bldg_type_b', OpenstudioStandards::CreateTypical.get_building_types, true)
     bldg_type_b.setDisplayName('Building Type B')
     bldg_type_b.setDefaultValue('SmallOffice')
     args << bldg_type_b
@@ -68,7 +68,7 @@ class CreateBarFromBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     args << bldg_type_b_num_units
 
     # Make an argument for the bldg_type_c
-    bldg_type_c = OpenStudio::Measure::OSArgument.makeChoiceArgument('bldg_type_c', get_building_types, true)
+    bldg_type_c = OpenStudio::Measure::OSArgument.makeChoiceArgument('bldg_type_c', OpenstudioStandards::CreateTypical.get_doe_building_types, true)
     bldg_type_c.setDisplayName('Building Type C')
     bldg_type_c.setDefaultValue('SmallOffice')
     args << bldg_type_c
@@ -87,7 +87,7 @@ class CreateBarFromBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     args << bldg_type_c_num_units
 
     # Make an argument for the bldg_type_d
-    bldg_type_d = OpenStudio::Measure::OSArgument.makeChoiceArgument('bldg_type_d', get_building_types, true)
+    bldg_type_d = OpenStudio::Measure::OSArgument.makeChoiceArgument('bldg_type_d', OpenstudioStandards::CreateTypical.get_building_types, true)
     bldg_type_d.setDisplayName('Building Type D')
     bldg_type_d.setDefaultValue('SmallOffice')
     args << bldg_type_d
