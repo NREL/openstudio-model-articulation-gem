@@ -142,7 +142,7 @@ class ReplaceGeometryByStory < OpenStudio::Measure::ModelMeasure
     combined_polygons = combined_polygons.first
 
     # get target wwr
-    target_wwr = OsLib_Geometry.getExteriorWindowToWallRatio(model.getSpaces)
+    target_wwr = OpenstudioStandards::Geometry.model_get_exterior_window_to_wall_ratio(model)
     runner.registerInfo("Initial window to wall ratio is #{target_wwr}")
 
     # remove geometry
@@ -156,11 +156,10 @@ class ReplaceGeometryByStory < OpenStudio::Measure::ModelMeasure
       options['name'] = story.name.get
       options['spaceType'] = space_type
       options['story'] = story
-      options['makeThermalZone'] = true
-      options['thermalZoneMultiplier'] = hash[:multipliers].min
+      options['make_thermal_zone'] = true
+      options['thermal_zone_multiplier'] = hash[:multipliers].min
       options['floor_to_floor_height'] = story.nominalFloortoFloorHeight.get
-      space = OsLib_Geometry.makeSpaceFromPolygon(model, OpenStudio::Point3d.new(0, 0, 0), combined_polygons, options)
-      space.setZOrigin(story.nominalZCoordinate.get)
+      space = OpenstudioStandards::Geometry.create_space_from_polygon(model, OpenStudio::Point3d.new(0, 0, 0), combined_polygons, options)
 
       # make ext walls ground if original space had any ground exposed walls
       if hash[:basement]

@@ -83,9 +83,9 @@ module OsLib_Cofee
           'name' => nil,
           'spaceType' => k,
           'story' => story,
-          'makeThermalZone' => true,
-          'thermalZone' => nil,
-          'thermalZoneMultiplier' => thermalZoneMultiplier,
+          'make_thermal_zone' => true,
+          'thermal_zone' => nil,
+          'thermal_zone_multiplier' => thermalZoneMultiplier,
           'floor_to_floor_height' => floor_to_floor_height
         }
 
@@ -117,9 +117,10 @@ module OsLib_Cofee
           perim_polygon_b << OpenStudio::Point3d.new(x + lengthXTarget * (v / totalFloorArea), y + lengthYTarget - perimeterDepth, z)
 
           # run method to make spaces
-          tempSpaceArray << OsLib_Geometry.makeSpaceFromPolygon(model, perim_origin_a, perim_polygon_a, options) # model, origin, polygon, options
-          tempSpaceArray << OsLib_Geometry.makeSpaceFromPolygon(model, core_origin, core_polygon, options) # model, origin, polygon, options
-          tempSpaceArray << OsLib_Geometry.makeSpaceFromPolygon(model, perim_origin_b, perim_polygon_b, options) # model, origin, polygon, options
+          # todo - standards methods are not found here
+          tempSpaceArray << OpenStudioStandards::Geometry.create_space_from_polygon(model, perim_origin_a, perim_polygon_a, options) # model, origin, polygon, options
+          tempSpaceArray << OpenStudioStandards::Geometry.create_space_from_polygon(model, core_origin, core_polygon, options) # model, origin, polygon, options
+          tempSpaceArray << OpenStudioStandards::Geometry.create_space_from_polygon(model, perim_origin_b, perim_polygon_b, options) # model, origin, polygon, options
 
         elsif lengthYTarget > perimeterDepth * 2 # slice into two peremeter zones but no core
 
@@ -140,8 +141,8 @@ module OsLib_Cofee
           perim_polygon_b << OpenStudio::Point3d.new(x + lengthXTarget * (v / totalFloorArea), y + lengthYTarget / 2, z)
 
           # run method to make spaces
-          tempSpaceArray << OsLib_Geometry.makeSpaceFromPolygon(model, perim_origin_a, perim_polygon_a, options) # model, origin, polygon, options
-          tempSpaceArray << OsLib_Geometry.makeSpaceFromPolygon(model, perim_origin_b, perim_polygon_b, options) # model, origin, polygon, options
+          tempSpaceArray << OpenStudioStandards::Geometry.create_space_from_polygon(model, perim_origin_a, perim_polygon_a, options) # model, origin, polygon, options
+          tempSpaceArray << OpenStudioStandards::Geometry.create_space_from_polygon(model, perim_origin_b, perim_polygon_b, options) # model, origin, polygon, options
 
         else # don't slice into core and perimeter
 
@@ -154,7 +155,7 @@ module OsLib_Cofee
           core_polygon << OpenStudio::Point3d.new(x + lengthXTarget * (v / totalFloorArea), y, z)
 
           # run method to make space
-          tempSpaceArray << OsLib_Geometry.makeSpaceFromPolygon(model, core_origin, core_polygon, options) # model, origin, polygon, options
+          tempSpaceArray << OpenStudioStandards::Geometry.create_space_from_polygon(model, core_origin, core_polygon, options) # model, origin, polygon, options
 
         end
 

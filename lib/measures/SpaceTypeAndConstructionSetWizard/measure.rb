@@ -49,7 +49,7 @@ class SpaceTypeAndConstructionSetWizard < OpenStudio::Measure::ModelMeasure
     args << template
 
     # Make an argument for the climate zone
-    climate_zone = OpenStudio::Measure::OSArgument.makeChoiceArgument('climate_zone', get_doe_climate_zones, true)
+    climate_zone = OpenStudio::Measure::OSArgument.makeChoiceArgument('climate_zone', OpenstudioStandards::CreateTypical.get_doe_climate_zones, true)
     climate_zone.setDisplayName('Climate Zone.')
     climate_zone.setDefaultValue('ASHRAE 169-2013-2A')
     args << climate_zone
@@ -79,7 +79,13 @@ class SpaceTypeAndConstructionSetWizard < OpenStudio::Measure::ModelMeasure
   def run(model, runner, user_arguments)
     super(model, runner, user_arguments)
 
-    results = wizard(model, runner, user_arguments)
+    # assign the user inputs to variables
+    args = runner.getArgumentValues(arguments(model), user_arguments)
+    args = Hash[args.collect{ |k, v| [k.to_s, v] }]
+    if !args then return false end
+
+    # run create_space_types_and_constructions
+    results = OpenstudioStandards::CreateTypical.create_space_types_and_constructions(model, args['building_type'], args['template'], args['climate_zone'])
 
     if results == false
       return false

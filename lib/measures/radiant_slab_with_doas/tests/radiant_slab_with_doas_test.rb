@@ -105,9 +105,9 @@ class RadiantSlabWithDoasTest < Minitest::Test
       model.setSqlFile(sql)
 
       # test for unmet hours
-      unmet_heating_hrs = std.model_annual_occupied_unmet_heating_hours(model)
-      unmet_cooling_hrs = std.model_annual_occupied_unmet_cooling_hours(model)
-      unmet_hrs = std.model_annual_occupied_unmet_hours(model)
+      unmet_heating_hrs = OpenstudioStandards::SqlFile.model_get_annual_occupied_unmet_heating_hours(model)
+      unmet_cooling_hrs = OpenstudioStandards::SqlFile.model_get_annual_occupied_unmet_cooling_hours(model)
+      unmet_hrs = OpenstudioStandards::SqlFile.model_get_annual_occupied_unmet_hours(model)
       max_unmet_hrs = 550
       if unmet_hrs
         if unmet_hrs > 550

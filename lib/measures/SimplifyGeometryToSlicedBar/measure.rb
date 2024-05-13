@@ -125,19 +125,17 @@ class SimplifyGeometryToSlicedBar < OpenStudio::Measure::ModelMeasure
     # todo - this measure wont' touch HVAC systems, consider warning user if model already has HVAC, as it won't be hooked up to anything after this.
 
     # get wall and window area by facade
-    starting_spaces = model.getSpaces
-    # todo - still needs ot be updated for 3.8,0
-    areaByFacade = OpenstudioStandards::Geometry.model_get_exterior_window_and_wall_area_by_orientation(model, starting_spaces)
-    northWallGross = OpenStudio.toNeatString(OpenStudio.convert(areaByFacade['northWall'], 'm^2', 'ft^2').get, 0, true)
-    southWallGross = OpenStudio.toNeatString(OpenStudio.convert(areaByFacade['southWall'], 'm^2', 'ft^2').get, 0, true)
-    eastWallGross = OpenStudio.toNeatString(OpenStudio.convert(areaByFacade['eastWall'], 'm^2', 'ft^2').get, 0, true)
-    westWallGross = OpenStudio.toNeatString(OpenStudio.convert(areaByFacade['westWall'], 'm^2', 'ft^2').get, 0, true)
+    areaByFacade = OpenstudioStandards::Geometry.model_get_exterior_window_and_wall_area_by_orientation(model)
+    northWallGross = OpenStudio.toNeatString(OpenStudio.convert(areaByFacade['north_wall'], 'm^2', 'ft^2').get, 0, true)
+    southWallGross = OpenStudio.toNeatString(OpenStudio.convert(areaByFacade['south_wall'], 'm^2', 'ft^2').get, 0, true)
+    eastWallGross = OpenStudio.toNeatString(OpenStudio.convert(areaByFacade['east_wall'], 'm^2', 'ft^2').get, 0, true)
+    westWallGross = OpenStudio.toNeatString(OpenStudio.convert(areaByFacade['west_wall'], 'm^2', 'ft^2').get, 0, true)
     runner.registerInfo("Initial Exterior Wall Breakdown. North: #{northWallGross}, South: #{southWallGross}, East: #{eastWallGross}, West: #{westWallGross}")
 
     # reporting initial condition of model
-    floorArea_si = OpenstudioStandards::Geometry.spaces_get_floor_area(starting_spaces)['totalArea']
+    floorArea_si = OpenstudioStandards::Geometry.spaces_get_floor_area(model.getSpaces)
     floorArea_ip = OpenStudio.toNeatString(OpenStudio.convert(floorArea_si, 'm^2', 'ft^2').get, 0, true)
-    exteriorArea_si = OpenstudioStandards::Geometry.spaces_get_exterior_wall_area(starting_spaces)['totalArea']
+    exteriorArea_si = OpenstudioStandards::Geometry.spaces_get_exterior_wall_area(model.getSpaces)
     exteriorArea_ip = OpenStudio.toNeatString(OpenStudio.convert(exteriorArea_si, 'm^2', 'ft^2').get, 0, true)
 
     runner.registerInitialCondition("The building started with #{floorArea_ip} of floor area, and  #{exteriorArea_ip} of exterior wall area.")
@@ -186,8 +184,8 @@ class SimplifyGeometryToSlicedBar < OpenStudio::Measure::ModelMeasure
 
     else
       areaTarget = totalFloorArea / numStories
-      lengthXTarget_Bar1 = (areaByFacade['northWall'] + areaByFacade['southWall']) / (2 * (zmax - zmin))
-      lengthYTarget_Bar2 = (areaByFacade['eastWall'] + areaByFacade['westWall']) / (2 * (zmax - zmin))
+      lengthXTarget_Bar1 = (areaByFacade['north_wall'] + areaByFacade['south_wall']) / (2 * (zmax - zmin))
+      lengthYTarget_Bar2 = (areaByFacade['east_wall'] + areaByFacade['west_wall']) / (2 * (zmax - zmin))
       lengthYTarget_Bar1 = areaTarget / (lengthXTarget_Bar1 + lengthYTarget_Bar2)
       lengthXTarget_Bar2 = lengthYTarget_Bar1
 
@@ -242,20 +240,17 @@ class SimplifyGeometryToSlicedBar < OpenStudio::Measure::ModelMeasure
 
     end
 
-    # get wall and window area by facade
-    finishing_spaces = model.getSpaces
-    # todo - still needs ot be updated for 3.8,0
-    areaByFacade = OpenstudioStandards::Geometry.model_get_exterior_window_and_wall_area_by_orientation(model, finishing_spaces)
-    northWallGross = OpenStudio.toNeatString(OpenStudio.convert(areaByFacade['northWall'], 'm^2', 'ft^2').get, 0, true)
-    southWallGross = OpenStudio.toNeatString(OpenStudio.convert(areaByFacade['southWall'], 'm^2', 'ft^2').get, 0, true)
-    eastWallGross = OpenStudio.toNeatString(OpenStudio.convert(areaByFacade['eastWall'], 'm^2', 'ft^2').get, 0, true)
-    westWallGross = OpenStudio.toNeatString(OpenStudio.convert(areaByFacade['westWall'], 'm^2', 'ft^2').get, 0, true)
+    areaByFacade = OpenstudioStandards::Geometry.model_get_exterior_window_and_wall_area_by_orientation(model)
+    northWallGross = OpenStudio.toNeatString(OpenStudio.convert(areaByFacade['north_wall'], 'm^2', 'ft^2').get, 0, true)
+    southWallGross = OpenStudio.toNeatString(OpenStudio.convert(areaByFacade['south_wall'], 'm^2', 'ft^2').get, 0, true)
+    eastWallGross = OpenStudio.toNeatString(OpenStudio.convert(areaByFacade['east_wall'], 'm^2', 'ft^2').get, 0, true)
+    westWallGross = OpenStudio.toNeatString(OpenStudio.convert(areaByFacade['west_wall'], 'm^2', 'ft^2').get, 0, true)
     runner.registerInfo("Final Exterior Wall Breakdown. North: #{northWallGross}, South: #{southWallGross}, East: #{eastWallGross}, West: #{westWallGross}")
 
     # reporting final condition of model
-    floorArea_si = OpenstudioStandards::Geometry.spaces_get_floor_area(finishing_spaces)['totalArea']
+    floorArea_si = OpenstudioStandards::Geometry.spaces_get_floor_area(model.getSpaces)
     floorArea_ip = OpenStudio.toNeatString(OpenStudio.convert(floorArea_si, 'm^2', 'ft^2').get, 0, true)
-    exteriorArea_si = OpenstudioStandards::Geometry.spaces_get_exterior_wall_area(finishing_spaces)['totalArea']
+    exteriorArea_si = OpenstudioStandards::Geometry.spaces_get_exterior_wall_area(model.getSpaces)
     exteriorArea_ip = OpenStudio.toNeatString(OpenStudio.convert(exteriorArea_si, 'm^2', 'ft^2').get, 0, true)
 
     runner.registerFinalCondition("The building finished with #{floorArea_ip} of floor area, and  #{exteriorArea_ip} of exterior wall area.")
