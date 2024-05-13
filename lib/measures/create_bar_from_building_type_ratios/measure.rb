@@ -330,7 +330,12 @@ class CreateBarFromBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     end
     user_arguments['make_mid_story_surfaces_adiabatic'].setValue(true)
 
-    result = bar_from_building_type_ratios(model, runner, user_arguments)
+    # assign the user inputs to variables
+    args = runner.getArgumentValues(arguments(model), user_arguments)
+    args = Hash[args.collect{ |k, v| [k.to_s, v] }]
+    if !args then return false end
+
+    result = OpenstudioStandards::Geometry.create_bar_from_building_type_ratios(model, args)
 
     if result == false
       return false

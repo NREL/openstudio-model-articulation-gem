@@ -39,7 +39,7 @@ class CreateTypicalDEERBuildingFromModel < OpenStudio::Measure::ModelMeasure
 
     # see if building name contains any template values
     default_string = '90.1-2010'
-    get_templates.each do |template_string|
+    OpenstudioStandards::CreateTypical.get_templates.each do |template_string|
       if model.getBuilding.name.to_s.include?(template_string)
         default_string = template_string
         next
@@ -47,7 +47,7 @@ class CreateTypicalDEERBuildingFromModel < OpenStudio::Measure::ModelMeasure
     end
 
     # Make argument for template
-    template = OpenStudio::Measure::OSArgument.makeChoiceArgument('template', get_deer_templates(false), true)
+    template = OpenStudio::Measure::OSArgument.makeChoiceArgument('template',  OpenstudioStandards::CreateTypical.get_deer_templates(false), true)
     template.setDisplayName('Target Standard')
     template.setDefaultValue(default_string)
     args << template
@@ -436,8 +436,13 @@ class CreateTypicalDEERBuildingFromModel < OpenStudio::Measure::ModelMeasure
   def run(model, runner, user_arguments)
     super(model, runner, user_arguments)
 
+    # assign the user inputs to variables
+    args = runner.getArgumentValues(arguments(model), user_arguments)
+    args = Hash[args.collect{ |k, v| [k.to_s, v] }]
+    if !args then return false end
+    
     # method run from os_lib_model_generation.rb
-    result = typical_building_from_model(model, runner, user_arguments)
+    result = OpenstudioStandards::CreateTypical.create_typical_building_from_model(model, args)
 
     if result == false
       return false

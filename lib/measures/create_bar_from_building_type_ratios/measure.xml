@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
-  <name>create_bar_from_building_type_ratios</name>
+  <name>create_OpenstudioStandards::Geometry.create_bar_from_building_type_ratios</name>
   <uid>6e3a14f8-c3c7-4e03-bc51-bef8a52e1a05</uid>
   <version_id>1b2c0683-11bb-4b59-ab8f-2b638cdb92b4</version_id>
   <version_modified>20230602T160040Z</version_modified>
@@ -1740,7 +1740,7 @@
       <checksum>1FB6D353</checksum>
     </file>
     <file>
-      <filename>create_bar_from_building_type_ratios_test.rb</filename>
+      <filename>create_OpenstudioStandards::Geometry.create_bar_from_building_type_ratios_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
       <checksum>8570F0AE</checksum>

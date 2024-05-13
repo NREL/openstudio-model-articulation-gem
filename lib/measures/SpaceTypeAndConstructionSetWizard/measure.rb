@@ -37,13 +37,13 @@ class SpaceTypeAndConstructionSetWizard < OpenStudio::Measure::ModelMeasure
     args = OpenStudio::Measure::OSArgumentVector.new
 
     # Make an argument for the building type
-    building_type = OpenStudio::Measure::OSArgument.makeChoiceArgument('building_type', get_doe_building_types, true)
+    building_type = OpenStudio::Measure::OSArgument.makeChoiceArgument('building_type', OpenstudioStandards::CreateTypical.get_doe_building_types, true)
     building_type.setDisplayName('Building Type.')
     building_type.setDefaultValue('SmallOffice')
     args << building_type
 
     # Make an argument for the template
-    template = OpenStudio::Measure::OSArgument.makeChoiceArgument('template', get_doe_templates, true)
+    template = OpenStudio::Measure::OSArgument.makeChoiceArgument('template', OpenstudioStandards::CreateTypical.get_doe_templates, true)
     template.setDisplayName('Template.')
     template.setDefaultValue('90.1-2010')
     args << template

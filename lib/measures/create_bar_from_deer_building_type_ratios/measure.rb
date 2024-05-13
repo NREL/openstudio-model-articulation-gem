@@ -288,8 +288,13 @@ class CreateBarFromDEERBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
   def run(model, runner, user_arguments)
     super(model, runner, user_arguments)
 
+    # assign the user inputs to variables
+    args = runner.getArgumentValues(arguments(model), user_arguments)
+    args = Hash[args.collect{ |k, v| [k.to_s, v] }]
+    if !args then return false end
+
     # method run from os_lib_model_generation.rb
-    result = bar_from_building_type_ratios(model, runner, user_arguments)
+    result = OpenstudioStandards::Geometry.create_bar_from_building_type_ratios(model, args)
 
     if result == false
       return false

@@ -36,13 +36,13 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     args = OpenStudio::Measure::OSArgumentVector.new
 
     # Make an argument for the bldg_type_a
-    bldg_type_a = OpenStudio::Measure::OSArgument.makeChoiceArgument('bldg_type_a', get_doe_building_types, true)
+    bldg_type_a = OpenStudio::Measure::OSArgument.makeChoiceArgument('bldg_type_a', OpenstudioStandards::CreateTypical.get_doe_building_types, true)
     bldg_type_a.setDisplayName('Primary Building Type')
     bldg_type_a.setDefaultValue('SmallOffice')
     args << bldg_type_a
 
     # Make an argument for the bldg_type_b
-    bldg_type_b = OpenStudio::Measure::OSArgument.makeChoiceArgument('bldg_type_b', get_doe_building_types, true)
+    bldg_type_b = OpenStudio::Measure::OSArgument.makeChoiceArgument('bldg_type_b', OpenstudioStandards::CreateTypical.get_doe_building_types, true)
     bldg_type_b.setDisplayName('Building Type B')
     bldg_type_b.setDefaultValue('SmallOffice')
     args << bldg_type_b
@@ -54,7 +54,7 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     args << bldg_type_b_fract_bldg_area
 
     # Make an argument for the bldg_type_c
-    bldg_type_c = OpenStudio::Measure::OSArgument.makeChoiceArgument('bldg_type_c', get_doe_building_types, true)
+    bldg_type_c = OpenStudio::Measure::OSArgument.makeChoiceArgument('bldg_type_c', OpenstudioStandards::CreateTypical.get_doe_building_types, true)
     bldg_type_c.setDisplayName('Building Type C')
     bldg_type_c.setDefaultValue('SmallOffice')
     args << bldg_type_c
@@ -66,7 +66,7 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     args << bldg_type_c_fract_bldg_area
 
     # Make an argument for the bldg_type_d
-    bldg_type_d = OpenStudio::Measure::OSArgument.makeChoiceArgument('bldg_type_d', get_doe_building_types, true)
+    bldg_type_d = OpenStudio::Measure::OSArgument.makeChoiceArgument('bldg_type_d', OpenstudioStandards::CreateTypical.get_doe_building_types, true)
     bldg_type_d.setDisplayName('Building Type D')
     bldg_type_d.setDefaultValue('SmallOffice')
     args << bldg_type_d
@@ -128,7 +128,7 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     args << building_rotation
 
     # Make argument for template
-    template = OpenStudio::Measure::OSArgument.makeChoiceArgument('template', get_doe_templates(false), true)
+    template = OpenStudio::Measure::OSArgument.makeChoiceArgument('template', OpenstudioStandards::CreateTypical.get_doe_templates(false), true)
     template.setDisplayName('Target Standard')
     template.setDefaultValue('90.1-2004')
     args << template
@@ -287,8 +287,13 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
   def run(model, runner, user_arguments)
     super(model, runner, user_arguments)
 
+    # assign the user inputs to variables
+    args = runner.getArgumentValues(arguments(model), user_arguments)
+    args = Hash[args.collect{ |k, v| [k.to_s, v] }]
+    if !args then return false end
+
     # method run from os_lib_model_generation.rb
-    result = bar_from_building_type_ratios(model, runner, user_arguments)
+    result = OpenstudioStandards::Geometry.create_bar_from_building_type_ratios(model, args)
 
     if result == false
       return false
