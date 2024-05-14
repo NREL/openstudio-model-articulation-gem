@@ -467,9 +467,9 @@ class CreateTypicalBuildingFromModel < OpenStudio::Measure::ModelMeasure
       kitchen_makeup: args['kitchen_makeup'],
       exterior_lighting_zone: args['exterior_lighting_zone'],
       add_constructions: args['add_constructions'],
-      wall_construction_type: args['wall_construction_type'], # not exposed in user measure args
+      wall_construction_type: nil, # not exposed in user measure args
       add_space_type_loads: args['add_space_type_loads'],
-      add_daylighting_controls: args['add_daylighting_controls'], # not exposed in user measure args
+      add_daylighting_controls: nil, # not exposed in user measure args
       add_elevators: args['add_elevators'],
       add_internal_mass: args['add_internal_mass'],
       add_exterior_lights: args['add_exterior_lights'],
