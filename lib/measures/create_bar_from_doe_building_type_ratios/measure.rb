@@ -296,6 +296,7 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     result = OpenstudioStandards::Geometry.create_bar_from_building_type_ratios(model, args)
 
     if result == false
+      runner.registerError("Measure did not complete successfully")
       return false
     else
       return true
