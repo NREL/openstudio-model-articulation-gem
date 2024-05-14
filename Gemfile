@@ -12,7 +12,7 @@ gemspec
 allow_local = ENV['FAVOR_LOCAL_GEMS']
 
 # Delete when these branchesa are merged and released
-gem 'openstudio-extension', github: 'NREL/OpenStudio-extension-gem', branch: 'wenyi-bypass-zlib'
+# gem 'openstudio-extension', github: 'NREL/OpenStudio-extension-gem', branch: 'wenyi-bypass-zlib'
 # gem 'openstudio-standards', github: 'NREL/openstudio-standards', tag: 'v0.6.0.rc2', ref: "1c42110"
 # gem 'openstudio_measure_tester', :git => 'https://github.com/NREL/OpenStudio-measure-tester-gem.git', :branch => 'wenyi-dependencies-update'
 # gem 'openstudio-workflow', :git => 'https://github.com/NREL/OpenStudio-workflow-gem.git', :branch => 'develop', ref: "32126e9b9f6"
