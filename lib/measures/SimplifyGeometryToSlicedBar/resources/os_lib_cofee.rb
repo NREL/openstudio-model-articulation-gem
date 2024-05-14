@@ -118,9 +118,9 @@ module OsLib_Cofee
 
           # run method to make spaces
           # todo - standards methods are not found here
-          tempSpaceArray << OpenStudioStandards::Geometry.create_space_from_polygon(model, perim_origin_a, perim_polygon_a, options) # model, origin, polygon, options
-          tempSpaceArray << OpenStudioStandards::Geometry.create_space_from_polygon(model, core_origin, core_polygon, options) # model, origin, polygon, options
-          tempSpaceArray << OpenStudioStandards::Geometry.create_space_from_polygon(model, perim_origin_b, perim_polygon_b, options) # model, origin, polygon, options
+          tempSpaceArray << OpenstudioStandards::Geometry.create_space_from_polygon(model, perim_origin_a, perim_polygon_a, options) # model, origin, polygon, options
+          tempSpaceArray << OpenstudioStandards::Geometry.create_space_from_polygon(model, core_origin, core_polygon, options) # model, origin, polygon, options
+          tempSpaceArray << OpenstudioStandards::Geometry.create_space_from_polygon(model, perim_origin_b, perim_polygon_b, options) # model, origin, polygon, options
 
         elsif lengthYTarget > perimeterDepth * 2 # slice into two peremeter zones but no core
 
