@@ -317,7 +317,7 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
 
     # assign the user inputs to variables
     args = runner.getArgumentValues(arguments(model), user_arguments)
-    args = Hash[args.collect{ |k, v| [k.to_s, v] }]
+    args = Hash[args.collect{ |k, v| [k.to_sym, v] }]
     if !args then return false end
 
     # todo - need to make use of this before pass to standards
