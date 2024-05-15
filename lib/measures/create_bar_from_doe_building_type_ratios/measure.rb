@@ -292,9 +292,22 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     args = Hash[args.collect{ |k, v| [k.to_s, v] }]
     if !args then return false end
 
+    # todo - need to make use of this before pass to standards
+    use_upstream_args = args['use_upstream_args']
+      
+    # open channel to log messages
+    reset_log
+
+    # Turn debugging output on/off
+    debug = false
+
     # method run from os_lib_model_generation.rb
     result = OpenstudioStandards::Geometry.create_bar_from_building_type_ratios(model, args)
 
+    # gather log
+    log_messages_to_runner(runner, debug)
+    reset_log
+        
     if result == false
       runner.registerError("Measure did not complete successfully")
       return false
