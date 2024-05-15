@@ -5,7 +5,7 @@
 
 require 'openstudio-standards'
 
-require_relative 'resources/Model.hvac' # DLM: should this be in openstudio-standards? dfg some tests fail without it
+#require_relative 'resources/Model.hvac' # DLM: should this be in openstudio-standards? dfg some tests fail without it
 
 # start the measure
 class CreateTypicalBuildingFromModel < OpenStudio::Measure::ModelMeasure
