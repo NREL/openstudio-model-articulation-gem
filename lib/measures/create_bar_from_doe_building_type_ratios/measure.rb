@@ -51,6 +51,8 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     bldg_type_b_fract_bldg_area = OpenStudio::Measure::OSArgument.makeDoubleArgument('bldg_type_b_fract_bldg_area', true)
     bldg_type_b_fract_bldg_area.setDisplayName('Building Type B Fraction of Building Floor Area')
     bldg_type_b_fract_bldg_area.setDefaultValue(0.0)
+    bldg_type_b_fract_bldg_area.setMinValue(0.0)
+    bldg_type_b_fract_bldg_area.setMaxValue(1.0)
     args << bldg_type_b_fract_bldg_area
 
     # Make an argument for the bldg_type_c
@@ -63,6 +65,8 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     bldg_type_c_fract_bldg_area = OpenStudio::Measure::OSArgument.makeDoubleArgument('bldg_type_c_fract_bldg_area', true)
     bldg_type_c_fract_bldg_area.setDisplayName('Building Type C Fraction of Building Floor Area')
     bldg_type_c_fract_bldg_area.setDefaultValue(0.0)
+    bldg_type_c_fract_bldg_area.setMinValue(0.0)
+    bldg_type_c_fract_bldg_area.setMaxValue(1.0)
     args << bldg_type_c_fract_bldg_area
 
     # Make an argument for the bldg_type_d
@@ -75,6 +79,8 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     bldg_type_d_fract_bldg_area = OpenStudio::Measure::OSArgument.makeDoubleArgument('bldg_type_d_fract_bldg_area', true)
     bldg_type_d_fract_bldg_area.setDisplayName('Building Type D Fraction of Building Floor Area')
     bldg_type_d_fract_bldg_area.setDefaultValue(0.0)
+    bldg_type_d_fract_bldg_area.setMinValue(0.0)
+    bldg_type_d_fract_bldg_area.setMaxValue(1.0)
     args << bldg_type_d_fract_bldg_area
 
     # Make argument for total_bldg_floor_area
@@ -82,6 +88,7 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     total_bldg_floor_area.setDisplayName('Total Building Floor Area')
     total_bldg_floor_area.setUnits('ft^2')
     total_bldg_floor_area.setDefaultValue(10000.0)
+    total_bldg_floor_area.setMinValue(0.0)
     args << total_bldg_floor_area
 
     # Make argument for single_floor_area
@@ -90,6 +97,7 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     single_floor_area.setDescription('Non-zero value will fix the single floor area, overriding a user entry for Total Building Floor Area')
     single_floor_area.setUnits('ft^2')
     single_floor_area.setDefaultValue(0.0)
+    single_floor_area.setMinValue(0.0)
     args << single_floor_area
 
     # Make argument for floor_height
@@ -98,6 +106,7 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     floor_height.setDescription('Selecting a typical floor height of 0 will trigger a smart building type default.')
     floor_height.setUnits('ft')
     floor_height.setDefaultValue(0.0)
+    floor_height.setMinValue(0.0)
     args << floor_height
 
     # add argument to enable/disable multi custom space height bar
@@ -111,12 +120,14 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     num_stories_above_grade = OpenStudio::Measure::OSArgument.makeDoubleArgument('num_stories_above_grade', true)
     num_stories_above_grade.setDisplayName('Number of Stories Above Grade')
     num_stories_above_grade.setDefaultValue(1.0)
+    num_stories_above_grade.setMinValue(1.0)
     args << num_stories_above_grade
 
     # Make argument for num_stories_below_grade
     num_stories_below_grade = OpenStudio::Measure::OSArgument.makeIntegerArgument('num_stories_below_grade', true)
     num_stories_below_grade.setDisplayName('Number of Stories Below Grade')
     num_stories_below_grade.setDefaultValue(0)
+    num_stories_below_grade.setMinValue(0)
     args << num_stories_below_grade
 
     # Make argument for building_rotation
@@ -138,6 +149,7 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     ns_to_ew_ratio.setDisplayName('Ratio of North/South Facade Length Relative to East/West Facade Length')
     ns_to_ew_ratio.setDescription('Selecting an aspect ratio of 0 will trigger a smart building type default. Aspect ratios less than one are not recommended for sliced bar geometry, instead rotate building and use a greater than 1 aspect ratio.')
     ns_to_ew_ratio.setDefaultValue(0.0)
+    ns_to_ew_ratio.setMinValue(0.0)
     args << ns_to_ew_ratio
 
     # Make argument for perim_mult
@@ -145,6 +157,7 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     perim_mult.setDisplayName('Perimeter Multiplier')
     perim_mult.setDescription('Selecting a value of 0 will trigger a smart building type default. This represents a multiplier for the building perimeter relative to the perimeter of a rectangular building that meets the area and aspect ratio inputs. Other than the smart default of 0.0 this argument should have a value of 1.0 or higher and is only applicable Multiple Space Types - Individual Stories Sliced division method.')
     perim_mult.setDefaultValue(0.0)
+    perim_mult.setMinValue(0.0)
     args << perim_mult
 
     # Make argument for bar_width
@@ -153,6 +166,7 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     bar_width.setDescription('Non-zero value will fix the building width, overriding user entry for Perimeter Multiplier. NS/EW Aspect Ratio may be limited based on target width.')
     bar_width.setUnits('ft')
     bar_width.setDefaultValue(0.0)
+    bar_width.setMinValue(0.0)
     args << bar_width
 
     # Make argument for bar_sep_dist_mult
@@ -167,6 +181,8 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     wwr.setDisplayName('Window to Wall Ratio')
     wwr.setDescription('Selecting a window to wall ratio of 0 will trigger a smart building type default.')
     wwr.setDefaultValue(0.0)
+    wwr.setMinValue(0.0)
+    wwr.setMaxValue(1.0)
     args << wwr
 
     # Make argument for party_wall_fraction
@@ -174,6 +190,8 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     party_wall_fraction.setDisplayName('Fraction of Exterior Wall Area with Adjacent Structure')
     party_wall_fraction.setDescription('This will impact how many above grade exterior walls are modeled with adiabatic boundary condition.')
     party_wall_fraction.setDefaultValue(0.0)
+    party_wall_fraction.setMinValue(0.0)
+    party_wall_fraction.setMaxValue(1.0)
     args << party_wall_fraction
 
     # party_wall_fraction was used where we wanted to represent some party walls but didn't know where they are, it ends up using methods to make whole surfaces adiabiatc by story and orientaiton to try to come close to requested fraction
@@ -183,6 +201,7 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     party_wall_stories_north.setDisplayName('Number of North facing stories with party wall')
     party_wall_stories_north.setDescription('This will impact how many above grade exterior north walls are modeled with adiabatic boundary condition. If this is less than the number of above grade stoes, upper flor will reamin exterior')
     party_wall_stories_north.setDefaultValue(0)
+    party_wall_stories_north.setMinValue(0)
     args << party_wall_stories_north
 
     # Make argument for party_wall_stories_south
@@ -190,6 +209,7 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     party_wall_stories_south.setDisplayName('Number of South facing stories with party wall')
     party_wall_stories_south.setDescription('This will impact how many above grade exterior south walls are modeled with adiabatic boundary condition. If this is less than the number of above grade stoes, upper flor will reamin exterior')
     party_wall_stories_south.setDefaultValue(0)
+    party_wall_stories_south.setMinValue(0)
     args << party_wall_stories_south
 
     # Make argument for party_wall_stories_east
@@ -197,6 +217,7 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     party_wall_stories_east.setDisplayName('Number of East facing stories with party wall')
     party_wall_stories_east.setDescription('This will impact how many above grade exterior east walls are modeled with adiabatic boundary condition. If this is less than the number of above grade stoes, upper flor will reamin exterior')
     party_wall_stories_east.setDefaultValue(0)
+    party_wall_stories_east.setMinValue(0)
     args << party_wall_stories_east
 
     # Make argument for party_wall_stories_west
@@ -204,6 +225,7 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     party_wall_stories_west.setDisplayName('Number of West facing stories with party wall')
     party_wall_stories_west.setDescription('This will impact how many above grade exterior west walls are modeled with adiabatic boundary condition. If this is less than the number of above grade stoes, upper flor will reamin exterior')
     party_wall_stories_west.setDefaultValue(0)
+    party_wall_stories_west.setMinValue(0)
     args << party_wall_stories_west
 
     # make an argument for bottom_story_ground_exposed_floor
@@ -287,6 +309,11 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
   def run(model, runner, user_arguments)
     super(model, runner, user_arguments)
 
+    # use the built-in error checking
+    if !runner.validateUserArguments(arguments(model), user_arguments)
+      return false
+    end
+
     # assign the user inputs to variables
     args = runner.getArgumentValues(arguments(model), user_arguments)
     args = Hash[args.collect{ |k, v| [k.to_s, v] }]
@@ -307,7 +334,7 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     # gather log
     log_messages_to_runner(runner, debug)
     reset_log
-        
+
     if result == false
       runner.registerError("Measure did not complete successfully")
       return false
