@@ -334,9 +334,17 @@ class CreateBarFromModel < OpenStudio::Measure::ModelMeasure
 
         # restore thermostats for space type saved from old geometry
         model.getThermalZones.each do |thermal_zone|
+          
+          # todo - figure out why this is happening some times
+          if thermal_zone.spaces.size == 0
+            runner.registerInfo("Not altering thermostat because thermal zone #{thermal_zone.name} doesn't have any spaces.")
+            next
+          end
           next if !thermal_zone.spaces.first.spaceType.is_initialized
 
           space_type = thermal_zone.spaces.first.spaceType.get
+          next if htg_setpoints[space_type].nil?
+          next if clg_setpoints[space_type].nil?
           new_thermostat = OpenStudio::Model::ThermostatSetpointDualSetpoint.new(model)
           new_thermostat.setHeatingSetpointTemperatureSchedule(htg_setpoints[space_type])
           new_thermostat.setCoolingSetpointTemperatureSchedule(clg_setpoints[space_type])
