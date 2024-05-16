@@ -42,7 +42,7 @@ class CreateBarFromSpaceTypeRatios < OpenStudio::Measure::ModelMeasure
     args = OpenStudio::Measure::OSArgumentVector.new
 
     # Make argument for template
-    template = OpenStudio::Measure::OSArgument.makeChoiceArgument('template', get_templates(true), true) # setting up measure to list all templates, but space types in string should all come from one
+    template = OpenStudio::Measure::OSArgument.makeChoiceArgument('template', OpenstudioStandards::CreateTypical.get_templates(true), true) # setting up measure to list all templates, but space types in string should all come from one
     template.setDisplayName('Target Standard')
     template.setDefaultValue('90.1-2004')
     args << template
@@ -258,8 +258,26 @@ class CreateBarFromSpaceTypeRatios < OpenStudio::Measure::ModelMeasure
   def run(model, runner, user_arguments)
     super(model, runner, user_arguments)
 
+    # assign the user inputs to variables
+    args = runner.getArgumentValues(arguments(model), user_arguments)
+    args = Hash[args.collect{ |k, v| [k.to_sym, v] }]
+    if !args then return false end
+
+    # todo - need to make use of this before pass to standards
+    use_upstream_args = args['use_upstream_args']
+      
+    # open channel to log messages
+    reset_log
+
+    # Turn debugging output on/off
+    debug = false
+
     # method run from os_lib_model_generation.rb
-    result = bar_from_space_type_ratios(model, runner, user_arguments)
+    result = OpenstudioStandards::Geometry.create_bar_from_space_type_ratios(model, args)
+
+    # gather log
+    log_messages_to_runner(runner, debug)
+    reset_log
 
     if result == false
       return false

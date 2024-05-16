@@ -81,7 +81,7 @@ class CreateBarFromModel < OpenStudio::Measure::ModelMeasure
     runner.registerInitialCondition("The building started with #{model.getSpaces.size} spaces.")
 
     # gather_envelope_data
-    envelope_data_hash = gather_envelope_data(runner, model)
+    envelope_data_hash = OpenstudioStandards::Geometry.model_envelope_data(model)
 
     # report summary of initial geometry
     runner.registerValue('rotation', envelope_data_hash[:north_axis], 'degrees')
@@ -265,11 +265,11 @@ class CreateBarFromModel < OpenStudio::Measure::ModelMeasure
     # define length and with of bar
     case bar_calc_method
     when 'Bar - Reduced Bounding Box'
-      bar_calc = calc_bar_reduced_bounding_box(envelope_data_hash)
+      bar_calc = OpenstudioStandards::Geometry.bar_reduced_bounding_box(envelope_data_hash)
     when 'Bar - Reduced Width'
-      bar_calc = calc_bar_reduced_width(envelope_data_hash)
+      bar_calc = OpenstudioStandards::Geometry.bar_reduced_width(envelope_data_hash)
     when 'Bar - Stretched'
-      bar_calc = calc_bar_stretched(envelope_data_hash)
+      bar_calc = OpenstudioStandards::Geometry.bar_stretched(envelope_data_hash)
     end
 
     # populate bar_hash and create envelope with data from envelope_data_hash and user arguments
@@ -297,11 +297,11 @@ class CreateBarFromModel < OpenStudio::Measure::ModelMeasure
     # when using create_typical_model with this measure choose None for exhaust makeup air so don't have any dummy exhaust objects
     model.getFanZoneExhausts.each(&:removeFromThermalZone)
 
-    # remove non-resource objects
-    remove_non_resource_objects(runner, model)
+    # remove non-resource objects (this wasn't added to standards which explains some other measure test failures)
+    # remove_non_resource_objects(runner, model)
 
     # create bar
-    create_bar(runner, model, bar_hash)
+    OpenstudioStandards::Geometry.create_bar(model, bar_hash)
 
     # move exhaust from temp zone to large zone in new model
     zone_hash = {} # key is zone value is floor area. It excludes zones with non 1 multiplier
