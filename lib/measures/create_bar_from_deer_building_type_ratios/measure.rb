@@ -31,6 +31,76 @@ class CreateBarFromDEERBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     return 'Envelope.Form'
   end
 
+  # remove existing non resource objects from the model
+  # technically thermostats and building stories are resources but still want to remove them.
+  def remove_non_resource_objects(runner, model, options = nil)
+    if options.nil?
+      options = {}
+      options[:remove_building_stories] = true
+      options[:remove_thermostats] = true
+      options[:remove_air_loops] = true
+      options[:remove_non_swh_plant_loops] = true
+
+      # leave these in by default unless requsted when method called
+      options[:remove_swh_plant_loops] = false
+      options[:remove_exterior_lights] = false
+      options[:remove_site_shading] = false
+    end
+
+    num_model_objects = model.objects.size
+
+    # remove non-resource objects not removed by removing the building
+    if options[:remove_building_stories] then model.getBuildingStorys.each(&:remove) end
+    if options[:remove_thermostats] then model.getThermostats.each(&:remove) end
+    if options[:remove_air_loops] then model.getAirLoopHVACs.each(&:remove) end
+    if options[:remove_exterior_lights] then model.getFacility.exteriorLights.each(&:remove) end
+    if options[:remove_site_shading] then model.getSite.shadingSurfaceGroups.each(&:remove) end
+
+    # see if plant loop is swh or not and take proper action (booter loop doesn't have water use equipment)
+    model.getPlantLoops.each do |plant_loop|
+      is_swh_loop = false
+      plant_loop.supplyComponents.each do |component|
+        if component.to_WaterHeaterMixed.is_initialized
+          is_swh_loop = true
+          next
+        end
+      end
+
+      if is_swh_loop
+        if options[:remove_swh_plant_loops] then plant_loop.remove end
+      else
+        if options[:remove_non_swh_plant_loops] then plant_loop.remove end
+      end
+    end
+
+    # remove water use connections (may be removed when loop is removed)
+    if options[:remove_swh_plant_loops] then model.getWaterConnectionss.each(&:remove) end
+    if options[:remove_swh_plant_loops] then model.getWaterUseEquipments.each(&:remove) end
+
+    # remove building but reset fields on new building object.
+    building_fields = []
+    building = model.getBuilding
+    num_fields = building.numFields
+    num_fields.times.each do |i|
+      building_fields << building.getString(i).get
+    end
+    # removes spaces, space's child objects, thermal zones, zone equipment, non site surfaces, building stories and water use connections.
+    model.getBuilding.remove
+    building = model.getBuilding
+    num_fields.times.each do |i|
+      next if i == 0 # don't try and set handle
+      building_fields << building.setString(i, building_fields[i])
+    end
+
+    # other than optionally site shading and exterior lights not messing with site characteristics
+
+    if num_model_objects - model.objects.size > 0
+      runner.registerInfo("Removed #{num_model_objects - model.objects.size} non resource objects from the model.")
+    end
+
+    return true
+  end
+
   # define the arguments that the user will input
   def arguments(model)
     args = OpenStudio::Measure::OSArgumentVector.new
@@ -324,6 +394,9 @@ class CreateBarFromDEERBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
 
     # Turn debugging output on/off
     debug = false
+
+    # remove_non_resource_objects (this was not moved to standards, so added method in measure for now)
+    remove_non_resource_objects(runner, model)
 
     # method run from os_lib_model_generation.rb
     result = OpenstudioStandards::Geometry.create_bar_from_building_type_ratios(model, args)
