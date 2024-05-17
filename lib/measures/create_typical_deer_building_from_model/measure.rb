@@ -39,7 +39,7 @@ class CreateTypicalDEERBuildingFromModel < OpenStudio::Measure::ModelMeasure
 
     # see if building name contains any template values
     default_string = '90.1-2010'
-    OpenstudioStandards::CreateTypical.get_templates.each do |template_string|
+    OpenstudioStandards::CreateTypical.get_deer_templates.each do |template_string|
       if model.getBuilding.name.to_s.include?(template_string)
         default_string = template_string
         next
@@ -47,7 +47,7 @@ class CreateTypicalDEERBuildingFromModel < OpenStudio::Measure::ModelMeasure
     end
 
     # Make argument for template
-    template = OpenStudio::Measure::OSArgument.makeChoiceArgument('template',  OpenstudioStandards::CreateTypical.get_deer_templates(false), true)
+    template = OpenStudio::Measure::OSArgument.makeChoiceArgument('template', OpenstudioStandards::CreateTypical.get_deer_templates, true)
     template.setDisplayName('Target Standard')
     template.setDefaultValue(default_string)
     args << template
@@ -147,6 +147,8 @@ class CreateTypicalDEERBuildingFromModel < OpenStudio::Measure::ModelMeasure
     hvac_chs << 'PVAV with district hot water reheat'
     hvac_chs << 'PVAV with PFP boxes'
     hvac_chs << 'PVAV with gas heat with electric reheat'
+    hvac_chs << 'PVAV with gas coil heat with electric reheat'
+    hvac_chs << 'PVAV with gas boiler heat with electric reheat'
     hvac_chs << 'Residential AC with baseboard electric'
     hvac_chs << 'Residential AC with baseboard gas boiler'
     hvac_chs << 'Residential AC with baseboard central air source heat pump'
@@ -202,6 +204,7 @@ class CreateTypicalDEERBuildingFromModel < OpenStudio::Measure::ModelMeasure
     hvac_type_chs = OpenStudio::StringVector.new
     hvac_type_chs << 'Forced Air'
     hvac_type_chs << 'Hydronic'
+    hvac_type_chs << 'Inferred'
     hvac_delivery_type = OpenStudio::Measure::OSArgument.makeChoiceArgument('hvac_delivery_type', hvac_type_chs, true)
     hvac_delivery_type.setDisplayName('HVAC System Delivery Type')
     hvac_delivery_type.setDescription('How the HVAC system delivers heating or cooling to the zone.')
@@ -214,6 +217,7 @@ class CreateTypicalDEERBuildingFromModel < OpenStudio::Measure::ModelMeasure
     htg_src_chs << 'NaturalGas'
     htg_src_chs << 'DistrictHeating'
     htg_src_chs << 'DistrictAmbient'
+    htg_src_chs << 'Inferred'
     htg_src = OpenStudio::Measure::OSArgument.makeChoiceArgument('htg_src', htg_src_chs, true)
     htg_src.setDisplayName('HVAC Heating Source')
     htg_src.setDescription('The primary source of heating used by HVAC systems in the model.')
@@ -225,6 +229,7 @@ class CreateTypicalDEERBuildingFromModel < OpenStudio::Measure::ModelMeasure
     clg_src_chs << 'Electricity'
     clg_src_chs << 'DistrictCooling'
     clg_src_chs << 'DistrictAmbient'
+    clg_src_chs << 'Inferred'
     clg_src = OpenStudio::Measure::OSArgument.makeChoiceArgument('clg_src', clg_src_chs, true)
     clg_src.setDisplayName('HVAC Cooling Source')
     clg_src.setDescription('The primary source of cooling used by HVAC systems in the model.')
@@ -284,6 +289,19 @@ class CreateTypicalDEERBuildingFromModel < OpenStudio::Measure::ModelMeasure
     add_constructions.setDescription('Construction Set will be applied to entire building')
     add_constructions.setDefaultValue(true)
     args << add_constructions
+
+    # make argument for wall_construction_type
+    wall_construction_type_choices = OpenStudio::StringVector.new
+    wall_construction_type_choices << 'Mass'
+    wall_construction_type_choices << 'Metal Building'
+    wall_construction_type_choices << 'SteelFramed'
+    wall_construction_type_choices << 'WoodFramed'
+    wall_construction_type_choices << 'Inferred'
+    wall_construction_type = OpenStudio::Measure::OSArgument.makeChoiceArgument('wall_construction_type', wall_construction_type_choices, true)
+    wall_construction_type.setDisplayName('Wall Construction Type')
+    wall_construction_type.setDescription('Identify Exterior Wall Construction Type to be applied to entire building')
+    wall_construction_type.setDefaultValue('Inferred')
+    args << wall_construction_type
 
     # make an argument for add_space_type_loads
     add_space_type_loads = OpenStudio::Measure::OSArgument.makeBoolArgument('add_space_type_loads', true)
@@ -368,6 +386,8 @@ class CreateTypicalDEERBuildingFromModel < OpenStudio::Measure::ModelMeasure
     wkdy_op_hrs_start_time.setDescription('Enter 24 hour values with fractional values converted to minutes. e.g. 17.25 = 5:15pm. Only used if Modify weekday hours of operation is true.')
     wkdy_op_hrs_start_time.setUnits('Hours')
     wkdy_op_hrs_start_time.setDefaultValue(8.0)
+    wkdy_op_hrs_start_time.setMinValue(0.0)
+    wkdy_op_hrs_start_time.setMaxValue(24.0)
     args << wkdy_op_hrs_start_time
 
     # weekday hours of operation duration
@@ -376,6 +396,8 @@ class CreateTypicalDEERBuildingFromModel < OpenStudio::Measure::ModelMeasure
     wkdy_op_hrs_duration.setDescription('Length of weekday operating hours. Enter 24 hour values with fractional values converted to minutes. e.g. 17.25 = 5:15pm. Only used if Modify weekday hours of operation is true.')
     wkdy_op_hrs_duration.setUnits('Hours')
     wkdy_op_hrs_duration.setDefaultValue(8.0)
+    wkdy_op_hrs_duration.setMinValue(0.0)
+    wkdy_op_hrs_duration.setMaxValue(24.0)
     args << wkdy_op_hrs_duration
 
     # modify weekend hours of operation
@@ -391,6 +413,8 @@ class CreateTypicalDEERBuildingFromModel < OpenStudio::Measure::ModelMeasure
     wknd_op_hrs_start_time.setDescription('Enter 24 hour values with fractional values converted to minutes. e.g. 17.25 = 5:15pm.  Only used if Modify weekend hours of operation is true.')
     wknd_op_hrs_start_time.setUnits('Hours')
     wknd_op_hrs_start_time.setDefaultValue(8.0)
+    wknd_op_hrs_start_time.setMinValue(0.0)
+    wknd_op_hrs_start_time.setMaxValue(24.0)
     args << wknd_op_hrs_start_time
 
     # weekend hours of operation duration
@@ -399,6 +423,8 @@ class CreateTypicalDEERBuildingFromModel < OpenStudio::Measure::ModelMeasure
     wknd_op_hrs_duration.setDescription('Length of weekend operating hours. Enter 24 hour values with fractional values converted to minutes. e.g. 17.25 = 5:15pm.  Only used if Modify weekend hours of operation is true.')
     wknd_op_hrs_duration.setUnits('Hours')
     wknd_op_hrs_duration.setDefaultValue(8.0)
+    wknd_op_hrs_duration.setMinValue(0.0)
+    wknd_op_hrs_duration.setMaxValue(24.0)
     args << wknd_op_hrs_duration
 
     # make an argument for unmet_hours_tolerance
@@ -406,6 +432,7 @@ class CreateTypicalDEERBuildingFromModel < OpenStudio::Measure::ModelMeasure
     unmet_hours_tolerance.setDisplayName('Unmet Hours Tolerance')
     unmet_hours_tolerance.setDescription('Set the thermostat setpoint tolerance for unmet hours in degrees Rankine')
     unmet_hours_tolerance.setDefaultValue(1.0)
+    unmet_hours_tolerance.setMinValue(0.0)
     args << unmet_hours_tolerance
 
     # make an argument for remove_objects
@@ -440,10 +467,10 @@ class CreateTypicalDEERBuildingFromModel < OpenStudio::Measure::ModelMeasure
     args = runner.getArgumentValues(arguments(model), user_arguments)
     args = Hash[args.collect{ |k, v| [k.to_s, v] }]
     if !args then return false end
-    
+
     # todo - need to make use of this before pass to standards
     use_upstream_args = args['use_upstream_args']
-      
+
     # open channel to log messages
     reset_log
 
@@ -452,9 +479,9 @@ class CreateTypicalDEERBuildingFromModel < OpenStudio::Measure::ModelMeasure
 
     # method run from os_lib_model_generation.rb
     result = OpenstudioStandards::CreateTypical.create_typical_building_from_model(
-      model, 
+      model,
       args['template'],
-      climate_zone: args['climate_zone'], # start of optional arguments
+      climate_zone: nil, # not exposed in user measure args
       add_hvac: args['add_hvac'],
       hvac_system_type: args['system_type'],
       hvac_delivery_type: args['hvac_delivery_type'],
@@ -464,7 +491,7 @@ class CreateTypicalDEERBuildingFromModel < OpenStudio::Measure::ModelMeasure
       kitchen_makeup: args['kitchen_makeup'],
       exterior_lighting_zone: args['exterior_lighting_zone'],
       add_constructions: args['add_constructions'],
-      wall_construction_type: nil, # not exposed in user measure args
+      wall_construction_type: args['wall_construction_type'],
       add_space_type_loads: args['add_space_type_loads'],
       add_daylighting_controls: nil, # not exposed in user measure args
       add_elevators: args['add_elevators'],
