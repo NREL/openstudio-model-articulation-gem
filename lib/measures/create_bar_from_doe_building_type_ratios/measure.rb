@@ -53,6 +53,8 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     bldg_type_b_fract_bldg_area.setDefaultValue(0.0)
     bldg_type_b_fract_bldg_area.setMinValue(0.0)
     bldg_type_b_fract_bldg_area.setMaxValue(1.0)
+    bldg_type_b_fract_bldg_area.setMinValue(0.0)
+    bldg_type_b_fract_bldg_area.setMaxValue(1.0)
     args << bldg_type_b_fract_bldg_area
 
     # Make an argument for the bldg_type_c
@@ -65,6 +67,8 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     bldg_type_c_fract_bldg_area = OpenStudio::Measure::OSArgument.makeDoubleArgument('bldg_type_c_fract_bldg_area', true)
     bldg_type_c_fract_bldg_area.setDisplayName('Building Type C Fraction of Building Floor Area')
     bldg_type_c_fract_bldg_area.setDefaultValue(0.0)
+    bldg_type_c_fract_bldg_area.setMinValue(0.0)
+    bldg_type_c_fract_bldg_area.setMaxValue(1.0)
     bldg_type_c_fract_bldg_area.setMinValue(0.0)
     bldg_type_c_fract_bldg_area.setMaxValue(1.0)
     args << bldg_type_c_fract_bldg_area
@@ -81,6 +85,8 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     bldg_type_d_fract_bldg_area.setDefaultValue(0.0)
     bldg_type_d_fract_bldg_area.setMinValue(0.0)
     bldg_type_d_fract_bldg_area.setMaxValue(1.0)
+    bldg_type_d_fract_bldg_area.setMinValue(0.0)
+    bldg_type_d_fract_bldg_area.setMaxValue(1.0)
     args << bldg_type_d_fract_bldg_area
 
     # Make argument for total_bldg_floor_area
@@ -88,6 +94,7 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     total_bldg_floor_area.setDisplayName('Total Building Floor Area')
     total_bldg_floor_area.setUnits('ft^2')
     total_bldg_floor_area.setDefaultValue(10000.0)
+    total_bldg_floor_area.setMinValue(0.0)
     total_bldg_floor_area.setMinValue(0.0)
     args << total_bldg_floor_area
 
@@ -97,6 +104,7 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     single_floor_area.setDescription('Non-zero value will fix the single floor area, overriding a user entry for Total Building Floor Area')
     single_floor_area.setUnits('ft^2')
     single_floor_area.setDefaultValue(0.0)
+    single_floor_area.setMinValue(0.0)
     single_floor_area.setMinValue(0.0)
     args << single_floor_area
 
@@ -150,7 +158,6 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     ns_to_ew_ratio.setDescription('Selecting an aspect ratio of 0 will trigger a smart building type default. Aspect ratios less than one are not recommended for sliced bar geometry, instead rotate building and use a greater than 1 aspect ratio.')
     ns_to_ew_ratio.setDefaultValue(0.0)
     ns_to_ew_ratio.setMinValue(0.0)
-    ns_to_ew_ratio.setMaxValue(1.0)
     args << ns_to_ew_ratio
 
     # Make argument for perim_mult
