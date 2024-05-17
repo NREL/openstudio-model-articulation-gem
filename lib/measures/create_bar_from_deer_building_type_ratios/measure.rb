@@ -45,14 +45,14 @@ class CreateBarFromDEERBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     bldg_type_b = OpenStudio::Measure::OSArgument.makeChoiceArgument('bldg_type_b', OpenstudioStandards::CreateTypical.get_deer_building_types, true)
     bldg_type_b.setDisplayName('Building Type B')
     bldg_type_b.setDefaultValue('OfS')
-    bldg_type_b_fract_bldg_area.setMinValue(0.0)
-    bldg_type_b_fract_bldg_area.setMaxValue(1.0)
     args << bldg_type_b
 
     # Make argument for bldg_type_b_fract_bldg_area
     bldg_type_b_fract_bldg_area = OpenStudio::Measure::OSArgument.makeDoubleArgument('bldg_type_b_fract_bldg_area', true)
     bldg_type_b_fract_bldg_area.setDisplayName('Building Type B Fraction of Building Floor Area')
     bldg_type_b_fract_bldg_area.setDefaultValue(0.0)
+    bldg_type_b_fract_bldg_area.setMinValue(0.0)
+    bldg_type_b_fract_bldg_area.setMaxValue(1.0)
     args << bldg_type_b_fract_bldg_area
 
     # Make an argument for the bldg_type_c
@@ -70,7 +70,7 @@ class CreateBarFromDEERBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     args << bldg_type_c_fract_bldg_area
 
     # Make an argument for the bldg_type_d
-    bldg_type_d = OpenStudio::Measure::OSArgument.makeChoiceArgument('bldg_type_d', get_deer_building_types, true)
+    bldg_type_d = OpenStudio::Measure::OSArgument.makeChoiceArgument('bldg_type_d', OpenstudioStandards::CreateTypical.get_deer_building_types, true)
     bldg_type_d.setDisplayName('Building Type D')
     bldg_type_d.setDefaultValue('OfS')
     args << bldg_type_d
