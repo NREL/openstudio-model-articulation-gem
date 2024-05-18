@@ -159,8 +159,18 @@ class BlendedSpaceTypeFromModel < OpenStudio::Measure::ModelMeasure
     end
     runner.registerInitialCondition("The initial building uses #{initial_cond_space_type_hash.size} spaces types.")
 
+     # open channel to log messages
+     reset_log
+
+     # Turn debugging output on/off
+     debug = false
+
     # blend space types
     OpenstudioStandards::CreateTypical.blend_space_type_collections(model, space_type_hash)
+
+    # gather log
+    log_messages_to_runner(runner, debug)
+    reset_log
 
     # report final condition of model
     # re-run same same code used for initial condition
