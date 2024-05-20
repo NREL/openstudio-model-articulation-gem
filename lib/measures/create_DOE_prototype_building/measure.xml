@@ -1,10 +1,16 @@
 <?xml version="1.0"?>
 <measure>
-  <schema_version>3.0</schema_version>
+  <schema_version>3.1</schema_version>
+  <error>Failed to query information from measure 'CreateDOEPrototypeBuilding' from '/Users/dgoldwas/Documents/github/nrel/openstudio-model-articulation-gem/lib/measures/create_DOE_prototype_building/measure.rb': SWIG director method error. NameError: uninitialized constant BTAP::Environment
+
+Traceback (most recent call last):
+eval:416:in `const_missing'
+/Users/dgoldwas/Documents/github/nrel/openstudio-model-articulation-gem/lib/measures/create_DOE_prototype_building/measure.rb:106:in `arguments'
+</error>
   <name>create_doe_prototype_building</name>
   <uid>be90fd0b-a651-467a-bc8d-29d310b0f937</uid>
-  <version_id>224cfdf3-dc5a-4902-a08c-e041ef0dffaa</version_id>
-  <version_modified>20230602T160043Z</version_modified>
+  <version_id>212f5f9e-eaee-457f-93ae-9b159b1cc207</version_id>
+  <version_modified>2024-05-20T07:54:33Z</version_modified>
   <xml_checksum>057E8D9D</xml_checksum>
   <class_name>CreateDOEPrototypeBuilding</class_name>
   <display_name>Create DOE Prototype Building</display_name>
@@ -1123,28 +1129,22 @@
   </attributes>
   <files>
     <file>
-      <filename>legacy_idf_results.json</filename>
-      <filetype>json</filetype>
-      <usage_type>test</usage_type>
-      <checksum>D6C32D5E</checksum>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>BFFB1AA6</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>0B68E96D</checksum>
     </file>
     <file>
       <filename>README.md.erb</filename>
       <filetype>erb</filetype>
       <usage_type>readmeerb</usage_type>
       <checksum>703C9964</checksum>
-    </file>
-    <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>8950E7AF</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
     </file>
     <file>
       <version>
@@ -1161,7 +1161,13 @@
       <filename>create_DOE_prototype_building_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>B3662660</checksum>
+      <checksum>BA4C28B9</checksum>
+    </file>
+    <file>
+      <filename>legacy_idf_results.json</filename>
+      <filetype>json</filetype>
+      <usage_type>test</usage_type>
+      <checksum>D6C32D5E</checksum>
     </file>
   </files>
 </measure>

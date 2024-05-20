@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <measure>
-  <schema_version>3.0</schema_version>
+  <schema_version>3.1</schema_version>
   <name>create_bar_from_doe_building_type_ratios</name>
   <uid>0de3cff9-c805-42c4-964e-18cb43a22c63</uid>
-  <version_id>3e2454d3-911f-429e-9e9a-5d0503f70728</version_id>
-  <version_modified>20230602T160046Z</version_modified>
+  <version_id>95f24165-1c78-4362-831a-6faca02c017e</version_id>
+  <version_modified>2024-05-20T07:54:34Z</version_modified>
   <xml_checksum>5F523097</xml_checksum>
   <class_name>CreateBarFromDOEBuildingTypeRatios</class_name>
   <display_name>Create Bar From DOE Building Type Ratios</display_name>
@@ -230,6 +230,8 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>0</default_value>
+      <min_value>0.000000</min_value>
+      <max_value>1.000000</max_value>
     </argument>
     <argument>
       <name>bldg_type_c</name>
@@ -344,6 +346,8 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>0</default_value>
+      <min_value>0.000000</min_value>
+      <max_value>1.000000</max_value>
     </argument>
     <argument>
       <name>bldg_type_d</name>
@@ -458,6 +462,8 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>0</default_value>
+      <min_value>0.000000</min_value>
+      <max_value>1.000000</max_value>
     </argument>
     <argument>
       <name>total_bldg_floor_area</name>
@@ -467,6 +473,7 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>10000</default_value>
+      <min_value>0.000000</min_value>
     </argument>
     <argument>
       <name>single_floor_area</name>
@@ -477,6 +484,7 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>0</default_value>
+      <min_value>0.000000</min_value>
     </argument>
     <argument>
       <name>floor_height</name>
@@ -487,6 +495,7 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>0</default_value>
+      <min_value>0.000000</min_value>
     </argument>
     <argument>
       <name>custom_height_bar</name>
@@ -514,6 +523,7 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>1</default_value>
+      <min_value>1.000000</min_value>
     </argument>
     <argument>
       <name>num_stories_below_grade</name>
@@ -522,6 +532,7 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>0</default_value>
+      <min_value>0</min_value>
     </argument>
     <argument>
       <name>building_rotation</name>
@@ -615,6 +626,7 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>0</default_value>
+      <min_value>0.000000</min_value>
     </argument>
     <argument>
       <name>perim_mult</name>
@@ -624,6 +636,7 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>0</default_value>
+      <min_value>0.000000</min_value>
     </argument>
     <argument>
       <name>bar_width</name>
@@ -634,6 +647,7 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>0</default_value>
+      <min_value>0.000000</min_value>
     </argument>
     <argument>
       <name>bar_sep_dist_mult</name>
@@ -652,6 +666,8 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>0</default_value>
+      <min_value>0.000000</min_value>
+      <max_value>1.000000</max_value>
     </argument>
     <argument>
       <name>party_wall_fraction</name>
@@ -661,6 +677,8 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>0</default_value>
+      <min_value>0.000000</min_value>
+      <max_value>1.000000</max_value>
     </argument>
     <argument>
       <name>party_wall_stories_north</name>
@@ -670,6 +688,7 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>0</default_value>
+      <min_value>0</min_value>
     </argument>
     <argument>
       <name>party_wall_stories_south</name>
@@ -679,6 +698,7 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>0</default_value>
+      <min_value>0</min_value>
     </argument>
     <argument>
       <name>party_wall_stories_east</name>
@@ -688,6 +708,7 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>0</default_value>
+      <min_value>0</min_value>
     </argument>
     <argument>
       <name>party_wall_stories_west</name>
@@ -697,6 +718,7 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>0</default_value>
+      <min_value>0</min_value>
     </argument>
     <argument>
       <name>bottom_story_ground_exposed_floor</name>
@@ -897,10 +919,22 @@
   </attributes>
   <files>
     <file>
-      <filename>example_model.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>032BCDC9</checksum>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>BFFB1AA6</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>B96F2633</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>764EC4D9</checksum>
     </file>
     <file>
       <filename>ar_05.png</filename>
@@ -1029,18 +1063,6 @@
       <checksum>D1E7B644</checksum>
     </file>
     <file>
-      <filename>README.md.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>readmeerb</usage_type>
-      <checksum>764EC4D9</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
-    </file>
-    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.0.0</identifier>
@@ -1049,19 +1071,19 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>02329948</checksum>
+      <checksum>B7E9C0E2</checksum>
     </file>
     <file>
       <filename>create_bar_from_doe_building_type_ratios_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>436246F7</checksum>
+      <checksum>7286FEA7</checksum>
     </file>
     <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>B96F2633</checksum>
+      <filename>example_model.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>032BCDC9</checksum>
     </file>
   </files>
 </measure>

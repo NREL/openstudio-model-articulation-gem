@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <measure>
-  <schema_version>3.0</schema_version>
+  <schema_version>3.1</schema_version>
   <name>create_baseline_building</name>
   <uid>4de56e21-b6cd-45d9-8466-862507d228b2</uid>
   <version_id>0dccce6b-f4a7-4c52-ae85-647de50fcd21</version_id>
@@ -230,28 +230,10 @@
   </attributes>
   <files>
     <file>
-      <filename>SmallOffice-90.1-2007-ASHRAE 169-2006-2A.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>6BED784B</checksum>
-    </file>
-    <file>
-      <filename>SecondarySchool-DOE Ref Pre-1980-ASHRAE 169-2006-2A.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>F8619A70</checksum>
-    </file>
-    <file>
-      <filename>USA_TX_Houston-Bush.Intercontinental.AP.722430_TMY3.epw</filename>
-      <filetype>epw</filetype>
-      <usage_type>test</usage_type>
-      <checksum>EE565FCC</checksum>
-    </file>
-    <file>
-      <filename>README.md.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>readmeerb</usage_type>
-      <checksum>703C9964</checksum>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>BFFB1AA6</checksum>
     </file>
     <file>
       <filename>README.md</filename>
@@ -260,16 +242,10 @@
       <checksum>8214DE01</checksum>
     </file>
     <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
-    </file>
-    <file>
-      <filename>create_baseline_building_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>8731D1E6</checksum>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
     </file>
     <file>
       <version>
@@ -281,6 +257,30 @@
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
       <checksum>E531AD7F</checksum>
+    </file>
+    <file>
+      <filename>SecondarySchool-DOE Ref Pre-1980-ASHRAE 169-2006-2A.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>F8619A70</checksum>
+    </file>
+    <file>
+      <filename>SmallOffice-90.1-2007-ASHRAE 169-2006-2A.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>6BED784B</checksum>
+    </file>
+    <file>
+      <filename>USA_TX_Houston-Bush.Intercontinental.AP.722430_TMY3.epw</filename>
+      <filetype>epw</filetype>
+      <usage_type>test</usage_type>
+      <checksum>EE565FCC</checksum>
+    </file>
+    <file>
+      <filename>create_baseline_building_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>8731D1E6</checksum>
     </file>
   </files>
 </measure>

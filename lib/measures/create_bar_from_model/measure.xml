@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <measure>
-  <schema_version>3.0</schema_version>
+  <schema_version>3.1</schema_version>
   <name>create_bar_from_model</name>
   <uid>87fb0783-7a38-4900-8969-40e744c67814</uid>
-  <version_id>e85f311a-3484-489c-9ccf-4a79ead0cab9</version_id>
-  <version_modified>20230602T160046Z</version_modified>
+  <version_id>b70f9d5d-5135-466b-8e14-befebe162f27</version_id>
+  <version_modified>2024-05-20T07:54:34Z</version_modified>
   <xml_checksum>2AF3A68E</xml_checksum>
   <class_name>CreateBarFromModel</class_name>
   <display_name>Create Bar From Model</display_name>
@@ -85,6 +85,41 @@
   </attributes>
   <files>
     <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>BFFB1AA6</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>5E470ADB</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>3.8.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>87BC1C23</checksum>
+    </file>
+    <file>
+      <filename>create_bar_from_model_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>7344F69A</checksum>
+    </file>
+    <file>
       <filename>example_model.osm</filename>
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
@@ -115,51 +150,16 @@
       <checksum>CD0671DC</checksum>
     </file>
     <file>
-      <filename>sliver_start.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>9D5BDAC4</checksum>
-    </file>
-    <file>
       <filename>sliver_multiplier.osm</filename>
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
       <checksum>FF077DA0</checksum>
     </file>
     <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>5E470ADB</checksum>
-    </file>
-    <file>
-      <filename>README.md.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>readmeerb</usage_type>
-      <checksum>703C9964</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
-    </file>
-    <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>3.8.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>27B22ECF</checksum>
-    </file>
-    <file>
-      <filename>create_bar_from_model_test.rb</filename>
-      <filetype>rb</filetype>
+      <filename>sliver_start.osm</filename>
+      <filetype>osm</filetype>
       <usage_type>test</usage_type>
-      <checksum>7344F69A</checksum>
+      <checksum>9D5BDAC4</checksum>
     </file>
   </files>
 </measure>
