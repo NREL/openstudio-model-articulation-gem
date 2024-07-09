@@ -439,6 +439,7 @@ class CreateBarFromBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     reset_log
 
     if result == false
+      runner.registerError("Measure did not complete successfully")
       return false
     else
       return true

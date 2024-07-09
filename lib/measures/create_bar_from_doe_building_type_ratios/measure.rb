@@ -123,8 +123,6 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     bldg_type_b_fract_bldg_area.setDefaultValue(0.0)
     bldg_type_b_fract_bldg_area.setMinValue(0.0)
     bldg_type_b_fract_bldg_area.setMaxValue(1.0)
-    bldg_type_b_fract_bldg_area.setMinValue(0.0)
-    bldg_type_b_fract_bldg_area.setMaxValue(1.0)
     args << bldg_type_b_fract_bldg_area
 
     # Make an argument for the bldg_type_c
@@ -139,8 +137,6 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     bldg_type_c_fract_bldg_area.setDefaultValue(0.0)
     bldg_type_c_fract_bldg_area.setMinValue(0.0)
     bldg_type_c_fract_bldg_area.setMaxValue(1.0)
-    bldg_type_c_fract_bldg_area.setMinValue(0.0)
-    bldg_type_c_fract_bldg_area.setMaxValue(1.0)
     args << bldg_type_c_fract_bldg_area
 
     # Make an argument for the bldg_type_d
@@ -153,8 +149,6 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     bldg_type_d_fract_bldg_area = OpenStudio::Measure::OSArgument.makeDoubleArgument('bldg_type_d_fract_bldg_area', true)
     bldg_type_d_fract_bldg_area.setDisplayName('Building Type D Fraction of Building Floor Area')
     bldg_type_d_fract_bldg_area.setDefaultValue(0.0)
-    bldg_type_d_fract_bldg_area.setMinValue(0.0)
-    bldg_type_d_fract_bldg_area.setMaxValue(1.0)
     bldg_type_d_fract_bldg_area.setMinValue(0.0)
     bldg_type_d_fract_bldg_area.setMaxValue(1.0)
     args << bldg_type_d_fract_bldg_area
