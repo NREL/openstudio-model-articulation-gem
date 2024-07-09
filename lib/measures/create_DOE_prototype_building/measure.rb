@@ -103,7 +103,7 @@ class CreateDOEPrototypeBuilding < OpenStudio::Measure::ModelMeasure
     # Drop down selector for Canadian weather files.
     epw_files = OpenStudio::StringVector.new
     epw_files << 'Not Applicable'
-    BTAP::Environment.get_canadian_weather_file_names.each { |file| epw_files << file }
+    #BTAP::Environment.get_canadian_weather_file_names.each { |file| epw_files << file }
     epw_file = OpenStudio::Measure::OSArgument.makeChoiceArgument('epw_file', epw_files, true)
     epw_file.setDisplayName('Climate File (NECB only)')
     epw_file.setDefaultValue('Not Applicable')
