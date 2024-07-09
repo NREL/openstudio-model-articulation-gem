@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>create_bar_from_building_type_ratios</name>
   <uid>6e3a14f8-c3c7-4e03-bc51-bef8a52e1a05</uid>
-  <version_id>3da5ef38-50bb-4210-b29b-dcc73e0c6925</version_id>
-  <version_modified>2024-05-20T07:54:31Z</version_modified>
+  <version_id>9511ff5a-46db-44a8-8dd1-66f3d9373eab</version_id>
+  <version_modified>2024-07-09T16:03:36Z</version_modified>
   <xml_checksum>2AF3A68E</xml_checksum>
   <class_name>CreateBarFromBuildingTypeRatios</class_name>
   <display_name>Create Bar From Building Type Ratios</display_name>
@@ -1496,13 +1496,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>29D5006A</checksum>
+      <checksum>153D5528</checksum>
     </file>
     <file>
       <filename>create_bar_from_building_type_ratios_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>265E71AD</checksum>
+      <checksum>2E1610BC</checksum>
     </file>
     <file>
       <filename>example_model.osm</filename>
