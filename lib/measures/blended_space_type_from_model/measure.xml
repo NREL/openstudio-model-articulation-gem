@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>blended_space_type_from_model</name>
   <uid>667c2f1f-0927-4dbd-a7be-1087b5c15181</uid>
-  <version_id>e2ee124d-a98f-4f97-b430-5f567f745c5c</version_id>
-  <version_modified>2024-05-20T07:54:34Z</version_modified>
+  <version_id>233944a0-9765-434c-ad88-36dbd30148b0</version_id>
+  <version_modified>2024-07-11T21:47:24Z</version_modified>
   <xml_checksum>28AD5222</xml_checksum>
   <class_name>BlendedSpaceTypeFromModel</class_name>
   <display_name>Blended Space Type from Model</display_name>
@@ -153,7 +153,7 @@
       <filename>measure_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>FCADE6E3</checksum>
+      <checksum>CDC63FFD</checksum>
     </file>
   </files>
 </measure>
