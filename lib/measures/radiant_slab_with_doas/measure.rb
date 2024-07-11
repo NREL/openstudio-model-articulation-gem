@@ -192,8 +192,8 @@ To reduce unmet hours, use an expanded comfort range as mentioned above, remove 
     # exclude plenum zones, zones without thermostats, and zones with no floor area
     conditioned_zones = []
     model.getThermalZones.each do |zone|
-      next if std.thermal_zone_plenum?(zone)
-      next if !std.thermal_zone_heated?(zone) && !std.thermal_zone_cooled?(zone)
+      next if OpenstudioStandards::ThermalZone.thermal_zone_plenum?(zone)
+      next if !OpenstudioStandards::ThermalZone.thermal_zone_heated?(zone) && !OpenstudioStandards::ThermalZone.thermal_zone_cooled?(zone)
 
       conditioned_zones << zone
     end

@@ -8,18 +8,8 @@
 
 require 'openstudio-standards'
 
-# load OpenStudio measure libraries from openstudio-extension gem
-require 'openstudio-extension'
-require 'openstudio/extension/core/os_lib_helper_methods'
-require 'openstudio/extension/core/os_lib_model_generation'
-require 'openstudio/extension/core/os_lib_model_simplification'
-
 # start the measure
 class BlendedSpaceTypeFromFloorAreaRatios < OpenStudio::Measure::ModelMeasure
-  # resource file modules
-  include OsLib_HelperMethods
-  include OsLib_ModelGeneration
-  include OsLib_ModelSimplification
 
   # human readable name
   def name
@@ -34,6 +24,33 @@ class BlendedSpaceTypeFromFloorAreaRatios < OpenStudio::Measure::ModelMeasure
   # human readable description of modeling approach
   def modeler_description
     return 'To determine default ratio look at the building type, and try to infer template (from building name) and set default ratios saved in the resources folder.'
+  end
+
+  # gather standards info for space type array
+  def getSpaceTypeStandardsInformation(spaceTypeArray)
+    # hash of space types
+    spaceTypeStandardsInfoHash = {}
+
+    spaceTypeArray.each do |spaceType|
+      # get standards building
+      if !spaceType.standardsBuildingType.empty?
+        standardsBuilding = spaceType.standardsBuildingType.get
+      else
+        standardsBuilding = nil
+      end
+
+      # get standards space type
+      if !spaceType.standardsSpaceType.empty?
+        standardsSpaceType = spaceType.standardsSpaceType.get
+      else
+        standardsSpaceType = nil
+      end
+
+      # populate hash
+      spaceTypeStandardsInfoHash[spaceType] = [standardsBuilding, standardsSpaceType]
+    end
+
+    return spaceTypeStandardsInfoHash
   end
 
   # define the arguments that the user will input
@@ -101,12 +118,12 @@ class BlendedSpaceTypeFromFloorAreaRatios < OpenStudio::Measure::ModelMeasure
       # assume 2013 if can't infer from name
       template = '90.1-2013'
     end
-
+    
     # get standards info for existing space types
-    space_type_standards_info_hash = OsLib_HelperMethods.getSpaceTypeStandardsInformation(model.getSpaceTypes)
+    space_type_standards_info_hash = getSpaceTypeStandardsInformation(model.getSpaceTypes)
 
     # lookup ratios
-    space_type_hash = get_space_types_from_building_type(building_type, template, true)
+    space_type_hash = OpenstudioStandards::CreateTypical.get_space_types_from_building_type(building_type) #just 1 instead of 4 args
     if space_type_hash == false
       default_string = 'Attempt to automatically generate space type ratio string failed, enter manually.'
     else
@@ -174,7 +191,7 @@ class BlendedSpaceTypeFromFloorAreaRatios < OpenStudio::Measure::ModelMeasure
     end
 
     # run method to create blended space type
-    blended_space_type = blend_space_types_from_floor_area_ratio(runner, model, space_types_to_blend_hash)
+    blended_space_type = OpenstudioStandards::CreateTypical.blend_space_types_from_floor_area_ratio(model, space_types_to_blend_hash)
     if blended_space_type.nil?
       return false
     end

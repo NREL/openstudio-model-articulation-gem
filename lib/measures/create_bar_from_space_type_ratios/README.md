@@ -306,7 +306,7 @@ ___
 **Required:** true,
 **Model Dependent:** false
 
-**Choice Display Names** ["DOE Ref Pre-1980", "DOE Ref 1980-2004", "90.1-2004", "90.1-2007", "90.1-2010", "90.1-2013", "90.1-2016", "90.1-2019", "ComStock DOE Ref Pre-1980", "ComStock DOE Ref 1980-2004", "ComStock 90.1-2004", "ComStock 90.1-2007", "ComStock 90.1-2010", "ComStock 90.1-2013", "ComStock 90.1-2016", "ComStock 90.1-2019", "NREL ZNE Ready 2017", "DEER Pre-1975", "DEER 1985", "DEER 1996", "DEER 2003", "DEER 2007", "DEER 2011", "DEER 2014", "DEER 2015", "DEER 2017", "DEER 2020", "DEER 2025", "DEER 2030", "DEER 2035", "DEER 2040", "DEER 2045", "DEER 2050", "DEER 2055", "DEER 2060", "DEER 2065", "DEER 2070", "DEER 2075"]
+**Choice Display Names** ["DOE Ref Pre-1980", "DOE Ref 1980-2004", "90.1-2004", "90.1-2007", "90.1-2010", "90.1-2013", "90.1-2016", "90.1-2019", "ComStock DOE Ref Pre-1980", "ComStock DOE Ref 1980-2004", "ComStock 90.1-2004", "ComStock 90.1-2007", "ComStock 90.1-2010", "ComStock 90.1-2013", "ComStock 90.1-2016", "ComStock 90.1-2019", "NREL ZNE Ready 2017", "DEER Pre-1975", "DEER 1985", "DEER 1996", "DEER 2003", "DEER 2007", "DEER 2011", "DEER 2014", "DEER 2015", "DEER 2017", "DEER 2020", "DEER 2025", "DEER 2030", "DEER 2035", "DEER 2040", "DEER 2045", "DEER 2050", "DEER 2055", "DEER 2060", "DEER 2065", "DEER 2070", "DEER 2075", "ComStock DEER Pre-1975", "ComStock DEER 1985", "ComStock DEER 1996", "ComStock DEER 2003", "ComStock DEER 2007", "ComStock DEER 2011", "ComStock DEER 2014", "ComStock DEER 2015", "ComStock DEER 2017", "ComStock DEER 2020"]
 
 
 ### Space Type Ratios String

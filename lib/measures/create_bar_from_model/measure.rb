@@ -6,20 +6,11 @@
 # see the URL below for information on how to write OpenStudio measures
 # http://nrel.github.io/OpenStudio-user-documentation/reference/measure_writing_guide/
 
-# load OpenStudio measure libraries from openstudio-extension gem
-require 'openstudio-extension'
-require 'openstudio/extension/core/os_lib_helper_methods'
-require 'openstudio/extension/core/os_lib_geometry'
-require 'openstudio/extension/core/os_lib_model_generation'
-require 'openstudio/extension/core/os_lib_model_simplification'
+# load openstudio-standards gem
+require 'openstudio-standards'
 
 # start the measure
 class CreateBarFromModel < OpenStudio::Measure::ModelMeasure
-  # resource file modules
-  include OsLib_HelperMethods
-  include OsLib_Geometry
-  include OsLib_ModelGeneration
-  include OsLib_ModelSimplification
 
   # human readable name
   def name
@@ -90,7 +81,7 @@ class CreateBarFromModel < OpenStudio::Measure::ModelMeasure
     runner.registerInitialCondition("The building started with #{model.getSpaces.size} spaces.")
 
     # gather_envelope_data
-    envelope_data_hash = gather_envelope_data(runner, model)
+    envelope_data_hash = OpenstudioStandards::Geometry.model_envelope_data(model)
 
     # report summary of initial geometry
     runner.registerValue('rotation', envelope_data_hash[:north_axis], 'degrees')
@@ -274,11 +265,11 @@ class CreateBarFromModel < OpenStudio::Measure::ModelMeasure
     # define length and with of bar
     case bar_calc_method
     when 'Bar - Reduced Bounding Box'
-      bar_calc = calc_bar_reduced_bounding_box(envelope_data_hash)
+      bar_calc = OpenstudioStandards::Geometry.bar_reduced_bounding_box(envelope_data_hash)
     when 'Bar - Reduced Width'
-      bar_calc = calc_bar_reduced_width(envelope_data_hash)
+      bar_calc = OpenstudioStandards::Geometry.bar_reduced_width(envelope_data_hash)
     when 'Bar - Stretched'
-      bar_calc = calc_bar_stretched(envelope_data_hash)
+      bar_calc = OpenstudioStandards::Geometry.bar_stretched(envelope_data_hash)
     end
 
     # populate bar_hash and create envelope with data from envelope_data_hash and user arguments
@@ -306,11 +297,11 @@ class CreateBarFromModel < OpenStudio::Measure::ModelMeasure
     # when using create_typical_model with this measure choose None for exhaust makeup air so don't have any dummy exhaust objects
     model.getFanZoneExhausts.each(&:removeFromThermalZone)
 
-    # remove non-resource objects
-    remove_non_resource_objects(runner, model)
+    # remove non-resource objects (this wasn't added to standards which explains some other measure test failures)
+    # remove_non_resource_objects(runner, model)
 
     # create bar
-    create_bar(runner, model, bar_hash)
+    OpenstudioStandards::Geometry.create_bar(model, bar_hash)
 
     # move exhaust from temp zone to large zone in new model
     zone_hash = {} # key is zone value is floor area. It excludes zones with non 1 multiplier
@@ -343,9 +334,17 @@ class CreateBarFromModel < OpenStudio::Measure::ModelMeasure
 
         # restore thermostats for space type saved from old geometry
         model.getThermalZones.each do |thermal_zone|
+          
+          # todo - figure out why this is happening some times
+          if thermal_zone.spaces.size == 0
+            runner.registerInfo("Not altering thermostat because thermal zone #{thermal_zone.name} doesn't have any spaces.")
+            next
+          end
           next if !thermal_zone.spaces.first.spaceType.is_initialized
 
           space_type = thermal_zone.spaces.first.spaceType.get
+          next if htg_setpoints[space_type].nil?
+          next if clg_setpoints[space_type].nil?
           new_thermostat = OpenStudio::Model::ThermostatSetpointDualSetpoint.new(model)
           new_thermostat.setHeatingSetpointTemperatureSchedule(htg_setpoints[space_type])
           new_thermostat.setCoolingSetpointTemperatureSchedule(clg_setpoints[space_type])

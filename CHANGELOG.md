@@ -1,5 +1,9 @@
 # OpenStudio Model Articulation Gems
 
+## Version 0.10.0
+* Support for OpenStudio 3.8 (upgrade to standards gem 0.6.0, extension gem 0.8.0)
+* Support Ruby 3.2.2
+
 ## Version 0.9.0
 * Support for OpenStudio 3.7 (upgrade to standards gem 0.5.0, extension gem 0.6.0)
 * Fixed [#128]( https://github.com/NREL/openstudio-model-articulation-gem/pull/128 ), fix infiltration design day schedule inversion

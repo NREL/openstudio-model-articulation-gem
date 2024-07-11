@@ -43,6 +43,7 @@ class DEERSpaceTypeAndConstructionSetWizard_Test < Minitest::Test
 
     count = -1
 
+    # todo - test failing, are these invalid inputs. They didn't fail in older ext gem based version
     building_type = arguments[count += 1].clone
     assert(building_type.setValue('Asm'))
     argument_map['building_type'] = building_type
