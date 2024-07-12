@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <measure>
-  <schema_version>3.0</schema_version>
+  <schema_version>3.1</schema_version>
   <name>create_typical_building_from_model</name>
   <uid>339a2e3a-273c-4494-bb50-bfe586a0647c</uid>
-  <version_id>90b01858-32c0-4d11-bd93-40964b78dc06</version_id>
-  <version_modified>20230602T160041Z</version_modified>
+  <version_id>9fe575b2-29b5-4766-beba-af3deb0e7b0c</version_id>
+  <version_modified>2024-07-11T21:47:22Z</version_modified>
   <xml_checksum>EE13F09F</xml_checksum>
   <class_name>CreateTypicalBuildingFromModel</class_name>
   <display_name>Create Typical Building from Model</display_name>
@@ -122,6 +122,46 @@
         <choice>
           <value>DEER 2020</value>
           <display_name>DEER 2020</display_name>
+        </choice>
+        <choice>
+          <value>ComStock DEER Pre-1975</value>
+          <display_name>ComStock DEER Pre-1975</display_name>
+        </choice>
+        <choice>
+          <value>ComStock DEER 1985</value>
+          <display_name>ComStock DEER 1985</display_name>
+        </choice>
+        <choice>
+          <value>ComStock DEER 1996</value>
+          <display_name>ComStock DEER 1996</display_name>
+        </choice>
+        <choice>
+          <value>ComStock DEER 2003</value>
+          <display_name>ComStock DEER 2003</display_name>
+        </choice>
+        <choice>
+          <value>ComStock DEER 2007</value>
+          <display_name>ComStock DEER 2007</display_name>
+        </choice>
+        <choice>
+          <value>ComStock DEER 2011</value>
+          <display_name>ComStock DEER 2011</display_name>
+        </choice>
+        <choice>
+          <value>ComStock DEER 2014</value>
+          <display_name>ComStock DEER 2014</display_name>
+        </choice>
+        <choice>
+          <value>ComStock DEER 2015</value>
+          <display_name>ComStock DEER 2015</display_name>
+        </choice>
+        <choice>
+          <value>ComStock DEER 2017</value>
+          <display_name>ComStock DEER 2017</display_name>
+        </choice>
+        <choice>
+          <value>ComStock DEER 2020</value>
+          <display_name>ComStock DEER 2020</display_name>
         </choice>
       </choices>
     </argument>
@@ -506,6 +546,14 @@
           <display_name>PVAV with gas heat with electric reheat</display_name>
         </choice>
         <choice>
+          <value>PVAV with gas coil heat with electric reheat</value>
+          <display_name>PVAV with gas coil heat with electric reheat</display_name>
+        </choice>
+        <choice>
+          <value>PVAV with gas boiler heat with electric reheat</value>
+          <display_name>PVAV with gas boiler heat with electric reheat</display_name>
+        </choice>
+        <choice>
           <value>Residential AC with baseboard electric</value>
           <display_name>Residential AC with baseboard electric</display_name>
         </choice>
@@ -704,6 +752,10 @@
           <value>Hydronic</value>
           <display_name>Hydronic</display_name>
         </choice>
+        <choice>
+          <value>Inferred</value>
+          <display_name>Inferred</display_name>
+        </choice>
       </choices>
     </argument>
     <argument>
@@ -731,6 +783,10 @@
           <value>DistrictAmbient</value>
           <display_name>DistrictAmbient</display_name>
         </choice>
+        <choice>
+          <value>Inferred</value>
+          <display_name>Inferred</display_name>
+        </choice>
       </choices>
     </argument>
     <argument>
@@ -753,6 +809,10 @@
         <choice>
           <value>DistrictAmbient</value>
           <display_name>DistrictAmbient</display_name>
+        </choice>
+        <choice>
+          <value>Inferred</value>
+          <display_name>Inferred</display_name>
         </choice>
       </choices>
     </argument>
@@ -853,6 +913,37 @@
         <choice>
           <value>false</value>
           <display_name>false</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>wall_construction_type</name>
+      <display_name>Wall Construction Type</display_name>
+      <description>Identify Exterior Wall Construction Type to be applied to entire building</description>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>Inferred</default_value>
+      <choices>
+        <choice>
+          <value>Mass</value>
+          <display_name>Mass</display_name>
+        </choice>
+        <choice>
+          <value>Metal Building</value>
+          <display_name>Metal Building</display_name>
+        </choice>
+        <choice>
+          <value>SteelFramed</value>
+          <display_name>SteelFramed</display_name>
+        </choice>
+        <choice>
+          <value>WoodFramed</value>
+          <display_name>WoodFramed</display_name>
+        </choice>
+        <choice>
+          <value>Inferred</value>
+          <display_name>Inferred</display_name>
         </choice>
       </choices>
     </argument>
@@ -1064,6 +1155,8 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>8</default_value>
+      <min_value>0.000000</min_value>
+      <max_value>24.000000</max_value>
     </argument>
     <argument>
       <name>wkdy_op_hrs_duration</name>
@@ -1074,6 +1167,8 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>8</default_value>
+      <min_value>0.000000</min_value>
+      <max_value>24.000000</max_value>
     </argument>
     <argument>
       <name>modify_wknd_op_hrs</name>
@@ -1103,6 +1198,8 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>8</default_value>
+      <min_value>0.000000</min_value>
+      <max_value>24.000000</max_value>
     </argument>
     <argument>
       <name>wknd_op_hrs_duration</name>
@@ -1113,6 +1210,8 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>8</default_value>
+      <min_value>0.000000</min_value>
+      <max_value>24.000000</max_value>
     </argument>
     <argument>
       <name>unmet_hours_tolerance</name>
@@ -1122,6 +1221,7 @@
       <required>true</required>
       <model_dependent>false</model_dependent>
       <default_value>1</default_value>
+      <min_value>0.000000</min_value>
     </argument>
     <argument>
       <name>remove_objects</name>
@@ -1180,152 +1280,6 @@
         </choice>
       </choices>
     </argument>
-    <argument>
-      <name>climate_zone</name>
-      <display_name>Climate Zone.</display_name>
-      <type>Choice</type>
-      <required>true</required>
-      <model_dependent>false</model_dependent>
-      <default_value>Lookup From Model</default_value>
-      <choices>
-        <choice>
-          <value>Lookup From Model</value>
-          <display_name>Lookup From Model</display_name>
-        </choice>
-        <choice>
-          <value>ASHRAE 169-2013-1A</value>
-          <display_name>ASHRAE 169-2013-1A</display_name>
-        </choice>
-        <choice>
-          <value>ASHRAE 169-2013-1B</value>
-          <display_name>ASHRAE 169-2013-1B</display_name>
-        </choice>
-        <choice>
-          <value>ASHRAE 169-2013-2A</value>
-          <display_name>ASHRAE 169-2013-2A</display_name>
-        </choice>
-        <choice>
-          <value>ASHRAE 169-2013-2B</value>
-          <display_name>ASHRAE 169-2013-2B</display_name>
-        </choice>
-        <choice>
-          <value>ASHRAE 169-2013-3A</value>
-          <display_name>ASHRAE 169-2013-3A</display_name>
-        </choice>
-        <choice>
-          <value>ASHRAE 169-2013-3B</value>
-          <display_name>ASHRAE 169-2013-3B</display_name>
-        </choice>
-        <choice>
-          <value>ASHRAE 169-2013-3C</value>
-          <display_name>ASHRAE 169-2013-3C</display_name>
-        </choice>
-        <choice>
-          <value>ASHRAE 169-2013-4A</value>
-          <display_name>ASHRAE 169-2013-4A</display_name>
-        </choice>
-        <choice>
-          <value>ASHRAE 169-2013-4B</value>
-          <display_name>ASHRAE 169-2013-4B</display_name>
-        </choice>
-        <choice>
-          <value>ASHRAE 169-2013-4C</value>
-          <display_name>ASHRAE 169-2013-4C</display_name>
-        </choice>
-        <choice>
-          <value>ASHRAE 169-2013-5A</value>
-          <display_name>ASHRAE 169-2013-5A</display_name>
-        </choice>
-        <choice>
-          <value>ASHRAE 169-2013-5B</value>
-          <display_name>ASHRAE 169-2013-5B</display_name>
-        </choice>
-        <choice>
-          <value>ASHRAE 169-2013-5C</value>
-          <display_name>ASHRAE 169-2013-5C</display_name>
-        </choice>
-        <choice>
-          <value>ASHRAE 169-2013-6A</value>
-          <display_name>ASHRAE 169-2013-6A</display_name>
-        </choice>
-        <choice>
-          <value>ASHRAE 169-2013-6B</value>
-          <display_name>ASHRAE 169-2013-6B</display_name>
-        </choice>
-        <choice>
-          <value>ASHRAE 169-2013-7A</value>
-          <display_name>ASHRAE 169-2013-7A</display_name>
-        </choice>
-        <choice>
-          <value>ASHRAE 169-2013-8A</value>
-          <display_name>ASHRAE 169-2013-8A</display_name>
-        </choice>
-        <choice>
-          <value>CEC T24-CEC1</value>
-          <display_name>CEC T24-CEC1</display_name>
-        </choice>
-        <choice>
-          <value>CEC T24-CEC2</value>
-          <display_name>CEC T24-CEC2</display_name>
-        </choice>
-        <choice>
-          <value>CEC T24-CEC3</value>
-          <display_name>CEC T24-CEC3</display_name>
-        </choice>
-        <choice>
-          <value>CEC T24-CEC4</value>
-          <display_name>CEC T24-CEC4</display_name>
-        </choice>
-        <choice>
-          <value>CEC T24-CEC5</value>
-          <display_name>CEC T24-CEC5</display_name>
-        </choice>
-        <choice>
-          <value>CEC T24-CEC6</value>
-          <display_name>CEC T24-CEC6</display_name>
-        </choice>
-        <choice>
-          <value>CEC T24-CEC7</value>
-          <display_name>CEC T24-CEC7</display_name>
-        </choice>
-        <choice>
-          <value>CEC T24-CEC8</value>
-          <display_name>CEC T24-CEC8</display_name>
-        </choice>
-        <choice>
-          <value>CEC T24-CEC9</value>
-          <display_name>CEC T24-CEC9</display_name>
-        </choice>
-        <choice>
-          <value>CEC T24-CEC10</value>
-          <display_name>CEC T24-CEC10</display_name>
-        </choice>
-        <choice>
-          <value>CEC T24-CEC11</value>
-          <display_name>CEC T24-CEC11</display_name>
-        </choice>
-        <choice>
-          <value>CEC T24-CEC12</value>
-          <display_name>CEC T24-CEC12</display_name>
-        </choice>
-        <choice>
-          <value>CEC T24-CEC13</value>
-          <display_name>CEC T24-CEC13</display_name>
-        </choice>
-        <choice>
-          <value>CEC T24-CEC14</value>
-          <display_name>CEC T24-CEC14</display_name>
-        </choice>
-        <choice>
-          <value>CEC T24-CEC15</value>
-          <display_name>CEC T24-CEC15</display_name>
-        </choice>
-        <choice>
-          <value>CEC T24-CEC16</value>
-          <display_name>CEC T24-CEC16</display_name>
-        </choice>
-      </choices>
-    </argument>
   </arguments>
   <outputs />
   <provenances />
@@ -1361,16 +1315,45 @@
   </attributes>
   <files>
     <file>
-      <filename>measure_test.osw</filename>
-      <filetype>osw</filetype>
-      <usage_type>test</usage_type>
-      <checksum>6DB338FC</checksum>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>BFFB1AA6</checksum>
     </file>
     <file>
-      <filename>SmallOffice.osm</filename>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>9023D1D2</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>6A400402</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>3.8.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>5E2E4CA3</checksum>
+    </file>
+    <file>
+      <filename>GenericGbxml.osm</filename>
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
-      <checksum>519B22EB</checksum>
+      <checksum>E27658D5</checksum>
+    </file>
+    <file>
+      <filename>LargeOffice04.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>5415617A</checksum>
     </file>
     <file>
       <filename>MidriseApartment.osm</filename>
@@ -1379,10 +1362,16 @@
       <checksum>EB7A2671</checksum>
     </file>
     <file>
-      <filename>LargeOffice04.osm</filename>
+      <filename>SmallOffice.osm</filename>
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
-      <checksum>5415617A</checksum>
+      <checksum>519B22EB</checksum>
+    </file>
+    <file>
+      <filename>USA_TX_Houston-Bush.Intercontinental.AP.722430_TMY3.epw</filename>
+      <filetype>epw</filetype>
+      <usage_type>test</usage_type>
+      <checksum>EE565FCC</checksum>
     </file>
     <file>
       <filename>USA_TX_Houston-Bush.Intercontinental.AP.722430_TMY3.epw</filename>
@@ -1397,16 +1386,10 @@
       <checksum>C927EDEB</checksum>
     </file>
     <file>
-      <filename>USA_TX_Houston-Bush.Intercontinental.AP.722430_TMY3.epw</filename>
-      <filetype>epw</filetype>
+      <filename>create_typical_building_from_model_test.rb</filename>
+      <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>EE565FCC</checksum>
-    </file>
-    <file>
-      <filename>GenericGbxml.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>E27658D5</checksum>
+      <checksum>3256EAED</checksum>
     </file>
     <file>
       <filename>ecc.osm</filename>
@@ -1461,6 +1444,18 @@
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
       <checksum>A03CF17A</checksum>
+    </file>
+    <file>
+      <filename>measure_test.osw</filename>
+      <filetype>osw</filetype>
+      <usage_type>test</usage_type>
+      <checksum>6DB338FC</checksum>
+    </file>
+    <file>
+      <filename>measure_test_hvac.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>425209B2</checksum>
     </file>
     <file>
       <filename>mfm.osm</filename>
@@ -1545,53 +1540,6 @@
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
       <checksum>F22DEFBC</checksum>
-    </file>
-    <file>
-      <filename>README.md.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>readmeerb</usage_type>
-      <checksum>6A400402</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
-    </file>
-    <file>
-      <filename>Model.hvac.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>3F3371D0</checksum>
-    </file>
-    <file>
-      <filename>measure_test_hvac.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>425209B2</checksum>
-    </file>
-    <file>
-      <filename>create_typical_building_from_model_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>15EA9413</checksum>
-    </file>
-    <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>3.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>8DE22536</checksum>
-    </file>
-    <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>79468EFA</checksum>
     </file>
   </files>
 </measure>

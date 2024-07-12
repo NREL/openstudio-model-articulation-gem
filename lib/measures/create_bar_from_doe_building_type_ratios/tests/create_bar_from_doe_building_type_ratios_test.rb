@@ -93,6 +93,7 @@ class CreateBarFromDOEBuildingTypeRatios_Test < Minitest::Test
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args)
   end
 
+  # todo - 3.8.0 lost logs in refactor so bad inputs are not being caught as an error
   def test_bad_fraction
     args = {}
     args['total_bldg_floor_area'] = 10000.0
@@ -101,6 +102,7 @@ class CreateBarFromDOEBuildingTypeRatios_Test < Minitest::Test
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, 'Fail')
   end
 
+  # todo - 3.8.0 lost logs in refactor so bad inputs are not being caught as an error
   def test_bad_positive
     args = {}
     args['total_bldg_floor_area'] = 10000.0
@@ -109,6 +111,7 @@ class CreateBarFromDOEBuildingTypeRatios_Test < Minitest::Test
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, 'Fail')
   end
 
+  # todo - 3.8.0 lost logs in refactor so bad inputs are not being caught as an error
   def test_bad_non_neg
     args = {}
     args['total_bldg_floor_area'] = 10000.0
@@ -117,6 +120,7 @@ class CreateBarFromDOEBuildingTypeRatios_Test < Minitest::Test
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, 'Fail')
   end
 
+  # todo - 3.8.0 lost logs in refactor so bad inputs are not being caught as an error
   def test_bad_building_type_fractions
     args = {}
     args['total_bldg_floor_area'] = 10000.0

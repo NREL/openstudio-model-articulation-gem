@@ -8,20 +8,8 @@
 
 require 'openstudio-standards'
 
-# load OpenStudio measure libraries from openstudio-extension gem
-require 'openstudio-extension'
-require 'openstudio/extension/core/os_lib_helper_methods'
-require 'openstudio/extension/core/os_lib_geometry'
-require 'openstudio/extension/core/os_lib_model_generation'
-require 'openstudio/extension/core/os_lib_model_simplification'
-
 # start the measure
 class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
-  # resource file modules
-  include OsLib_HelperMethods
-  include OsLib_Geometry
-  include OsLib_ModelGeneration
-  include OsLib_ModelSimplification
 
   # human readable name
   def name
@@ -43,18 +31,88 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     return 'Envelope.Form'
   end
 
+    # remove existing non resource objects from the model
+  # technically thermostats and building stories are resources but still want to remove them.
+  def remove_non_resource_objects(runner, model, options = nil)
+    if options.nil?
+      options = {}
+      options[:remove_building_stories] = true
+      options[:remove_thermostats] = true
+      options[:remove_air_loops] = true
+      options[:remove_non_swh_plant_loops] = true
+
+      # leave these in by default unless requsted when method called
+      options[:remove_swh_plant_loops] = false
+      options[:remove_exterior_lights] = false
+      options[:remove_site_shading] = false
+    end
+
+    num_model_objects = model.objects.size
+
+    # remove non-resource objects not removed by removing the building
+    if options[:remove_building_stories] then model.getBuildingStorys.each(&:remove) end
+    if options[:remove_thermostats] then model.getThermostats.each(&:remove) end
+    if options[:remove_air_loops] then model.getAirLoopHVACs.each(&:remove) end
+    if options[:remove_exterior_lights] then model.getFacility.exteriorLights.each(&:remove) end
+    if options[:remove_site_shading] then model.getSite.shadingSurfaceGroups.each(&:remove) end
+
+    # see if plant loop is swh or not and take proper action (booter loop doesn't have water use equipment)
+    model.getPlantLoops.each do |plant_loop|
+      is_swh_loop = false
+      plant_loop.supplyComponents.each do |component|
+        if component.to_WaterHeaterMixed.is_initialized
+          is_swh_loop = true
+          next
+        end
+      end
+
+      if is_swh_loop
+        if options[:remove_swh_plant_loops] then plant_loop.remove end
+      else
+        if options[:remove_non_swh_plant_loops] then plant_loop.remove end
+      end
+    end
+
+    # remove water use connections (may be removed when loop is removed)
+    if options[:remove_swh_plant_loops] then model.getWaterConnectionss.each(&:remove) end
+    if options[:remove_swh_plant_loops] then model.getWaterUseEquipments.each(&:remove) end
+
+    # remove building but reset fields on new building object.
+    building_fields = []
+    building = model.getBuilding
+    num_fields = building.numFields
+    num_fields.times.each do |i|
+      building_fields << building.getString(i).get
+    end
+    # removes spaces, space's child objects, thermal zones, zone equipment, non site surfaces, building stories and water use connections.
+    model.getBuilding.remove
+    building = model.getBuilding
+    num_fields.times.each do |i|
+      next if i == 0 # don't try and set handle
+      building_fields << building.setString(i, building_fields[i])
+    end
+
+    # other than optionally site shading and exterior lights not messing with site characteristics
+
+    if num_model_objects - model.objects.size > 0
+      runner.registerInfo("Removed #{num_model_objects - model.objects.size} non resource objects from the model.")
+    end
+
+    return true
+  end
+
   # define the arguments that the user will input
   def arguments(model)
     args = OpenStudio::Measure::OSArgumentVector.new
 
     # Make an argument for the bldg_type_a
-    bldg_type_a = OpenStudio::Measure::OSArgument.makeChoiceArgument('bldg_type_a', get_doe_building_types, true)
+    bldg_type_a = OpenStudio::Measure::OSArgument.makeChoiceArgument('bldg_type_a', OpenstudioStandards::CreateTypical.get_doe_building_types, true)
     bldg_type_a.setDisplayName('Primary Building Type')
     bldg_type_a.setDefaultValue('SmallOffice')
     args << bldg_type_a
 
     # Make an argument for the bldg_type_b
-    bldg_type_b = OpenStudio::Measure::OSArgument.makeChoiceArgument('bldg_type_b', get_doe_building_types, true)
+    bldg_type_b = OpenStudio::Measure::OSArgument.makeChoiceArgument('bldg_type_b', OpenstudioStandards::CreateTypical.get_doe_building_types, true)
     bldg_type_b.setDisplayName('Building Type B')
     bldg_type_b.setDefaultValue('SmallOffice')
     args << bldg_type_b
@@ -63,10 +121,12 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     bldg_type_b_fract_bldg_area = OpenStudio::Measure::OSArgument.makeDoubleArgument('bldg_type_b_fract_bldg_area', true)
     bldg_type_b_fract_bldg_area.setDisplayName('Building Type B Fraction of Building Floor Area')
     bldg_type_b_fract_bldg_area.setDefaultValue(0.0)
+    bldg_type_b_fract_bldg_area.setMinValue(0.0)
+    bldg_type_b_fract_bldg_area.setMaxValue(1.0)
     args << bldg_type_b_fract_bldg_area
 
     # Make an argument for the bldg_type_c
-    bldg_type_c = OpenStudio::Measure::OSArgument.makeChoiceArgument('bldg_type_c', get_doe_building_types, true)
+    bldg_type_c = OpenStudio::Measure::OSArgument.makeChoiceArgument('bldg_type_c', OpenstudioStandards::CreateTypical.get_doe_building_types, true)
     bldg_type_c.setDisplayName('Building Type C')
     bldg_type_c.setDefaultValue('SmallOffice')
     args << bldg_type_c
@@ -75,10 +135,12 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     bldg_type_c_fract_bldg_area = OpenStudio::Measure::OSArgument.makeDoubleArgument('bldg_type_c_fract_bldg_area', true)
     bldg_type_c_fract_bldg_area.setDisplayName('Building Type C Fraction of Building Floor Area')
     bldg_type_c_fract_bldg_area.setDefaultValue(0.0)
+    bldg_type_c_fract_bldg_area.setMinValue(0.0)
+    bldg_type_c_fract_bldg_area.setMaxValue(1.0)
     args << bldg_type_c_fract_bldg_area
 
     # Make an argument for the bldg_type_d
-    bldg_type_d = OpenStudio::Measure::OSArgument.makeChoiceArgument('bldg_type_d', get_doe_building_types, true)
+    bldg_type_d = OpenStudio::Measure::OSArgument.makeChoiceArgument('bldg_type_d', OpenstudioStandards::CreateTypical.get_doe_building_types, true)
     bldg_type_d.setDisplayName('Building Type D')
     bldg_type_d.setDefaultValue('SmallOffice')
     args << bldg_type_d
@@ -87,6 +149,8 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     bldg_type_d_fract_bldg_area = OpenStudio::Measure::OSArgument.makeDoubleArgument('bldg_type_d_fract_bldg_area', true)
     bldg_type_d_fract_bldg_area.setDisplayName('Building Type D Fraction of Building Floor Area')
     bldg_type_d_fract_bldg_area.setDefaultValue(0.0)
+    bldg_type_d_fract_bldg_area.setMinValue(0.0)
+    bldg_type_d_fract_bldg_area.setMaxValue(1.0)
     args << bldg_type_d_fract_bldg_area
 
     # Make argument for total_bldg_floor_area
@@ -94,6 +158,8 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     total_bldg_floor_area.setDisplayName('Total Building Floor Area')
     total_bldg_floor_area.setUnits('ft^2')
     total_bldg_floor_area.setDefaultValue(10000.0)
+    total_bldg_floor_area.setMinValue(0.0)
+    total_bldg_floor_area.setMinValue(0.0)
     args << total_bldg_floor_area
 
     # Make argument for single_floor_area
@@ -102,6 +168,8 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     single_floor_area.setDescription('Non-zero value will fix the single floor area, overriding a user entry for Total Building Floor Area')
     single_floor_area.setUnits('ft^2')
     single_floor_area.setDefaultValue(0.0)
+    single_floor_area.setMinValue(0.0)
+    single_floor_area.setMinValue(0.0)
     args << single_floor_area
 
     # Make argument for floor_height
@@ -110,6 +178,7 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     floor_height.setDescription('Selecting a typical floor height of 0 will trigger a smart building type default.')
     floor_height.setUnits('ft')
     floor_height.setDefaultValue(0.0)
+    floor_height.setMinValue(0.0)
     args << floor_height
 
     # add argument to enable/disable multi custom space height bar
@@ -123,12 +192,14 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     num_stories_above_grade = OpenStudio::Measure::OSArgument.makeDoubleArgument('num_stories_above_grade', true)
     num_stories_above_grade.setDisplayName('Number of Stories Above Grade')
     num_stories_above_grade.setDefaultValue(1.0)
+    num_stories_above_grade.setMinValue(1.0)
     args << num_stories_above_grade
 
     # Make argument for num_stories_below_grade
     num_stories_below_grade = OpenStudio::Measure::OSArgument.makeIntegerArgument('num_stories_below_grade', true)
     num_stories_below_grade.setDisplayName('Number of Stories Below Grade')
     num_stories_below_grade.setDefaultValue(0)
+    num_stories_below_grade.setMinValue(0)
     args << num_stories_below_grade
 
     # Make argument for building_rotation
@@ -140,7 +211,7 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     args << building_rotation
 
     # Make argument for template
-    template = OpenStudio::Measure::OSArgument.makeChoiceArgument('template', get_doe_templates(false), true)
+    template = OpenStudio::Measure::OSArgument.makeChoiceArgument('template', OpenstudioStandards::CreateTypical.get_doe_templates(false), true)
     template.setDisplayName('Target Standard')
     template.setDefaultValue('90.1-2004')
     args << template
@@ -150,6 +221,7 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     ns_to_ew_ratio.setDisplayName('Ratio of North/South Facade Length Relative to East/West Facade Length')
     ns_to_ew_ratio.setDescription('Selecting an aspect ratio of 0 will trigger a smart building type default. Aspect ratios less than one are not recommended for sliced bar geometry, instead rotate building and use a greater than 1 aspect ratio.')
     ns_to_ew_ratio.setDefaultValue(0.0)
+    ns_to_ew_ratio.setMinValue(0.0)
     args << ns_to_ew_ratio
 
     # Make argument for perim_mult
@@ -157,6 +229,7 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     perim_mult.setDisplayName('Perimeter Multiplier')
     perim_mult.setDescription('Selecting a value of 0 will trigger a smart building type default. This represents a multiplier for the building perimeter relative to the perimeter of a rectangular building that meets the area and aspect ratio inputs. Other than the smart default of 0.0 this argument should have a value of 1.0 or higher and is only applicable Multiple Space Types - Individual Stories Sliced division method.')
     perim_mult.setDefaultValue(0.0)
+    perim_mult.setMinValue(0.0)
     args << perim_mult
 
     # Make argument for bar_width
@@ -165,6 +238,7 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     bar_width.setDescription('Non-zero value will fix the building width, overriding user entry for Perimeter Multiplier. NS/EW Aspect Ratio may be limited based on target width.')
     bar_width.setUnits('ft')
     bar_width.setDefaultValue(0.0)
+    bar_width.setMinValue(0.0)
     args << bar_width
 
     # Make argument for bar_sep_dist_mult
@@ -179,6 +253,8 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     wwr.setDisplayName('Window to Wall Ratio')
     wwr.setDescription('Selecting a window to wall ratio of 0 will trigger a smart building type default.')
     wwr.setDefaultValue(0.0)
+    wwr.setMinValue(0.0)
+    wwr.setMaxValue(1.0)
     args << wwr
 
     # Make argument for party_wall_fraction
@@ -186,6 +262,8 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     party_wall_fraction.setDisplayName('Fraction of Exterior Wall Area with Adjacent Structure')
     party_wall_fraction.setDescription('This will impact how many above grade exterior walls are modeled with adiabatic boundary condition.')
     party_wall_fraction.setDefaultValue(0.0)
+    party_wall_fraction.setMinValue(0.0)
+    party_wall_fraction.setMaxValue(1.0)
     args << party_wall_fraction
 
     # party_wall_fraction was used where we wanted to represent some party walls but didn't know where they are, it ends up using methods to make whole surfaces adiabiatc by story and orientaiton to try to come close to requested fraction
@@ -195,6 +273,7 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     party_wall_stories_north.setDisplayName('Number of North facing stories with party wall')
     party_wall_stories_north.setDescription('This will impact how many above grade exterior north walls are modeled with adiabatic boundary condition. If this is less than the number of above grade stoes, upper flor will reamin exterior')
     party_wall_stories_north.setDefaultValue(0)
+    party_wall_stories_north.setMinValue(0)
     args << party_wall_stories_north
 
     # Make argument for party_wall_stories_south
@@ -202,6 +281,7 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     party_wall_stories_south.setDisplayName('Number of South facing stories with party wall')
     party_wall_stories_south.setDescription('This will impact how many above grade exterior south walls are modeled with adiabatic boundary condition. If this is less than the number of above grade stoes, upper flor will reamin exterior')
     party_wall_stories_south.setDefaultValue(0)
+    party_wall_stories_south.setMinValue(0)
     args << party_wall_stories_south
 
     # Make argument for party_wall_stories_east
@@ -209,6 +289,7 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     party_wall_stories_east.setDisplayName('Number of East facing stories with party wall')
     party_wall_stories_east.setDescription('This will impact how many above grade exterior east walls are modeled with adiabatic boundary condition. If this is less than the number of above grade stoes, upper flor will reamin exterior')
     party_wall_stories_east.setDefaultValue(0)
+    party_wall_stories_east.setMinValue(0)
     args << party_wall_stories_east
 
     # Make argument for party_wall_stories_west
@@ -216,6 +297,7 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     party_wall_stories_west.setDisplayName('Number of West facing stories with party wall')
     party_wall_stories_west.setDescription('This will impact how many above grade exterior west walls are modeled with adiabatic boundary condition. If this is less than the number of above grade stoes, upper flor will reamin exterior')
     party_wall_stories_west.setDefaultValue(0)
+    party_wall_stories_west.setMinValue(0)
     args << party_wall_stories_west
 
     # make an argument for bottom_story_ground_exposed_floor
@@ -299,10 +381,37 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
   def run(model, runner, user_arguments)
     super(model, runner, user_arguments)
 
+    # use the built-in error checking
+    if !runner.validateUserArguments(arguments(model), user_arguments)
+      return false
+    end
+
+    # assign the user inputs to variables
+    args = runner.getArgumentValues(arguments(model), user_arguments)
+    args = Hash[args.collect{ |k, v| [k.to_sym, v] }]
+    if !args then return false end
+
+    # todo - need to make use of this before pass to standards
+    use_upstream_args = args['use_upstream_args']
+      
+    # open channel to log messages
+    reset_log
+
+    # Turn debugging output on/off
+    debug = false
+
+    # remove_non_resource_objects (this was not moved to standards, so added method in measure for now)
+    remove_non_resource_objects(runner, model)
+
     # method run from os_lib_model_generation.rb
-    result = bar_from_building_type_ratios(model, runner, user_arguments)
+    result = OpenstudioStandards::Geometry.create_bar_from_building_type_ratios(model, args)
+
+    # gather log
+    log_messages_to_runner(runner, debug)
+    reset_log
 
     if result == false
+      runner.registerError("Measure did not complete successfully")
       return false
     else
       return true

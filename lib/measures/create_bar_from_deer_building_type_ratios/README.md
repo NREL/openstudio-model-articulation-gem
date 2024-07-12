@@ -92,6 +92,26 @@ This is generally meant to run on an empty model, but it does not actively delet
 
 - DEER 2020<br/>
 
+- ComStock DEER Pre-1975<br/>
+
+- ComStock DEER 1985<br/>
+
+- ComStock DEER 1996<br/>
+
+- ComStock DEER 2003<br/>
+
+- ComStock DEER 2007<br/>
+
+- ComStock DEER 2011<br/>
+
+- ComStock DEER 2014<br/>
+
+- ComStock DEER 2015<br/>
+
+- ComStock DEER 2017<br/>
+
+- ComStock DEER 2020<br/>
+
 
 
 
@@ -551,7 +571,7 @@ Set Building Rotation off of North (positive value is clockwise). Rotation appli
 **Required:** true,
 **Model Dependent:** false
 
-**Choice Display Names** ["DEER Pre-1975", "DEER 1985", "DEER 1996", "DEER 2003", "DEER 2007", "DEER 2011", "DEER 2014", "DEER 2015", "DEER 2017", "DEER 2020"]
+**Choice Display Names** ["DEER Pre-1975", "DEER 1985", "DEER 1996", "DEER 2003", "DEER 2007", "DEER 2011", "DEER 2014", "DEER 2015", "DEER 2017", "DEER 2020", "ComStock DEER Pre-1975", "ComStock DEER 1985", "ComStock DEER 1996", "ComStock DEER 2003", "ComStock DEER 2007", "ComStock DEER 2011", "ComStock DEER 2014", "ComStock DEER 2015", "ComStock DEER 2017", "ComStock DEER 2020"]
 
 
 ### Ratio of North/South Facade Length Relative to East/West Facade Length
