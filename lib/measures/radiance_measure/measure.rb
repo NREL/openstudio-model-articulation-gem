@@ -196,7 +196,7 @@ class RadianceMeasure < OpenStudio::Measure::ModelMeasure
       'Site Sky Diffuse Solar Radiation Luminous Efficacy',
       'Site Beam Solar Radiation Luminous Efficacy',
       'Zone People Occupant Count',
-      'Zone Lights Electric Power'
+      'Zone Lights Electricity Rate'
     ]
 
     output_variables.each do |var|
@@ -1649,11 +1649,11 @@ class RadianceMeasure < OpenStudio::Measure::ModelMeasure
         end
 
         # get lights schedule for zone
-        lightsTimeseries = sqlFile.timeSeries('Run Period 1'.upcase, 'Hourly', 'Zone Lights Electric Power', thermalZone.name.get.upcase)
+        lightsTimeseries = sqlFile.timeSeries('Run Period 1'.upcase, 'Hourly', 'Zone Lights Electricity Rate', thermalZone.name.get.upcase)
 
         if lightsTimeseries.empty?
           newname = thermalZone.name.get.sub(/^OS:/, '')
-          print_statement("Cannot find timeseries 'Zone Lights Electric Power' for ThermalZone '#{thermalZone.name}', skipping.", runner)
+          print_statement("Cannot find timeseries 'Zone Lights Electricity Rate' for ThermalZone '#{thermalZone.name}', skipping.", runner)
           next
         end
 
