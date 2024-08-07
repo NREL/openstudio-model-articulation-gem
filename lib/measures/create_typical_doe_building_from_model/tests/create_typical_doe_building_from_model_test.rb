@@ -154,4 +154,17 @@ class CreateTypicalDOEBuildingFromModel_Test < Minitest::Test
     args = {}
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, 'GenericGbxml.osm', nil, nil)
   end
+
+  def test_laboratory_2016
+    args = {}
+    args['template'] = 'ComStock 90.1-2016'
+    apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, 'laboratory_geo.osm', nil, nil)
+  end
+
+  def test_laboratory_2013
+    args = {}
+    args['template'] = 'ComStock 90.1-2013'
+    apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, 'laboratory_geo.osm', nil, nil)
+  end
+
 end
