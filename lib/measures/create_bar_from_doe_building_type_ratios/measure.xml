@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>create_bar_from_doe_building_type_ratios</name>
   <uid>0de3cff9-c805-42c4-964e-18cb43a22c63</uid>
-  <version_id>26190672-6d0c-473a-bb0f-2824642ff02f</version_id>
-  <version_modified>2024-07-09T16:03:28Z</version_modified>
+  <version_id>34130aae-90e8-4726-89a0-975c8521390c</version_id>
+  <version_modified>2024-09-16T23:09:30Z</version_modified>
   <xml_checksum>5F523097</xml_checksum>
   <class_name>CreateBarFromDOEBuildingTypeRatios</class_name>
   <display_name>Create Bar From DOE Building Type Ratios</display_name>
@@ -1077,7 +1077,7 @@
       <filename>create_bar_from_doe_building_type_ratios_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>7286FEA7</checksum>
+      <checksum>E166CA55</checksum>
     </file>
     <file>
       <filename>example_model.osm</filename>
