@@ -11,6 +11,57 @@ require 'openstudio-standards'
 # start the measure
 class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
 
+  # list of building subtypes that are valid for get_space_types_from_building_type
+  # for general public use use extended = false
+  def get_building_subtypes(extended = false)
+    # get building_types
+    if extended
+      doe = get_doe_building_subtypes(true)
+      deer = get_deer_building_subtypes(true)
+    else
+      doe = get_doe_building_subtypes
+      deer = get_deer_building_subtypes
+    end
+
+    # combine building_types
+    array = OpenStudio::StringVector.new
+    temp_array = doe.to_a + deer.to_a
+    temp_array.each do |i|
+      array << i
+    end
+
+    return array
+  end
+
+  # get_doe_building_subtypes
+  # for general public use use extended = false
+  def get_doe_building_subtypes(extended = false)
+    array = OpenStudio::StringVector.new
+    array << ''
+    array << 'NA'
+    array << 'largeoffice_default'
+    array << 'largeoffice_nodatacenter'
+    array << 'largeoffice_datacenter'
+    array << 'largeoffice_datacenteronly'
+    array << 'warehouse_default'
+    array << 'warehouse_bulk100'
+    array << 'warehouse_fine100'
+    array << 'warehouse_bulk80'
+    array << 'warehouse_bulk40'
+    array << 'warehouse_bulk20'
+
+    return array
+  end
+
+  # get_deer_building_subtypes
+  # for general public use use extended = false
+  # Empty for now; now subtypes in deer buildings
+  def get_deer_building_subtypes(extended = false)
+    array = OpenStudio::StringVector.new
+
+    return array
+  end
+
   # human readable name
   def name
     return 'Create Bar From DOE Building Type Ratios'
@@ -111,11 +162,23 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     bldg_type_a.setDefaultValue('SmallOffice')
     args << bldg_type_a
 
+    # Make an argument for the bldg_subtype_a
+    bldg_subtype_a = OpenStudio::Measure::OSArgument.makeChoiceArgument('bldg_subtype_a', get_building_subtypes, true)
+    bldg_subtype_a.setDisplayName('Primary Building Subtype')
+    bldg_subtype_a.setDefaultValue('NA')
+    args << bldg_subtype_a
+
     # Make an argument for the bldg_type_b
     bldg_type_b = OpenStudio::Measure::OSArgument.makeChoiceArgument('bldg_type_b', OpenstudioStandards::CreateTypical.get_doe_building_types, true)
     bldg_type_b.setDisplayName('Building Type B')
     bldg_type_b.setDefaultValue('SmallOffice')
     args << bldg_type_b
+
+    # Make an argument for the bldg_subtype_b
+    bldg_subtype_b = OpenStudio::Measure::OSArgument.makeChoiceArgument('bldg_subtype_b', get_building_subtypes, true)
+    bldg_subtype_b.setDisplayName('Building Type B Subtype')
+    bldg_subtype_b.setDefaultValue('NA')
+    args << bldg_subtype_b
 
     # Make argument for bldg_type_b_fract_bldg_area
     bldg_type_b_fract_bldg_area = OpenStudio::Measure::OSArgument.makeDoubleArgument('bldg_type_b_fract_bldg_area', true)
@@ -131,6 +194,12 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     bldg_type_c.setDefaultValue('SmallOffice')
     args << bldg_type_c
 
+    # Make an argument for the bldg_subtype_c
+    bldg_subtype_c = OpenStudio::Measure::OSArgument.makeChoiceArgument('bldg_subtype_c', get_building_subtypes, true)
+    bldg_subtype_c.setDisplayName('Building Type C Subtype')
+    bldg_subtype_c.setDefaultValue('NA')
+    args << bldg_subtype_c
+
     # Make argument for bldg_type_c_fract_bldg_area
     bldg_type_c_fract_bldg_area = OpenStudio::Measure::OSArgument.makeDoubleArgument('bldg_type_c_fract_bldg_area', true)
     bldg_type_c_fract_bldg_area.setDisplayName('Building Type C Fraction of Building Floor Area')
@@ -145,6 +214,12 @@ class CreateBarFromDOEBuildingTypeRatios < OpenStudio::Measure::ModelMeasure
     bldg_type_d.setDefaultValue('SmallOffice')
     args << bldg_type_d
 
+    # Make an argument for the bldg_subtype_d
+    bldg_subtype_d = OpenStudio::Measure::OSArgument.makeChoiceArgument('bldg_subtype_d', get_building_subtypes, true)
+    bldg_subtype_d.setDisplayName('Building Type D Subtype')
+    bldg_subtype_d.setDefaultValue('NA')
+    args << bldg_subtype_d
+    
     # Make argument for bldg_type_d_fract_bldg_area
     bldg_type_d_fract_bldg_area = OpenStudio::Measure::OSArgument.makeDoubleArgument('bldg_type_d_fract_bldg_area', true)
     bldg_type_d_fract_bldg_area.setDisplayName('Building Type D Fraction of Building Floor Area')

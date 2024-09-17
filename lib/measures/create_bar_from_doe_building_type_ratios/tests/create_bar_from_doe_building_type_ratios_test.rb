@@ -633,6 +633,7 @@ class CreateBarFromDOEBuildingTypeRatios_Test < Minitest::Test
     args['total_bldg_floor_area'] = 100000.0
     args['num_stories_above_grade'] = 3
     args['bldg_type_a'] = 'LargeOffice'
+    args['bldg_subtype_a'] = 'largeoffice_nodatacenter'
     args['ns_to_ew_ratio'] = 0.0
     args['perim_mult'] = 0.0
 
