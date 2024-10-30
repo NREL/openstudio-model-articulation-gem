@@ -350,7 +350,7 @@ Number of units argument not currently used by this measure
 **Required:** true,
 **Model Dependent:** false
 
-**Choice Display Names** ["SecondarySchool", "PrimarySchool", "SmallOffice", "MediumOffice", "LargeOffice", "SmallHotel", "LargeHotel", "Warehouse", "RetailStandalone", "RetailStripmall", "QuickServiceRestaurant", "FullServiceRestaurant", "MidriseApartment", "HighriseApartment", "Hospital", "Outpatient", "SuperMarket", "Laboratory", "LargeDataCenterLowITE", "LargeDataCenterHighITE", "SmallDataCenterLowITE", "SmallDataCenterHighITE", "Courthouse", "College", "Asm", "DMo", "ECC", "EPr", "ERC", "ESe", "EUn", "GHs", "Gro", "Hsp", "Htl", "MBT", "MFm", "MLI", "Mtl", "Nrs", "OfL", "OfS", "RFF", "RSD", "Rt3", "RtL", "RtS", "SCn", "SFm", "SUn", "WRf"]
+**Choice Display Names** ["SecondarySchool", "PrimarySchool", "SmallOffice", "MediumOffice", "LargeOffice", "SmallHotel", "LargeHotel", "Warehouse", "RetailStandalone", "RetailStripmall", "QuickServiceRestaurant", "FullServiceRestaurant", "MidriseApartment", "HighriseApartment", "Hospital", "Outpatient", "SuperMarket", "Laboratory", "LargeDataCenterLowITE", "LargeDataCenterHighITE", "SmallDataCenterLowITE", "SmallDataCenterHighITE", "Courthouse", "College"]
 
 
 ### Building Type C Fraction of Building Floor Area
@@ -471,7 +471,7 @@ Set Building Rotation off of North (positive value is clockwise). Rotation appli
 **Required:** true,
 **Model Dependent:** false
 
-**Choice Display Names** ["DOE Ref Pre-1980", "DOE Ref 1980-2004", "90.1-2004", "90.1-2007", "90.1-2010", "90.1-2013", "90.1-2016", "90.1-2019", "ComStock DOE Ref Pre-1980", "ComStock DOE Ref 1980-2004", "ComStock 90.1-2004", "ComStock 90.1-2007", "ComStock 90.1-2010", "ComStock 90.1-2013", "ComStock 90.1-2016", "ComStock 90.1-2019", "NREL ZNE Ready 2017", "DEER Pre-1975", "DEER 1985", "DEER 1996", "DEER 2003", "DEER 2007", "DEER 2011", "DEER 2014", "DEER 2015", "DEER 2017", "DEER 2020", "DEER 2025", "DEER 2030", "DEER 2035", "DEER 2040", "DEER 2045", "DEER 2050", "DEER 2055", "DEER 2060", "DEER 2065", "DEER 2070", "DEER 2075"]
+**Choice Display Names** ["DOE Ref Pre-1980", "DOE Ref 1980-2004", "90.1-2004", "90.1-2007", "90.1-2010", "90.1-2013", "90.1-2016", "90.1-2019", "ComStock DOE Ref Pre-1980", "ComStock DOE Ref 1980-2004", "ComStock 90.1-2004", "ComStock 90.1-2007", "ComStock 90.1-2010", "ComStock 90.1-2013", "ComStock 90.1-2016", "ComStock 90.1-2019", "DEER Pre-1975", "DEER 1985", "DEER 1996", "DEER 2003", "DEER 2007", "DEER 2011", "DEER 2014", "DEER 2015", "DEER 2017", "DEER 2020", "ComStock DEER Pre-1975", "ComStock DEER 1985", "ComStock DEER 1996", "ComStock DEER 2003", "ComStock DEER 2007", "ComStock DEER 2011", "ComStock DEER 2014", "ComStock DEER 2015", "ComStock DEER 2017", "ComStock DEER 2020"]
 
 
 ### Ratio of North/South Facade Length Relative to East/West Facade Length
@@ -642,17 +642,6 @@ When true this will look for arguments or registerValues in upstream measures th
 **Units:** ,
 **Required:** true,
 **Model Dependent:** false
-
-
-### Climate Zone
-Climate Zone argument is not used by this measure
-**Name:** climate_zone,
-**Type:** Choice,
-**Units:** ,
-**Required:** true,
-**Model Dependent:** false
-
-**Choice Display Names** ["Lookup From Stat File", "ASHRAE 169-2013-1A", "ASHRAE 169-2013-1B", "ASHRAE 169-2013-2A", "ASHRAE 169-2013-2B", "ASHRAE 169-2013-3A", "ASHRAE 169-2013-3B", "ASHRAE 169-2013-3C", "ASHRAE 169-2013-4A", "ASHRAE 169-2013-4B", "ASHRAE 169-2013-4C", "ASHRAE 169-2013-5A", "ASHRAE 169-2013-5B", "ASHRAE 169-2013-5C", "ASHRAE 169-2013-6A", "ASHRAE 169-2013-6B", "ASHRAE 169-2013-7A", "ASHRAE 169-2013-8A", "CEC T24-CEC1", "CEC T24-CEC2", "CEC T24-CEC3", "CEC T24-CEC4", "CEC T24-CEC5", "CEC T24-CEC6", "CEC T24-CEC7", "CEC T24-CEC8", "CEC T24-CEC9", "CEC T24-CEC10", "CEC T24-CEC11", "CEC T24-CEC12", "CEC T24-CEC13", "CEC T24-CEC14", "CEC T24-CEC15", "CEC T24-CEC16"]
 
 
 

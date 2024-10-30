@@ -20,7 +20,7 @@ class RadiantSlabWithDoasTest < Minitest::Test
 
   def run_dir(test_name)
     # always generate test output in specially named 'output' directory so result files are not made part of the measure
-    return "#{File.dirname(__FILE__)}/output/#{test_name}"
+    return "#{File.expand_path(File.dirname(__FILE__))}/output/#{test_name}"
   end
 
   def model_output_path(test_name)
@@ -46,10 +46,6 @@ class RadiantSlabWithDoasTest < Minitest::Test
     end
     assert(File.exist?(run_dir(test_name)))
 
-    # change into run directory for tests
-    start_dir = Dir.pwd
-    Dir.chdir run_dir(test_name)
-
     # remove prior runs if they exist
     if File.exist?(model_output_path(test_name))
       FileUtils.rm(model_output_path(test_name))
@@ -63,6 +59,7 @@ class RadiantSlabWithDoasTest < Minitest::Test
     FileUtils.cp(osm_path, new_osm_path)
     new_epw_path = "#{run_dir(test_name)}/#{File.basename(epw_path)}"
     FileUtils.cp(epw_path, new_epw_path)
+
     # create an instance of a runner
     runner = OpenStudio::Measure::OSRunner.new(OpenStudio::WorkflowJSON.new)
 
@@ -74,10 +71,17 @@ class RadiantSlabWithDoasTest < Minitest::Test
     OpenStudio::Model::WeatherFile.setWeatherFile(model, epw_file)
     assert(model.weatherFile.is_initialized)
 
+    # change into run directory for measure including sizing run
+    start_dir = Dir.pwd
+    Dir.chdir run_dir(test_name)
+
     # run the measure
     puts "\nAPPLYING MEASURE..."
     measure.run(model, runner, argument_map)
     result = runner.result
+
+    # change back directory
+    Dir.chdir(start_dir)
 
     # show the output
     show_output(result)
@@ -105,9 +109,9 @@ class RadiantSlabWithDoasTest < Minitest::Test
       model.setSqlFile(sql)
 
       # test for unmet hours
-      unmet_heating_hrs = std.model_annual_occupied_unmet_heating_hours(model)
-      unmet_cooling_hrs = std.model_annual_occupied_unmet_cooling_hours(model)
-      unmet_hrs = std.model_annual_occupied_unmet_hours(model)
+      unmet_heating_hrs = OpenstudioStandards::SqlFile.model_get_annual_occupied_unmet_heating_hours(model)
+      unmet_cooling_hrs = OpenstudioStandards::SqlFile.model_get_annual_occupied_unmet_cooling_hours(model)
+      unmet_hrs = OpenstudioStandards::SqlFile.model_get_annual_occupied_unmet_hours(model)
       max_unmet_hrs = 550
       if unmet_hrs
         if unmet_hrs > 550
@@ -119,9 +123,6 @@ class RadiantSlabWithDoasTest < Minitest::Test
         errs << "For #{test_name} could not determine unmet hours; simulation may have failed."
       end
     end
-
-    # change back directory
-    Dir.chdir(start_dir)
 
     assert(errs.empty?, errs.join("\n"))
 
@@ -158,8 +159,8 @@ class RadiantSlabWithDoasTest < Minitest::Test
     # this tests adding a fancoils with doas system to the model
     test_name = 'test_single_zone_office_5A_floor'
     puts "\n######\nTEST: #{test_name}\n######\n"
-    osm_path = "#{File.dirname(__FILE__)}/single_zone_office_5A.osm"
-    epw_path = "#{File.dirname(__FILE__)}/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.epw"
+    osm_path = "#{File.expand_path(File.dirname(__FILE__))}/single_zone_office_5A.osm"
+    epw_path = "#{File.expand_path(File.dirname(__FILE__))}/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.epw"
 
     # create an instance of the measure
     measure = RadiantSlabWithDoas.new
@@ -182,8 +183,8 @@ class RadiantSlabWithDoasTest < Minitest::Test
     # this tests adding a fancoils with doas system to the model
     test_name = 'test_single_zone_office_5A_ceiling'
     puts "\n######\nTEST: #{test_name}\n######\n"
-    osm_path = "#{File.dirname(__FILE__)}/single_zone_office_5A.osm"
-    epw_path = "#{File.dirname(__FILE__)}/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.epw"
+    osm_path = "#{File.expand_path(File.dirname(__FILE__))}/single_zone_office_5A.osm"
+    epw_path = "#{File.expand_path(File.dirname(__FILE__))}/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.epw"
 
     # create an instance of the measure
     measure = RadiantSlabWithDoas.new
@@ -211,8 +212,8 @@ class RadiantSlabWithDoasTest < Minitest::Test
     # this tests adding a fancoils with doas system to the model
     test_name = 'test_multi_zone_office_3C_floor'
     puts "\n######\nTEST: #{test_name}\n######\n"
-    osm_path = "#{File.dirname(__FILE__)}/multi_zone_office_3C.osm"
-    epw_path = "#{File.dirname(__FILE__)}/USA_CA_San.Francisco.Intl.AP.724940_TMY3.epw"
+    osm_path = "#{File.expand_path(File.dirname(__FILE__))}/multi_zone_office_3C.osm"
+    epw_path = "#{File.expand_path(File.dirname(__FILE__))}/USA_CA_San.Francisco.Intl.AP.724940_TMY3.epw"
 
     # create an instance of the measure
     measure = RadiantSlabWithDoas.new
@@ -235,8 +236,8 @@ class RadiantSlabWithDoasTest < Minitest::Test
     # this tests adding a fancoils with doas system to the model
     test_name = 'test_multi_zone_office_3C_ceiling'
     puts "\n######\nTEST: #{test_name}\n######\n"
-    osm_path = "#{File.dirname(__FILE__)}/multi_zone_office_3C.osm"
-    epw_path = "#{File.dirname(__FILE__)}/USA_CA_San.Francisco.Intl.AP.724940_TMY3.epw"
+    osm_path = "#{File.expand_path(File.dirname(__FILE__))}/multi_zone_office_3C.osm"
+    epw_path = "#{File.expand_path(File.dirname(__FILE__))}/USA_CA_San.Francisco.Intl.AP.724940_TMY3.epw"
 
     # create an instance of the measure
     measure = RadiantSlabWithDoas.new

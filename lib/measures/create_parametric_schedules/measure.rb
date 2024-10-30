@@ -8,16 +8,11 @@
 
 require 'json'
 
-# load OpenStudio measure libraries from openstudio-extension gem
-require 'openstudio-extension'
-require 'openstudio/extension/core/os_lib_helper_methods'
-require 'openstudio/extension/core/os_lib_schedules'
+# load openstudio-standards gem
+require 'openstudio-standards'
 
 # start the measure
 class CreateParametricSchedules < OpenStudio::Measure::ModelMeasure
-  # resource file modules
-  include OsLib_HelperMethods
-  include OsLib_Schedules
 
   # human readable name
   def name
@@ -496,7 +491,8 @@ class CreateParametricSchedules < OpenStudio::Measure::ModelMeasure
     super(model, runner, user_arguments)
 
     # assign the user inputs to variables
-    args = OsLib_HelperMethods.createRunVariables(runner, model, user_arguments, arguments(model))
+    args = runner.getArgumentValues(arguments(model), user_arguments)
+    args = Hash[args.collect{ |k, v| [k.to_s, v] }]
     if !args then return false end
 
     # create array from argument, clean up and check if measure should alter model
@@ -510,7 +506,8 @@ class CreateParametricSchedules < OpenStudio::Measure::ModelMeasure
     end
 
     # look at upstream measure for 'hoo_per_week' argument
-    hoo_per_week_from_osw = OsLib_HelperMethods.check_upstream_measure_for_arg(runner, 'hoo_per_week')
+    hoo_per_week_from_osw = runner.getPastStepValuesForName('hoo_per_week')
+    hoo_per_week_from_osw = hoo_per_week_from_osw.collect{ |k, v| Hash[:measure_name => k, :value => v] }.first if !hoo_per_week_from_osw.empty?
     if !hoo_per_week_from_osw.empty?
       runner.registerInfo("Replacing argument named 'hoo_per_week' from current measure with a value of #{hoo_per_week_from_osw[:value]} from #{hoo_per_week_from_osw[:measure_name]}.")
       args['hoo_per_week'] = hoo_per_week_from_osw[:value].to_f
@@ -716,7 +713,7 @@ class CreateParametricSchedules < OpenStudio::Measure::ModelMeasure
                 'summer_design_day' => summer_design_day,
                 'default_day' => default_day,
                 'rules' => rules }
-    hoo_sch = OsLib_Schedules.createComplexSchedule(model, options)
+    hoo_sch = OpenstudioStandards::Schedules.create_complex_schedule(model, options)
     default_schedule_set.setHoursofOperationSchedule(hoo_sch)
 
     # create activity schedule
@@ -731,7 +728,7 @@ class CreateParametricSchedules < OpenStudio::Measure::ModelMeasure
                 'summer_design_day' => summer_design_day,
                 'default_day' => default_day,
                 'rules' => rules }
-    activity_sch = OsLib_Schedules.createComplexSchedule(model, options)
+    activity_sch = OpenstudioStandards::Schedules.create_complex_schedule(model, options)
     default_schedule_set.setPeopleActivityLevelSchedule(activity_sch)
 
     # generate and apply lighting schedule using hours of operation schedule and parametric inputs
@@ -750,7 +747,7 @@ class CreateParametricSchedules < OpenStudio::Measure::ModelMeasure
                 'default_day' => default_day,
                 'rules' => rules }
 
-    lighting_sch = OsLib_Schedules.createComplexSchedule(model, options)
+    lighting_sch = OpenstudioStandards::Schedules.create_complex_schedule(model, options)
     lighting_sch.setComment(args['lighting_profiles'])
     default_schedule_set.setLightingSchedule(lighting_sch)
 
@@ -769,7 +766,7 @@ class CreateParametricSchedules < OpenStudio::Measure::ModelMeasure
                 'summer_design_day' => summer_design_day,
                 'default_day' => default_day,
                 'rules' => rules }
-    electric_equipment_sch = OsLib_Schedules.createComplexSchedule(model, options)
+    electric_equipment_sch = OpenstudioStandards::Schedules.create_complex_schedule(model, options)
     electric_equipment_sch.setComment(args['electric_equipment_profiles'])
     default_schedule_set.setElectricEquipmentSchedule(electric_equipment_sch)
 
@@ -788,7 +785,7 @@ class CreateParametricSchedules < OpenStudio::Measure::ModelMeasure
                 'summer_design_day' => summer_design_day,
                 'default_day' => default_day,
                 'rules' => rules }
-    gas_equipment_sch = OsLib_Schedules.createComplexSchedule(model, options)
+    gas_equipment_sch = OpenstudioStandards::Schedules.create_complex_schedule(model, options)
     gas_equipment_sch.setComment(args['gas_equipment_profiles'])
     default_schedule_set.setGasEquipmentSchedule(gas_equipment_sch)
 
@@ -807,7 +804,7 @@ class CreateParametricSchedules < OpenStudio::Measure::ModelMeasure
                 'summer_design_day' => summer_design_day,
                 'default_day' => default_day,
                 'rules' => rules }
-    occupancy_sch = OsLib_Schedules.createComplexSchedule(model, options)
+    occupancy_sch = OpenstudioStandards::Schedules.create_complex_schedule(model, options)
     occupancy_sch.setComment(args['occupancy_profiles'])
     default_schedule_set.setNumberofPeopleSchedule(occupancy_sch)
 
@@ -826,7 +823,7 @@ class CreateParametricSchedules < OpenStudio::Measure::ModelMeasure
                 'summer_design_day' => summer_design_day,
                 'default_day' => default_day,
                 'rules' => rules }
-    infiltration_sch = OsLib_Schedules.createComplexSchedule(model, options)
+    infiltration_sch = OpenstudioStandards::Schedules.create_complex_schedule(model, options)
     infiltration_sch.setComment(args['infiltration_profiles'])
     default_schedule_set.setInfiltrationSchedule(infiltration_sch)
 
@@ -845,7 +842,7 @@ class CreateParametricSchedules < OpenStudio::Measure::ModelMeasure
                 'summer_design_day' => summer_design_day,
                 'default_day' => default_day,
                 'rules' => rules }
-    hvac_availability_sch = OsLib_Schedules.createComplexSchedule(model, options)
+    hvac_availability_sch = OpenstudioStandards::Schedules.create_complex_schedule(model, options)
     hvac_availability_sch.setComment(args['hvac_availability_profiles'])
 
     # apply HVAC schedules
@@ -880,7 +877,7 @@ class CreateParametricSchedules < OpenStudio::Measure::ModelMeasure
                 'summer_design_day' => summer_design_day,
                 'default_day' => default_day,
                 'rules' => rules }
-    heating_setpoint_sch = OsLib_Schedules.createComplexSchedule(model, options)
+    heating_setpoint_sch = OpenstudioStandards::Schedules.create_complex_schedule(model, options)
 
     # generate and apply cooling_setpoint schedule using hours of operation schedule and parametric inputs
     ruleset_name = 'Parametric Cooling Setpoint Schedule'
@@ -908,7 +905,7 @@ class CreateParametricSchedules < OpenStudio::Measure::ModelMeasure
                 'summer_design_day' => summer_design_day,
                 'default_day' => default_day,
                 'rules' => rules }
-    cooling_setpoint_sch = OsLib_Schedules.createComplexSchedule(model, options)
+    cooling_setpoint_sch = OpenstudioStandards::Schedules.create_complex_schedule(model, options)
 
     # apply heating and cooling setpoint schedules
     thermostats_to_alter.each do |thermostat|
@@ -931,7 +928,7 @@ class CreateParametricSchedules < OpenStudio::Measure::ModelMeasure
                 'summer_design_day' => summer_design_day,
                 'default_day' => default_day,
                 'rules' => rules }
-    swh_sch = OsLib_Schedules.createComplexSchedule(model, options)
+    swh_sch = OpenstudioStandards::Schedules.create_complex_schedule(model, options)
     swh_sch.setComment(args['swh_profiles'])
     water_use_equipment_to_alter.each do |water_use_equipment|
       water_use_equipment.setFlowRateFractionSchedule(swh_sch)

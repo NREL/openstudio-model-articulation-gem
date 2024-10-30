@@ -14,20 +14,8 @@
 
 require 'openstudio-standards'
 
-# load OpenStudio measure libraries from openstudio-extension gem
-require 'openstudio-extension'
-require 'openstudio/extension/core/os_lib_helper_methods'
-require 'openstudio/extension/core/os_lib_geometry'
-require 'openstudio/extension/core/os_lib_model_generation'
-require 'openstudio/extension/core/os_lib_model_simplification'
-
 # start the measure
 class CreateBarFromSpaceTypeRatios < OpenStudio::Measure::ModelMeasure
-  # resource file modules
-  include OsLib_HelperMethods
-  include OsLib_Geometry
-  include OsLib_ModelGeneration
-  include OsLib_ModelSimplification
 
   # define the name that a user will see, this method may be deprecated as
   # the display name in PAT comes from the name field in measure.xml
@@ -50,11 +38,81 @@ class CreateBarFromSpaceTypeRatios < OpenStudio::Measure::ModelMeasure
     return 'Envelope.Form'
   end
 
+    # remove existing non resource objects from the model
+  # technically thermostats and building stories are resources but still want to remove them.
+  def remove_non_resource_objects(runner, model, options = nil)
+    if options.nil?
+      options = {}
+      options[:remove_building_stories] = true
+      options[:remove_thermostats] = true
+      options[:remove_air_loops] = true
+      options[:remove_non_swh_plant_loops] = true
+
+      # leave these in by default unless requsted when method called
+      options[:remove_swh_plant_loops] = false
+      options[:remove_exterior_lights] = false
+      options[:remove_site_shading] = false
+    end
+
+    num_model_objects = model.objects.size
+
+    # remove non-resource objects not removed by removing the building
+    if options[:remove_building_stories] then model.getBuildingStorys.each(&:remove) end
+    if options[:remove_thermostats] then model.getThermostats.each(&:remove) end
+    if options[:remove_air_loops] then model.getAirLoopHVACs.each(&:remove) end
+    if options[:remove_exterior_lights] then model.getFacility.exteriorLights.each(&:remove) end
+    if options[:remove_site_shading] then model.getSite.shadingSurfaceGroups.each(&:remove) end
+
+    # see if plant loop is swh or not and take proper action (booter loop doesn't have water use equipment)
+    model.getPlantLoops.each do |plant_loop|
+      is_swh_loop = false
+      plant_loop.supplyComponents.each do |component|
+        if component.to_WaterHeaterMixed.is_initialized
+          is_swh_loop = true
+          next
+        end
+      end
+
+      if is_swh_loop
+        if options[:remove_swh_plant_loops] then plant_loop.remove end
+      else
+        if options[:remove_non_swh_plant_loops] then plant_loop.remove end
+      end
+    end
+
+    # remove water use connections (may be removed when loop is removed)
+    if options[:remove_swh_plant_loops] then model.getWaterConnectionss.each(&:remove) end
+    if options[:remove_swh_plant_loops] then model.getWaterUseEquipments.each(&:remove) end
+
+    # remove building but reset fields on new building object.
+    building_fields = []
+    building = model.getBuilding
+    num_fields = building.numFields
+    num_fields.times.each do |i|
+      building_fields << building.getString(i).get
+    end
+    # removes spaces, space's child objects, thermal zones, zone equipment, non site surfaces, building stories and water use connections.
+    model.getBuilding.remove
+    building = model.getBuilding
+    num_fields.times.each do |i|
+      next if i == 0 # don't try and set handle
+      building_fields << building.setString(i, building_fields[i])
+    end
+
+    # other than optionally site shading and exterior lights not messing with site characteristics
+
+    if num_model_objects - model.objects.size > 0
+      runner.registerInfo("Removed #{num_model_objects - model.objects.size} non resource objects from the model.")
+    end
+
+    return true
+  end
+
   def arguments(model)
     args = OpenStudio::Measure::OSArgumentVector.new
 
     # Make argument for template
-    template = OpenStudio::Measure::OSArgument.makeChoiceArgument('template', get_templates(true), true) # setting up measure to list all templates, but space types in string should all come from one
+    template = OpenStudio::Measure::OSArgument.makeChoiceArgument('template', OpenstudioStandards::CreateTypical.get_templates(true), true) # setting up measure to list all templates, but space types in string should all come from one
     template.setDisplayName('Target Standard')
     template.setDefaultValue('90.1-2004')
     args << template
@@ -121,6 +179,7 @@ class CreateBarFromSpaceTypeRatios < OpenStudio::Measure::ModelMeasure
     ns_to_ew_ratio.setDisplayName('Ratio of North/South Facade Length Relative to East/West Facade Length')
     ns_to_ew_ratio.setDescription('Selecting an aspect ratio of 0 will trigger a smart building type default. Aspect ratios less than one are not recommended for sliced bar geometry, instead rotate building and use a greater than 1 aspect ratio.')
     ns_to_ew_ratio.setDefaultValue(0.0)
+    ns_to_ew_ratio.setMinValue(0.0)
     args << ns_to_ew_ratio
 
     # Make argument for perim_mult
@@ -270,8 +329,29 @@ class CreateBarFromSpaceTypeRatios < OpenStudio::Measure::ModelMeasure
   def run(model, runner, user_arguments)
     super(model, runner, user_arguments)
 
+    # assign the user inputs to variables
+    args = runner.getArgumentValues(arguments(model), user_arguments)
+    args = Hash[args.collect{ |k, v| [k.to_sym, v] }]
+    if !args then return false end
+
+    # todo - need to make use of this before pass to standards
+    use_upstream_args = args['use_upstream_args']
+      
+    # open channel to log messages
+    reset_log
+
+    # Turn debugging output on/off
+    debug = false
+
+    # remove_non_resource_objects (this was not moved to standards, so added method in measure for now)
+    remove_non_resource_objects(runner, model)
+
     # method run from os_lib_model_generation.rb
-    result = bar_from_space_type_ratios(model, runner, user_arguments)
+    result = OpenstudioStandards::Geometry.create_bar_from_space_type_ratios(model, args)
+
+    # gather log
+    log_messages_to_runner(runner, debug)
+    reset_log
 
     if result == false
       return false
