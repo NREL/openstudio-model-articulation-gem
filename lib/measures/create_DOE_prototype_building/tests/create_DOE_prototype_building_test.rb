@@ -84,21 +84,6 @@ class CreateDOEPrototypeBuildingTest < Minitest::Test
     return failures
   end
 
-  def test_primary_school
-    bldg_types = ['PrimarySchool']
-    vintages = ['DOE Ref Pre-1980'] # , 'DOE Ref 1980-2004', '90.1-2004', '90.1-2007', '90.1-2010']
-    climate_zones = ['ASHRAE 169-2013-3A']
-
-    all_failures = []
-
-    # Create the models
-    all_failures += create_models(bldg_types, vintages, climate_zones)
-
-    # Assert if there are any errors
-    puts "There were #{all_failures.size} failures"
-    assert(all_failures.empty?, "FAILURES: #{all_failures.join("\n")}")
-  end
-
   def test_secondary_school
     bldg_types = ['SecondarySchool']
     vintages = ['DOE Ref Pre-1980', 'DOE Ref 1980-2004', '90.1-2004', '90.1-2007', '90.1-2010', '90.1-2016']

@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>create_typical_building_from_model</name>
   <uid>339a2e3a-273c-4494-bb50-bfe586a0647c</uid>
-  <version_id>9fe575b2-29b5-4766-beba-af3deb0e7b0c</version_id>
-  <version_modified>2024-07-11T21:47:22Z</version_modified>
+  <version_id>844fc42a-1ea1-430b-86ee-c435cb6551a6</version_id>
+  <version_modified>2024-11-05T01:00:13Z</version_modified>
   <xml_checksum>EE13F09F</xml_checksum>
   <class_name>CreateTypicalBuildingFromModel</class_name>
   <display_name>Create Typical Building from Model</display_name>
@@ -1389,7 +1389,7 @@
       <filename>create_typical_building_from_model_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>3256EAED</checksum>
+      <checksum>43F916F8</checksum>
     </file>
     <file>
       <filename>ecc.osm</filename>
