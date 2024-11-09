@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>create_doe_prototype_building</name>
   <uid>be90fd0b-a651-467a-bc8d-29d310b0f937</uid>
-  <version_id>d6078b4e-403e-4722-a7f2-1fe9c569cc1d</version_id>
-  <version_modified>2024-07-09T17:43:19Z</version_modified>
+  <version_id>a1365cf3-315b-47a0-871d-320f682d9e92</version_id>
+  <version_modified>2024-11-08T23:00:18Z</version_modified>
   <xml_checksum>057E8D9D</xml_checksum>
   <class_name>CreateDOEPrototypeBuilding</class_name>
   <display_name>Create DOE Prototype Building</display_name>
@@ -299,7 +299,7 @@
       <filename>create_DOE_prototype_building_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>BA4C28B9</checksum>
+      <checksum>40721854</checksum>
     </file>
     <file>
       <filename>legacy_idf_results.json</filename>

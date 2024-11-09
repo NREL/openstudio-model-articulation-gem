@@ -1086,4 +1086,16 @@ class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
 
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
   end
+
+  def test_laboratory
+    args = {}
+    args['template'] = 'ComStock 90.1-2016'
+    args['total_bldg_floor_area'] = 75000.0
+    args['num_stories_above_grade'] = 2
+    args['bldg_type_a'] = 'Laboratory'
+    args['ns_to_ew_ratio'] = 0.0
+    args['perim_mult'] = 0.0
+
+    apply_measure_to_model(__method__.to_s.gsub('test_', ''), args)
+  end
 end

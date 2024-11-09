@@ -628,6 +628,17 @@ class CreateBarFromDOEBuildingTypeRatios_Test < Minitest::Test
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args)
   end
 
+  def test_smart_perm_mult_lg_off
+    args = {}
+    args['total_bldg_floor_area'] = 100000.0
+    args['num_stories_above_grade'] = 3
+    args['bldg_type_a'] = 'LargeOffice'
+    args['ns_to_ew_ratio'] = 0.0
+    args['perim_mult'] = 0.0
+
+    apply_measure_to_model(__method__.to_s.gsub('test_', ''), args)
+  end
+
   def test_multi_width_a
     args = {}
     args['total_bldg_floor_area'] = 96000.0
