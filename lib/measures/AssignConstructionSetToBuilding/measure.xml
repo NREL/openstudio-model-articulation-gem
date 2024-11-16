@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <measure>
-  <schema_version>3.0</schema_version>
+  <schema_version>3.1</schema_version>
   <name>assign_construction_set_to_building</name>
   <uid>6e68ddea-2cff-47a3-9daf-f2189e4cf132</uid>
-  <version_id>fd2962a8-3b12-4c3e-94ae-6c0451dfb242</version_id>
-  <version_modified>20230602T160037Z</version_modified>
+  <version_id>454bef55-1773-438b-bdad-c12d6f50070f</version_id>
+  <version_modified>2024-11-16T23:56:31Z</version_modified>
   <xml_checksum>1E963D9C</xml_checksum>
   <class_name>AssignConstructionSetToBuilding</class_name>
   <display_name>AssignConstructionSetToBuilding</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{1c2f58eb-6892-40c7-9b9e-5da97f082301}</default_value>
+      <default_value>{125b021d-d9ad-4dd9-a041-cddef79641bc}</default_value>
       <choices>
         <choice>
-          <value>{1c2f58eb-6892-40c7-9b9e-5da97f082301}</value>
+          <value>{125b021d-d9ad-4dd9-a041-cddef79641bc}</value>
           <display_name>&lt;clear field&gt;</display_name>
         </choice>
       </choices>
@@ -45,22 +45,22 @@
   </attributes>
   <files>
     <file>
-      <filename>LargeHotel.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>094C90D7</checksum>
-    </file>
-    <file>
-      <filename>README.md.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>readmeerb</usage_type>
-      <checksum>703C9964</checksum>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>8696A072</checksum>
     </file>
     <file>
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>26A13C70</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
     </file>
     <file>
       <version>
@@ -74,16 +74,16 @@
       <checksum>5C20DB58</checksum>
     </file>
     <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
-    </file>
-    <file>
       <filename>AssignConstructionSetToBuilding_Test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
       <checksum>F9CFA486</checksum>
+    </file>
+    <file>
+      <filename>LargeHotel.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>094C90D7</checksum>
     </file>
   </files>
 </measure>

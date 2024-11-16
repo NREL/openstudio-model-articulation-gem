@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <measure>
-  <schema_version>3.0</schema_version>
+  <schema_version>3.1</schema_version>
   <name>cleanup_space_origins</name>
   <uid>d81f8791-081d-4346-9f27-1b721d27ea86</uid>
-  <version_id>0065534e-6a19-46ad-ba26-d45451d2e52a</version_id>
-  <version_modified>20230602T160042Z</version_modified>
+  <version_id>cbb96976-1d12-412e-89ed-a4510c931cbd</version_id>
+  <version_modified>2024-11-16T23:56:34Z</version_modified>
   <xml_checksum>45097B60</xml_checksum>
   <class_name>CleanupSpaceOrigins</class_name>
   <display_name>CleanupSpaceOrigins</display_name>
@@ -30,16 +30,10 @@
   </attributes>
   <files>
     <file>
-      <filename>CleanupOrigin_Test.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>27B26D55</checksum>
-    </file>
-    <file>
-      <filename>README.md.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>readmeerb</usage_type>
-      <checksum>703C9964</checksum>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>8696A072</checksum>
     </file>
     <file>
       <filename>README.md</filename>
@@ -48,10 +42,10 @@
       <checksum>6B7F3F48</checksum>
     </file>
     <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
     </file>
     <file>
       <version>
@@ -63,6 +57,12 @@
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
       <checksum>21C690B0</checksum>
+    </file>
+    <file>
+      <filename>CleanupOrigin_Test.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>27B26D55</checksum>
     </file>
     <file>
       <filename>CleanupSpaceOrigins_Test.rb</filename>

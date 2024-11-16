@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>make_shading_surfaces_based_on_zone_multipliers</name>
   <uid>57d7314d-2ff0-4c13-bf07-b63380bfdea6</uid>
-  <version_id>1e35bf48-3f72-42df-8196-842f3f498e8f</version_id>
-  <version_modified>2024-05-20T07:54:31Z</version_modified>
+  <version_id>1eb24a2e-b770-4053-bc57-3c8e4b364b95</version_id>
+  <version_modified>2024-11-16T23:56:33Z</version_modified>
   <xml_checksum>2AF3A68E</xml_checksum>
   <class_name>MakeShadingSurfacesBasedOnZoneMultipliers</class_name>
   <display_name>Make Shading Surfaces Based on Zone Multipliers</display_name>
@@ -62,7 +62,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
+      <checksum>8696A072</checksum>
     </file>
     <file>
       <filename>README.md</filename>
