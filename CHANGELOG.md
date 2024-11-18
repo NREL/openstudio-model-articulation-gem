@@ -1,5 +1,11 @@
 # OpenStudio Model Articulation Gems
 
+## Version 0.11.0
+* Support for OpenStudio 3.9 (upgrade to standards gem 0.7.0, extension gem 0.8.1)
+* Fixed [#129]( https://github.com/NREL/openstudio-model-articulation-gem/issues/129 ), Radiance measure needs to be updated for new E+ output variable
+* Fixed [#144]( https://github.com/NREL/openstudio-model-articulation-gem/issues/144 ), Problem with LargeOffice in create_bar with 3.8
+* Fixed [#145]( https://github.com/NREL/openstudio-model-articulation-gem/issues/145 ), Create doe prototype building "SWIG director method error. IOError: not opened for reading" in OpenStudioApplication 1.8.0
+
 ## Version 0.10.0
 * Support for OpenStudio 3.8 (upgrade to standards gem 0.6.0, extension gem 0.8.0)
 * Support Ruby 3.2.2
@@ -16,12 +22,12 @@
 
 ## Version 0.7.0
 * Support for OpenStudio 3.5 (upgrade to standards gem 0.3.0, extension gem 0.6.0)
-* Adding Courthouse and College buidling type argument values to `create_DOE_prototype_building` measure
-* Adding 90.1-2019 to templlate argument values for `create_DOE_prototype_building` measure
+* Adding Courthouse and College building type argument values to `create_DOE_prototype_building` measure
+* Adding 90.1-2019 to template argument values for `create_DOE_prototype_building` measure
 * Fixed [#109]( https://github.com/NREL/openstudio-model-articulation-gem/pull/109 ), Floorspace js translation
 
 ## Version 0.6.1
-* Removed recent changes made to `blended_space_type_from_model` to remove standards space type and building type assignment from resulting blended space type. `blend_space_type_collections` method in extension gem `os_lib_model_simplification.rb` already picks the most prevenant space type. The space type name still indicates that it is blended.
+* Removed recent changes made to `blended_space_type_from_model` to remove standards space type and building type assignment from resulting blended space type. `blend_space_type_collections` method in extension gem `os_lib_model_simplification.rb` already picks the most prevalent space type. The space type name still indicates that it is blended.
 
 ## Version 0.6.0
 * Support for OpenStudio 3.4 (upgrade to standards gem 0.2.16, no extension gem upgrade)

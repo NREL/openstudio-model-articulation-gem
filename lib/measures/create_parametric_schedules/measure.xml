@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>create_parametric_schedules</name>
   <uid>befa8099-c6a7-4045-8792-53fc7124b862</uid>
-  <version_id>a6fcf75a-32c7-4f10-99a4-80c99b9dbf69</version_id>
-  <version_modified>2024-05-20T07:54:34Z</version_modified>
+  <version_id>86a5b8ac-3225-4ba7-ae9c-2d515ffc724a</version_id>
+  <version_modified>2024-11-16T23:56:36Z</version_modified>
   <xml_checksum>03F02484</xml_checksum>
   <class_name>CreateParametricSchedules</class_name>
   <display_name>Create Parametric Schedules</display_name>
@@ -303,7 +303,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
+      <checksum>8696A072</checksum>
     </file>
     <file>
       <filename>README.md</filename>

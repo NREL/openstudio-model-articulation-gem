@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>create_typical_deer_building_from_model</name>
   <uid>09cc23db-5e9b-4b11-b167-1852a15ed339</uid>
-  <version_id>aabba620-c193-4878-814a-d39e643e3fb9</version_id>
-  <version_modified>2024-05-20T07:54:35Z</version_modified>
+  <version_id>fe61093e-f058-4e57-9e13-a066f2a34f17</version_id>
+  <version_modified>2024-11-16T23:56:37Z</version_modified>
   <xml_checksum>AABAC479</xml_checksum>
   <class_name>CreateTypicalDEERBuildingFromModel</class_name>
   <display_name>Create Typical DEER Building from Model</display_name>
@@ -1293,7 +1293,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
+      <checksum>8696A072</checksum>
     </file>
     <file>
       <filename>README.md</filename>
