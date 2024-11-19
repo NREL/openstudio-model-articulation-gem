@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>create_bar_from_space_type_ratios</name>
   <uid>3e988765-9673-46f8-9b65-99d5b86c2b22</uid>
-  <version_id>53727559-2087-42c3-a9de-696acc152c32</version_id>
-  <version_modified>2024-05-20T07:54:35Z</version_modified>
+  <version_id>3220d2d2-1d1b-465c-92ba-bd0fa5ea83d8</version_id>
+  <version_modified>2024-11-16T23:56:38Z</version_modified>
   <xml_checksum>49BEF039</xml_checksum>
   <class_name>CreateBarFromSpaceTypeRatios</class_name>
   <display_name>Create Bar From Space Type Ratios</display_name>
@@ -575,7 +575,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
+      <checksum>8696A072</checksum>
     </file>
     <file>
       <filename>README.md</filename>

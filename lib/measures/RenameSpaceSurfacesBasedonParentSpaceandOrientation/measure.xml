@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <measure>
-  <schema_version>3.0</schema_version>
+  <schema_version>3.1</schema_version>
   <name>rename_space_surfaces_basedon_parent_spaceand_orientation</name>
   <uid>fee62510-c076-423a-b172-0810ecedba10</uid>
-  <version_id>cf3535a4-6a78-4d29-a839-4f3471b49816</version_id>
-  <version_modified>20230602T160037Z</version_modified>
+  <version_id>f8406dfb-3e15-4a54-9b19-f920ba2091ad</version_id>
+  <version_modified>2024-11-16T23:56:31Z</version_modified>
   <xml_checksum>0F858D9E</xml_checksum>
   <class_name>RenameSpaceSurfacesBasedonParentSpaceandOrientation</class_name>
   <display_name>RenameSpaceSurfacesBasedonParentSpaceandOrientation</display_name>
@@ -40,16 +40,10 @@
   </attributes>
   <files>
     <file>
-      <filename>Section 6 - Model.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>870B4270</checksum>
-    </file>
-    <file>
-      <filename>README.md.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>readmeerb</usage_type>
-      <checksum>703C9964</checksum>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>8696A072</checksum>
     </file>
     <file>
       <filename>README.md</filename>
@@ -58,10 +52,45 @@
       <checksum>C70B379F</checksum>
     </file>
     <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.0.0</identifier>
+        <min_compatible>2.0.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>514A8C63</checksum>
+    </file>
+    <file>
+      <filename>RenameSpaceSurfacesBasedonParentSpaceandOrientation_Test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>4EF9EF9F</checksum>
+    </file>
+    <file>
+      <filename>Section 6 - Model/files/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.epw</filename>
+      <filetype>epw</filetype>
+      <usage_type>test</usage_type>
+      <checksum>3B177CE0</checksum>
+    </file>
+    <file>
       <filename>Section 6 - Model/project.log</filename>
       <filetype>log</filetype>
       <usage_type>test</usage_type>
       <checksum>00000000</checksum>
+    </file>
+    <file>
+      <filename>Section 6 - Model/project.osp</filename>
+      <filetype>osp</filetype>
+      <usage_type>test</usage_type>
+      <checksum>FD14D013</checksum>
     </file>
     <file>
       <filename>Section 6 - Model/project.osp-journal</filename>
@@ -76,39 +105,10 @@
       <checksum>4D2285B9</checksum>
     </file>
     <file>
-      <filename>Section 6 - Model/files/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.epw</filename>
-      <filetype>epw</filetype>
+      <filename>Section 6 - Model.osm</filename>
+      <filetype>osm</filetype>
       <usage_type>test</usage_type>
-      <checksum>3B177CE0</checksum>
-    </file>
-    <file>
-      <filename>Section 6 - Model/project.osp</filename>
-      <filetype>osp</filetype>
-      <usage_type>test</usage_type>
-      <checksum>FD14D013</checksum>
-    </file>
-    <file>
-      <version>
-        <software_program>OpenStudio</software_program>
-        <identifier>2.0.0</identifier>
-        <min_compatible>2.0.0</min_compatible>
-      </version>
-      <filename>measure.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>script</usage_type>
-      <checksum>514A8C63</checksum>
-    </file>
-    <file>
-      <filename>LICENSE.md</filename>
-      <filetype>md</filetype>
-      <usage_type>license</usage_type>
-      <checksum>BFFB1AA6</checksum>
-    </file>
-    <file>
-      <filename>RenameSpaceSurfacesBasedonParentSpaceandOrientation_Test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>4EF9EF9F</checksum>
+      <checksum>870B4270</checksum>
     </file>
   </files>
 </measure>
