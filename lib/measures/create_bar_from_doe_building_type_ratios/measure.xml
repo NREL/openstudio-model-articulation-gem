@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>create_bar_from_doe_building_type_ratios</name>
   <uid>0de3cff9-c805-42c4-964e-18cb43a22c63</uid>
-  <version_id>21d5e86d-8249-48df-8e5f-ec726ccce137</version_id>
-  <version_modified>2024-11-16T23:56:37Z</version_modified>
+  <version_id>a0381b1d-0db5-41fd-b51c-f03e3afd035c</version_id>
+  <version_modified>2025-01-09T08:07:51Z</version_modified>
   <xml_checksum>5F523097</xml_checksum>
   <class_name>CreateBarFromDOEBuildingTypeRatios</class_name>
   <display_name>Create Bar From DOE Building Type Ratios</display_name>
@@ -759,7 +759,7 @@
       </choices>
     </argument>
     <argument>
-      <name>story_multiplier</name>
+      <name>story_multiplier_method</name>
       <display_name>Calculation Method for Story Multiplier</display_name>
       <type>Choice</type>
       <required>true</required>
@@ -928,7 +928,7 @@
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
-      <checksum>B96F2633</checksum>
+      <checksum>BEEE10DB</checksum>
     </file>
     <file>
       <filename>README.md.erb</filename>
@@ -1071,13 +1071,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>AF357BC7</checksum>
+      <checksum>CCC0C7D4</checksum>
     </file>
     <file>
       <filename>create_bar_from_doe_building_type_ratios_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>7286FEA7</checksum>
+      <checksum>A08A5602</checksum>
     </file>
     <file>
       <filename>example_model.osm</filename>

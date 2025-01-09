@@ -262,15 +262,15 @@ class CreateBarFromSpaceTypeRatios < OpenStudio::Measure::ModelMeasure
     top_story_exterior_exposed_roof.setDefaultValue(true)
     args << top_story_exterior_exposed_roof
 
-    # Make argument for story_multiplier
+    # Make argument for story_multiplier_method
     choices = OpenStudio::StringVector.new
     choices << 'None'
     choices << 'Basements Ground Mid Top'
     # choices << "Basements Ground Midx5 Top"
-    story_multiplier = OpenStudio::Measure::OSArgument.makeChoiceArgument('story_multiplier', choices, true)
-    story_multiplier.setDisplayName('Calculation Method for Story Multiplier')
-    story_multiplier.setDefaultValue('Basements Ground Mid Top')
-    args << story_multiplier
+    story_multiplier_method = OpenStudio::Measure::OSArgument.makeChoiceArgument('story_multiplier_method', choices, true)
+    story_multiplier_method.setDisplayName('Calculation Method for Story Multiplier')
+    story_multiplier_method.setDefaultValue('Basements Ground Mid Top')
+    args << story_multiplier_method
 
     # make an argument for make_mid_story_surfaces_adiabatic (added to avoid issues with intersect and to lower surface count when using individual stories sliced)
     make_mid_story_surfaces_adiabatic = OpenStudio::Measure::OSArgument.makeBoolArgument('make_mid_story_surfaces_adiabatic', true)

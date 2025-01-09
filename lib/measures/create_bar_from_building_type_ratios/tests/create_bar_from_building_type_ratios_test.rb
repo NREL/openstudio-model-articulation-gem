@@ -78,7 +78,7 @@ class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
     args = {}
     args['total_bldg_floor_area'] = 50000.0
     args['num_stories_above_grade'] = 5
-    args['story_multiplier'] = 'None'
+    args['story_multiplier_method'] = 'None'
 
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, 'example_model.osm')
   end
@@ -1031,7 +1031,7 @@ class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
     args['building_rotation'] = 0
     args['make_mid_story_surfaces_adiabatic'] = true
     args['bar_sep_dist_mult'] = 3
-    args['story_multiplier'] = 'None'
+    args['story_multiplier_method'] = 'None'
     args['num_stories_below_grade'] = 0
     args['bar_width'] = 60.0
 
@@ -1053,7 +1053,7 @@ class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
     args['building_rotation'] = 0
     args['make_mid_story_surfaces_adiabatic'] = true
     args['bar_sep_dist_mult'] = 3
-    # args['story_multiplier'] = 'None'
+    # args['story_multiplier_method'] = 'None'
     # args['num_stories_below_grade'] = 1
     # args['party_wall_stories_south'] = 1
     # args['party_wall_stories_east'] = 2
@@ -1077,12 +1077,12 @@ class CreateBarFromBuildingTypeRatios_Test < Minitest::Test
     args['building_rotation'] = 0
     args['make_mid_story_surfaces_adiabatic'] = true
     args['bar_sep_dist_mult'] = 3
-    # args['story_multiplier'] = 'None'
+    # args['story_multiplier_method'] = 'None'
     # args['num_stories_below_grade'] = 1
     # args['party_wall_stories_south'] = 1
     # args['party_wall_stories_east'] = 2
     args['space_type_sort_logic'] = 'Size'
-    # args['story_multiplier'] = "None"
+    # args['story_multiplier_method'] = "None"
 
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
   end

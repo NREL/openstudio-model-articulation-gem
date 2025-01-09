@@ -78,7 +78,7 @@ class CreateBarFromDOEBuildingTypeRatios_Test < Minitest::Test
     args = {}
     args['total_bldg_floor_area'] = 50000.0
     args['num_stories_above_grade'] = 5
-    args['story_multiplier'] = 'None'
+    args['story_multiplier_method'] = 'None'
 
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, 'example_model.osm')
   end
