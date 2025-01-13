@@ -584,7 +584,7 @@ This should be true unless you are modeling a partial building which doesn't inc
 
 ### Calculation Method for Story Multiplier
 
-**Name:** story_multiplier,
+**Name:** story_multiplier_method,
 **Type:** Choice,
 **Units:** ,
 **Required:** true,

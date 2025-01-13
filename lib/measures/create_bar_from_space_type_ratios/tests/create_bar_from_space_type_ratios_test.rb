@@ -136,9 +136,9 @@ class CreateBarFromSpaceTypeRatios_Test < Minitest::Test
     args['building_rotation'] = 0
     args['make_mid_story_surfaces_adiabatic'] = true
     args['bar_sep_dist_mult'] = 3
-    args['story_multiplier'] = 'None'
+    args['story_multiplier_method'] = 'None'
     args['space_type_sort_logic'] = 'Building Type > Size'
-    args['story_multiplier'] = 'None'
+    args['story_multiplier_method'] = 'None'
 
     apply_measure_to_model(__method__.to_s.gsub('test_', ''), args, nil, nil, nil)
   end
