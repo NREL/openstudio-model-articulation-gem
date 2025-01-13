@@ -1,5 +1,9 @@
 # OpenStudio Model Articulation Gems
 
+## Version 0.11.1
+* Update 'story_multiplier' argument to 'story_multiplier_method' for create_bar_from_building_type_ratios measure
+* Update dependencies for 3.9
+
 ## Version 0.11.0
 * Support for OpenStudio 3.9 (upgrade to standards gem 0.7.0, extension gem 0.8.1)
 * Fixed [#129]( https://github.com/NREL/openstudio-model-articulation-gem/issues/129 ), Radiance measure needs to be updated for new E+ output variable
