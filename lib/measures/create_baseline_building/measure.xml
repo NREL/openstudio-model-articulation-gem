@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>create_baseline_building</name>
   <uid>4de56e21-b6cd-45d9-8466-862507d228b2</uid>
-  <version_id>fff85669-8136-4b9c-9c2d-459678c195af</version_id>
-  <version_modified>2024-11-16T23:56:33Z</version_modified>
+  <version_id>3ed14c5e-a445-4818-b1c2-216c310c2716</version_id>
+  <version_modified>2025-06-12T23:44:21Z</version_modified>
   <xml_checksum>A514F332</xml_checksum>
   <class_name>CreateBaselineBuilding</class_name>
   <display_name>Create Baseline Building</display_name>
@@ -280,7 +280,7 @@
       <filename>create_baseline_building_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>8731D1E6</checksum>
+      <checksum>F0256467</checksum>
     </file>
   </files>
 </measure>
