@@ -41,6 +41,7 @@ class CreateBaselineBuildingTest < Minitest::Unit::TestCase
     # set the weather file for the test model
     epw_file = OpenStudio::EpwFile.new("#{__dir__}/USA_TX_Houston-Bush.Intercontinental.AP.722430_TMY3.epw")
     OpenStudio::Model::WeatherFile.setWeatherFile(model, epw_file).get
+    OpenstudioStandards::Weather.model_set_climate_zone(model, 'ASHRAE 169-2013-2A')
 
     # Create an empty argument map
     arguments = measure.arguments(model)

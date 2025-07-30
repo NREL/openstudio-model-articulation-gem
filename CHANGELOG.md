@@ -1,5 +1,9 @@
 # OpenStudio Model Articulation Gems
 
+## Version 0.12.0
+* Support for OpenStudio 3.10 (upgrade to standards gem 0.8.2, extension gem 0.9.1)
+* todo add log after finalize bug fixes for this release
+
 ## Version 0.11.1
 * Update 'story_multiplier' argument to 'story_multiplier_method' for create_bar_from_building_type_ratios measure
 * Update dependencies for 3.9
