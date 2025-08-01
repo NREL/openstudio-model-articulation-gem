@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>create_deer_prototype_building</name>
   <uid>752055bd-10d9-4ede-8a35-18487fedf579</uid>
-  <version_id>cd79ee36-06c8-4c83-b521-124febbdf6b6</version_id>
-  <version_modified>2024-11-16T23:56:33Z</version_modified>
+  <version_id>9f62690e-ae48-4428-84c3-1b11f5c94069</version_id>
+  <version_modified>2025-08-01T14:58:32Z</version_modified>
   <xml_checksum>A514F332</xml_checksum>
   <class_name>CreateDEERPrototypeBuilding</class_name>
   <display_name>Create DEER Prototype Building ALPHA Version</display_name>
@@ -804,7 +804,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>

@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>assign_construction_set_to_building</name>
   <uid>6e68ddea-2cff-47a3-9daf-f2189e4cf132</uid>
-  <version_id>454bef55-1773-438b-bdad-c12d6f50070f</version_id>
-  <version_modified>2024-11-16T23:56:31Z</version_modified>
+  <version_id>8c850fd3-2cee-408d-9406-edccc599cb38</version_id>
+  <version_modified>2025-08-01T14:58:30Z</version_modified>
   <xml_checksum>1E963D9C</xml_checksum>
   <class_name>AssignConstructionSetToBuilding</class_name>
   <display_name>AssignConstructionSetToBuilding</display_name>
@@ -17,10 +17,10 @@
       <type>Choice</type>
       <required>true</required>
       <model_dependent>false</model_dependent>
-      <default_value>{125b021d-d9ad-4dd9-a041-cddef79641bc}</default_value>
+      <default_value>{2ac6b06b-e158-4220-bae9-a2110789d808}</default_value>
       <choices>
         <choice>
-          <value>{125b021d-d9ad-4dd9-a041-cddef79641bc}</value>
+          <value>{2ac6b06b-e158-4220-bae9-a2110789d808}</value>
           <display_name>&lt;clear field&gt;</display_name>
         </choice>
       </choices>
@@ -48,7 +48,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>
