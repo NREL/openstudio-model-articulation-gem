@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>space_type_and_construction_set_wizard</name>
   <uid>7c65af63-4316-47c9-b7a5-68d7a019e533</uid>
-  <version_id>dc3124a5-f1cd-4818-ade8-d3e340a96495</version_id>
-  <version_modified>2024-11-16T23:56:36Z</version_modified>
+  <version_id>d3e04a36-30bc-4bc9-8876-43cc5835937a</version_id>
+  <version_modified>2025-08-01T14:58:34Z</version_modified>
   <xml_checksum>057E8D9D</xml_checksum>
   <class_name>SpaceTypeAndConstructionSetWizard</class_name>
   <display_name>Space Type and Construction Set Wizard</display_name>
@@ -346,7 +346,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>

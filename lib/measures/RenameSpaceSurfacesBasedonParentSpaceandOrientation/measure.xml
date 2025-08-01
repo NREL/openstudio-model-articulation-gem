@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>rename_space_surfaces_basedon_parent_spaceand_orientation</name>
   <uid>fee62510-c076-423a-b172-0810ecedba10</uid>
-  <version_id>f8406dfb-3e15-4a54-9b19-f920ba2091ad</version_id>
-  <version_modified>2024-11-16T23:56:31Z</version_modified>
+  <version_id>bc9e6309-dc76-48ef-8ad0-66af8494546a</version_id>
+  <version_modified>2025-08-01T14:58:30Z</version_modified>
   <xml_checksum>0F858D9E</xml_checksum>
   <class_name>RenameSpaceSurfacesBasedonParentSpaceandOrientation</class_name>
   <display_name>RenameSpaceSurfacesBasedonParentSpaceandOrientation</display_name>
@@ -43,7 +43,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>

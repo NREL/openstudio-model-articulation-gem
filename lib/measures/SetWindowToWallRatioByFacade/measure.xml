@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>set_window_to_wall_ratio_by_facade</name>
   <uid>c567a0bf-a7d9-4a06-afe9-bf7df79e6bf8</uid>
-  <version_id>cfcbe959-1852-4cda-9f38-2c3d194eff03</version_id>
-  <version_modified>2024-11-16T23:56:34Z</version_modified>
+  <version_id>1bcd52aa-0755-4857-b44e-11ebefd80679</version_id>
+  <version_modified>2025-08-01T14:58:33Z</version_modified>
   <xml_checksum>6DE831F7</xml_checksum>
   <class_name>SetWindowToWallRatioByFacade</class_name>
   <display_name>Set Window to Wall Ratio by Facade</display_name>
@@ -195,7 +195,7 @@ The measure doesn?t have any cost or lifecycle arguments, however If lifecycle o
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>

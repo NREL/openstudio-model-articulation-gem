@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>deer_space_type_and_construction_set_wizard</name>
   <uid>d8effcbd-52b2-4e5c-866c-e85091142aa6</uid>
-  <version_id>9bc1b1a3-3cde-488d-8813-2f985dfa18c5</version_id>
-  <version_modified>2024-11-16T23:56:34Z</version_modified>
+  <version_id>502711a2-dbe4-43d5-90be-e6c32c296d3c</version_id>
+  <version_modified>2025-08-01T14:58:33Z</version_modified>
   <xml_checksum>A514F332</xml_checksum>
   <class_name>DEERSpaceTypeAndConstructionSetWizard</class_name>
   <display_name>DEER Space Type and Construction Set Wizard</display_name>
@@ -370,7 +370,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>

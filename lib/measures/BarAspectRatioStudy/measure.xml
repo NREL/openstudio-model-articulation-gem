@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>bar_aspect_ratio_study</name>
   <uid>3dcac94d-8a2e-43b6-8698-a3a4e8f3903f</uid>
-  <version_id>ca4f58ac-36bc-46f7-90af-ed5a8837064a</version_id>
-  <version_modified>2024-11-16T23:56:33Z</version_modified>
+  <version_id>e4abe4db-3a71-4381-b00b-c77440372439</version_id>
+  <version_modified>2025-08-01T14:58:32Z</version_modified>
   <xml_checksum>49BEF039</xml_checksum>
   <class_name>BarAspectRatioStudy</class_name>
   <display_name>Bar Aspect Ratio Study</display_name>
@@ -114,7 +114,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>
