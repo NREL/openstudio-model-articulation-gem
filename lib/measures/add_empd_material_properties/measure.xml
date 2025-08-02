@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>add_empd_material_properties</name>
   <uid>91799c24-d81e-42eb-a458-f2b3a0ee1ff3</uid>
-  <version_id>65ae8789-d90f-4a7c-8709-be53369e53e4</version_id>
-  <version_modified>2024-11-16T23:56:36Z</version_modified>
+  <version_id>45aab9cf-3c06-44d3-9e51-b2939079ee68</version_id>
+  <version_modified>2025-08-01T14:58:34Z</version_modified>
   <xml_checksum>9EF0A36D</xml_checksum>
   <class_name>AddEMPDMaterialProperties</class_name>
   <display_name>Add EMPD Material Properties</display_name>
@@ -154,7 +154,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>

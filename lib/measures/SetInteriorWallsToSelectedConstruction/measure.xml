@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>set_interior_walls_to_selected_construction</name>
   <uid>e3d59d0d-1ce8-4cb2-ae59-001f0fa2ac46</uid>
-  <version_id>a7ee14a2-8c0d-422e-be6f-bf124bd0d3f4</version_id>
-  <version_modified>2024-11-16T23:56:33Z</version_modified>
+  <version_id>53faab59-85ae-4135-9b1e-47fb05b2999c</version_id>
+  <version_modified>2025-08-01T14:58:32Z</version_modified>
   <xml_checksum>1E963D9C</xml_checksum>
   <class_name>SetInteriorWallsToSelectedConstruction</class_name>
   <display_name>SetInteriorWallsToSelectedConstruction</display_name>
@@ -41,7 +41,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>

@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>set_interior_walls_and_floors_to_adiabatic</name>
   <uid>78cbde97-d7c4-425f-ab74-5053a681cc4b</uid>
-  <version_id>b53d69f3-2881-49b1-a6e9-1343d3422144</version_id>
-  <version_modified>2024-11-16T23:56:36Z</version_modified>
+  <version_id>f1eda4d6-1530-4251-9d3f-3169caeab68c</version_id>
+  <version_modified>2025-08-01T14:58:35Z</version_modified>
   <xml_checksum>1E963D9C</xml_checksum>
   <class_name>SetInteriorWallsAndFloorsToAdiabatic</class_name>
   <display_name>SetInteriorWallsAndFloorsToAdiabatic</display_name>
@@ -41,7 +41,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>

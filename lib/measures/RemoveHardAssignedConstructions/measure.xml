@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>remove_hard_assigned_constructions</name>
   <uid>8fd2557e-907d-46a3-aebf-8cc81c58bc65</uid>
-  <version_id>9559e844-4bb3-42e1-a975-89589e51a20d</version_id>
-  <version_modified>2024-11-16T23:56:38Z</version_modified>
+  <version_id>7ca7c0e7-f6cd-496e-96f8-8ff4694dd7d3</version_id>
+  <version_modified>2025-08-01T14:58:36Z</version_modified>
   <xml_checksum>1E963D9C</xml_checksum>
   <class_name>RemoveHardAssignedConstructions</class_name>
   <display_name>RemoveHardAssignedConstructions</display_name>
@@ -52,7 +52,7 @@
       <filename>LICENSE.md</filename>
       <filetype>md</filetype>
       <usage_type>license</usage_type>
-      <checksum>8696A072</checksum>
+      <checksum>CBFF29F5</checksum>
     </file>
     <file>
       <filename>README.md</filename>
