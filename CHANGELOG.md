@@ -1,5 +1,8 @@
 # OpenStudio Model Articulation Gems
 
+## Version 0.12.2
+* Updated dependency (openstudio-extension gem 0.9.2 to 0.9.3)
+
 ## Version 0.12.1
 * Updated measure XML files for metadata consistency
 * Minor updates to README and license templates
