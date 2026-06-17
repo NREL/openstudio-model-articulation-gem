@@ -227,7 +227,7 @@ class MergeFloorspaceJsWithModel < OpenStudio::Measure::ModelMeasure
       space_type.spaces.each do |space|
         unless space.thermalZone.is_initialized
           thermal_zone = OpenStudio::Model::ThermalZone.new(model)
-          thermal_zone.setName(space.name.to_s)
+          thermal_zone.setName("zone #{space.name.to_s}")
           space.setThermalZone(thermal_zone)
         end
       end
