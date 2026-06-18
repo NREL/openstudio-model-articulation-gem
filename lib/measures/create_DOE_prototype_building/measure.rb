@@ -141,7 +141,7 @@ class CreateDOEPrototypeBuilding < OpenStudio::Measure::ModelMeasure
     @runner = runner
 
     # Make a directory to save the resulting models for debugging
-    build_dir = "#{Dir.pwd}/output"
+    build_dir = "#{__dir__}/output"
     if !Dir.exist?(build_dir)
       Dir.mkdir(build_dir)
     end

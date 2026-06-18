@@ -72,7 +72,7 @@ class CreateBaselineBuildingTest < Minitest::Unit::TestCase
     # Ensure the measure finished as expected
     assert(result.value.valueName == 'Success')
 
-    model.save(OpenStudio::Path.new("output/#{model_name}_baseline.osm"), true)
+    model.save(OpenStudio::Path.new("#{@test_dir}/#{model_name}_baseline.osm"), true)
 
     return model
   end
