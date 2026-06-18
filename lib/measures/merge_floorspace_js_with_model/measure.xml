@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>merge_floorspace_js_with_model</name>
   <uid>16ef6369-6420-4f17-894c-a767895bcaa4</uid>
-  <version_id>08fb938b-1331-47e4-bcaa-07fae4abc783</version_id>
-  <version_modified>2025-08-01T14:58:34Z</version_modified>
+  <version_id>dbc9b07c-4180-44e0-9832-d5694411bf92</version_id>
+  <version_modified>2026-06-18T14:42:58Z</version_modified>
   <xml_checksum>0AD1E2E2</xml_checksum>
   <class_name>MergeFloorspaceJsWithModel</class_name>
   <display_name>Merge FloorspaceJs with Model</display_name>
@@ -80,7 +80,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>23601781</checksum>
+      <checksum>30F6DA3E</checksum>
     </file>
     <file>
       <filename>SDDC Office template.osm</filename>
@@ -98,7 +98,7 @@
       <filename>merge_floorspace_js_with_model_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>BAEA9032</checksum>
+      <checksum>B2F47843</checksum>
     </file>
     <file>
       <filename>new_test.json</filename>

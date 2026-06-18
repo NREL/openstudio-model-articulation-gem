@@ -35,6 +35,9 @@ class MergeFloorspaceJsWithModelTest < Minitest::Test
     # store the number of spaces in the seed model
     num_spaces_seed = model.getSpaces.size
 
+    # capture existing zone names before running the measure
+    existing_zone_names = model.getThermalZones.map { |z| z.name.to_s }
+
     # get arguments
     arguments = measure.arguments(model)
     argument_map = OpenStudio::Measure.convertOSArgumentVectorToMap(arguments)
@@ -68,6 +71,26 @@ class MergeFloorspaceJsWithModelTest < Minitest::Test
 
     # check that there is now 1 space
     # assert_equal(1, model.getSpaces.size - num_spaces_seed)
+
+    # verify that newly created thermal zones use the correct naming convention
+    # and that zone names do not exactly match the corresponding space name (Issue #170)
+    model.getSpaces.each do |space|
+      next unless space.thermalZone.is_initialized
+      zone_name = space.thermalZone.get.name.to_s
+      next if existing_zone_names.include?(zone_name)
+
+      space_name = space.name.to_s
+      if space_name.include?('Space')
+        expected_zone_name = space_name.gsub('Space', 'Zone')
+        assert_equal(expected_zone_name, zone_name,
+                     "Expected zone name '#{expected_zone_name}' (Space replaced with Zone) for space '#{space_name}'")
+      else
+        assert(zone_name.start_with?('zone '),
+               "Expected newly created zone '#{zone_name}' to start with 'zone ' for space '#{space_name}'")
+      end
+      refute_equal(space_name, zone_name,
+                   "Thermal zone name '#{zone_name}' must not equal space name '#{space_name}'")
+    end
 
     # save the model to test output directory
     output_file_path = "#{File.dirname(__FILE__)}//output/test_output.osm"
