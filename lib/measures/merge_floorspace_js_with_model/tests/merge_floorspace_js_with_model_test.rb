@@ -80,10 +80,10 @@ class MergeFloorspaceJsWithModelTest < Minitest::Test
       next if existing_zone_names.include?(zone_name)
 
       space_name = space.name.to_s
-      if space_name.include?('Space')
-        expected_zone_name = space_name.gsub('Space', 'Zone')
+      if space_name.match?(/space/i)
+        expected_zone_name = space_name.gsub(/space/i, 'Zone')
         assert_equal(expected_zone_name, zone_name,
-                     "Expected zone name '#{expected_zone_name}' (Space replaced with Zone) for space '#{space_name}'")
+                     "Expected zone name '#{expected_zone_name}' (space/SPACE/Space/etc. replaced with Zone) for space '#{space_name}'")
       else
         assert(zone_name.start_with?('zone '),
                "Expected newly created zone '#{zone_name}' to start with 'zone ' for space '#{space_name}'")
