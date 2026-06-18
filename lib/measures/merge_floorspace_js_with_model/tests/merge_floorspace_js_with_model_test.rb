@@ -72,7 +72,7 @@ class MergeFloorspaceJsWithModelTest < Minitest::Test
     # check that there is now 1 space
     # assert_equal(1, model.getSpaces.size - num_spaces_seed)
 
-    # verify that newly created thermal zones are prefixed with "zone "
+    # verify that newly created thermal zones use the correct naming convention
     # and that zone names do not exactly match the corresponding space name (Issue #170)
     model.getSpaces.each do |space|
       next unless space.thermalZone.is_initialized
@@ -80,8 +80,14 @@ class MergeFloorspaceJsWithModelTest < Minitest::Test
       next if existing_zone_names.include?(zone_name)
 
       space_name = space.name.to_s
-      assert(zone_name.start_with?('zone '),
-             "Expected newly created zone '#{zone_name}' to start with 'zone ' for space '#{space_name}'")
+      if space_name.include?('Space')
+        expected_zone_name = space_name.gsub('Space', 'Zone')
+        assert_equal(expected_zone_name, zone_name,
+                     "Expected zone name '#{expected_zone_name}' (Space replaced with Zone) for space '#{space_name}'")
+      else
+        assert(zone_name.start_with?('zone '),
+               "Expected newly created zone '#{zone_name}' to start with 'zone ' for space '#{space_name}'")
+      end
       refute_equal(space_name, zone_name,
                    "Thermal zone name '#{zone_name}' must not equal space name '#{space_name}'")
     end
